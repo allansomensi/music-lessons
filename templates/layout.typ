@@ -1,4 +1,3 @@
-/// Global settings and contact data
 #let CONTACT_INFO = (
   name: "Allan Somensi",
   instagram: "@allansomensi",
@@ -7,9 +6,9 @@
   email: "contato@allansomensi.com.br",
 )
 
-#let lesson-template(
-  module: "Guitarra",
-  level: "Iniciante",
+#let aula(
+  module: "Guitarra / Violão",
+  level: "Iniciante / Intermediário / Avançado",
   logo_path: "../assets/logo.svg",
   body,
 ) = {

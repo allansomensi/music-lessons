@@ -1,6 +1,6 @@
-#import "../../../templates/layout.typ": explainer-component, lesson-template
+#import "../../../../templates/layout.typ": aula, explainer-component
 
-#show: lesson-template.with(
+#show: aula.with(
   module: "Guitarra",
   level: "Iniciante",
 )

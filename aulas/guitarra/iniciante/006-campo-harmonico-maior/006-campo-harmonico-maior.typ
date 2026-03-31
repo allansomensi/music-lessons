@@ -1,8 +1,8 @@
-#import "../../../templates/layout.typ": explainer-component, lesson-template
+#import "../../../../templates/layout.typ": aula, explainer-component
 #import "@preview/conchord:0.4.0": new-chordgen
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, edge, node
 
-#show: lesson-template.with(
+#show: aula.with(
   module: "Guitarra",
   level: "Iniciante",
 )
