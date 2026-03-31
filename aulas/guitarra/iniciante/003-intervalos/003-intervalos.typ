@@ -3,8 +3,8 @@
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, edge, node
 
 #show: aula.with(
-  module: "Guitarra",
-  level: "Iniciante",
+  instrumento: "Guitarra",
+  nivel: "Iniciante",
 )
 
 #let chord = new-chordgen(number-to-left: true, use-shadow-barre: false, colors: (hold: black, barre: black))

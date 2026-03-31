@@ -2,8 +2,8 @@
 #import "@preview/conchord:0.4.0": new-chordgen
 
 #show: aula.with(
-  module: "Guitarra",
-  level: "Iniciante",
+  instrumento: "Guitarra",
+  nivel: "Iniciante",
 )
 
 #let chord = new-chordgen(number-to-left: true, use-shadow-barre: false, colors: (hold: black, barre: black))

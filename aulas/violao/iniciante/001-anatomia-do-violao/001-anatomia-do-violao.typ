@@ -1,8 +1,8 @@
 #import "../../../../templates/layout.typ": aula, explainer-component
 
 #show: aula.with(
-  module: "Violão",
-  level: "Iniciante",
+  instrumento: "Violão",
+  nivel: "Iniciante",
 )
 
 = Conhecendo o Instrumento

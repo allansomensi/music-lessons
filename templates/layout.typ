@@ -7,8 +7,8 @@
 )
 
 #let aula(
-  module: "Guitarra / Violão",
-  level: "Iniciante / Intermediário / Avançado",
+  instrumento: "Guitarra / Violão",
+  nivel: "Iniciante / Intermediário / Avançado",
   logo_path: "../assets/logo.svg",
   body,
 ) = {
@@ -18,8 +18,8 @@
     header: [
       #set text(font: "Linux Libertine", size: 10pt)
       #align(right)[
-        #text(weight: "bold", fill: luma(80))[#module]
-        #text(fill: luma(150))[ #h(5pt) • #h(5pt) #level ]
+        #text(weight: "bold", fill: luma(80))[#instrumento]
+        #text(fill: luma(150))[ #h(5pt) • #h(5pt) #nivel ]
       ]
     ],
     footer: context [
