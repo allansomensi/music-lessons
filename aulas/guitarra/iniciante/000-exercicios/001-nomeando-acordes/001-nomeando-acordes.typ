@@ -20,7 +20,7 @@
 
 = Nomeie os Acordes
 
-Preencha a linha abaixo de cada diagrama com o nome correto do acorde representado.
+Preencha a linha abaixo de cada diagrama com a cifra correta do acorde representado.
 
 #v(2em)
 
