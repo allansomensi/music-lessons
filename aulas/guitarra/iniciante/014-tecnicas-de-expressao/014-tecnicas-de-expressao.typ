@@ -1,4 +1,4 @@
-#import "../../../../templates/layout.typ": aula, explainer-component
+#import "../../../../templates/layout.typ": *
 
 #show: aula.with(
   instrumento: "Guitarra",
@@ -20,8 +20,8 @@ O *legato* conecta notas com fluidez, sem que a palheta precise tocar cada nota 
   gutter: 1.5em,
   block(
     width: 100%,
-    fill: rgb("#eff6ff"),
-    stroke: 0.6pt + rgb("#93c5fd"),
+    fill: color-brand-soft,
+    stroke: 0.6pt + color-brand-soft,
     inset: 12pt,
     radius: 5pt,
     [
@@ -50,8 +50,8 @@ O *legato* conecta notas com fluidez, sem que a palheta precise tocar cada nota 
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(210),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     width: 60%,
@@ -77,8 +77,8 @@ O *bend* estica a corda, elevando a afinação em tempo real. É a técnica mais
   #table(
     columns: (1.2fr, 0.8fr, 2fr, 1.5fr),
     align: center + horizon,
-    stroke: 0.5pt + luma(190),
-    fill: (col, row) => if row == 0 { luma(232) } else if calc.odd(row) { white } else { luma(248) },
+    stroke: 0.5pt + color-rule-dark,
+    fill: (col, row) => if row == 0 { color-subtle-bg } else if calc.odd(row) { white } else { color-subtle-bg },
     [*Tipo*], [*Símbolo*], [*Descrição*], [*Aplicação*],
     [Meio Bend], [½B], [Sobe 1 semitom (1 casa)], [Blues, expressão sutil],
     [Bend Inteiro], [B ou 1B], [Sobe 1 tom (2 casas)], [Rock, bluesy, clássico],
@@ -105,8 +105,8 @@ O *vibrato* é uma oscilação rítmica da afinação que *sustenta e anima* uma
   gutter: 1.5em,
   block(
     width: 100%,
-    fill: luma(248),
-    stroke: 0.5pt + luma(200),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     [
@@ -118,8 +118,8 @@ O *vibrato* é uma oscilação rítmica da afinação que *sustenta e anima* uma
   ),
   block(
     width: 100%,
-    fill: luma(248),
-    stroke: 0.5pt + luma(200),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     [
@@ -140,8 +140,8 @@ O *slide* conecta duas notas deslizando o dedo pelo braço, mantendo a pressão 
     columns: (1fr, 1fr),
     gutter: 2em,
     block(
-      fill: luma(248),
-      stroke: 0.5pt + luma(210),
+      fill: color-subtle-bg,
+      stroke: 0.5pt + color-rule-dark,
       inset: 12pt,
       radius: 5pt,
       [
@@ -153,8 +153,8 @@ O *slide* conecta duas notas deslizando o dedo pelo braço, mantendo a pressão 
       ],
     ),
     block(
-      fill: luma(248),
-      stroke: 0.5pt + luma(210),
+      fill: color-subtle-bg,
+      stroke: 0.5pt + color-rule-dark,
       inset: 12pt,
       radius: 5pt,
       [
@@ -170,8 +170,8 @@ O *slide* conecta duas notas deslizando o dedo pelo braço, mantendo a pressão 
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(200),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 14pt,
     radius: 5pt,
     width: 88%,
@@ -195,8 +195,8 @@ E|---------------------|
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(210),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     width: 80%,

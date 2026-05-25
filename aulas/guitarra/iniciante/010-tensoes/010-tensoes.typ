@@ -1,4 +1,4 @@
-#import "../../../../templates/layout.typ": aula, explainer-component
+#import "../../../../templates/layout.typ": *
 #import "@preview/conchord:0.4.0": new-chordgen
 
 #show: aula.with(
@@ -20,8 +20,8 @@ Além das 4 notas da tétrade (T, 3, 5, 7), é possível adicionar mais notas ao
   #table(
     columns: (1fr, 0.6fr, 0.6fr, 2.5fr),
     align: center + horizon,
-    stroke: 0.5pt + luma(190),
-    fill: (col, row) => if row == 0 { luma(232) } else if calc.odd(row) { white } else { luma(248) },
+    stroke: 0.5pt + color-rule-dark,
+    fill: (col, row) => if row == 0 { color-subtle-bg } else if calc.odd(row) { white } else { color-subtle-bg },
     [*Intervalo dentro da 8va*], [*Escrita*], [*Tensão*], [*Exemplo a partir de Dó*],
     [2ª menor], [b2], [b9], [Dó → Réb (= 9ª menor)],
     [2ª maior], [2], [9], [Dó → Ré (= 9ª maior)],
@@ -37,8 +37,8 @@ Além das 4 notas da tétrade (T, 3, 5, 7), é possível adicionar mais notas ao
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(210),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 10pt,
     radius: 5pt,
     width: 80%,
@@ -58,9 +58,9 @@ Nem toda tensão funciona sobre todo acorde. As tensões "disponíveis" são as 
   #table(
     columns: (0.7fr, 1fr, 0.7fr, 0.7fr, 0.7fr, 0.7fr),
     align: center + horizon,
-    stroke: 0.5pt + luma(190),
+    stroke: 0.5pt + color-rule-dark,
     fill: (col, row) => {
-      if row == 0 { luma(232) } else if col == 0 { luma(240) } else { white }
+      if row == 0 { color-subtle-bg } else if col == 0 { color-subtle-bg } else { white }
     },
     [*Acorde*], [*Tipo*], [*7ª*], [*9 (2ª)*], [*11 (4ª)*], [*13 (6ª)*],
     [C7M  (I)], [Maior 7M], [7M], [9], [\#11], [13],
@@ -74,7 +74,7 @@ Nem toda tensão funciona sobre todo acorde. As tensões "disponíveis" são as 
 ]
 
 #align(center)[
-  #text(size: 8.5pt, fill: luma(120))[
+  #text(size: 8.5pt, fill: color-muted)[
     *Observação:* O acorde G7 (V) evita a 11ª justa pois ela conflita com a 3ª (Si). Em seu lugar, usa-se a *\#11* (Fá\#) para criar o modo Lídio-Dominante.
   ]
 ]
@@ -96,31 +96,31 @@ Os exemplos abaixo mostram como as tensões enriquecem acordes do campo de Dó. 
       #box(chord("x,3,2,0,3,0", name: "C7M9"))
       #v(0.3em)
       #text(size: 8.5pt, weight: "bold")[C7M com 9] \
-      #text(size: 7.5pt, fill: luma(110))[do · mi · sol · si · ré]
+      #text(size: 7.5pt, fill: color-muted)[do · mi · sol · si · ré]
     ],
     block[
       #box(chord("x,x,0,2,1,1", name: "Dm7"))
       #v(0.3em)
       #text(size: 8.5pt, weight: "bold")[Dm7 com 11] \
-      #text(size: 7.5pt, fill: luma(110))[ré · fá · lá · do]
+      #text(size: 7.5pt, fill: color-muted)[ré · fá · lá · do]
     ],
     block[
       #box(chord("3,x,3,4,5,x", name: "G7(13)"))
       #v(0.3em)
       #text(size: 8.5pt, weight: "bold")[G7 com 13] \
-      #text(size: 7.5pt, fill: luma(110))[sol · fá · si · lá]
+      #text(size: 7.5pt, fill: color-muted)[sol · fá · si · lá]
     ],
     block[
       #box(chord("x,0,2,0,1,0", name: "Am7"))
       #v(0.3em)
       #text(size: 8.5pt, weight: "bold")[Am7 com 11] \
-      #text(size: 7.5pt, fill: luma(110))[lá · mi · sol · do]
+      #text(size: 7.5pt, fill: color-muted)[lá · mi · sol · do]
     ],
     block[
       #box(chord("x,3,4,4,3,3", name: "Fmaj7"))
       #v(0.3em)
       #text(size: 8.5pt, weight: "bold")[F7M com 9] \
-      #text(size: 7.5pt, fill: luma(110))[fá · lá · do · mi]
+      #text(size: 7.5pt, fill: color-muted)[fá · lá · do · mi]
     ],
   )
 ]
@@ -136,8 +136,8 @@ Os exemplos abaixo mostram como as tensões enriquecem acordes do campo de Dó. 
     #set text(size: 9.5pt)
     #table(
       columns: (0.6fr, 1fr),
-      stroke: 0.5pt + luma(200),
-      fill: (col, row) => if row == 0 { luma(235) } else { white },
+      stroke: 0.5pt + color-rule-dark,
+      fill: (col, row) => if row == 0 { color-subtle-bg } else { white },
       align: right + horizon,
       [*Tensão*], [*Sonoridade*],
       [9 (Ré em C)], [cor aberta, ensolarada],

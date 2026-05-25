@@ -1,4 +1,4 @@
-#import "../../../../templates/layout.typ": aula, explainer-component
+#import "../../../../templates/layout.typ": *
 #import "@preview/conchord:0.4.0": new-chordgen, overchord
 
 #show: aula.with(
@@ -22,8 +22,8 @@
 #let fret-cell(conteudo, highlight: false) = block(
   width: 38pt,
   height: 22pt,
-  fill: if highlight { rgb("#1d4ed8") } else { luma(250) },
-  stroke: 0.4pt + luma(190),
+  fill: if highlight { color-brand } else { luma(250) },
+  stroke: 0.4pt + color-rule-dark,
   inset: 3pt,
   align(center + horizon)[
     #text(
@@ -46,7 +46,7 @@ A música ocidental usa *7 notas naturais*. No Brasil usamos os nomes em portugu
 
 #align(center)[
   #block(
-    stroke: 0.5pt + luma(200),
+    stroke: 0.5pt + color-rule-dark,
     radius: 6pt,
     clip: true,
     [
@@ -70,8 +70,8 @@ A correspondência é simples, mas precisa ser memorizada. Na prática, quando v
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(210),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 10pt,
     radius: 5pt,
     width: 86%,
@@ -92,17 +92,17 @@ As 7 notas naturais não cobrem todos os sons. Entre a maioria delas há *notas 
 
 #align(center)[
   #block(
-    stroke: 0.5pt + luma(190),
+    stroke: 0.5pt + color-rule-dark,
     radius: 6pt,
     clip: true,
     [
-      #let nat = luma(235)
+      #let nat = color-subtle-bg
       #let acc = rgb("#6398a8")
       #table(
         columns: 12,
         rows: (auto, auto),
         align: center + horizon,
-        stroke: 0.5pt + luma(200),
+        stroke: 0.5pt + color-rule-dark,
         inset: (x: 5pt, y: 7pt),
         fill: (col, row) => {
           let blacks = (1, 3, 6, 8, 10)
@@ -170,8 +170,8 @@ As 7 notas naturais não cobrem todos os sons. Entre a maioria delas há *notas 
     gutter: 1em,
     block(
       width: 100%,
-      fill: rgb("#eff6ff"),
-      stroke: 0.6pt + rgb("#93c5fd"),
+      fill: color-brand-soft,
+      stroke: 0.6pt + color-brand-soft,
       inset: 10pt,
       radius: 5pt,
       [
@@ -227,7 +227,7 @@ A guitarra de 6 cordas tem uma afinação padrão chamada de *Standard Tuning* o
     rgb("#9c3c3c"), // 6ª — E2
     rgb("#9b6221"), // 5ª — A2
     rgb("#8d6f2e"), // 4ª — D3
-    rgb("#1f6e3c"), // 3ª — G3
+    color-accent-soft, // 3ª — G3
     rgb("#203768"), // 2ª — B3
     rgb("#402272"), // 1ª — E4
   )
@@ -240,15 +240,15 @@ A guitarra de 6 cordas tem uma afinação padrão chamada de *Standard Tuning* o
     ("1ª corda", "E4", "Mi agudo", "A corda mais fina"),
   )
   #block(
-    stroke: 0.5pt + luma(200),
+    stroke: 0.5pt + color-rule-dark,
     radius: 6pt,
     clip: true,
     [
       #table(
         columns: (1fr, 1.1fr, 1.2fr, 0.5fr, 1.8fr),
         align: (left + horizon, center + horizon, center + horizon, center + horizon, left + horizon),
-        stroke: 0.5pt + luma(200),
-        fill: (_, row) => if row == 0 { luma(232) } else if calc.odd(row) { white } else { luma(249) },
+        stroke: 0.5pt + color-rule-dark,
+        fill: (_, row) => if row == 0 { color-subtle-bg } else if calc.odd(row) { white } else { luma(249) },
         inset: (x: 8pt, y: 7pt),
         [*Corda*], [*Nota (Cifra)*], [*Nota*], [*Oitava*], [*Referência*],
         ..cordas
@@ -257,7 +257,7 @@ A guitarra de 6 cordas tem uma afinação padrão chamada de *Standard Tuning* o
             text(weight: "bold", fill: cores.at(i))[#c.at(0)],
             text(weight: "bold", size: 12pt)[#c.at(1).slice(0, -1)],
             [#c.at(2)],
-            text(size: 8pt, fill: luma(110))[#c.at(1).slice(-1)],
+            text(size: 8pt, fill: color-muted)[#c.at(1).slice(-1)],
             text(size: 8.5pt)[#c.at(3)],
           ))
           .flatten(),
@@ -270,8 +270,8 @@ A guitarra de 6 cordas tem uma afinação padrão chamada de *Standard Tuning* o
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(210),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 6pt,
     width: 82%,
@@ -291,16 +291,16 @@ A guitarra de 6 cordas tem uma afinação padrão chamada de *Standard Tuning* o
                 rgb("#fff7ed"), // Lá
                 rgb("#fefce8"), // Ré
                 rgb("#f0fdf4"), // Sol
-                rgb("#eff6ff"), // Si
+                color-brand-soft, // Si
                 rgb("#faf5ff"), // Mi Agudo
               ).at(i),
-              stroke: 0.5pt + luma(200),
+              stroke: 0.5pt + color-rule-dark,
               inset: 8pt,
               radius: 4pt,
               [
                 #text(weight: "bold", size: 12pt)[#n]
                 #v(0.2em)
-                #text(size: 7pt, fill: luma(120))[
+                #text(size: 7pt, fill: color-muted)[
                   #("82.4", "110.0", "146.8", "196.0", "246.9", "329.6").at(i) Hz
                 ]
               ],
@@ -308,7 +308,7 @@ A guitarra de 6 cordas tem uma afinação padrão chamada de *Standard Tuning* o
         )
       ]
       #v(0.4em)
-      #set text(size: 7.5pt, fill: luma(100))
+      #set text(size: 7.5pt, fill: color-muted)
       *Dica:* A nota da 12ª casa deve ter exatamente o dobro da frequência da corda solta. Se estiver diferente, a oitava do seu instrumento precisa de regulagem.
     ],
   )
@@ -318,8 +318,8 @@ A guitarra de 6 cordas tem uma afinação padrão chamada de *Standard Tuning* o
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(200),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 6pt,
     width: 100%,
@@ -328,8 +328,8 @@ A guitarra de 6 cordas tem uma afinação padrão chamada de *Standard Tuning* o
       #v(0.8em)
       #set text(size: 7.8pt)
       #let col-header = luma(220)
-      #let nat-fill = luma(252)
-      #let acc-fill = rgb("#374151")
+      #let nat-fill = color-subtle-bg
+      #let acc-fill = color-strong
       #let acc-text = white
       // notas por corda
       #let seqs = (
@@ -347,7 +347,7 @@ A guitarra de 6 cordas tem uma afinação padrão chamada de *Standard Tuning* o
         rgb("#9c3c3c"),
         rgb("#9b6221"),
         rgb("#8d6f2e"),
-        rgb("#1f6e3c"),
+        color-accent-soft,
         rgb("#203768"),
         rgb("#402272"),
       )
@@ -355,7 +355,7 @@ A guitarra de 6 cordas tem uma afinação padrão chamada de *Standard Tuning* o
       #table(
         columns: (50pt,) + (32pt,) * 13,
         align: center + horizon,
-        stroke: 0.3pt + luma(210),
+        stroke: 0.3pt + color-rule-dark,
         fill: (col, row) => {
           if col == 0 { col-header } else if row > 0 {
             let nota = seqs.at(row - 1).at(col - 1)
@@ -381,7 +381,7 @@ A guitarra de 6 cordas tem uma afinação padrão chamada de *Standard Tuning* o
           .flatten(),
       )
       #v(0.4em)
-      #text(size: 7.5pt, fill: luma(120))[S = Solta · células escuras = notas com acidente (\#)]
+      #text(size: 7.5pt, fill: color-muted)[S = Solta · células escuras = notas com acidente (\#)]
     ],
   )
 ]
@@ -395,8 +395,8 @@ O diagrama de acorde é uma representação visual do braço da guitarra visto d
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(210),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 14pt,
     radius: 6pt,
     width: 92%,
@@ -433,7 +433,7 @@ O diagrama de acorde é uma representação visual do braço da guitarra visto d
             ]],
             [*Barra grossa no topo* — indica o traste-zero (pestana) ou número da casa],
 
-            [#align(center)[#text(size: 9pt, fill: luma(100))[1  2  3]],],
+            [#align(center)[#text(size: 9pt, fill: color-muted)[1  2  3]],],
             [*Números* nos pontos — qual dedo usar (veja abaixo)],
           )
         ],
@@ -446,8 +446,8 @@ O diagrama de acorde é uma representação visual do braço da guitarra visto d
 
 #align(center)[
   #block(
-    fill: luma(252),
-    stroke: 0.5pt + luma(200),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 6pt,
     width: 86%,
@@ -460,8 +460,8 @@ O diagrama de acorde é uma representação visual do braço da guitarra visto d
         align: center,
         ..{
           let dedos = (
-            ("1", "Indicador", rgb("#dbeafe"), rgb("#3252a8")),
-            ("2", "Médio", rgb("#dcfce7"), rgb("#15803d")),
+            ("1", "Indicador", color-brand-soft, color-brand-soft),
+            ("2", "Médio", color-accent-soft, rgb("#15803d")),
             ("3", "Anelar", rgb("#fef9c3"), rgb("#a16207")),
             ("4", "Mínimo", rgb("#fce7f3"), rgb("#be185d")),
           )
@@ -479,7 +479,10 @@ O diagrama de acorde é uma representação visual do braço da guitarra visto d
         },
       )
       #v(0.5em)
-      #text(size: 8pt, fill: luma(110))[O polegar fica apoiado na parte traseira do braço e não aparece nos diagramas.]
+      #text(
+        size: 8pt,
+        fill: color-muted,
+      )[O polegar fica apoiado na parte traseira do braço e não aparece nos diagramas.]
     ],
   )
 ]
@@ -489,8 +492,8 @@ O diagrama de acorde é uma representação visual do braço da guitarra visto d
 #explainer-component(
   align(center)[
     #block(
-      fill: luma(240),
-      stroke: 0.5pt + luma(200),
+      fill: color-subtle-bg,
+      stroke: 0.5pt + color-rule-dark,
       inset: 14pt,
       radius: 5pt,
       width: 88%,
@@ -498,7 +501,7 @@ O diagrama de acorde é uma representação visual do braço da guitarra visto d
         #set text(size: 9pt)
         #table(
           columns: (auto, auto),
-          stroke: 0.4pt + luma(200),
+          stroke: 0.4pt + color-rule-dark,
           align: center + horizon,
           inset: 7pt,
           fill: (col, row) => if row == 0 { luma(228) } else { white },
@@ -527,8 +530,8 @@ A cifra é a forma mais simples de representar uma música para violão ou guita
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(210),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 16pt,
     radius: 6pt,
     width: 90%,
@@ -536,7 +539,7 @@ A cifra é a forma mais simples de representar uma música para violão ou guita
       #text(weight: "bold", size: 9.5pt)[Exemplo de trecho cifrado:]
       #block(
         fill: white,
-        stroke: 0.4pt + luma(200),
+        stroke: 0.4pt + color-rule-dark,
         inset: 12pt,
         radius: 4pt,
         [
@@ -564,7 +567,7 @@ A cifra é a forma mais simples de representar uma música para violão ou guita
 
 #align(center)[
   #block(
-    stroke: 0.5pt + luma(200),
+    stroke: 0.5pt + color-rule-dark,
     radius: 6pt,
     clip: true,
     [
@@ -572,7 +575,7 @@ A cifra é a forma mais simples de representar uma música para violão ou guita
         columns: (0.9fr, 2fr, 2fr),
         align: (center + horizon, left + horizon, left + horizon),
         stroke: 0.5pt + luma(195),
-        fill: (_, row) => if row == 0 { luma(232) } else if calc.odd(row) { white } else { luma(249) },
+        fill: (_, row) => if row == 0 { color-subtle-bg } else if calc.odd(row) { white } else { luma(249) },
         inset: (x: 8pt, y: 7pt),
         [*Símbolo*], [*Significado*], [*Exemplo*],
         [A–G], [Nota raiz do acorde], [C = Dó Maior],
@@ -601,8 +604,8 @@ Manter o instrumento afinado é não-negociável. Uma guitarra desafinada prejud
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(210),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 6pt,
     width: 90%,
@@ -627,7 +630,7 @@ Manter o instrumento afinado é não-negociável. Uma guitarra desafinada prejud
           )
           passos
             .map(p => (
-              text(weight: "bold", fill: rgb("#1d4ed8"), size: 12pt)[#p.at(0)],
+              text(weight: "bold", fill: color-brand, size: 12pt)[#p.at(0)],
               p.at(1),
             ))
             .flatten()
@@ -641,8 +644,8 @@ Manter o instrumento afinado é não-negociável. Uma guitarra desafinada prejud
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(210),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 6pt,
     width: 90%,
@@ -655,7 +658,7 @@ Manter o instrumento afinado é não-negociável. Uma guitarra desafinada prejud
       #table(
         columns: (1.5fr, 2fr, 1.5fr, 2fr),
         align: center + horizon,
-        stroke: 0.5pt + luma(200),
+        stroke: 0.5pt + color-rule-dark,
         fill: (_, row) => if row == 0 { luma(228) } else if calc.odd(row) { white } else { luma(249) },
         inset: (x: 6pt, y: 6pt),
         [*Corda pressionada*], [*Casa*], [*Deve soar igual a…*], [*Observação*],

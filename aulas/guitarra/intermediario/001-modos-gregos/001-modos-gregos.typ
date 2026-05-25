@@ -1,4 +1,4 @@
-#import "../../../../templates/layout.typ": aula, explainer-component
+#import "../../../../templates/layout.typ": *
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, edge, node
 
 #show: aula.with(
@@ -15,14 +15,14 @@ Os *modos gregos* são 7 escalas derivadas da escala maior. Cada modo começa em
 #align(center)[
   #diagram(
     spacing: (18mm, 18mm),
-    node((0, 0), [Escala Maior], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: luma(235)),
-    node((1, -1.5), [I — *Jônico*], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: rgb("#dbeafe")),
-    node((1, -0.9), [II — *Dórico*], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: rgb("#dcfce7")),
+    node((0, 0), [Escala Maior], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: color-subtle-bg),
+    node((1, -1.5), [I — *Jônico*], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: color-brand-soft),
+    node((1, -0.9), [II — *Dórico*], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: color-accent-soft),
     node((1, -0.3), [III — *Frígio*], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: rgb("#fef9c3")),
     node((1, 0.3), [IV — *Lídio*], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: rgb("#ede9fe")),
     node((1, 0.9), [V — *Mixolídio*], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: rgb("#ffe4e6")),
-    node((1, 1.5), [VI — *Eólio*], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: luma(240)),
-    node((1, 2.1), [VII — *Lócrio*], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: luma(240)),
+    node((1, 1.5), [VI — *Eólio*], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: color-subtle-bg),
+    node((1, 2.1), [VII — *Lócrio*], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: color-subtle-bg),
     edge((0, 0), (1, -1.5), "->"),
     edge((0, 0), (1, -0.9), "->"),
     edge((0, 0), (1, -0.3), "->"),
@@ -45,9 +45,11 @@ Todos derivados de C Maior (C D E F G A B), cada modo começando em uma nota dif
   #table(
     columns: (0.4fr, 1fr, 1.2fr, 1fr, 0.7fr, 1.8fr),
     align: center + horizon,
-    stroke: 0.5pt + luma(190),
+    stroke: 0.5pt + color-rule-dark,
     fill: (col, row) => {
-      if row == 0 { luma(232) } else if row == 1 { rgb("#dbeafe") } else if row == 2 { rgb("#dcfce7") } else if (
+      if row == 0 { color-subtle-bg } else if row == 1 { color-brand-soft } else if row == 2 {
+        color-accent-soft
+      } else if (
         row == 3
       ) { rgb("#fef9c3") } else if row == 4 { rgb("#ede9fe") } else if row == 5 { rgb("#ffe4e6") } else if row == 6 {
         luma(245)
@@ -195,8 +197,8 @@ Há duas formas de enxergar modos. A forma *relativa* parte das notas de C Maior
   #table(
     columns: (1fr, 1.5fr, 2fr),
     align: center + horizon,
-    stroke: 0.5pt + luma(190),
-    fill: (col, row) => if row == 0 { luma(232) } else if calc.odd(row) { white } else { luma(248) },
+    stroke: 0.5pt + color-rule-dark,
+    fill: (col, row) => if row == 0 { color-subtle-bg } else if calc.odd(row) { white } else { color-subtle-bg },
     [*Modo*], [*Pensamento Relativo*], [*Pensamento Paralelo (mais útil)*],
     [Dórico], [Escala de C Maior começando em D], [Menor natural com a 6ª elevada],
     [Frígio], [Escala de C Maior começando em E], [Menor natural com a 2ª bemolizada],
@@ -209,8 +211,8 @@ Há duas formas de enxergar modos. A forma *relativa* parte das notas de C Maior
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(210),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     width: 85%,

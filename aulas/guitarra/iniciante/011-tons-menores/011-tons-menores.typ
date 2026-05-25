@@ -1,4 +1,4 @@
-#import "../../../../templates/layout.typ": aula, explainer-component
+#import "../../../../templates/layout.typ": *
 #import "@preview/conchord:0.4.0": new-chordgen
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, edge, node
 
@@ -46,8 +46,8 @@ O modo menor natural é idêntico ao modo maior, mas começa do *6º grau* (o re
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(210),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 10pt,
     radius: 5pt,
     width: 80%,
@@ -66,8 +66,8 @@ O modo menor natural é idêntico ao modo maior, mas começa do *6º grau* (o re
   #table(
     columns: (0.6fr, 1fr, 1fr),
     align: center + horizon,
-    stroke: 0.5pt + luma(190),
-    fill: (col, row) => if row == 0 { luma(232) } else if calc.odd(row) { white } else { luma(248) },
+    stroke: 0.5pt + color-rule-dark,
+    fill: (col, row) => if row == 0 { color-subtle-bg } else if calc.odd(row) { white } else { color-subtle-bg },
     [*Grau*], [*Escala Maior (C)*], [*Escala Menor Natural (Am)*],
     [T], [Dó], [Lá],
     [2], [Ré], [Si],
@@ -82,7 +82,7 @@ O modo menor natural é idêntico ao modo maior, mas começa do *6º grau* (o re
 #v(0.5em)
 
 #align(center)[
-  #text(size: 9pt, fill: luma(120))[
+  #text(size: 9pt, fill: color-muted)[
     Os graus *b3, b6 e b7* distinguem o modo menor do maior — são os graus "bemolizados" que dão o caráter sombrio.
   ]
 ]
@@ -99,9 +99,9 @@ Empilhando terças sobre cada grau da escala de Lá Menor Natural:
   #table(
     columns: (0.5fr, 0.8fr, 0.5fr, 0.5fr, 0.5fr, 0.5fr, 1.5fr, 1fr),
     align: center + horizon,
-    stroke: 0.5pt + luma(190),
+    stroke: 0.5pt + color-rule-dark,
     fill: (col, row) => {
-      if row == 0 { luma(232) } else if col == 0 { luma(240) } else { white }
+      if row == 0 { color-subtle-bg } else if col == 0 { color-subtle-bg } else { white }
     },
     [*Grau*], [*Acorde*], [*T*], [*3ª*], [*5ª*], [*7ª*], [*Notas*], [*Tipo*],
     [I], [Am7], [lá], [dó], [mi], [sol], [lá · dó · mi · sol], [Menor 7],
@@ -118,8 +118,8 @@ Empilhando terças sobre cada grau da escala de Lá Menor Natural:
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(210),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 10pt,
     radius: 5pt,
     width: 90%,
@@ -128,7 +128,7 @@ Empilhando terças sobre cada grau da escala de Lá Menor Natural:
       #v(0.3em)
       #text(
         size: 9pt,
-        fill: luma(120),
+        fill: color-muted,
       )[Repare: é o mesmo campo harmônico de Dó Maior, apenas começando do grau VI (Lá).]
     ],
   )

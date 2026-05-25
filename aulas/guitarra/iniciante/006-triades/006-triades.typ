@@ -1,4 +1,4 @@
-#import "../../../../templates/layout.typ": aula, explainer-component
+#import "../../../../templates/layout.typ": *
 #import "@preview/conchord:0.4.0": new-chordgen
 
 #show: aula.with(
@@ -20,8 +20,8 @@ A *tríade* é o bloco fundamental de todo acorde. Ela é formada por exatamente
   #table(
     columns: (1.5fr, 0.8fr, 0.5fr, 0.5fr, 0.5fr, 1.8fr),
     align: center + horizon,
-    stroke: 0.5pt + luma(190),
-    fill: (col, row) => if row == 0 { luma(232) } else if calc.odd(row) { white } else { luma(248) },
+    stroke: 0.5pt + color-rule-dark,
+    fill: (col, row) => if row == 0 { color-subtle-bg } else if calc.odd(row) { white } else { color-subtle-bg },
     [*Tipo*], [*Símbolo*], [*T*], [*3ª*], [*5ª*], [*Distâncias*],
     [Maior], [C], [T], [3], [5], [T + 2 tons + 1,5 tom],
     [Menor], [Cm], [T], [b3], [5], [T + 1,5 tom + 2 tons],
@@ -39,7 +39,7 @@ A *tríade* é o bloco fundamental de todo acorde. Ela é formada por exatamente
   gutter: 0.8em,
   block(
     width: 100%,
-    fill: luma(232),
+    fill: color-subtle-bg,
     stroke: 0.6pt,
     inset: 8pt,
     radius: 5pt,
@@ -50,7 +50,7 @@ A *tríade* é o bloco fundamental de todo acorde. Ela é formada por exatamente
   ),
   block(
     width: 100%,
-    fill: luma(232),
+    fill: color-subtle-bg,
     stroke: 0.6pt,
     inset: 8pt,
     radius: 5pt,
@@ -61,7 +61,7 @@ A *tríade* é o bloco fundamental de todo acorde. Ela é formada por exatamente
   ),
   block(
     width: 100%,
-    fill: luma(232),
+    fill: color-subtle-bg,
     stroke: 0.6pt,
     inset: 8pt,
     radius: 5pt,
@@ -72,7 +72,7 @@ A *tríade* é o bloco fundamental de todo acorde. Ela é formada por exatamente
   ),
   block(
     width: 100%,
-    fill: luma(232),
+    fill: color-subtle-bg,
     stroke: 0.6pt,
     inset: 8pt,
     radius: 5pt,
@@ -99,22 +99,22 @@ As quatro tríades abaixo partem da mesma tônica, mas soam completamente difere
     block[
       #box(chord("x,3,2,0,1,0", name: "C")) \
       #text(size: 9.5pt, weight: "bold")[Maior] \
-      #text(size: 8.5pt, fill: luma(110))[dó · mi · sol]
+      #text(size: 8.5pt, fill: color-muted)[dó · mi · sol]
     ],
     block[
       #box(chord("x,3,5,5,4,3", name: "Cm")) \
       #text(size: 9.5pt, weight: "bold")[Menor] \
-      #text(size: 8.5pt, fill: luma(110))[dó · mib · sol]
+      #text(size: 8.5pt, fill: color-muted)[dó · mib · sol]
     ],
     block[
       #box(chord("x,3,4,5,4,x", name: "Cdim")) \
       #text(size: 9.5pt, weight: "bold")[Diminuta] \
-      #text(size: 8.5pt, fill: luma(110))[dó · mib · solb]
+      #text(size: 8.5pt, fill: color-muted)[dó · mib · solb]
     ],
     block[
       #box(chord("x,3,2,1,1,0", name: "C+")) \
       #text(size: 9.5pt, weight: "bold")[Aumentada] \
-      #text(size: 8.5pt, fill: luma(110))[dó · mi · sol\#]
+      #text(size: 8.5pt, fill: color-muted)[dó · mi · sol\#]
     ],
   )
 ]
@@ -148,8 +148,8 @@ Tríades *sem cordas soltas* são chamadas de *formas fechadas* e podem ser tran
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(210),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     width: 80%,
@@ -169,8 +169,8 @@ Uma tríade não precisa ter obrigatoriamente a Tônica como a nota mais grave. 
   #table(
     columns: (1fr, 1fr, 1.5fr, 1.5fr),
     align: center + horizon,
-    stroke: 0.5pt + luma(190),
-    fill: (col, row) => if row == 0 { luma(232) } else if calc.odd(row) { white } else { luma(248) },
+    stroke: 0.5pt + color-rule-dark,
+    fill: (col, row) => if row == 0 { color-subtle-bg } else if calc.odd(row) { white } else { color-subtle-bg },
     [*Posição*], [*Baixo*], [*Ordem das Notas*], [*Sonoridade / Uso*],
     [Fundamental], [Tônica], [T - 3 - 5], [Forte e estável],
     [1ª Inversão], [Terça], [3 - 5 - T], [Mais aberta, excelente ponte],
@@ -194,19 +194,19 @@ Podemos visualizar como as inversões funcionam na prática alterando a nota mai
     block[
       #box(chord("x,3,2,0,1,0", name: "C")) \
       #text(size: 9.5pt, weight: "bold")[Estado Fundamental] \
-      #text(size: 8.5pt, fill: luma(110))[dó · mi · sol] \
+      #text(size: 8.5pt, fill: color-muted)[dó · mi · sol] \
       #text(size: 8pt, style: "italic")[Tônica no baixo]
     ],
     block[
       #box(chord("x,x,2,0,1,0", name: "C/E")) \
       #text(size: 9.5pt, weight: "bold")[1ª Inversão] \
-      #text(size: 8.5pt, fill: luma(110))[mi · sol · dó] \
+      #text(size: 8.5pt, fill: color-muted)[mi · sol · dó] \
       #text(size: 8pt, style: "italic")[Terça no baixo]
     ],
     block[
       #box(chord("3,3,2,0,1,0", name: "C/G")) \
       #text(size: 9.5pt, weight: "bold")[2ª Inversão] \
-      #text(size: 8.5pt, fill: luma(110))[sol · dó · mi] \
+      #text(size: 8.5pt, fill: color-muted)[sol · dó · mi] \
       #text(size: 8pt, style: "italic")[Quinta no baixo]
     ],
   )

@@ -1,4 +1,4 @@
-#import "../../../../templates/layout.typ": aula, explainer-component
+#import "../../../../templates/layout.typ": *
 #import "@preview/conchord:0.4.0": new-chordgen
 
 #show: aula.with(
@@ -20,8 +20,8 @@ A *tétrade* é uma tríade com mais uma nota empilhada em terça acima da quint
   #table(
     columns: (1.6fr, 0.9fr, 0.5fr, 0.5fr, 0.5fr, 0.5fr, 1.8fr),
     align: center + horizon,
-    stroke: 0.5pt + luma(190),
-    fill: (col, row) => if row == 0 { luma(232) } else if calc.odd(row) { white } else { luma(248) },
+    stroke: 0.5pt + color-rule-dark,
+    fill: (col, row) => if row == 0 { color-subtle-bg } else if calc.odd(row) { white } else { color-subtle-bg },
     [*Tipo*], [*Símbolo*], [*T*], [*3ª*], [*5ª*], [*7ª*], [*Sonoridade*],
     [Maior com 7ª Maior], [C7M / Cmaj7], [T], [3], [5], [7M], [Suave, etéreo],
     [Dominante (7ª menor)], [C7], [T], [3], [5], [7], [Tenso, quer resolver],
@@ -40,7 +40,7 @@ A *tétrade* é uma tríade com mais uma nota empilhada em terça acima da quint
     gutter: 0.8em,
     block(
       width: 100%,
-      fill: luma(232),
+      fill: color-subtle-bg,
       stroke: 0.6pt,
       inset: 11pt,
       radius: 5pt,
@@ -60,7 +60,7 @@ A *tétrade* é uma tríade com mais uma nota empilhada em terça acima da quint
     ),
     block(
       width: 100%,
-      fill: luma(232),
+      fill: color-subtle-bg,
       stroke: 0.6pt,
       inset: 11pt,
       radius: 5pt,
@@ -80,7 +80,7 @@ A *tétrade* é uma tríade com mais uma nota empilhada em terça acima da quint
     ),
     block(
       width: 100%,
-      fill: luma(232),
+      fill: color-subtle-bg,
       stroke: 0.6pt,
       inset: 11pt,
       radius: 5pt,
@@ -100,7 +100,7 @@ A *tétrade* é uma tríade com mais uma nota empilhada em terça acima da quint
     ),
     block(
       width: 100%,
-      fill: luma(232),
+      fill: color-subtle-bg,
       stroke: 0.6pt,
       inset: 11pt,
       radius: 5pt,
@@ -136,25 +136,25 @@ A *tétrade* é uma tríade com mais uma nota empilhada em terça acima da quint
       #box(chord("x,3,2,0,0,0", name: "Cmaj7"))
       #v(0.4em)
       #text(size: 9.5pt, weight: "bold")[C7M] \
-      #text(size: 8.5pt, fill: luma(110))[do · mi · sol · si]
+      #text(size: 8.5pt, fill: color-muted)[do · mi · sol · si]
     ],
     block[
       #box(chord("x,3,2,3,1,0", name: "C7"))
       #v(0.4em)
       #text(size: 9.5pt, weight: "bold")[C7] \
-      #text(size: 8.5pt, fill: luma(110))[do · mi · sib · do]
+      #text(size: 8.5pt, fill: color-muted)[do · mi · sib · do]
     ],
     block[
       #box(chord("x,3,5,3,4,3", name: "Cm7"))
       #v(0.4em)
       #text(size: 9.5pt, weight: "bold")[Cm7] \
-      #text(size: 8.5pt, fill: luma(110))[do · sol · sib · mib]
+      #text(size: 8.5pt, fill: color-muted)[do · sol · sib · mib]
     ],
     block[
       #box(chord("x,3,4,3,4,x", name: "CØ"))
       #v(0.4em)
       #text(size: 9.5pt, weight: "bold")[CØ (Cm7#super[b5])] \
-      #text(size: 8.5pt, fill: luma(110))[do · solb · sib · mib]
+      #text(size: 8.5pt, fill: color-muted)[do · solb · sib · mib]
     ],
   )
 ]
@@ -163,8 +163,8 @@ A *tétrade* é uma tríade com mais uma nota empilhada em terça acima da quint
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(210),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     width: 80%,
@@ -190,12 +190,12 @@ O acorde de *7ª dominante* (ex: G7, C7, A7) é o acorde de maior tensão harmô
       block[
         #box(chord("3,2,0,0,0,1", name: "G7"))
         #v(0.2em)
-        #text(size: 8.5pt, fill: luma(110))[sol · si · ré · fá]
+        #text(size: 8.5pt, fill: color-muted)[sol · si · ré · fá]
       ],
       block[
         #box(chord("x,3,2,0,1,0", name: "C"))
         #v(0.2em)
-        #text(size: 8.5pt, fill: luma(110))[do · mi · sol]
+        #text(size: 8.5pt, fill: color-muted)[do · mi · sol]
       ],
     )
   ],
@@ -227,25 +227,25 @@ Abaixo estão mapeadas as inversões dos quatro tipos fundamentais, todas constr
       #box(chord("8,x,9,9,8,x", name: "C7M")) \
       #v(0.4em)
       #text(size: 9.5pt, weight: "bold")[Estado Fundamental] \
-      #text(size: 8.5pt, fill: luma(110))[Tónica no baixo (C)]
+      #text(size: 8.5pt, fill: color-muted)[Tónica no baixo (C)]
     ],
     block[
       #box(chord("12,x,10,12,12,x", name: "C7M/E")) \
       #v(0.4em)
       #text(size: 9.5pt, weight: "bold")[1ª Inversão] \
-      #text(size: 8.5pt, fill: luma(110))[Terça no baixo (E)]
+      #text(size: 8.5pt, fill: color-muted)[Terça no baixo (E)]
     ],
     block[
       #box(chord("3,x,2,4,1,x", name: "C7M/G")) \
       #v(0.4em)
       #text(size: 9.5pt, weight: "bold")[2ª Inversão] \
-      #text(size: 8.5pt, fill: luma(110))[Quinta no baixo (G)]
+      #text(size: 8.5pt, fill: color-muted)[Quinta no baixo (G)]
     ],
     block[
       #box(chord("7,x,5,5,5,x", name: "C7M/B")) \
       #v(0.4em)
       #text(size: 9.5pt, weight: "bold")[3ª Inversão] \
-      #text(size: 8.5pt, fill: luma(110))[Sétima no baixo (B)]
+      #text(size: 8.5pt, fill: color-muted)[Sétima no baixo (B)]
     ],
   )
 ]
@@ -263,25 +263,25 @@ Abaixo estão mapeadas as inversões dos quatro tipos fundamentais, todas constr
       #box(chord("8,x,8,9,8,x", name: "C7")) \
       #v(0.4em)
       #text(size: 9.5pt, weight: "bold")[Estado Fundamental] \
-      #text(size: 8.5pt, fill: luma(110))[Tónica no baixo (C)]
+      #text(size: 8.5pt, fill: color-muted)[Tónica no baixo (C)]
     ],
     block[
       #box(chord("12,x,10,12,11,x", name: "C7/E")) \
       #v(0.4em)
       #text(size: 9.5pt, weight: "bold")[1ª Inversão] \
-      #text(size: 8.5pt, fill: luma(110))[Terça no baixo (E)]
+      #text(size: 8.5pt, fill: color-muted)[Terça no baixo (E)]
     ],
     block[
       #box(chord("3,x,2,3,1,x", name: "C7/G")) \
       #v(0.4em)
       #text(size: 9.5pt, weight: "bold")[2ª Inversão] \
-      #text(size: 8.5pt, fill: luma(110))[Quinta no baixo (G)]
+      #text(size: 8.5pt, fill: color-muted)[Quinta no baixo (G)]
     ],
     block[
       #box(chord("6,x,5,5,5,x", name: "C7/Bb")) \
       #v(0.4em)
       #text(size: 9.5pt, weight: "bold")[3ª Inversão] \
-      #text(size: 8.5pt, fill: luma(110))[Sétima no baixo (Bb)]
+      #text(size: 8.5pt, fill: color-muted)[Sétima no baixo (Bb)]
     ],
   )
 ]
@@ -299,25 +299,25 @@ Abaixo estão mapeadas as inversões dos quatro tipos fundamentais, todas constr
       #box(chord("8,x,8,8,8,x", name: "Cm7")) \
       #v(0.4em)
       #text(size: 9.5pt, weight: "bold")[Estado Fundamental] \
-      #text(size: 8.5pt, fill: luma(110))[Tónica no baixo (C)]
+      #text(size: 8.5pt, fill: color-muted)[Tónica no baixo (C)]
     ],
     block[
       #box(chord("11,x,10,12,11,x", name: "Cm7/Eb")) \
       #v(0.4em)
       #text(size: 9.5pt, weight: "bold")[1ª Inversão] \
-      #text(size: 8.5pt, fill: luma(110))[Terça no baixo (Eb)]
+      #text(size: 8.5pt, fill: color-muted)[Terça no baixo (Eb)]
     ],
     block[
       #box(chord("3,x,1,3,1,x", name: "Cm7/G")) \
       #v(0.4em)
       #text(size: 9.5pt, weight: "bold")[2ª Inversão] \
-      #text(size: 8.5pt, fill: luma(110))[Quinta no baixo (G)]
+      #text(size: 8.5pt, fill: color-muted)[Quinta no baixo (G)]
     ],
     block[
       #box(chord("6,x,5,5,4,x", name: "Cm7/Bb")) \
       #v(0.4em)
       #text(size: 9.5pt, weight: "bold")[3ª Inversão] \
-      #text(size: 8.5pt, fill: luma(110))[Sétima no baixo (Bb)]
+      #text(size: 8.5pt, fill: color-muted)[Sétima no baixo (Bb)]
     ],
   )
 ]
@@ -336,25 +336,25 @@ Abaixo estão mapeadas as inversões dos quatro tipos fundamentais, todas constr
       #box(chord("8,x,8,8,7,x", name: "CØ")) \
       #v(0.4em)
       #text(size: 9.5pt, weight: "bold")[Estado Fundamental] \
-      #text(size: 8.5pt, fill: luma(110))[Tónica no baixo (C)]
+      #text(size: 8.5pt, fill: color-muted)[Tónica no baixo (C)]
     ],
     block[
       #box(chord("11,x,10,11,11,x", name: "CØ/Eb")) \
       #v(0.4em)
       #text(size: 9.5pt, weight: "bold")[1ª Inversão] \
-      #text(size: 8.5pt, fill: luma(110))[Terça no baixo (Eb)]
+      #text(size: 8.5pt, fill: color-muted)[Terça no baixo (Eb)]
     ],
     block[
       #box(chord("2,x,1,3,1,x", name: "CØ/Gb")) \
       #v(0.4em)
       #text(size: 9.5pt, weight: "bold")[2ª Inversão] \
-      #text(size: 8.5pt, fill: luma(110))[Quinta no baixo (Gb)]
+      #text(size: 8.5pt, fill: color-muted)[Quinta no baixo (Gb)]
     ],
     block[
       #box(chord("6,x,4,5,4,x", name: "CØ/Bb")) \
       #v(0.4em)
       #text(size: 9.5pt, weight: "bold")[3ª Inversão] \
-      #text(size: 8.5pt, fill: luma(110))[Sétima no baixo (Bb)]
+      #text(size: 8.5pt, fill: color-muted)[Sétima no baixo (Bb)]
     ],
   )
 ]
@@ -375,12 +375,12 @@ Na prática, os guitarristas raramente saltam pelo braço do instrumento tocando
       block[
         #box(chord("x,5,3,5,5,x", name: "Dm7"))
         #v(0.2em)
-        #text(size: 8.5pt, fill: luma(110))[II: Dm7 (Fundamental)]
+        #text(size: 8.5pt, fill: color-muted)[II: Dm7 (Fundamental)]
       ],
       block[
         #box(chord("3,x,3,4,3,x", name: "G7"))
         #v(0.2em)
-        #text(size: 8.5pt, fill: luma(110))[V: G7 (Fundamental)]
+        #text(size: 8.5pt, fill: color-muted)[V: G7 (Fundamental)]
       ],
     )
   ],
@@ -394,8 +394,8 @@ Na prática, os guitarristas raramente saltam pelo braço do instrumento tocando
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(210),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     width: 80%,

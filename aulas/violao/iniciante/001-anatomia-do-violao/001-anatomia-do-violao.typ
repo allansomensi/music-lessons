@@ -1,4 +1,4 @@
-#import "../../../../templates/layout.typ": aula, explainer-component
+#import "../../../../templates/layout.typ": *
 
 #show: aula.with(
   instrumento: "Violão",
@@ -14,7 +14,7 @@
 ]
 
 #align(center)[
-  #text(size: 8pt, fill: luma(100))[Disponível em: https://feh-lipe-dev.github.io/guitarpedia/guitarPieces.html]
+  #text(size: 8pt, fill: color-muted)[Disponível em: https://feh-lipe-dev.github.io/guitarpedia/guitarPieces.html]
 ]
 
 #pagebreak()

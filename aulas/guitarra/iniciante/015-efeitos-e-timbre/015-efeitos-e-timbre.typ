@@ -1,4 +1,4 @@
-#import "../../../../templates/layout.typ": aula, explainer-component
+#import "../../../../templates/layout.typ": *
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, edge, node
 
 #show: aula.with(
@@ -27,14 +27,14 @@ Antes de qualquer efeito, é preciso entender o percurso que o sinal elétrico f
   #diagram(
     spacing: (10mm, 10mm),
     node-stroke: 0.5pt,
-    node-fill: luma(248),
+    node-fill: color-subtle-bg,
     node-shape: rect,
 
-    node((0, 0), [*Guitarra* \ #text(size: 7.5pt, fill: luma(120))[sinal passivo]], name: <G>),
-    node((1, 0), [*Pedais* \ #text(size: 7.5pt, fill: luma(120))[pré-sinal]], name: <P>),
-    node((2, 0), [*Pré-Amp* \ #text(size: 7.5pt, fill: luma(120))[ganho + EQ]], name: <PRE>),
-    node((3, 0), [*Power Amp* \ #text(size: 7.5pt, fill: luma(120))[amplificação]], name: <PWR>),
-    node((4, 0), [*Caixa* \ #text(size: 7.5pt, fill: luma(120))[alto-falante]], name: <CAB>),
+    node((0, 0), [*Guitarra* \ #text(size: 7.5pt, fill: color-muted)[sinal passivo]], name: <G>),
+    node((1, 0), [*Pedais* \ #text(size: 7.5pt, fill: color-muted)[pré-sinal]], name: <P>),
+    node((2, 0), [*Pré-Amp* \ #text(size: 7.5pt, fill: color-muted)[ganho + EQ]], name: <PRE>),
+    node((3, 0), [*Power Amp* \ #text(size: 7.5pt, fill: color-muted)[amplificação]], name: <PWR>),
+    node((4, 0), [*Caixa* \ #text(size: 7.5pt, fill: color-muted)[alto-falante]], name: <CAB>),
     node((5, 0), [*Ouvido*], name: <EAR>),
 
     edge(<G>, <P>, "->"),
@@ -67,8 +67,8 @@ Esses dois estágios têm *funções completamente distintas*. Confundi-los é o
     gutter: 1.2em,
     block(
       width: 100%,
-      fill: rgb("#eff6ff"),
-      stroke: 0.6pt + rgb("#93c5fd"),
+      fill: color-brand-soft,
+      stroke: 0.6pt + color-brand-soft,
       inset: 11pt,
       radius: 5pt,
       [
@@ -78,7 +78,7 @@ Esses dois estágios têm *funções completamente distintas*. Confundi-los é o
         Recebe o sinal *fraco* da guitarra e o amplifica para um nível de linha utilizável. É aqui que vivem o *ganho*, o *EQ de 3 bandas* e a *coloração tonal* do amplificador. O caráter sonoro — brilhante, quente, agressivo — nasce quase que inteiramente no pré-amp.
 
         #v(0.4em)
-        #text(fill: luma(100))[_Exemplos: o canal de ganho de um Marshall JCM800, o drive de uma pedaleira._]
+        #text(fill: color-muted)[_Exemplos: o canal de ganho de um Marshall JCM800, o drive de uma pedaleira._]
       ],
     ),
     block(
@@ -94,7 +94,7 @@ Esses dois estágios têm *funções completamente distintas*. Confundi-los é o
         Recebe o sinal *já processado* do pré-amp e o amplifica em termos de *potência elétrica* (watts) para movimentar o cone do alto-falante. Ele não tem como objetivo colorir o som; ele apenas o torna *forte o suficiente* para mover o ar.
 
         #v(0.4em)
-        #text(fill: luma(100))[_Exemplos: a seção de power do próprio amplificador, um power amp de rack._]
+        #text(fill: color-muted)[_Exemplos: a seção de power do próprio amplificador, um power amp de rack._]
       ],
     ),
   )
@@ -161,14 +161,19 @@ A ordem dos pedais importa. Um chorus antes de uma distorção soa completamente
     node-shape: rect,
 
     // Row 1: before amp
-    node((0, 0), [*Guitarra*], name: <G>, fill: luma(235)),
-    node((1, 0), [*Afinador* \ #text(size: 7pt, fill: luma(110))[sempre primeiro]], name: <TUN>, fill: luma(245)),
-    node((2, 0), [*Dinâmicos* \ #text(size: 7pt, fill: luma(110))[comp, boost]], name: <DYN>, fill: rgb("#dbeafe")),
-    node((3, 0), [*Ganho* \ #text(size: 7pt, fill: luma(110))[od, dist, fuzz]], name: <GAI>, fill: rgb("#fee2e2")),
-    node((4, 0), [*Modulação* \ #text(size: 7pt, fill: luma(110))[chorus, flanger]], name: <MOD>, fill: rgb("#fef9c3")),
-    node((5, 0), [*Delay* \ #text(size: 7pt, fill: luma(110))[eco, tape]], name: <DEL>, fill: rgb("#dcfce7")),
-    node((6, 0), [*Reverb* \ #text(size: 7pt, fill: luma(110))[ambiente]], name: <REV>, fill: rgb("#f3e8ff")),
-    node((7, 0), [*Amp*], name: <AMP>, fill: luma(235)),
+    node((0, 0), [*Guitarra*], name: <G>, fill: color-subtle-bg),
+    node((1, 0), [*Afinador* \ #text(size: 7pt, fill: color-muted)[sempre primeiro]], name: <TUN>, fill: luma(245)),
+    node((2, 0), [*Dinâmicos* \ #text(size: 7pt, fill: color-muted)[comp, boost]], name: <DYN>, fill: color-brand-soft),
+    node((3, 0), [*Ganho* \ #text(size: 7pt, fill: color-muted)[od, dist, fuzz]], name: <GAI>, fill: rgb("#fee2e2")),
+    node(
+      (4, 0),
+      [*Modulação* \ #text(size: 7pt, fill: color-muted)[chorus, flanger]],
+      name: <MOD>,
+      fill: rgb("#fef9c3"),
+    ),
+    node((5, 0), [*Delay* \ #text(size: 7pt, fill: color-muted)[eco, tape]], name: <DEL>, fill: color-accent-soft),
+    node((6, 0), [*Reverb* \ #text(size: 7pt, fill: color-muted)[ambiente]], name: <REV>, fill: rgb("#f3e8ff")),
+    node((7, 0), [*Amp*], name: <AMP>, fill: color-subtle-bg),
 
     edge(<G>, <TUN>, "->"),
     edge(<TUN>, <DYN>, "->"),
@@ -184,8 +189,8 @@ A ordem dos pedais importa. Um chorus antes de uma distorção soa completamente
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(210),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 11pt,
     radius: 5pt,
     width: 88%,
@@ -204,8 +209,8 @@ A ordem dos pedais importa. Um chorus antes de uma distorção soa completamente
 #explainer-component(
   align(center)[
     #block(
-      fill: rgb("#dbeafe"),
-      stroke: 0.6pt + rgb("#93c5fd"),
+      fill: color-brand-soft,
+      stroke: 0.6pt + color-brand-soft,
       inset: 12pt,
       radius: 5pt,
       width: 100%,
@@ -241,8 +246,8 @@ A ordem dos pedais importa. Um chorus antes de uma distorção soa completamente
   #table(
     columns: (1fr, 1.8fr, 1.5fr),
     align: center + horizon,
-    stroke: 0.5pt + luma(190),
-    fill: (col, row) => if row == 0 { luma(232) } else if calc.odd(row) { white } else { luma(248) },
+    stroke: 0.5pt + color-rule-dark,
+    fill: (col, row) => if row == 0 { color-subtle-bg } else if calc.odd(row) { white } else { color-subtle-bg },
     [*Tipo*], [*Característica*], [*Uso Típico*],
     [*Overdrive*], [Saturação suave, dinâmica. Responde à força da palheta.], [Blues, Rock Clássico, Country],
     [*Distortion*], [Clipping agressivo e consistente. Independe da dinâmica.], [Hard Rock, Metal],
@@ -303,7 +308,7 @@ A ordem dos pedais importa. Um chorus antes de uma distorção soa completamente
   align(center)[
     #block(
       fill: luma(245),
-      stroke: 0.5pt + luma(200),
+      stroke: 0.5pt + color-rule-dark,
       inset: 12pt,
       radius: 5pt,
       width: 100%,
@@ -361,8 +366,8 @@ Os efeitos de modulação trabalham com *cópias do sinal original* que são lev
   #table(
     columns: (1fr, 2fr, 1.5fr),
     align: center + horizon,
-    stroke: 0.5pt + luma(190),
-    fill: (col, row) => if row == 0 { luma(232) } else if calc.odd(row) { white } else { luma(248) },
+    stroke: 0.5pt + color-rule-dark,
+    fill: (col, row) => if row == 0 { color-subtle-bg } else if calc.odd(row) { white } else { color-subtle-bg },
     [*Efeito*], [*O que faz*], [*Som típico*],
     [*Chorus*],
     [Cópia levemente desafinada e com LFO. Som mais largo e "molhado".],
@@ -388,7 +393,7 @@ Esses dois efeitos criam a *sensação de espaço* do som. São os últimos da c
     columns: (1fr, 1fr),
     gutter: 1.5em,
     block(
-      fill: rgb("#dcfce7"),
+      fill: color-accent-soft,
       stroke: 0.6pt + rgb("#86efac"),
       inset: 11pt,
       radius: 5pt,
@@ -403,8 +408,8 @@ Esses dois efeitos criam a *sensação de espaço* do som. São os últimos da c
         #table(
           columns: (1fr, 1fr),
           align: center + horizon,
-          stroke: 0.4pt + luma(200),
-          fill: luma(248),
+          stroke: 0.4pt + color-rule-dark,
+          fill: color-subtle-bg,
           inset: 6pt,
           [*Digital*], [*Tape/Analog*],
           [Eco limpo e preciso], [Eco quente e que degenera],
@@ -431,8 +436,8 @@ Esses dois efeitos criam a *sensação de espaço* do som. São os últimos da c
         #table(
           columns: (1fr, 1fr),
           align: center + horizon,
-          stroke: 0.4pt + luma(200),
-          fill: luma(248),
+          stroke: 0.4pt + color-rule-dark,
+          fill: color-subtle-bg,
           inset: 6pt,
           [*Room / Hall*], [*Spring / Plate*],
           [Ambiente natural], [Metálico, vintage],
@@ -460,17 +465,17 @@ A maioria dos amplificadores possui uma entrada chamada *FX Loop* (ou Effects Lo
     node-stroke: 0.5pt,
     node-shape: rect,
 
-    node((0, 0), [*Guitarra*], name: <G>, fill: luma(235)),
+    node((0, 0), [*Guitarra*], name: <G>, fill: color-subtle-bg),
     node((1, 0), [*OD / Dist*\ #text(size: 7pt)[ganho]], name: <DRV>, fill: rgb("#fee2e2")),
-    node((2, 0), [*Pré-Amp* \ #text(size: 7pt)[amp input]], name: <PRE>, fill: rgb("#eff6ff")),
-    node((3, 0), [→ *Send* →], name: <SND>, fill: luma(240)),
+    node((2, 0), [*Pré-Amp* \ #text(size: 7pt)[amp input]], name: <PRE>, fill: color-brand-soft),
+    node((3, 0), [→ *Send* →], name: <SND>, fill: color-subtle-bg),
     node(
       (4, 0),
       [*Chorus* \ *Delay* \ *Reverb* \ #text(size: 7pt)[modulação/tempo]],
       name: <LOOP>,
-      fill: rgb("#dcfce7"),
+      fill: color-accent-soft,
     ),
-    node((5, 0), [→ *Return* →], name: <RET>, fill: luma(240)),
+    node((5, 0), [→ *Return* →], name: <RET>, fill: color-subtle-bg),
     node((6, 0), [*Power Amp* \ + *Caixa*], name: <PWR>, fill: rgb("#f3e8ff")),
 
     edge(<G>, <DRV>, "->"),
@@ -488,7 +493,7 @@ A maioria dos amplificadores possui uma entrada chamada *FX Loop* (ou Effects Lo
   align(center)[
     #block(
       fill: luma(245),
-      stroke: 0.5pt + luma(210),
+      stroke: 0.5pt + color-rule-dark,
       inset: 10pt,
       radius: 5pt,
       width: 90%,
@@ -538,8 +543,8 @@ A maioria dos amplificadores possui uma entrada chamada *FX Loop* (ou Effects Lo
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(210),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 14pt,
     radius: 5pt,
     width: 92%,
@@ -547,8 +552,8 @@ A maioria dos amplificadores possui uma entrada chamada *FX Loop* (ou Effects Lo
       #table(
         columns: (0.3fr, 1.2fr, 2fr, 1fr),
         align: center + horizon,
-        stroke: 0.5pt + luma(190),
-        fill: (col, row) => if row == 0 { luma(225) } else if calc.odd(row) { white } else { luma(248) },
+        stroke: 0.5pt + color-rule-dark,
+        fill: (col, row) => if row == 0 { luma(225) } else if calc.odd(row) { white } else { color-subtle-bg },
         [*\#*], [*Posição*], [*O que vai aqui*], [*Por quê*],
         [1], [Entrada do amp], [Afinador, Compressor, Wah, OD/Dist], [Precisam do sinal puro e dinâmico],
         [2], [FX Loop Send→Return], [Chorus, Flanger, Delay, Reverb], [Processam o som já "pronto" do pré-amp],

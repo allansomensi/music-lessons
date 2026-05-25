@@ -1,4 +1,4 @@
-#import "../../../../templates/layout.typ": aula, explainer-component
+#import "../../../../templates/layout.typ": *
 
 #show: aula.with(
   instrumento: "Violão",
@@ -7,22 +7,22 @@
 
 #let sc(sym) = {
   let (bg, fg, label) = if sym == "D" {
-    (rgb("#dbeafe"), rgb("#1d4ed8"), "↓")
+    (color-brand-soft, color-brand, "↓")
   } else if sym == "U" {
-    (rgb("#dcfce7"), rgb("#15803d"), "↑")
+    (color-accent-soft, rgb("#15803d"), "↑")
   } else if sym == "X" {
     (luma(215), luma(50), "✕")
   } else if sym == "d" {
-    (rgb("#eff6ff"), rgb("#93c5fd"), "↓")
+    (color-brand-soft, rgb("color-brand-soft"), "↓")
   } else {
-    (white, luma(200), "·")
+    (white, color-rule-dark, "·")
   }
   box(
     width: 24pt,
     height: 26pt,
     fill: bg,
     radius: 3pt,
-    stroke: 0.5pt + luma(200),
+    stroke: 0.5pt + color-rule-dark,
     align(center + horizon, text(fill: fg, size: 13pt, weight: "bold")[#label]),
   )
 }
@@ -65,8 +65,8 @@ A mão direita no violão é responsável pelo *ritmo* — o que mais define o e
   columns: (1fr, 1fr, 1fr),
   gutter: 1em,
   block(
-    fill: rgb("#dbeafe"),
-    stroke: 0.6pt + rgb("#93c5fd"),
+    fill: color-brand-soft,
+    stroke: 0.6pt + color-brand-soft,
     inset: 10pt,
     radius: 5pt,
     [
@@ -77,7 +77,7 @@ A mão direita no violão é responsável pelo *ritmo* — o que mais define o e
     ],
   ),
   block(
-    fill: rgb("#dcfce7"),
+    fill: color-accent-soft,
     stroke: 0.6pt + rgb("#86efac"),
     inset: 10pt,
     radius: 5pt,
@@ -89,8 +89,8 @@ A mão direita no violão é responsável pelo *ritmo* — o que mais define o e
     ],
   ),
   block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(200),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 10pt,
     radius: 5pt,
     [
@@ -104,8 +104,8 @@ A mão direita no violão é responsável pelo *ritmo* — o que mais define o e
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(210),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 10pt,
     radius: 5pt,
     width: 78%,
@@ -182,7 +182,7 @@ O reggae tem o acento no contratempo dos tempos 2 e 4 (o "offbeat"). As batidas 
       gutter: 0.8em,
       block(
         fill: luma(245),
-        stroke: 0.5pt + luma(200),
+        stroke: 0.5pt + color-rule-dark,
         inset: 10pt,
         radius: 4pt,
         width: 100%,
@@ -209,8 +209,8 @@ O reggae tem o acento no contratempo dos tempos 2 e 4 (o "offbeat"). As batidas 
   #table(
     columns: (1fr, 1fr, 1.5fr),
     align: center + horizon,
-    stroke: 0.5pt + luma(190),
-    fill: (col, row) => if row == 0 { luma(232) } else if calc.odd(row) { white } else { luma(248) },
+    stroke: 0.5pt + color-rule-dark,
+    fill: (col, row) => if row == 0 { color-subtle-bg } else if calc.odd(row) { white } else { color-subtle-bg },
     [*Estilo*], [*Batida Base*], [*Referência*],
     [Pop / Rock Acústico], [Batida 2], ["Wonderwall" - Oasis, músicas do Ed Sheeran],
     [Balada / Folk], [Batida 3], ["Blackbird" intro, músicas de João Gilberto],
@@ -224,8 +224,8 @@ O reggae tem o acento no contratempo dos tempos 2 e 4 (o "offbeat"). As batidas 
 
 #align(center)[
   #block(
-    fill: rgb("#eff6ff"),
-    stroke: 0.5pt + rgb("#93c5fd"),
+    fill: color-brand-soft,
+    stroke: 0.5pt + color-brand-soft,
     inset: 12pt,
     radius: 5pt,
     width: 80%,

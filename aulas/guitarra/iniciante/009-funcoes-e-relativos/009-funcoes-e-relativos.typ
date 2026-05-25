@@ -1,4 +1,4 @@
-#import "../../../../templates/layout.typ": aula, explainer-component
+#import "../../../../templates/layout.typ": *
 #import "@preview/conchord:0.4.0": new-chordgen
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, edge, node
 
@@ -22,7 +22,7 @@ No campo harmônico maior, cada acorde exerce uma *função*: um papel emocional
   gutter: 1em,
   block(
     width: 100%,
-    fill: rgb("#eff6ff"),
+    fill: color-brand-soft,
     stroke: 0.6pt + rgb("#3b82f6"),
     inset: 12pt,
     radius: 5pt,
@@ -77,9 +77,9 @@ No campo harmônico maior, cada acorde exerce uma *função*: um papel emocional
   #table(
     columns: (0.5fr, 0.8fr, 0.8fr, 0.8fr, 0.8fr, 0.8fr, 0.8fr, 0.8fr),
     align: center + horizon,
-    stroke: 0.5pt + luma(190),
+    stroke: 0.5pt + color-rule-dark,
     fill: (col, row) => {
-      if row == 0 or row == 1 { luma(232) } else if row == 2 { luma(240) } else if row == 3 {
+      if row == 0 or row == 1 { color-subtle-bg } else if row == 2 { color-subtle-bg } else if row == 3 {
         rgb("#fef9c3")
       } else { rgb("#ffe4e6") }
     },
@@ -92,7 +92,7 @@ No campo harmônico maior, cada acorde exerce uma *função*: um papel emocional
 #v(0.5em)
 
 #align(center)[
-  #text(size: 8.5pt, fill: luma(120))[T = Tônica · S = Subdominante · D = Dominante · R = Relativo]
+  #text(size: 8.5pt, fill: color-muted)[T = Tônica · S = Subdominante · D = Dominante · R = Relativo]
 
 ]
 
@@ -107,8 +107,8 @@ Uma *cadência* é um movimento de acordes que cria uma sensação de repouso ou
   gutter: 1em,
   block(
     width: 100%,
-    fill: luma(248),
-    stroke: 0.5pt + luma(200),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     [
@@ -117,7 +117,7 @@ Uma *cadência* é um movimento de acordes que cria uma sensação de repouso ou
         #diagram(
           spacing: 16mm,
           node((0, 0), [V], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: rgb("#ffe4e6")),
-          node((1, 0), [I], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: rgb("#eff6ff")),
+          node((1, 0), [I], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: color-brand-soft),
           edge((0, 0), (1, 0), "->"),
         )
         #v(0.3em)
@@ -130,8 +130,8 @@ Uma *cadência* é um movimento de acordes que cria uma sensação de repouso ou
   ),
   block(
     width: 100%,
-    fill: luma(248),
-    stroke: 0.5pt + luma(200),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     [
@@ -140,7 +140,7 @@ Uma *cadência* é um movimento de acordes que cria uma sensação de repouso ou
         #diagram(
           spacing: 16mm,
           node((0, 0), [IV], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: rgb("#fef9c3")),
-          node((1, 0), [I], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: rgb("#eff6ff")),
+          node((1, 0), [I], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: color-brand-soft),
           edge((0, 0), (1, 0), "->"),
         )
         #v(0.3em)
@@ -153,8 +153,8 @@ Uma *cadência* é um movimento de acordes que cria uma sensação de repouso ou
   ),
   block(
     width: 100%,
-    fill: luma(248),
-    stroke: 0.5pt + luma(200),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     [
@@ -164,7 +164,7 @@ Uma *cadência* é um movimento de acordes que cria uma sensação de repouso ou
           spacing: 13mm,
           node((0, 0), [II], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: rgb("#fef9c3")),
           node((1, 0), [V], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: rgb("#ffe4e6")),
-          node((2, 0), [I], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: rgb("#eff6ff")),
+          node((2, 0), [I], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: color-brand-soft),
           edge((0, 0), (1, 0), "->"),
           edge((1, 0), (2, 0), "->"),
         )
@@ -196,19 +196,19 @@ O *II-V-I* é onipresente na música ocidental. Ele combina as três funções e
         #box(chord("x,x,0,2,1,1", name: "Dm7"))
         #v(0.2em)
         #text(size: 8.5pt, weight: "bold")[Dm7 (II)]\
-        #text(size: 8pt, fill: luma(110))[Subdominante]
+        #text(size: 8pt, fill: color-muted)[Subdominante]
       ],
       block[
         #box(chord("3,2,0,0,0,1", name: "G7"))
         #v(0.2em)
         #text(size: 8.5pt, weight: "bold")[G7 (V)]\
-        #text(size: 8pt, fill: luma(110))[Dominante]
+        #text(size: 8pt, fill: color-muted)[Dominante]
       ],
       block[
         #box(chord("x,3,2,0,0,0", name: "C7M"))
         #v(0.2em)
         #text(size: 8.5pt, weight: "bold")[C7M (I)]\
-        #text(size: 8pt, fill: luma(110))[Tônica]
+        #text(size: 8pt, fill: color-muted)[Tônica]
       ],
     )
   ],
@@ -230,8 +230,8 @@ Todo tom maior possui um *relativo menor* (um tom menor que compartilha exatamen
   #table(
     columns: (1fr, 1fr, 1fr),
     align: center + horizon,
-    stroke: 0.5pt + luma(190),
-    fill: (col, row) => if row == 0 { luma(232) } else { white },
+    stroke: 0.5pt + color-rule-dark,
+    fill: (col, row) => if row == 0 { color-subtle-bg } else { white },
     [*Tom Maior*], [*Relativo Menor*], [*Acorde Relativo*],
     [C (I)], [A (VI)], [Am7],
     [F (IV)], [D (II)], [Dm7],
@@ -242,7 +242,7 @@ Todo tom maior possui um *relativo menor* (um tom menor que compartilha exatamen
 #v(1em)
 
 #align(center)[
-  #text(size: 9pt, fill: luma(120))[
+  #text(size: 9pt, fill: color-muted)[
     *Nota:* C7M e Am7 são *relativos*: compartilham as mesmas notas (do, ré, mi, fá, sol, lá, si). Por isso soam "parecidos" e podem se substituir em muitos contextos.
   ]
 ]

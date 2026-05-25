@@ -1,4 +1,4 @@
-#import "../../../../templates/layout.typ": aula, explainer-component
+#import "../../../../templates/layout.typ": *
 #import "@preview/conchord:0.4.0": new-chordgen
 
 #show: aula.with(
@@ -20,8 +20,8 @@ Os dedos recebem nomes do sistema espanhol de música, universalmente usados:
   #table(
     columns: (0.5fr, 0.7fr, 1fr, 1.5fr),
     align: center + horizon,
-    stroke: 0.5pt + luma(190),
-    fill: (col, row) => if row == 0 { luma(232) } else if calc.odd(row) { white } else { luma(248) },
+    stroke: 0.5pt + color-rule-dark,
+    fill: (col, row) => if row == 0 { color-subtle-bg } else if calc.odd(row) { white } else { color-subtle-bg },
     [*Letra*], [*Dedo*], [*Nome (espanhol)*], [*Corda(s) responsável(is)*],
     [*p*], [Polegar], [_pulgar_], [6ª, 5ª e 4ª cordas (graves)],
     [*i*], [Indicador], [_índice_], [3ª corda],
@@ -34,8 +34,8 @@ Os dedos recebem nomes do sistema espanhol de música, universalmente usados:
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(210),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 10pt,
     radius: 5pt,
     width: 80%,
@@ -51,8 +51,8 @@ Os dedos recebem nomes do sistema espanhol de música, universalmente usados:
   columns: (1fr, 1fr, 1fr),
   gutter: 1em,
   block(
-    fill: rgb("#eff6ff"),
-    stroke: 0.6pt + rgb("#93c5fd"),
+    fill: color-brand-soft,
+    stroke: 0.6pt + color-brand-soft,
     inset: 10pt,
     radius: 5pt,
     [
@@ -63,8 +63,8 @@ Os dedos recebem nomes do sistema espanhol de música, universalmente usados:
     ],
   ),
   block(
-    fill: rgb("#eff6ff"),
-    stroke: 0.6pt + rgb("#93c5fd"),
+    fill: color-brand-soft,
+    stroke: 0.6pt + color-brand-soft,
     inset: 10pt,
     radius: 5pt,
     [
@@ -104,8 +104,8 @@ O padrão mais básico. Uma nota de cada vez, de grave para agudo.
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(200),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     width: 78%,
@@ -137,8 +137,8 @@ O polegar toca o baixo, depois os três dedos tocam as cordas agudas juntos. Mui
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(200),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     width: 78%,
@@ -168,8 +168,8 @@ O polegar alterna entre duas cordas graves, criando um efeito de "caminhada" de 
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(200),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     width: 80%,
@@ -202,8 +202,8 @@ A batida de Bossa Nova criada por *João Gilberto* combina polegar sincopado com
 #explainer-component(
   align(center)[
     #block(
-      fill: luma(248),
-      stroke: 0.5pt + luma(200),
+      fill: color-subtle-bg,
+      stroke: 0.5pt + color-rule-dark,
       inset: 12pt,
       radius: 5pt,
       width: 92%,
@@ -238,8 +238,8 @@ Dedos:       (ima)       (ima)       (ima)",
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(210),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     width: 82%,

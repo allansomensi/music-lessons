@@ -1,4 +1,4 @@
-#import "../../../../templates/layout.typ": aula, explainer-component
+#import "../../../../templates/layout.typ": *
 #import "@preview/conchord:0.4.0": new-chordgen
 
 #show: aula.with(
@@ -18,8 +18,8 @@ Dominar as formas básicas no braço da guitarra é o passo essencial para come�
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(210),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 10pt,
     radius: 5pt,
     width: 82%,
@@ -44,7 +44,7 @@ Dominar as formas básicas no braço da guitarra é o passo essencial para come�
       #box(chord("x,0,2,2,1,0", name: "Am")) \
       #v(0.4em)
       #text(size: 10pt, weight: "bold")[Am — Lá Menor] \
-      #text(size: 8.5pt, fill: luma(110))[2: 4ª corda / 2ª casa \
+      #text(size: 8.5pt, fill: color-muted)[2: 4ª corda / 2ª casa \
         3: 3ª corda / 2ª casa \
         1: 2ª corda / 1ª casa]
     ],
@@ -52,14 +52,14 @@ Dominar as formas básicas no braço da guitarra é o passo essencial para come�
       #box(chord("0,2,2,0,0,0", name: "Em")) \
       #v(0.4em)
       #text(size: 10pt, weight: "bold")[Em — Mi Menor] \
-      #text(size: 8.5pt, fill: luma(110))[2: 5ª corda / 2ª casa \
+      #text(size: 8.5pt, fill: color-muted)[2: 5ª corda / 2ª casa \
         3: 4ª corda / 2ª casa]
     ],
     block[
       #box(chord("0,2,2,1,0,0", name: "E")) \
       #v(0.4em)
       #text(size: 10pt, weight: "bold")[E — Mi Maior] \
-      #text(size: 8.5pt, fill: luma(110))[2: 5ª corda / 2ª casa \
+      #text(size: 8.5pt, fill: color-muted)[2: 5ª corda / 2ª casa \
         3: 4ª corda / 2ª casa \
         1: 3ª corda / 1ª casa]
     ],
@@ -67,7 +67,7 @@ Dominar as formas básicas no braço da guitarra é o passo essencial para come�
       #box(chord("x,0,2,2,2,0", name: "A")) \
       #v(0.4em)
       #text(size: 10pt, weight: "bold")[A — Lá Maior] \
-      #text(size: 8.5pt, fill: luma(110))[1: 4ª corda / 2ª casa \
+      #text(size: 8.5pt, fill: color-muted)[1: 4ª corda / 2ª casa \
         2: 3ª corda / 2ª casa \
         3: 2ª corda / 2ª casa]
     ],
@@ -85,7 +85,7 @@ Dominar as formas básicas no braço da guitarra é o passo essencial para come�
       #box(chord("x,x,0,2,3,2", name: "D")) \
       #v(0.4em)
       #text(size: 10pt, weight: "bold")[D — Ré Maior] \
-      #text(size: 8.5pt, fill: luma(110))[1: 3ª corda / 2ª casa \
+      #text(size: 8.5pt, fill: color-muted)[1: 3ª corda / 2ª casa \
         2: 1ª corda / 2ª casa \
         3: 2ª corda / 3ª casa]
     ],
@@ -93,7 +93,7 @@ Dominar as formas básicas no braço da guitarra é o passo essencial para come�
       #box(chord("3,2,0,0,0,3", name: "G")) \
       #v(0.4em)
       #text(size: 10pt, weight: "bold")[G — Sol Maior] \
-      #text(size: 8.5pt, fill: luma(110))[2: 5ª corda / 2ª casa \
+      #text(size: 8.5pt, fill: color-muted)[2: 5ª corda / 2ª casa \
         3: 6ª corda / 3ª casa \
         4: 1ª corda / 3ª casa]
     ],
@@ -101,7 +101,7 @@ Dominar as formas básicas no braço da guitarra é o passo essencial para come�
       #box(chord("x,3,2,0,1,0", name: "C")) \
       #v(0.4em)
       #text(size: 10pt, weight: "bold")[C — Dó Maior] \
-      #text(size: 8.5pt, fill: luma(110))[1: 2ª corda / 1ª casa \
+      #text(size: 8.5pt, fill: color-muted)[1: 2ª corda / 1ª casa \
         2: 4ª corda / 2ª casa \
         3: 5ª corda / 3ª casa]
     ],
@@ -118,8 +118,8 @@ Dominar as formas básicas no braço da guitarra é o passo essencial para come�
   #table(
     columns: (1.3fr, 1.3fr, 1.5fr),
     align: center + horizon,
-    stroke: 0.5pt + luma(190),
-    fill: (col, row) => if row == 0 { luma(232) } else if calc.odd(row) { white } else { luma(248) },
+    stroke: 0.5pt + color-rule-dark,
+    fill: (col, row) => if row == 0 { color-subtle-bg } else if calc.odd(row) { white } else { color-subtle-bg },
     [*Problema*], [*Causa*], [*Solução*],
     [Nota abafada / sem som], [Dedo longe do traste ou pressão insuficiente], [Mover dedo bem perto do traste],
     [Ruído indesejado nas cordas soltas],
@@ -180,8 +180,8 @@ As trocas de acorde são o maior desafio no início. Treine as transições abai
   #table(
     columns: (1.5fr, 2fr, 1.5fr),
     align: center + horizon,
-    stroke: 0.5pt + luma(190),
-    fill: (col, row) => if row == 0 { luma(232) } else { white },
+    stroke: 0.5pt + color-rule-dark,
+    fill: (col, row) => if row == 0 { color-subtle-bg } else { white },
     [*Transição*], [*Dica Prática*], [*Dificuldade*],
     [Em → Am], [Manter a mão na mesma posição], [Fácil],
     [A → D], [Girar o pulso para alcançar o D], [Média],

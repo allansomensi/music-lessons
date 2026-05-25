@@ -1,4 +1,4 @@
-#import "../../../../templates/layout.typ": aula, explainer-component
+#import "../../../../templates/layout.typ": *
 #import "@preview/conchord:0.4.0": new-chordgen
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, edge, node
 
@@ -46,8 +46,8 @@ Os intervalos possuem "nomes" e "sobrenomes". O nome é a distância numérica p
   #table(
     columns: (1.5fr, 0.8fr, 1.2fr, 2.5fr),
     align: center + horizon,
-    stroke: 0.5pt + luma(190),
-    fill: (col, row) => if row == 0 { luma(232) } else if calc.odd(row) { white } else { luma(248) },
+    stroke: 0.5pt + color-rule-dark,
+    fill: (col, row) => if row == 0 { color-subtle-bg } else if calc.odd(row) { white } else { color-subtle-bg },
     [*Intervalo*], [*Cifra*], [*Distância*], [*Sonoridade / Função*],
     [Segunda Menor], [b2], [1 semitom], [Tensa, gera muito atrito],
     [Segunda Maior], [2], [1 tom], [Alegre, usada em progressões de escala],
@@ -68,8 +68,8 @@ Os intervalos possuem "nomes" e "sobrenomes". O nome é a distância numérica p
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(210),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     width: 80%,
@@ -111,22 +111,22 @@ Se posicionarmos nossa Tônica Dó na 5ª corda (3ª casa), os intervalos vizinh
     block[
       #box(chord("x,3,1,x,x,x", name: "b3")) \
       #text(size: 9.5pt, weight: "bold")[Terça Menor] \
-      #text(size: 8.5pt, fill: luma(110))[1 casa para trás, corda abaixo]
+      #text(size: 8.5pt, fill: color-muted)[1 casa para trás, corda abaixo]
     ],
     block[
       #box(chord("x,3,2,x,x,x", name: "3")) \
       #text(size: 9.5pt, weight: "bold")[Terça Maior] \
-      #text(size: 8.5pt, fill: luma(110))[Mesma casa, corda abaixo]
+      #text(size: 8.5pt, fill: color-muted)[Mesma casa, corda abaixo]
     ],
     block[
       #box(chord("x,3,5,x,x,x", name: "5")) \
       #text(size: 9.5pt, weight: "bold")[Quinta Justa] \
-      #text(size: 8.5pt, fill: luma(110))[2 casas à frente, corda abaixo]
+      #text(size: 8.5pt, fill: color-muted)[2 casas à frente, corda abaixo]
     ],
     block[
       #box(chord("x,3,x,5,x,x", name: "8")) \
       #text(size: 9.5pt, weight: "bold")[Oitava] \
-      #text(size: 8.5pt, fill: luma(110))[Pula uma corda, 2 casas à frente]
+      #text(size: 8.5pt, fill: color-muted)[Pula uma corda, 2 casas à frente]
     ],
   )
 ]
@@ -145,8 +145,8 @@ No entanto, a forma como *escrevemos* ou nomeamos essa nota muda completamente o
   #table(
     columns: (0.8fr, 1.5fr, 1.5fr, 2fr),
     align: center + horizon,
-    stroke: 0.5pt + luma(190),
-    fill: (col, row) => if row == 0 { luma(232) } else if calc.odd(row) { white } else { luma(248) },
+    stroke: 0.5pt + color-rule-dark,
+    fill: (col, row) => if row == 0 { color-subtle-bg } else if calc.odd(row) { white } else { color-subtle-bg },
     [*Tônica*], [*Nota Alvo*], [*Lógica da Distância*], [*Intervalo Correto*],
     [C], [F\# (Fá sustenido)], [Dó(1) - Ré(2) - Mi(3) - *Fá(4)*], [Quarta Aumentada (\#4)],
     [C], [Gb (Sol bemol)], [Dó(1) - Ré(2) - Mi(3) - Fá(4) - *Sol(5)*], [Quinta Diminuta (b5)],

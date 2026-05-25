@@ -1,4 +1,4 @@
-#import "../../../../templates/layout.typ": aula, explainer-component
+#import "../../../../templates/layout.typ": *
 #import "@preview/conchord:0.4.0": new-chordgen
 
 #show: aula.with(
@@ -13,8 +13,8 @@
   width: 20pt,
   height: 20pt,
   align(center + horizon, if k == "R" { box(width: 14pt, height: 14pt, fill: black, radius: 7pt) } else if k == "N" {
-    box(width: 14pt, height: 14pt, fill: luma(110), radius: 7pt)
-  } else { line(start: (0pt, 0pt), end: (20pt, 0pt), stroke: 0.5pt + luma(210)) }),
+    box(width: 14pt, height: 14pt, fill: color-muted, radius: 7pt)
+  } else { line(start: (0pt, 0pt), end: (20pt, 0pt), stroke: 0.5pt + color-rule-dark) }),
 )
 
 #let neck(data, fs: 1) = {
@@ -32,8 +32,8 @@
     columns: (13pt,) + range(nf).map(_ => 22pt),
     align: center + horizon,
     inset: (x: 0pt, y: 3pt),
-    stroke: (x, y) => if x == 0 or y == 0 { 0.5pt + luma(190) } else { 0.4pt + luma(220) },
-    fill: (c, r) => if r == 0 { luma(232) } else if c == 0 { luma(242) } else { white },
+    stroke: (x, y) => if x == 0 or y == 0 { 0.5pt + color-rule-dark } else { 0.4pt + luma(220) },
+    fill: (c, r) => if r == 0 { color-subtle-bg } else if c == 0 { luma(242) } else { white },
     ..hdr, ..bdy,
   )
 }
@@ -52,8 +52,8 @@ A pentatônica menor retira o 2º e o 6º grau da escala menor natural, deixando
   #table(
     columns: (1fr, 0.6fr, 0.6fr, 0.6fr, 0.6fr, 0.6fr, 1.6fr),
     align: center + horizon,
-    stroke: 0.5pt + luma(190),
-    fill: (col, row) => if row == 0 { luma(232) } else if col == 5 { rgb("#eff6ff") } else { white },
+    stroke: 0.5pt + color-rule-dark,
+    fill: (col, row) => if row == 0 { color-subtle-bg } else if col == 5 { color-brand-soft } else { white },
     [*Escala*], [*1*], [*b3*], [*4*], [*5*], [*b7*], [*Em Lá Menor (Am)*],
     [Menor Natural], [T], [b3], [4], [5], [b6], [b7],
     [*Penta Menor*], [*T*], [*b3*], [*4*], [*5*], [—], [*b7*],
@@ -88,8 +88,8 @@ Cada posição cobre uma região do braço. Juntas, elas formam um mapa completo
       fs: 5,
     ),
     block(
-      fill: luma(248),
-      stroke: 0.5pt + luma(210),
+      fill: color-subtle-bg,
+      stroke: 0.5pt + color-rule-dark,
       inset: 11pt,
       radius: 5pt,
       [
@@ -186,8 +186,8 @@ As 5 posições da pentatônica se sobrepõem exatamente com os 5 shapes do CAGE
   #table(
     columns: (1fr, 1fr, 1fr, 1fr),
     align: center + horizon,
-    stroke: 0.5pt + luma(190),
-    fill: (col, row) => if row == 0 { luma(232) } else if calc.odd(row) { white } else { luma(248) },
+    stroke: 0.5pt + color-rule-dark,
+    fill: (col, row) => if row == 0 { color-subtle-bg } else if calc.odd(row) { white } else { color-subtle-bg },
     [*Posição Penta*], [*Shape CAGED*], [*Tônica (Am)*], [*Casas aprox.*],
     [Posição 1], [Shape E], [5ª e 6ª corda], [5–8],
     [Posição 2], [Shape D], [1ª e 2ª corda], [7–10],
@@ -204,8 +204,8 @@ As 5 posições da pentatônica se sobrepõem exatamente com os 5 shapes do CAGE
 #explainer-component(
   align(center)[
     #block(
-      fill: luma(248),
-      stroke: 0.5pt + luma(210),
+      fill: color-subtle-bg,
+      stroke: 0.5pt + color-rule-dark,
       inset: 12pt,
       radius: 5pt,
       [
@@ -238,8 +238,8 @@ E|-----------------|
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(210),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     width: 85%,

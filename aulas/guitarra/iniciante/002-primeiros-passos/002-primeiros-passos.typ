@@ -1,4 +1,4 @@
-#import "../../../../templates/layout.typ": aula, explainer-component
+#import "../../../../templates/layout.typ": *
 #import "@preview/conchord:0.4.0": new-chordgen
 
 #show: aula.with(
@@ -6,7 +6,7 @@
   nivel: "Iniciante",
 )
 
-#let chord = new-chordgen(number-to-left: true, use-shadow-barre: false, colors: (hold: black, barre: black))
+#let chord = new-chordgen(number-to-left: true, use-shadow-barre: false, colors: (hold: color-ink, barre: color-ink))
 
 = Primeiros Passos
 
@@ -22,12 +22,12 @@ Segure a palheta entre o *polegar e o indicador*, com apenas uma pequena ponta a
     gutter: 1em,
     block(
       width: 100%,
-      fill: rgb("#f0fdf4"),
-      stroke: 0.6pt + rgb("#86efac"),
+      fill: color-subtle-bg,
+      stroke: 0.6pt + color-accent,
       inset: 10pt,
       radius: 5pt,
       [
-        #align(center)[#text(weight: "bold", size: 10pt)[✓ Correto]]
+        #align(center)[#text(weight: "bold", size: 10pt, fill: color-accent)[✓ Correto]]
         #v(0.4em)
         #set text(size: 9pt)
         Polegar sobre indicador. \
@@ -38,12 +38,12 @@ Segure a palheta entre o *polegar e o indicador*, com apenas uma pequena ponta a
     ),
     block(
       width: 100%,
-      fill: rgb("#fef2f2"),
-      stroke: 0.6pt + rgb("#fca5a5"),
+      fill: none,
+      stroke: 0.6pt + color-rule-dark,
       inset: 10pt,
       radius: 5pt,
       [
-        #align(center)[#text(weight: "bold", size: 10pt)[✗ Errado]]
+        #align(center)[#text(weight: "bold", size: 10pt, fill: color-strong)[✗ Errado]]
         #v(0.4em)
         #set text(size: 9pt)
         Palheta presa com força. \
@@ -61,8 +61,8 @@ Pressione a corda *logo atrás do traste* (não em cima e não no meio). Use a *
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(210),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     width: 85%,
@@ -99,25 +99,25 @@ O *Power Chord* é o acorde do rock. Usa apenas *2 notas* (Tônica e Quinta Just
       #box(chord("0,2,2,x,x,x", name: "E5")) \
       #v(0.3em)
       #text(size: 9.5pt, weight: "bold")[E5 — Mi5] \
-      #text(size: 8pt, fill: luma(110))[Tônica: 6ª corda solta]
+      #text(size: 8pt, fill: color-muted)[Tônica: 6ª corda solta]
     ],
     block[
       #box(chord("x,0,2,2,x,x", name: "A5")) \
       #v(0.3em)
       #text(size: 9.5pt, weight: "bold")[A5 — Lá5] \
-      #text(size: 8pt, fill: luma(110))[Tônica: 5ª corda solta]
+      #text(size: 8pt, fill: color-muted)[Tônica: 5ª corda solta]
     ],
     block[
       #box(chord("x,x,0,2,x,x", name: "D5")) \
       #v(0.3em)
       #text(size: 9.5pt, weight: "bold")[D5 — Ré5] \
-      #text(size: 8pt, fill: luma(110))[Tônica: 4ª corda solta]
+      #text(size: 8pt, fill: color-muted)[Tônica: 4ª corda solta]
     ],
     block[
       #box(chord("3,5,5,x,x,x", name: "G5")) \
       #v(0.3em)
       #text(size: 9.5pt, weight: "bold")[G5 — Sol5] \
-      #text(size: 8pt, fill: luma(110))[Shape móvel — 6ª corda]
+      #text(size: 8pt, fill: color-muted)[Shape móvel — 6ª corda]
     ],
   )
 ]
@@ -130,8 +130,8 @@ O shape nunca muda, apenas desliza. A nota que o *indicador pressiona na corda m
   #table(
     columns: (1.3fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
     align: center + horizon,
-    stroke: 0.4pt + luma(200),
-    fill: (col, row) => if row == 0 or col == 0 { luma(235) } else { white },
+    stroke: 0.4pt + color-rule-dark,
+    fill: (col, row) => if row == 0 or col == 0 { color-subtle-bg } else { white },
     inset: (x: 4pt, y: 5pt),
     [*Corda / Casa*], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12],
     [*6ª corda (E)*], [F5], [F\#5], [G5], [Ab5], [A5], [Bb5], [B5], [C5], [C\#5], [D5], [Eb5], [E5],
@@ -141,12 +141,12 @@ O shape nunca muda, apenas desliza. A nota que o *indicador pressiona na corda m
 
 == Palm Mute
 
-O *Palm Mute* cria aquele som percussivo e abafado característico do rock e metal. A lateral da mão direita (a parte carnuda abaixo do dedo mínimo) repousa *levemente* sobre as cordas, próximo à ponte.
+O *Palm Mute* cria aquele som percussivo e abafado característico do rock e metal. A lateral da mão direita (a parte abaixo do dedo mínimo) repousa *levemente* sobre as cordas, próximo à ponte.
 
 #explainer-component(
   align(center)[
     #block(
-      fill: luma(240),
+      fill: color-subtle-bg,
       stroke: 0.5pt,
       inset: 14pt,
       radius: 5pt,
@@ -157,8 +157,8 @@ O *Palm Mute* cria aquele som percussivo e abafado característico do rock e met
           columns: (1fr, 1fr),
           gutter: 1em,
           block(
-            fill: rgb("#f0fdf4"),
-            stroke: 0.5pt + rgb("#86efac"),
+            fill: none,
+            stroke: 0.5pt + color-accent,
             inset: 8pt,
             radius: 4pt,
             [
@@ -168,8 +168,8 @@ O *Palm Mute* cria aquele som percussivo e abafado característico do rock e met
             ],
           ),
           block(
-            fill: rgb("#fef9c3"),
-            stroke: 0.5pt + rgb("#eab308"),
+            fill: none,
+            stroke: 0.5pt + color-rule-dark,
             inset: 8pt,
             radius: 4pt,
             [
@@ -189,7 +189,7 @@ O *Palm Mute* cria aquele som percussivo e abafado característico do rock e met
   ],
 )
 
-= Exercício: Primeiro Riff
+= Exercício
 
 Progressão *E5 - G5 - A5 - G5* com Palm Mute nos tempos 1 e 2 de cada compasso. Metrônomo em *♩ = 60 BPM*. Foco total na limpeza, não na velocidade.
 
@@ -197,8 +197,8 @@ Progressão *E5 - G5 - A5 - G5* com Palm Mute nos tempos 1 e 2 de cada compasso.
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(200),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 14pt,
     radius: 5pt,
     width: 90%,
@@ -207,14 +207,14 @@ Progressão *E5 - G5 - A5 - G5* com Palm Mute nos tempos 1 e 2 de cada compasso.
       #raw(
         lang: "text",
         block: true,
-        "  E5              G5              A5              G5
-  P.M.--------                    P.M.--------
-e|----------------|----------------|----------------|----------------|
-B|----------------|----------------|----------------|----------------|
-G|----------------|----------------|----------------|----------------|
-D|--2---2---2---2-|--5---5---5---5-|--7---7---7---7-|--5---5---5---5-|
-A|--2---2---2---2-|--5---5---5---5-|--7---7---7---7-|--5---5---5---5-|
-E|--0---0---0---0-|--3---3---3---3-|--5---5---5---5-|--3---3---3---3-|",
+        "    E5                G5                A5                G5
+P.M.-----          P.M.----          P.M.----          P.M.----
+e|-----------------|-----------------|-----------------|-----------------|
+B|-----------------|-----------------|-----------------|-----------------|
+G|-----------------|-----------------|-----------------|-----------------|
+D|-----------------|-----------------|-----------------|-----------------|
+A|--2---2---2---2--|--5---5---5---5--|--7---7---7---7--|--5---5---5---5--|
+E|--0---0---0---0--|--3---3---3---3--|--5---5---5---5--|--3---3---3---3--|",
       )
     ],
   )

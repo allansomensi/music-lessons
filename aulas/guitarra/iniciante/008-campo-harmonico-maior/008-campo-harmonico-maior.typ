@@ -1,4 +1,4 @@
-#import "../../../../templates/layout.typ": aula, explainer-component
+#import "../../../../templates/layout.typ": *
 #import "@preview/conchord:0.4.0": new-chordgen
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, edge, node
 
@@ -52,10 +52,10 @@ Empilhando terças sobre cada grau usando apenas notas da escala, obtemos os seg
   #table(
     columns: (0.5fr, 0.5fr, 1fr, 1fr, 1fr, 1fr, 1fr),
     align: center + horizon,
-    stroke: 0.5pt + luma(190),
+    stroke: 0.5pt + color-rule-dark,
     fill: (col, row) => {
-      if row == 0 { luma(232) } else if col == 0 { luma(240) } else if row == 1 or row == 4 or row == 6 {
-        rgb("#eff6ff")
+      if row == 0 { color-subtle-bg } else if col == 0 { color-subtle-bg } else if row == 1 or row == 4 or row == 6 {
+        color-brand-soft
       } else { white }
     },
     [*Grau*], [*Acorde*], [*T*], [*3ª*], [*5ª*], [*Notas*], [*Tipo*],
@@ -73,8 +73,8 @@ Empilhando terças sobre cada grau usando apenas notas da escala, obtemos os seg
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(210),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 10pt,
     radius: 5pt,
     width: 85%,
@@ -124,10 +124,10 @@ Acrescentando mais uma terça (a sétima) sobre cada tríade:
   #table(
     columns: (0.5fr, 0.7fr, 0.5fr, 0.5fr, 0.5fr, 0.5fr, 1.5fr, 1fr),
     align: center + horizon,
-    stroke: 0.5pt + luma(190),
+    stroke: 0.5pt + color-rule-dark,
     fill: (col, row) => {
-      if row == 0 { luma(232) } else if col == 0 { luma(240) } else if row == 1 or row == 4 or row == 6 {
-        rgb("#eff6ff")
+      if row == 0 { color-subtle-bg } else if col == 0 { color-subtle-bg } else if row == 1 or row == 4 or row == 6 {
+        color-brand-soft
       } else { white }
     },
     [*Grau*], [*Acorde*], [*T*], [*3ª*], [*5ª*], [*7ª*], [*Notas*], [*Tipo*],
@@ -145,8 +145,8 @@ Acrescentando mais uma terça (a sétima) sobre cada tríade:
 
 #align(center)[
   #block(
-    fill: luma(248),
-    stroke: 0.5pt + luma(210),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 10pt,
     radius: 5pt,
     width: 85%,
@@ -219,8 +219,8 @@ O mesmo *padrão de tipos* (Maior · Menor · Menor · Maior · Maior · Menor �
   #table(
     columns: (0.6fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
     align: center + horizon,
-    stroke: 0.5pt + luma(190),
-    fill: (col, row) => if row == 0 { luma(232) } else if calc.even(row) { luma(248) } else { white },
+    stroke: 0.5pt + color-rule-dark,
+    fill: (col, row) => if row == 0 { color-subtle-bg } else if calc.even(row) { color-subtle-bg } else { white },
     [*Tom*], [*I*], [*II*], [*III*], [*IV*], [*V*], [*VI*], [*VII*],
     [C], [C], [Dm], [Em], [F], [G], [Am], [Bø],
     [G], [G], [Am], [Bm], [C], [D], [Em], [F\#ø],

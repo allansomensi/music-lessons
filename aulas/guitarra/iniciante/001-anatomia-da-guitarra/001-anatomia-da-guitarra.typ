@@ -1,4 +1,4 @@
-#import "../../../../templates/layout.typ": aula, explainer-component
+#import "../../../../templates/layout.typ": *
 
 #show: aula.with(
   instrumento: "Guitarra",
@@ -12,7 +12,7 @@
 ]
 
 #align(center)[
-  #text(size: 8pt, fill: luma(100))[Disponível em: https://www.wesleylylycaesar.net/anatomia-da-guitarra]
+  #text(size: 8pt, fill: color-muted)[Disponível em: https://www.wesleylylycaesar.net/anatomia-da-guitarra]
 ]
 
 #pagebreak()
