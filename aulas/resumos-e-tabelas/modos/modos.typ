@@ -5,2708 +5,1308 @@
   nivel: "Teoria Musical",
 )
 
-= Modo Jônico
+#let render-modo(
+  nome: "",
+  subtitulo: "",
+  intervalos: "",
+  distancias: "",
+  triades: "",
+  tetrades: "",
+  notas: (),
+  ultimo: false,
+) = [
+  = Modo #nome
 
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    I7M da escala Maior
+  #v(-1em)
+  #align(center)[
+    #text(size: 14pt, fill: color-secondary, weight: "medium")[
+      #subtitulo
+    ]
   ]
-]
 
-#v(0.5em)
+  #v(0.5em)
 
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - 2 - 3 - 4 - 5 - 6 - 7M
-
-      #v(0.8em)
-      *Distâncias:* \
-      T - T - ST - T - T - T - ST
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      I - IIm - IIIm - IV - V - VIm - VIIº
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      I7M - IIm7 - IIIm7 - IV7M - V7 - VIm7 - VIIø
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
   #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
+    fill: luma(248),
+    stroke: 0.5pt + luma(200),
+    radius: 6pt,
+    inset: 1.5em,
+    width: 100%,
+  )[
+    #grid(
+      columns: (40%, 60%),
+      gutter: 1.5em,
+      [
+        *Estrutura de Intervalos:* \
+        #intervalos
 
-        stroke: 0.5pt + black,
+        #v(0.8em)
+        *Distâncias:* \
+        #distancias
+      ],
+      [
+        *Campo Harmônico (Tríades):* \
+        #triades
 
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - D - E - F - G - A - B],
-        [*Db*], [Db - Eb - F - Gb - Ab - Bb - C],
-        [*D*], [D - E - F\# - G - A - B - C\#],
-        [*Eb*], [Eb - F - G - Ab - Bb - C - D],
-        [*E*], [E - F\# - G\# - A - B - C\# - D\#],
-        [*F*], [F - G - A - Bb - C - D - E],
-        [*Gb*], [Gb - Ab - Bb - Cb - Db - Eb - F],
-        [*G*], [G - A - B - C - D - E - F\#],
-        [*Ab*], [Ab - Bb - C - Db - Eb - F - G],
-        [*A*], [A - B - C\# - D - E - F\# - G\#],
-        [*Bb*], [Bb - C - D - Eb - F - G - A],
-        [*B*], [B - C\# - D\# - E - F\# - G\# - A\#],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Dórico
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    IIm7 da escala Maior
+        #v(0.8em)
+        *Campo Harmônico (Tétrades):* \
+        #tetrades
+      ],
+    )
   ]
-]
 
-#v(0.5em)
+  #v(1.5em)
 
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - 2 - b3 - 4 - 5 - 6 - 7
+  #align(center)[
+    #block(
+      radius: 4pt,
+      stroke: 0.75pt + black,
+      clip: true,
+      [
+        #table(
+          columns: (0.5fr, 2fr),
+          align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
+          inset: (x: 1.5em, y: 0.8em),
+          stroke: 0.5pt + black,
+          fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
 
-      #v(0.8em)
-      *Distâncias:* \
-      T - ST - T - T - T - ST - T
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      Im - IIm - bIII - IV - Vm - VIº - bVII
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      Im7 - IIm7 - bIII7M - IV7 - Vm7 - VIø - bVII7M
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - D - Eb - F - G - A - Bb],
-        [*C\#*], [C\# - D\# - E - F\# - G\# - A\# - B],
-        [*D*], [D - E - F - G - A - B - C],
-        [*D\#*], [D\# - E\# - F\# - G\# - A\# - B\# - C\#],
-        [*E*], [E - F\# - G - A - B - C\# - D],
-        [*F*], [F - G - Ab - Bb - C - D - Eb],
-        [*F\#*], [F\# - G\# - A - B - C\# - D\# - E],
-        [*G*], [G - A - Bb - C - D - E - F],
-        [*G\#*], [G\# - A\# - B - C\# - D\# - E\# - F\#],
-        [*A*], [A - B - C - D - E - F\# - G],
-        [*Bb*], [Bb - C - Db - Eb - F - G - Ab],
-        [*B*], [B - C\# - D - E - F\# - G\# - A],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Frígio
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    IIIm7 da escala Maior
+          [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
+          ..notas,
+        )
+      ],
+    )
   ]
-]
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - b2 - b3 - 4 - 5 - b6 - 7
-
-      #v(0.8em)
-      *Distâncias:* \
-      ST - T - T - T - ST - T - T
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      Im - bII - bIII - IVm - Vº - bVI - bVIIm
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      Im7 - bII7M - bIII7 - IVm7 - Vø - bVI7M - bVIIm7
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - Db - Eb - F - G - Ab - Bb],
-        [*C\#*], [C\# - D - E - F\# - G\# - A - B],
-        [*D*], [D - Eb - F - G - A - Bb - C],
-        [*D\#*], [D\# - E - F\# - G\# - A\# - B - C\#],
-        [*E*], [E - F - G - A - B - C - D],
-        [*F*], [F - Gb - Ab - Bb - C - Db - Eb],
-        [*F\#*], [F\# - G - A - B - C\# - D - E],
-        [*G*], [G - Ab - Bb - C - D - Eb - F],
-        [*G\#*], [G\# - A - B - C\# - D\# - E - F\#],
-        [*A*], [A - Bb - C - D - E - F - G],
-        [*Bb*], [Bb - Cb - Db - Eb - F - Gb - Ab],
-        [*B*], [B - C - D - E - F\# - G - A],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Lídio
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    IV7M da escala Maior
-  ]
-]
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - 2 - 3 - \#4 - 5 - 6 - 7M
-
-      #v(0.8em)
-      *Distâncias:* \
-      T - T - T - ST - T - T - ST
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      I - II - IIIm - \#IVº - V - VIm - VIIm
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      I7M - II7 - IIIm7 - \#IVø - V7M - VIm7 - VIIm7
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - D - E - F\# - G - A - B],
-        [*Db*], [Db - Eb - F - G - Ab - Bb - C],
-        [*D*], [D - E - F\# - G\# - A - B - C\#],
-        [*Eb*], [Eb - F - G - A - Bb - C - D],
-        [*E*], [E - F\# - G\# - A\# - B - C\# - D\#],
-        [*F*], [F - G - A - B - C - D - E],
-        [*F\#*], [F\# - G\# - A\# - B\# - C\# - D\# - E\#],
-        [*G*], [G - A - B - C\# - D - E - F\#],
-        [*Ab*], [Ab - Bb - C - D - Eb - F - G],
-        [*A*], [A - B - C\# - D\# - E - F\# - G\#],
-        [*Bb*], [Bb - C - D - E - F - G - A],
-        [*B*], [B - C\# - D\# - E\# - F\# - G\# - A\#],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Mixolídio
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    V7 da escala Maior
-  ]
-]
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - 2 - 3 - 4 - 5 - 6 - 7
-
-      #v(0.8em)
-      *Distâncias:* \
-      T - T - ST - T - T - ST - T
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      I - IIm - IIIº - IV - Vm - VIm - bVII
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      I7 - IIm7 - IIIø - IV7M - Vm7 - VIm7 - bVII7M
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - D - E - F - G - A - Bb],
-        [*Db*], [Db - Eb - F - Gb - Ab - Bb - Cb],
-        [*D*], [D - E - F\# - G - A - B - C],
-        [*Eb*], [Eb - F - G - Ab - Bb - C - Db],
-        [*E*], [E - F\# - G\# - A - B - C\# - D],
-        [*F*], [F - G - A - Bb - C - D - Eb],
-        [*F\#*], [F\# - G\# - A\# - B - C\# - D\# - E],
-        [*G*], [G - A - B - C - D - E - F],
-        [*Ab*], [Ab - Bb - C - Db - Eb - F - Gb],
-        [*A*], [A - B - C\# - D - E - F\# - G],
-        [*Bb*], [Bb - C - D - Eb - F - G - Ab],
-        [*B*], [B - C\# - D\# - E - F\# - G\# - A],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Eólio
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    VIm7 da escala Maior
-  ]
-]
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - 2 - b3 - 4 - 5 - b6 - 7
-
-      #v(0.8em)
-      *Distâncias:* \
-      T - ST - T - T - ST - T - T
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      Im - IIº - bIII - IVm - Vm - bVI - bVII
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      Im7 - IIø - bIII7M - IVm7 - Vm7 - bVI7M - bVII7
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - D - Eb - F - G - Ab - Bb],
-        [*C\#*], [C\# - D\# - E - F\# - G\# - A - B],
-        [*D*], [D - E - F - G - A - Bb - C],
-        [*D\#*], [D\# - E\# - F\# - G\# - A\# - B - C\#],
-        [*E*], [E - F\# - G - A - B - C - D],
-        [*F*], [F - G - Ab - Bb - C - Db - Eb],
-        [*F\#*], [F\# - G\# - A - B - C\# - D - E],
-        [*G*], [G - A - Bb - C - D - Eb - F],
-        [*G\#*], [G\# - A\# - B - C\# - D\# - E - F\#],
-        [*A*], [A - B - C - D - E - F - G],
-        [*A\#*], [A\# - B\# - C\# - D\# - E\# - F\# - G\#],
-        [*B*], [B - C\# - D - E - F\# - G - A],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Lócrio
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    VIIø da escala Maior
-  ]
-]
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - b2 - b3 - 4 - b5 - b6 - 7
-
-      #v(0.8em)
-      *Distâncias:* \
-      ST - T - T - ST - T - T - T
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      Iº - bII - bIIIm - IVm - bV - bVI - bVIIm
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      Iø - bII7M - bIIIm7 - IVm7 - bV7M - bVI7 - bVIIm7
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - Db - Eb - F - Gb - Ab - Bb],
-        [*C\#*], [C\# - D - E - F\# - G - A - B],
-        [*D*], [D - Eb - F - G - Ab - Bb - C],
-        [*D\#*], [D\# - E - F\# - G\# - A - B - C\#],
-        [*E*], [E - F - G - A - Bb - C - D],
-        [*F*], [F - Gb - Ab - Bb - Cb - Db - Eb],
-        [*F\#*], [F\# - G - A - B - C - D - E],
-        [*G*], [G - Ab - Bb - C - Db - Eb - F],
-        [*G\#*], [G\# - A - B - C\# - D - E - F\#],
-        [*A*], [A - Bb - C - D - Eb - F - G],
-        [*A\#*], [A\# - B - C\# - D\# - E - F\# - G\#],
-        [*B*], [B - C - D - E - F - G - A],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Eólio 7M
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    Im7M da escala Menor Harmônica
-  ]
-]
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - 2 - b3 - 4 - 5 - b6 - 7M
-
-      #v(0.8em)
-      *Distâncias:* \
-      T - ST - T - T - ST - 1,5T - ST
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      Im - IIº - bIII+ - IVm - V - bVI - VIIº
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      Im7M - IIø - bIII7M(\#5) - IVm7 - V7 - bVI7M - VIIº7
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - D - Eb - F - G - Ab - B],
-        [*C\#*], [C\# - D\# - E - F\# - G\# - A - B\#],
-        [*D*], [D - E - F - G - A - Bb - C\#],
-        [*D\#*], [D\# - E\# - F\# - G\# - A\# - B - C\#\#],
-        [*E*], [E - F\# - G - A - B - C - D\#],
-        [*F*], [F - G - Ab - Bb - C - Db - E],
-        [*F\#*], [F\# - G\# - A - B - C\# - D - E\#],
-        [*G*], [G - A - Bb - C - D - Eb - F\#],
-        [*G\#*], [G\# - A\# - B - C\# - D\# - E - F\#\#],
-        [*A*], [A - B - C - D - E - F - G\#],
-        [*A\#*], [A\# - B\# - C\# - D\# - E\# - F\# - G\#\#],
-        [*B*], [B - C\# - D - E - F\# - G - A\#],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Lócrio 6
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    IIø da escala Menor Harmônica
-  ]
-]
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - b2 - b3 - 4 - b5 - 6 - 7
-
-      #v(0.8em)
-      *Distâncias:* \
-      ST - T - T - ST - 1,5T - ST - T
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      Iº - bII+ - bIIIm - IV - bV - VIº - bVIIm
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      Iø - bII7M(\#5) - bIIIm7 - IV7 - bV7M - VIº7 - bVIIm(7M)
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - Db - Eb - F - Gb - A - Bb],
-        [*C\#*], [C\# - D - E - F\# - G - A\# - B],
-        [*D*], [D - Eb - F - G - Ab - B - C],
-        [*D\#*], [D\# - E - F\# - G\# - A - B\# - C\#],
-        [*E*], [E - F - G - A - Bb - C\# - D],
-        [*F*], [F - Gb - Ab - Bb - Cb - D - Eb],
-        [*F\#*], [F\# - G - A - B - C - D\# - E],
-        [*G*], [G - Ab - Bb - C - Db - E - F],
-        [*G\#*], [G\# - A - B - C\# - D - E\# - F\#],
-        [*A*], [A - Bb - C - D - Eb - F\# - G],
-        [*A\#*], [A\# - B - C\# - D\# - E - F\#\# - G\#],
-        [*B*], [B - C - D - E - F - G\# - A],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Jônico \#5
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    bIII7M(\#5) da escala Menor Harmônica
-  ]
-]
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - 2 - 3 - 4 - \#5 - 6 - 7M
-
-      #v(0.8em)
-      *Distâncias:* \
-      T - T - ST - 1,5T - ST - T - ST
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      I+ - IIm - III - IV - \#Vº - VIm - VIIº
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      I7M(\#5) - IIm7 - III7 - IV7M - \#Vº7 - VIm(7M) - VIIø
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - D - E - F - G\# - A - B],
-        [*Db*], [Db - Eb - F - Gb - A - Bb - C],
-        [*D*], [D - E - F\# - G - A\# - B - C\#],
-        [*Eb*], [Eb - F - G - Ab - B - C - D],
-        [*E*], [E - F\# - G\# - A - B\# - C\# - D\#],
-        [*F*], [F - G - A - Bb - C\# - D - E],
-        [*Gb*], [Gb - Ab - Bb - Cb - D - Eb - F],
-        [*G*], [G - A - B - C - D\# - E - F\#],
-        [*Ab*], [Ab - Bb - C - Db - E - F - G],
-        [*A*], [A - B - C\# - D - E\# - F\# - G\#],
-        [*Bb*], [Bb - C - D - Eb - F\# - G - A],
-        [*B*], [B - C\# - D\# - E - F\#\# - G\# - A\#],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Dórico \#4
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    IVm7 da escala Menor Harmônica
-  ]
-]
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - 2 - b3 - \#4 - 5 - 6 - 7
-
-      #v(0.8em)
-      *Distâncias:* \
-      T - ST - 1,5T - ST - T - ST - T
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      Im - II - bIII - \#IVº - Vm - VIº - bVII+
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      Im7 - II7 - bIII7M - \#IVº7 - Vm(7M) - VIø - bVII7M(\#5)
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - D - Eb - F\# - G - A - Bb],
-        [*C\#*], [C\# - D\# - E - F\#\# - G\# - A\# - B],
-        [*D*], [D - E - F - G\# - A - B - C],
-        [*D\#*], [D\# - E\# - F\# - G\#\# - A\# - B\# - C\#],
-        [*E*], [E - F\# - G - A\# - B - C\# - D],
-        [*F*], [F - G - Ab - B - C - D - Eb],
-        [*F\#*], [F\# - G\# - A - B\# - C\# - D\# - E],
-        [*G*], [G - A - Bb - C\# - D - E - F],
-        [*G\#*], [G\# - A\# - B - C\#\# - D\# - E\# - F\#],
-        [*A*], [A - B - C - D\# - E - F\# - G],
-        [*Bb*], [Bb - C - Db - E - F - G - Ab],
-        [*B*], [B - C\# - D - E\# - F\# - G\# - A],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Mixolídio b9 b6
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    V7 da escala Menor Harmônica
-  ]
-]
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - b2 - 3 - 4 - 5 - b6 - 7
-
-      #v(0.8em)
-      *Distâncias:* \
-      ST - 1,5T - ST - T - ST - T - T
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      I - bII - IIIº - IVm - Vº - bVI+ - bVIIm
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      I7 - bII7M - IIIº7 - IVm(7M) - Vø - bVI7M(\#5) - bVIIm7
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - Db - E - F - G - Ab - Bb],
-        [*Db*], [Db - Ebb - F - Gb - Ab - Bbb - Cb],
-        [*D*], [D - Eb - F\# - G - A - Bb - C],
-        [*Eb*], [Eb - Fb - G - Ab - Bb - Cb - Db],
-        [*E*], [E - F - G\# - A - B - C - D],
-        [*F*], [F - Gb - A - Bb - C - Db - Eb],
-        [*F\#*], [F\# - G - A\# - B - C\# - D - E],
-        [*G*], [G - Ab - B - C - D - Eb - F],
-        [*Ab*], [Ab - Bbb - C - Db - Eb - Fb - Gb],
-        [*A*], [A - Bb - C\# - D - E - F - G],
-        [*Bb*], [Bb - Cb - D - Eb - F - Gb - Ab],
-        [*B*], [B - C - D\# - E - F\# - G - A],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Lídio \#9
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    bVI7M da escala Menor Harmônica
-  ]
-]
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - \#2 - 3 - \#4 - 5 - 6 - 7M
-
-      #v(0.8em)
-      *Distâncias:* \
-      1,5T - ST - T - ST - T - T - ST
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      I - \#IIº - IIIm - \#IVº - V+ - VIm - VII
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      I7M - \#IIº7 - IIIm(7M) - \#IVø - V7M(\#5) - VIm7 - VII7
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - D\# - E - F\# - G - A - B],
-        [*Db*], [Db - E - F - G - Ab - Bb - C],
-        [*D*], [D - E\# - F\# - G\# - A - B - C\#],
-        [*Eb*], [Eb - F\# - G - A - Bb - C - D],
-        [*E*], [E - F\#\# - G\# - A\# - B - C\# - D\#],
-        [*F*], [F - G\# - A - B - C - D - E],
-        [*F\#*], [F\# - G\#\# - A\# - B\# - C\# - D\# - E\#],
-        [*G*], [G - A\# - B - C\# - D - E - F\#],
-        [*Ab*], [Ab - B - C - D - Eb - F - G],
-        [*A*], [A - B\# - C\# - D\# - E - F\# - G\#],
-        [*Bb*], [Bb - C\# - D - E - F - G - A],
-        [*B*], [B - C\#\# - D\# - E\# - F\# - G\# - A\#],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Diminuto Harmônico
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    VIIº da escala Menor Harmônica
-  ]
-]
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - b2 - b3 - b4 - b5 - b6 - b7
-
-      #v(0.8em)
-      *Distâncias:* \
-      ST - T - ST - T - T - ST - 1,5T
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      Iº - bIIm - bIIIº - bIV+ - bVm - bVI - bVII
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      Iº7 - bIIm(7M) - bIIIø - bIV7M(\#5) - bVm7 - bVI7 - bVII7M
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - Db - Eb - Fb - Gb - Ab - Bbb],
-        [*C\#*], [C\# - D - E - F - G - A - Bb],
-        [*D*], [D - Eb - F - Gb - Ab - Bb - Cb],
-        [*D\#*], [D\# - E - F\# - G - A - B - C],
-        [*E*], [E - F - G - Ab - Bb - C - Db],
-        [*F*], [F - Gb - Ab - Bbb - Cb - Db - Ebb],
-        [*F\#*], [F\# - G - A - Bb - C - D - Eb],
-        [*G*], [G - Ab - Bb - Cb - Db - Eb - Fb],
-        [*G\#*], [G\# - A - B - C - D - E - F],
-        [*A*], [A - Bb - C - Db - Eb - F - Gb],
-        [*A\#*], [A\# - B - C\# - D - E - F\# - G],
-        [*B*], [B - C - D - Eb - F - G - Ab],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Dórico 7M
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    Im7M da escala Menor Melódica
-  ]
-]
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - 2 - b3 - 4 - 5 - 6 - 7M
-
-      #v(0.8em)
-      *Distâncias:* \
-      T - ST - T - T - T - T - ST
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      Im - IIm - bIII+ - IV - V - VIº - VIIº
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      Im(7M) - IIm7 - bIII7M(\#5) - IV7 - V7 - VIø - VIIø
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - D - Eb - F - G - A - B],
-        [*C\#*], [C\# - D\# - E - F\# - G\# - A\# - B\#],
-        [*D*], [D - E - F - G - A - B - C\#],
-        [*D\#*], [D\# - E\# - F\# - G\# - A\# - B\# - C\#\#],
-        [*E*], [E - F\# - G - A - B - C\# - D\#],
-        [*F*], [F - G - Ab - Bb - C - D - E],
-        [*F\#*], [F\# - G\# - A - B - C\# - D\# - E\#],
-        [*G*], [G - A - Bb - C - D - E - F\#],
-        [*G\#*], [G\# - A\# - B - C\# - D\# - E\# - F\#\#],
-        [*A*], [A - B - C - D - E - F\# - G\#],
-        [*Bb*], [Bb - C - Db - Eb - F - G - A],
-        [*B*], [B - C\# - D - E - F\# - G\# - A\#],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Dórico b9
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    IIm7 da escala Menor Melódica
-  ]
-]
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - b2 - b3 - 4 - 5 - 6 - 7
-
-      #v(0.8em)
-      *Distâncias:* \
-      ST - T - T - T - T - ST - T
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      Im - bII+ - bIII - IV - Vº - VIº - bVIIm
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      Im7 - bII7M(\#5) - bIII7 - IV7 - Vø - VIø - bVIIm(7M)
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - Db - Eb - F - G - A - Bb],
-        [*C\#*], [C\# - D - E - F\# - G\# - A\# - B],
-        [*D*], [D - Eb - F - G - A - B - C],
-        [*D\#*], [D\# - E - F\# - G\# - A\# - B\# - C\#],
-        [*E*], [E - F - G - A - B - C\# - D],
-        [*F*], [F - Gb - Ab - Bb - C - D - Eb],
-        [*F\#*], [F\# - G - A - B - C\# - D\# - E],
-        [*G*], [G - Ab - Bb - C - D - E - F],
-        [*G\#*], [G\# - A - B - C\# - D\# - E\# - F\#],
-        [*A*], [A - Bb - C - D - E - F\# - G],
-        [*Bb*], [Bb - Cb - Db - Eb - F - G - Ab],
-        [*B*], [B - C - D - E - F\# - G\# - A],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Lídio \#5
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    bIII7M(\#5) da escala Menor Melódica
-  ]
-]
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - 2 - 3 - \#4 - \#5 - 6 - 7M
-
-      #v(0.8em)
-      *Distâncias:* \
-      T - T - T - T - ST - T - ST
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      I+ - II - III - \#IVº - \#Vº - VIm - VIIm
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      I7M(\#5) - II7 - III7 - \#IVø - \#Vø - VIm(7M) - VIIm7
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - D - E - F\# - G\# - A - B],
-        [*Db*], [Db - Eb - F - G - A - Bb - C],
-        [*D*], [D - E - F\# - G\# - A\# - B - C\#],
-        [*Eb*], [Eb - F - G - A - B - C - D],
-        [*E*], [E - F\# - G\# - A\# - B\# - C\# - D\#],
-        [*F*], [F - G - A - B - C\# - D - E],
-        [*F\#*], [F\# - G\# - A\# - B\# - C\#\# - D\# - E\#],
-        [*G*], [G - A - B - C\# - D\# - E - F\#],
-        [*Ab*], [Ab - Bb - C - D - E - F - G],
-        [*A*], [A - B - C\# - D\# - E\# - F\# - G\#],
-        [*Bb*], [Bb - C - D - E - F\# - G - A],
-        [*B*], [B - C\# - D\# - E\# - F\#\# - G\# - A\#],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Lídio Dominante
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    IV7 da escala Menor Melódica
-  ]
-]
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - 2 - 3 - \#4 - 5 - 6 - 7
-
-      #v(0.8em)
-      *Distâncias:* \
-      T - T - T - ST - T - ST - T
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      I - II - IIIº - \#IVº - Vm - VIm - bVII+
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      I7 - II7 - IIIø - \#IVø - Vm(7M) - VIm7 - bVII7M(\#5)
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - D - E - F\# - G - A - Bb],
-        [*Db*], [Db - Eb - F - G - Ab - Bb - Cb],
-        [*D*], [D - E - F\# - G\# - A - B - C],
-        [*Eb*], [Eb - F - G - A - Bb - C - Db],
-        [*E*], [E - F\# - G\# - A\# - B - C\# - D],
-        [*F*], [F - G - A - B - C - D - Eb],
-        [*F\#*], [F\# - G\# - A\# - B\# - C\# - D\# - E],
-        [*G*], [G - A - B - C\# - D - E - F],
-        [*Ab*], [Ab - Bb - C - D - Eb - F - Gb],
-        [*A*], [A - B - C\# - D\# - E - F\# - G],
-        [*Bb*], [Bb - C - D - E - F - G - Ab],
-        [*B*], [B - C\# - D\# - E\# - F\# - G\# - A],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Mixolídio b6
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    V7 da escala Menor Melódica
-  ]
-]
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - 2 - 3 - 4 - 5 - b6 - 7
-
-      #v(0.8em)
-      *Distâncias:* \
-      T - T - ST - T - ST - T - T
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      I - IIº - IIIº - IVm - Vm - bVI+ - bVII
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      I7 - IIø - IIIø - IVm(7M) - Vm7 - bVI7M(\#5) - bVII7
-    ],
-  )
-]
-
-#v(1.5em)
 
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
+  #if not ultimo {
+    pagebreak()
+  }
+]
+
+#render-modo(
+  nome: "Jônico",
+  subtitulo: "I7M da escala Maior",
+  intervalos: "T - 2 - 3 - 4 - 5 - 6 - 7M",
+  distancias: "T - T - ST - T - T - T - ST",
+  triades: "I - IIm - IIIm - IV - V - VIm - VIIº",
+  tetrades: "I7M - IIm7 - IIIm7 - IV7M - V7 - VIm7 - VIIø",
+  notas: (
+    [*C*],
+    [C - D - E - F - G - A - B],
+    [*Db*],
+    [Db - Eb - F - Gb - Ab - Bb - C],
+    [*D*],
+    [D - E - F\# - G - A - B - C\#],
+    [*Eb*],
+    [Eb - F - G - Ab - Bb - C - D],
+    [*E*],
+    [E - F\# - G\# - A - B - C\# - D\#],
+    [*F*],
+    [F - G - A - Bb - C - D - E],
+    [*Gb*],
+    [Gb - Ab - Bb - Cb - Db - Eb - F],
+    [*G*],
+    [G - A - B - C - D - E - F\#],
+    [*Ab*],
+    [Ab - Bb - C - Db - Eb - F - G],
+    [*A*],
+    [A - B - C\# - D - E - F\# - G\#],
+    [*Bb*],
+    [Bb - C - D - Eb - F - G - A],
+    [*B*],
+    [B - C\# - D\# - E - F\# - G\# - A\#],
+  ),
+)
+
+#render-modo(
+  nome: "Dórico",
+  subtitulo: "IIm7 da escala Maior",
+  intervalos: "T - 2 - b3 - 4 - 5 - 6 - 7",
+  distancias: "T - ST - T - T - T - ST - T",
+  triades: "Im - IIm - bIII - IV - Vm - VIº - bVII",
+  tetrades: "Im7 - IIm7 - bIII7M - IV7 - Vm7 - VIø - bVII7M",
+  notas: (
+    [*C*],
+    [C - D - Eb - F - G - A - Bb],
+    [*C\#*],
+    [C\# - D\# - E - F\# - G\# - A\# - B],
+    [*D*],
+    [D - E - F - G - A - B - C],
+    [*D\#*],
+    [D\# - E\# - F\# - G\# - A\# - B\# - C\#],
+    [*E*],
+    [E - F\# - G - A - B - C\# - D],
+    [*F*],
+    [F - G - Ab - Bb - C - D - Eb],
+    [*F\#*],
+    [F\# - G\# - A - B - C\# - D\# - E],
+    [*G*],
+    [G - A - Bb - C - D - E - F],
+    [*G\#*],
+    [G\# - A\# - B - C\# - D\# - E\# - F\#],
+    [*A*],
+    [A - B - C - D - E - F\# - G],
+    [*Bb*],
+    [Bb - C - Db - Eb - F - G - Ab],
+    [*B*],
+    [B - C\# - D - E - F\# - G\# - A],
+  ),
+)
+
+#render-modo(
+  nome: "Frígio",
+  subtitulo: "IIIm7 da escala Maior",
+  intervalos: "T - b2 - b3 - 4 - 5 - b6 - 7",
+  distancias: "ST - T - T - T - ST - T - T",
+  triades: "Im - bII - bIII - IVm - Vº - bVI - bVIIm",
+  tetrades: "Im7 - bII7M - bIII7 - IVm7 - Vø - bVI7M - bVIIm7",
+  notas: (
+    [*C*],
+    [C - Db - Eb - F - G - Ab - Bb],
+    [*C\#*],
+    [C\# - D - E - F\# - G\# - A - B],
+    [*D*],
+    [D - Eb - F - G - A - Bb - C],
+    [*D\#*],
+    [D\# - E - F\# - G\# - A\# - B - C\#],
+    [*E*],
+    [E - F - G - A - B - C - D],
+    [*F*],
+    [F - Gb - Ab - Bb - C - Db - Eb],
+    [*F\#*],
+    [F\# - G - A - B - C\# - D - E],
+    [*G*],
+    [G - Ab - Bb - C - D - Eb - F],
+    [*G\#*],
+    [G\# - A - B - C\# - D\# - E - F\#],
+    [*A*],
+    [A - Bb - C - D - E - F - G],
+    [*Bb*],
+    [Bb - Cb - Db - Eb - F - Gb - Ab],
+    [*B*],
+    [B - C - D - E - F\# - G - A],
+  ),
+)
+
+#render-modo(
+  nome: "Lídio",
+  subtitulo: "IV7M da escala Maior",
+  intervalos: "T - 2 - 3 - #4 - 5 - 6 - 7M",
+  distancias: "T - T - T - ST - T - T - ST",
+  triades: "I - II - IIIm - #IVº - V - VIm - VIIm",
+  tetrades: "I7M - II7 - IIIm7 - #IVø - V7M - VIm7 - VIIm7",
+  notas: (
+    [*C*],
+    [C - D - E - F\# - G - A - B],
+    [*Db*],
+    [Db - Eb - F - G - Ab - Bb - C],
+    [*D*],
+    [D - E - F\# - G\# - A - B - C\#],
+    [*Eb*],
+    [Eb - F - G - A - Bb - C - D],
+    [*E*],
+    [E - F\# - G\# - A\# - B - C\# - D\#],
+    [*F*],
+    [F - G - A - B - C - D - E],
+    [*F\#*],
+    [F\# - G\# - A\# - B\# - C\# - D\# - E\#],
+    [*G*],
+    [G - A - B - C\# - D - E - F\#],
+    [*Ab*],
+    [Ab - Bb - C - D - Eb - F - G],
+    [*A*],
+    [A - B - C\# - D\# - E - F\# - G\#],
+    [*Bb*],
+    [Bb - C - D - E - F - G - A],
+    [*B*],
+    [B - C\# - D\# - E\# - F\# - G\# - A\#],
+  ),
+)
+
+#render-modo(
+  nome: "Mixolídio",
+  subtitulo: "V7 da escala Maior",
+  intervalos: "T - 2 - 3 - 4 - 5 - 6 - 7",
+  distancias: "T - T - ST - T - T - ST - T",
+  triades: "I - IIm - IIIº - IV - Vm - VIm - bVII",
+  tetrades: "I7 - IIm7 - IIIø - IV7M - Vm7 - VIm7 - bVII7M",
+  notas: (
+    [*C*],
+    [C - D - E - F - G - A - Bb],
+    [*Db*],
+    [Db - Eb - F - Gb - Ab - Bb - Cb],
+    [*D*],
+    [D - E - F\# - G - A - B - C],
+    [*Eb*],
+    [Eb - F - G - Ab - Bb - C - Db],
+    [*E*],
+    [E - F\# - G\# - A - B - C\# - D],
+    [*F*],
+    [F - G - A - Bb - C - D - Eb],
+    [*F\#*],
+    [F\# - G\# - A\# - B - C\# - D\# - E],
+    [*G*],
+    [G - A - B - C - D - E - F],
+    [*Ab*],
+    [Ab - Bb - C - Db - Eb - F - Gb],
+    [*A*],
+    [A - B - C\# - D - E - F\# - G],
+    [*Bb*],
+    [Bb - C - D - Eb - F - G - Ab],
+    [*B*],
+    [B - C\# - D\# - E - F\# - G\# - A],
+  ),
+)
+
+#render-modo(
+  nome: "Eólio",
+  subtitulo: "VIm7 da escala Maior",
+  intervalos: "T - 2 - b3 - 4 - 5 - b6 - 7",
+  distancias: "T - ST - T - T - ST - T - T",
+  triades: "Im - IIº - bIII - IVm - Vm - bVI - bVII",
+  tetrades: "Im7 - IIø - bIII7M - IVm7 - Vm7 - bVI7M - bVII7",
+  notas: (
+    [*C*],
+    [C - D - Eb - F - G - Ab - Bb],
+    [*C\#*],
+    [C\# - D\# - E - F\# - G\# - A - B],
+    [*D*],
+    [D - E - F - G - A - Bb - C],
+    [*D\#*],
+    [D\# - E\# - F\# - G\# - A\# - B - C\#],
+    [*E*],
+    [E - F\# - G - A - B - C - D],
+    [*F*],
+    [F - G - Ab - Bb - C - Db - Eb],
+    [*F\#*],
+    [F\# - G\# - A - B - C\# - D - E],
+    [*G*],
+    [G - A - Bb - C - D - Eb - F],
+    [*G\#*],
+    [G\# - A\# - B - C\# - D\# - E - F\#],
+    [*A*],
+    [A - B - C - D - E - F - G],
+    [*A\#*],
+    [A\# - B\# - C\# - D\# - E\# - F\# - G\#],
+    [*B*],
+    [B - C\# - D - E - F\# - G - A],
+  ),
+)
+
+#render-modo(
+  nome: "Lócrio",
+  subtitulo: "VIIø da escala Maior",
+  intervalos: "T - b2 - b3 - 4 - b5 - b6 - 7",
+  distancias: "ST - T - T - ST - T - T - T",
+  triades: "Iº - bII - bIIIm - IVm - bV - bVI - bVIIm",
+  tetrades: "Iø - bII7M - bIIIm7 - IVm7 - bV7M - bVI7 - bVIIm7",
+  notas: (
+    [*C*],
+    [C - Db - Eb - F - Gb - Ab - Bb],
+    [*C\#*],
+    [C\# - D - E - F\# - G - A - B],
+    [*D*],
+    [D - Eb - F - G - Ab - Bb - C],
+    [*D\#*],
+    [D\# - E - F\# - G\# - A - B - C\#],
+    [*E*],
+    [E - F - G - A - Bb - C - D],
+    [*F*],
+    [F - Gb - Ab - Bb - Cb - Db - Eb],
+    [*F\#*],
+    [F\# - G - A - B - C - D - E],
+    [*G*],
+    [G - Ab - Bb - C - Db - Eb - F],
+    [*G\#*],
+    [G\# - A - B - C\# - D - E - F\#],
+    [*A*],
+    [A - Bb - C - D - Eb - F - G],
+    [*A\#*],
+    [A\# - B - C\# - D\# - E - F\# - G\#],
+    [*B*],
+    [B - C - D - E - F - G - A],
+  ),
+)
+
+#render-modo(
+  nome: "Eólio 7M",
+  subtitulo: "Im7M da escala Menor Harmônica",
+  intervalos: "T - 2 - b3 - 4 - 5 - b6 - 7M",
+  distancias: "T - ST - T - T - ST - 1,5T - ST",
+  triades: "Im - IIº - bIII+ - IVm - V - bVI - VIIº",
+  tetrades: "Im7M - IIø - bIII7M(#5) - IVm7 - V7 - bVI7M - VIIº7",
+  notas: (
+    [*C*],
+    [C - D - Eb - F - G - Ab - B],
+    [*C\#*],
+    [C\# - D\# - E - F\# - G\# - A - B\#],
+    [*D*],
+    [D - E - F - G - A - Bb - C\#],
+    [*D\#*],
+    [D\# - E\# - F\# - G\# - A\# - B - C\#\#],
+    [*E*],
+    [E - F\# - G - A - B - C - D\#],
+    [*F*],
+    [F - G - Ab - Bb - C - Db - E],
+    [*F\#*],
+    [F\# - G\# - A - B - C\# - D - E\#],
+    [*G*],
+    [G - A - Bb - C - D - Eb - F\#],
+    [*G\#*],
+    [G\# - A\# - B - C\# - D\# - E - F\#\#],
+    [*A*],
+    [A - B - C - D - E - F - G\#],
+    [*A\#*],
+    [A\# - B\# - C\# - D\# - E\# - F\# - G\#\#],
+    [*B*],
+    [B - C\# - D - E - F\# - G - A\#],
+  ),
+)
+
+#render-modo(
+  nome: "Lócrio 6",
+  subtitulo: "IIø da escala Menor Harmônica",
+  intervalos: "T - b2 - b3 - 4 - b5 - 6 - 7",
+  distancias: "ST - T - T - ST - 1,5T - ST - T",
+  triades: "Iº - bII+ - bIIIm - IV - bV - VIº - bVIIm",
+  tetrades: "Iø - bII7M(#5) - bIIIm7 - IV7 - bV7M - VIº7 - bVIIm(7M)",
+  notas: (
+    [*C*],
+    [C - Db - Eb - F - Gb - A - Bb],
+    [*C\#*],
+    [C\# - D - E - F\# - G - A\# - B],
+    [*D*],
+    [D - Eb - F - G - Ab - B - C],
+    [*D\#*],
+    [D\# - E - F\# - G\# - A - B\# - C\#],
+    [*E*],
+    [E - F - G - A - Bb - C\# - D],
+    [*F*],
+    [F - Gb - Ab - Bb - Cb - D - Eb],
+    [*F\#*],
+    [F\# - G - A - B - C - D\# - E],
+    [*G*],
+    [G - Ab - Bb - C - Db - E - F],
+    [*G\#*],
+    [G\# - A - B - C\# - D - E\# - F\#],
+    [*A*],
+    [A - Bb - C - D - Eb - F\# - G],
+    [*A\#*],
+    [A\# - B - C\# - D\# - E - F\#\# - G\#],
+    [*B*],
+    [B - C - D - E - F - G\# - A],
+  ),
+)
+
+#render-modo(
+  nome: "Jônico #5",
+  subtitulo: "bIII7M(#5) da escala Menor Harmônica",
+  intervalos: "T - 2 - 3 - 4 - #5 - 6 - 7M",
+  distancias: "T - T - ST - 1,5T - ST - T - ST",
+  triades: "I+ - IIm - III - IV - #Vº - VIm - VIIº",
+  tetrades: "I7M(#5) - IIm7 - III7 - IV7M - #Vº7 - VIm(7M) - VIIø",
+  notas: (
+    [*C*],
+    [C - D - E - F - G\# - A - B],
+    [*Db*],
+    [Db - Eb - F - Gb - A - Bb - C],
+    [*D*],
+    [D - E - F\# - G - A\# - B - C\#],
+    [*Eb*],
+    [Eb - F - G - Ab - B - C - D],
+    [*E*],
+    [E - F\# - G\# - A - B\# - C\# - D\#],
+    [*F*],
+    [F - G - A - Bb - C\# - D - E],
+    [*Gb*],
+    [Gb - Ab - Bb - Cb - D - Eb - F],
+    [*G*],
+    [G - A - B - C - D\# - E - F\#],
+    [*Ab*],
+    [Ab - Bb - C - Db - E - F - G],
+    [*A*],
+    [A - B - C\# - D - E\# - F\# - G\#],
+    [*Bb*],
+    [Bb - C - D - Eb - F\# - G - A],
+    [*B*],
+    [B - C\# - D\# - E - F\#\# - G\# - A\#],
+  ),
+)
+
+#render-modo(
+  nome: "Dórico #4",
+  subtitulo: "IVm7 da escala Menor Harmônica",
+  intervalos: "T - 2 - b3 - #4 - 5 - 6 - 7",
+  distancias: "T - ST - 1,5T - ST - T - ST - T",
+  triades: "Im - II - bIII - #IVº - Vm - VIº - bVII+",
+  tetrades: "Im7 - II7 - bIII7M - #IVº7 - Vm(7M) - VIø - bVII7M(#5)",
+  notas: (
+    [*C*],
+    [C - D - Eb - F\# - G - A - Bb],
+    [*C\#*],
+    [C\# - D\# - E - F\#\# - G\# - A\# - B],
+    [*D*],
+    [D - E - F - G\# - A - B - C],
+    [*D\#*],
+    [D\# - E\# - F\# - G\#\# - A\# - B\# - C\#],
+    [*E*],
+    [E - F\# - G - A\# - B - C\# - D],
+    [*F*],
+    [F - G - Ab - B - C - D - Eb],
+    [*F\#*],
+    [F\# - G\# - A - B\# - C\# - D\# - E],
+    [*G*],
+    [G - A - Bb - C\# - D - E - F],
+    [*G\#*],
+    [G\# - A\# - B - C\#\# - D\# - E\# - F\#],
+    [*A*],
+    [A - B - C - D\# - E - F\# - G],
+    [*Bb*],
+    [Bb - C - Db - E - F - G - Ab],
+    [*B*],
+    [B - C\# - D - E\# - F\# - G\# - A],
+  ),
+)
+
+#render-modo(
+  nome: "Mixolídio b9 b6",
+  subtitulo: "V7 da escala Menor Harmônica",
+  intervalos: "T - b2 - 3 - 4 - 5 - b6 - 7",
+  distancias: "ST - 1,5T - ST - T - ST - T - T",
+  triades: "I - bII - IIIº - IVm - Vº - bVI+ - bVIIm",
+  tetrades: "I7 - bII7M - IIIº7 - IVm(7M) - Vø - bVI7M(#5) - bVIIm7",
+  notas: (
+    [*C*],
+    [C - Db - E - F - G - Ab - Bb],
+    [*Db*],
+    [Db - Ebb - F - Gb - Ab - Bbb - Cb],
+    [*D*],
+    [D - Eb - F\# - G - A - Bb - C],
+    [*Eb*],
+    [Eb - Fb - G - Ab - Bb - Cb - Db],
+    [*E*],
+    [E - F - G\# - A - B - C - D],
+    [*F*],
+    [F - Gb - A - Bb - C - Db - Eb],
+    [*F\#*],
+    [F\# - G - A\# - B - C\# - D - E],
+    [*G*],
+    [G - Ab - B - C - D - Eb - F],
+    [*Ab*],
+    [Ab - Bbb - C - Db - Eb - Fb - Gb],
+    [*A*],
+    [A - Bb - C\# - D - E - F - G],
+    [*Bb*],
+    [Bb - Cb - D - Eb - F - Gb - Ab],
+    [*B*],
+    [B - C - D\# - E - F\# - G - A],
+  ),
+)
+
+#render-modo(
+  nome: "Lídio #9",
+  subtitulo: "bVI7M da escala Menor Harmônica",
+  intervalos: "T - #2 - 3 - #4 - 5 - 6 - 7M",
+  distancias: "1,5T - ST - T - ST - T - T - ST",
+  triades: "I - #IIº - IIIm - #IVº - V+ - VIm - VII",
+  tetrades: "I7M - #IIº7 - IIIm(7M) - #IVø - V7M(#5) - VIm7 - VII7",
+  notas: (
+    [*C*],
+    [C - D\# - E - F\# - G - A - B],
+    [*Db*],
+    [Db - E - F - G - Ab - Bb - C],
+    [*D*],
+    [D - E\# - F\# - G\# - A - B - C\#],
+    [*Eb*],
+    [Eb - F\# - G - A - Bb - C - D],
+    [*E*],
+    [E - F\#\# - G\# - A\# - B - C\# - D\#],
+    [*F*],
+    [F - G\# - A - B - C - D - E],
+    [*F\#*],
+    [F\# - G\#\# - A\# - B\# - C\# - D\# - E\#],
+    [*G*],
+    [G - A\# - B - C\# - D - E - F\#],
+    [*Ab*],
+    [Ab - B - C - D - Eb - F - G],
+    [*A*],
+    [A - B\# - C\# - D\# - E - F\# - G\#],
+    [*Bb*],
+    [Bb - C\# - D - E - F - G - A],
+    [*B*],
+    [B - C\#\# - D\# - E\# - F\# - G\# - A\#],
+  ),
+)
+
+#render-modo(
+  nome: "Diminuto Harmônico",
+  subtitulo: "VIIº da escala Menor Harmônica",
+  intervalos: "T - b2 - b3 - b4 - b5 - b6 - b7",
+  distancias: "ST - T - ST - T - T - ST - 1,5T",
+  triades: "Iº - bIIm - bIIIº - bIV+ - bVm - bVI - bVII",
+  tetrades: "Iº7 - bIIm(7M) - bIIIø - bIV7M(#5) - bVm7 - bVI7 - bVII7M",
+  notas: (
+    [*C*],
+    [C - Db - Eb - Fb - Gb - Ab - Bbb],
+    [*C\#*],
+    [C\# - D - E - F - G - A - Bb],
+    [*D*],
+    [D - Eb - F - Gb - Ab - Bb - Cb],
+    [*D\#*],
+    [D\# - E - F\# - G - A - B - C],
+    [*E*],
+    [E - F - G - Ab - Bb - C - Db],
+    [*F*],
+    [F - Gb - Ab - Bbb - Cb - Db - Ebb],
+    [*F\#*],
+    [F\# - G - A - Bb - C - D - Eb],
+    [*G*],
+    [G - Ab - Bb - Cb - Db - Eb - Fb],
+    [*G\#*],
+    [G\# - A - B - C - D - E - F],
+    [*A*],
+    [A - Bb - C - Db - Eb - F - Gb],
+    [*A\#*],
+    [A\# - B - C\# - D - E - F\# - G],
+    [*B*],
+    [B - C - D - Eb - F - G - Ab],
+  ),
+)
+
+#render-modo(
+  nome: "Dórico 7M",
+  subtitulo: "Im7M da escala Menor Melódica",
+  intervalos: "T - 2 - b3 - 4 - 5 - 6 - 7M",
+  distancias: "T - ST - T - T - T - T - ST",
+  triades: "Im - IIm - bIII+ - IV - V - VIº - VIIº",
+  tetrades: "Im(7M) - IIm7 - bIII7M(#5) - IV7 - V7 - VIø - VIIø",
+  notas: (
+    [*C*],
+    [C - D - Eb - F - G - A - B],
+    [*C\#*],
+    [C\# - D\# - E - F\# - G\# - A\# - B\#],
+    [*D*],
+    [D - E - F - G - A - B - C\#],
+    [*D\#*],
+    [D\# - E\# - F\# - G\# - A\# - B\# - C\#\#],
+    [*E*],
+    [E - F\# - G - A - B - C\# - D\#],
+    [*F*],
+    [F - G - Ab - Bb - C - D - E],
+    [*F\#*],
+    [F\# - G\# - A - B - C\# - D\# - E\#],
+    [*G*],
+    [G - A - Bb - C - D - E - F\#],
+    [*G\#*],
+    [G\# - A\# - B - C\# - D\# - E\# - F\#\#],
+    [*A*],
+    [A - B - C - D - E - F\# - G\#],
+    [*Bb*],
+    [Bb - C - Db - Eb - F - G - A],
+    [*B*],
+    [B - C\# - D - E - F\# - G\# - A\#],
+  ),
+)
+
+#render-modo(
+  nome: "Dórico b9",
+  subtitulo: "IIm7 da escala Menor Melódica",
+  intervalos: "T - b2 - b3 - 4 - 5 - 6 - 7",
+  distancias: "ST - T - T - T - T - ST - T",
+  triades: "Im - bII+ - bIII - IV - Vº - VIº - bVIIm",
+  tetrades: "Im7 - bII7M(#5) - bIII7 - IV7 - Vø - VIø - bVIIm(7M)",
+  notas: (
+    [*C*],
+    [C - Db - Eb - F - G - A - Bb],
+    [*C\#*],
+    [C\# - D - E - F\# - G\# - A\# - B],
+    [*D*],
+    [D - Eb - F - G - A - B - C],
+    [*D\#*],
+    [D\# - E - F\# - G\# - A\# - B\# - C\#],
+    [*E*],
+    [E - F - G - A - B - C\# - D],
+    [*F*],
+    [F - Gb - Ab - Bb - C - D - Eb],
+    [*F\#*],
+    [F\# - G - A - B - C\# - D\# - E],
+    [*G*],
+    [G - Ab - Bb - C - D - E - F],
+    [*G\#*],
+    [G\# - A - B - C\# - D\# - E\# - F\#],
+    [*A*],
+    [A - Bb - C - D - E - F\# - G],
+    [*Bb*],
+    [Bb - Cb - Db - Eb - F - G - Ab],
+    [*B*],
+    [B - C - D - E - F\# - G\# - A],
+  ),
+)
+
+#render-modo(
+  nome: "Lídio #5",
+  subtitulo: "bIII7M(#5) da escala Menor Melódica",
+  intervalos: "T - 2 - 3 - #4 - #5 - 6 - 7M",
+  distancias: "T - T - T - T - ST - T - ST",
+  triades: "I+ - II - III - #IVº - #Vº - VIm - VIIm",
+  tetrades: "I7M(#5) - II7 - III7 - #IVø - #Vø - VIm(7M) - VIIm7",
+  notas: (
+    [*C*],
+    [C - D - E - F\# - G\# - A - B],
+    [*Db*],
+    [Db - Eb - F - G - A - Bb - C],
+    [*D*],
+    [D - E - F\# - G\# - A\# - B - C\#],
+    [*Eb*],
+    [Eb - F - G - A - B - C - D],
+    [*E*],
+    [E - F\# - G\# - A\# - B\# - C\# - D\#],
+    [*F*],
+    [F - G - A - B - C\# - D - E],
+    [*F\#*],
+    [F\# - G\# - A\# - B\# - C\#\# - D\# - E\#],
+    [*G*],
+    [G - A - B - C\# - D\# - E - F\#],
+    [*Ab*],
+    [Ab - Bb - C - D - E - F - G],
+    [*A*],
+    [A - B - C\# - D\# - E\# - F\# - G\#],
+    [*Bb*],
+    [Bb - C - D - E - F\# - G - A],
+    [*B*],
+    [B - C\# - D\# - E\# - F\#\# - G\# - A\#],
+  ),
+)
+
+#render-modo(
+  nome: "Lídio Dominante",
+  subtitulo: "IV7 da escala Menor Melódica",
+  intervalos: "T - 2 - 3 - #4 - 5 - 6 - 7",
+  distancias: "T - T - T - ST - T - ST - T",
+  triades: "I - II - IIIº - #IVº - Vm - VIm - bVII+",
+  tetrades: "I7 - II7 - IIIø - #IVø - Vm(7M) - VIm7 - bVII7M(#5)",
+  notas: (
+    [*C*],
+    [C - D - E - F\# - G - A - Bb],
+    [*Db*],
+    [Db - Eb - F - G - Ab - Bb - Cb],
+    [*D*],
+    [D - E - F\# - G\# - A - B - C],
+    [*Eb*],
+    [Eb - F - G - A - Bb - C - Db],
+    [*E*],
+    [E - F\# - G\# - A\# - B - C\# - D],
+    [*F*],
+    [F - G - A - B - C - D - Eb],
+    [*F\#*],
+    [F\# - G\# - A\# - B\# - C\# - D\# - E],
+    [*G*],
+    [G - A - B - C\# - D - E - F],
+    [*Ab*],
+    [Ab - Bb - C - D - Eb - F - Gb],
+    [*A*],
+    [A - B - C\# - D\# - E - F\# - G],
+    [*Bb*],
+    [Bb - C - D - E - F - G - Ab],
+    [*B*],
+    [B - C\# - D\# - E\# - F\# - G\# - A],
+  ),
+)
+
+#render-modo(
+  nome: "Mixolídio b6",
+  subtitulo: "V7 da escala Menor Melódica",
+  intervalos: "T - 2 - 3 - 4 - 5 - b6 - 7",
+  distancias: "T - T - ST - T - ST - T - T",
+  triades: "I - IIº - IIIº - IVm - Vm - bVI+ - bVII",
+  tetrades: "I7 - IIø - IIIø - IVm(7M) - Vm7 - bVI7M(#5) - bVII7",
+  notas: (
+    [*C*],
+    [C - D - E - F - G - Ab - Bb],
+    [*Db*],
+    [Db - Eb - F - Gb - Ab - Bbb - Cb],
+    [*D*],
+    [D - E - F\# - G - A - Bb - C],
+    [*Eb*],
+    [Eb - F - G - Ab - Bb - Cb - Db],
+    [*E*],
+    [E - F\# - G\# - A - B - C - D],
+    [*F*],
+    [F - G - A - Bb - C - Db - Eb],
+    [*F\#*],
+    [F\# - G\# - A\# - B - C\# - D - E],
+    [*G*],
+    [G - A - B - C - D - Eb - F],
+    [*Ab*],
+    [Ab - Bb - C - Db - Eb - Fb - Gb],
+    [*A*],
+    [A - B - C\# - D - E - F - G],
+    [*Bb*],
+    [Bb - C - D - Eb - F - Gb - Ab],
+    [*B*],
+    [B - C\# - D\# - E - F\# - G - A],
+  ),
+)
+
+#render-modo(
+  nome: "Lócrio 9",
+  subtitulo: "VIø da escala Menor Melódica",
+  intervalos: "T - 2 - b3 - 4 - b5 - b6 - 7",
+  distancias: "T - ST - T - ST - T - T - T",
+  triades: "Iº - IIº - bIIIm - IVm - bV+ - bVI - bVII",
+  tetrades: "Iø - IIø - bIIIm(7M) - IVm7 - bV7M(#5) - bVI7 - bVII7",
+  notas: (
+    [*C*],
+    [C - D - Eb - F - Gb - Ab - Bb],
+    [*C\#*],
+    [C\# - D\# - E - F\# - G - A - B],
+    [*D*],
+    [D - E - F - G - Ab - Bb - C],
+    [*D\#*],
+    [D\# - E\# - F\# - G\# - A - B - C\#],
+    [*E*],
+    [E - F\# - G - A - Bb - C - D],
+    [*F*],
+    [F - G - Ab - Bb - Cb - Db - Eb],
+    [*F\#*],
+    [F\# - G\# - A - B - C - D - E],
+    [*G*],
+    [G - A - Bb - C - Db - Eb - F],
+    [*G\#*],
+    [G\# - A\# - B - C\# - D - E - F\#],
+    [*A*],
+    [A - B - C - D - Eb - F - G],
+    [*A\#*],
+    [A\# - B\# - C\# - D\# - E - F\# - G\#],
+    [*B*],
+    [B - C\# - D - E - F - G - A],
+  ),
+)
+
+#render-modo(
+  nome: "Alterado",
+  subtitulo: "VII7(#5) da escala Menor Melódica",
+  intervalos: "T - b2 - #2 - 3 - b5 - #5 - 7",
+  distancias: "ST - T - ST - T - T - T - T",
+  triades: "Iº - bIIm - bIIIm - bIV+ - bV - bVI - bVIIº",
+  tetrades: "Iø - bIIm(7M) - bIIIm7 - bIV7M(#5) - bV7 - bVI7 - bVIIø",
+  notas: (
+    [*C*],
+    [C - Db - D\# - E - Gb - G\# - Bb],
+    [*Db*],
+    [Db - Ebb - E - F - Abb - A - Cb],
+    [*D*],
+    [D - Eb - E\# - F\# - Ab - A\# - C],
+    [*Eb*],
+    [Eb - Fb - F\# - G - Bbb - B - Db],
+    [*E*],
+    [E - F - F\#\# - G\# - Bb - B\# - D],
+    [*F*],
+    [F - Gb - G\# - A - Cb - C\# - Eb],
+    [*F\#*],
+    [F\# - G - G\#\# - A\# - C - C\#\# - E],
+    [*G*],
+    [G - Ab - A\# - B - Db - D\# - F],
+    [*G\#*],
+    [G\# - A - A\#\# - B\# - D - D\#\# - F\#],
+    [*A*],
+    [A - Bb - B\# - C\# - Eb - E\# - G],
+    [*Bb*],
+    [Bb - Cb - C\# - D - Fb - F\# - Ab],
+    [*B*],
+    [B - C - C\#\# - D\# - F - F\#\# - A],
+  ),
+)
+
+#render-modo(
+  nome: "Jônico b6",
+  subtitulo: "I7M da escala Maior Harmônica",
+  intervalos: "T - 2 - 3 - 4 - 5 - b6 - 7M",
+  distancias: "T - T - ST - T - ST - 1,5T - ST",
+  triades: "I - IIº - IIIm - IVm - V - bVI+ - VIIº",
+  tetrades: "I7M - IIø - IIIm7 - IVm(7M) - V7 - bVI7M(#5) - VIIº7",
+  notas: (
+    [*C*],
+    [C - D - E - F - G - Ab - B],
+    [*Db*],
+    [Db - Eb - F - Gb - Ab - Bbb - C],
+    [*D*],
+    [D - E - F\# - G - A - Bb - C\#],
+    [*Eb*],
+    [Eb - F - G - Ab - Bb - Cb - D],
+    [*E*],
+    [E - F\# - G\# - A - B - C - D\#],
+    [*F*],
+    [F - G - A - Bb - C - Db - E],
+    [*F\#*],
+    [F\# - G\# - A\# - B - C\# - D - E\#],
+    [*G*],
+    [G - A - B - C - D - Eb - F\#],
+    [*Ab*],
+    [Ab - Bb - C - Db - Eb - Fb - G],
+    [*A*],
+    [A - B - C\# - D - E - F - G\#],
+    [*Bb*],
+    [Bb - C - D - Eb - F - Gb - A],
+    [*B*],
+    [B - C\# - D\# - E - F\# - G - A\#],
+  ),
+)
+
+#render-modo(
+  nome: "Lócrio 6/9",
+  subtitulo: "IIø da escala Maior Harmônica",
+  intervalos: "T - 2 - b3 - 4 - b5 - 6 - 7",
+  distancias: "T - ST - T - ST - 1,5T - ST - T",
+  triades: "Iº - IIm - bIIIm - IV - bV+ - VIº - bVII",
+  tetrades: "Iø - IIm7 - bIIIm(7M) - IV7 - bV7M(#5) - VIº7 - bVII7M",
+  notas: (
+    [*C*],
+    [C - D - Eb - F - Gb - A - Bb],
+    [*C\#*],
+    [C\# - D\# - E - F\# - G - A\# - B],
+    [*D*],
+    [D - E - F - G - Ab - B - C],
+    [*D\#*],
+    [D\# - E\# - F\# - G\# - A - B\# - C\#],
+    [*E*],
+    [E - F\# - G - A - Bb - C\# - D],
+    [*F*],
+    [F - G - Ab - Bb - Cb - D - Eb],
+    [*F\#*],
+    [F\# - G\# - A - B - C - D\# - E],
+    [*G*],
+    [G - A - Bb - C - Db - E - F],
+    [*G\#*],
+    [G\# - A\# - B - C\# - D - E\# - F\#],
+    [*A*],
+    [A - B - C - D - Eb - F\# - G],
+    [*A\#*],
+    [A\# - B\# - C\# - D\# - E - F\#\# - G\#],
+    [*B*],
+    [B - C\# - D - E - F - G\# - A],
+  ),
+)
+
+#render-modo(
+  nome: "Frígio b4",
+  subtitulo: "IIIm7 da escala Maior Harmônica",
+  intervalos: "T - b2 - b3 - b4 - 5 - b6 - 7",
+  distancias: "ST - T - ST - 1,5T - ST - T - T",
+  triades: "Im - bIIm - bIII - bIV+ - Vº - bVI - bVIIº",
+  tetrades: "Im7 - bIIm(7M) - bIII7 - bIV7M(#5) - Vº7 - bVI7M - bVIIø",
+  notas: (
+    [*C*],
+    [C - Db - Eb - Fb - G - Ab - Bb],
+    [*C\#*],
+    [C\# - D - E - F - G\# - A - B],
+    [*D*],
+    [D - Eb - F - Gb - A - Bb - C],
+    [*D\#*],
+    [D\# - E - F\# - G - A\# - B - C\#],
+    [*E*],
+    [E - F - G - Ab - B - C - D],
+    [*F*],
+    [F - Gb - Ab - Bbb - C - Db - Eb],
+    [*F\#*],
+    [F\# - G - A - Bb - C\# - D - E],
+    [*G*],
+    [G - Ab - Bb - Cb - D - Eb - F],
+    [*G\#*],
+    [G\# - A - B - C - D\# - E - F\#],
+    [*A*],
+    [A - Bb - C - Db - E - F - G],
+    [*Bb*],
+    [Bb - Cb - Db - Ebb - F - Gb - Ab],
+    [*B*],
+    [B - C - D - Eb - F\# - G - A],
+  ),
+)
+
+#render-modo(
+  nome: "Dórico 7M / #4",
+  subtitulo: "IVm7M da escala Maior Harmônica",
+  intervalos: "T - 2 - b3 - #4 - 5 - 6 - 7M",
+  distancias: "T - ST - 1,5T - ST - T - T - ST",
+  triades: "Im - II - bIII+ - #IVº - V - VIº - VIIm",
+  tetrades: "Im(7M) - II7 - bIII7M(#5) - #IVº7 - V7M - VIø - VIIm7",
+  notas: (
+    [*C*],
+    [C - D - Eb - F\# - G - A - B],
+    [*C\#*],
+    [C\# - D\# - E - F\#\# - G\# - A\# - B\#],
+    [*D*],
+    [D - E - F - G\# - A - B - C\#],
+    [*D\#*],
+    [D\# - E\# - F\# - G\#\# - A\# - B\# - C\#\#],
+    [*E*],
+    [E - F\# - G - A\# - B - C\# - D\#],
+    [*F*],
+    [F - G - Ab - B - C - D - E],
+    [*F\#*],
+    [F\# - G\# - A - B\# - C\# - D\# - E\#],
+    [*G*],
+    [G - A - Bb - C\# - D - E - F\#],
+    [*G\#*],
+    [G\# - A\# - B - C\#\# - D\# - E\# - F\#\#],
+    [*A*],
+    [A - B - C - D\# - E - F\# - G\#],
+    [*Bb*],
+    [Bb - C - Db - E - F - G - A],
+    [*B*],
+    [B - C\# - D - E\# - F\# - G\# - A\#],
+  ),
+)
+
+#render-modo(
+  nome: "Mixolídio b9",
+  subtitulo: "V7 da escala Maior Harmônica",
+  intervalos: "T - b2 - 3 - 4 - 5 - 6 - 7",
+  distancias: "ST - 1,5T - ST - T - T - ST - T",
+  triades: "I - bII+ - IIIº - IV - Vº - VIm - bVIIm",
+  tetrades: "I7 - bII7M(#5) - IIIº7 - IV7M - Vø - VIm7 - bVIIm(7M)",
+  notas: (
+    [*C*],
+    [C - Db - E - F - G - A - Bb],
+    [*Db*],
+    [Db - Ebb - F - Gb - Ab - Bb - Cb],
+    [*D*],
+    [D - Eb - F\# - G - A - B - C],
+    [*D\#*],
+    [D\# - E - F\#\# - G\# - A\# - B\# - C\#],
+    [*Eb*],
+    [Eb - Fb - G - Ab - Bb - C - Db],
+    [*E*],
+    [E - F - G\# - A - B - C\# - D],
+    [*F*],
+    [F - Gb - A - Bb - C - D - Eb],
+    [*F\#*],
+    [F\# - G - A\# - B - C\# - D\# - E],
+    [*G*],
+    [G - Ab - B - C - D - E - F],
+    [*Ab*],
+    [Ab - Bbb - C - Db - Eb - F - Gb],
+    [*A*],
+    [A - Bb - C\# - D - E - F\# - G],
+    [*Bb*],
+    [Bb - Cb - D - Eb - F - G - Ab],
+    [*B*],
+    [B - C - D\# - E - F\# - G\# - A],
+  ),
+)
+
+#render-modo(
+  nome: "Lídio #5 / #9",
+  subtitulo: "bVI7M(#5) da escala Maior Harmônica",
+  intervalos: "T - #2 - 3 - #4 - #5 - 6 - 7M",
+  distancias: "1,5T - ST - T - T - ST - T - ST",
+  triades: "I+ - #IIº - III - #IVº - #Vm - VIm - VII",
+  tetrades: "I7M(#5) - #IIº7 - III7M - #IVø - #Vm7 - VIm(7M) - VII7",
+  notas: (
+    [*C*],
+    [C - D\# - E - F\# - G\# - A - B],
+    [*Db*],
+    [Db - E - F - G - A - Bb - C],
+    [*D*],
+    [D - E\# - F\# - G\# - A\# - B - C\#],
+    [*Eb*],
+    [Eb - F\# - G - A - B - C - D],
+    [*E*],
+    [E - F\#\# - G\# - A\# - B\# - C\# - D\#],
+    [*F*],
+    [F - G\# - A - B - C\# - D - E],
+    [*F\#*],
+    [F\# - G\#\# - A\# - B\# - C\#\# - D\# - E\#],
+    [*G*],
+    [G - A\# - B - C\# - D\# - E - F\#],
+    [*Ab*],
+    [Ab - B - C - D - E - F - G],
+    [*A*],
+    [A - B\# - C\# - D\# - E\# - F\# - G\#],
+    [*Bb*],
+    [Bb - C\# - D - E - F\# - G - A],
+    [*B*],
+    [B - C\#\# - D\# - E\# - F\#\# - G\# - A\#],
+  ),
+)
+
+#render-modo(
+  nome: "Lócrio b7",
+  subtitulo: "VIIº da escala Maior Harmônica",
+  intervalos: "T - b2 - b3 - 4 - b5 - b6 - b7",
+  distancias: "ST - T - T - ST - T - ST - 1,5T",
+  triades: "Iº - bII - bIIIº - IVm - bVm - bVI - bVII(#5)",
+  tetrades: "Iº - bII7M - bIIIø - IVm7 - bVm(7M) - bVI7 - bVII7M(#5)",
+  notas: (
+    [*C*],
+    [C - Db - Eb - F - Gb - Ab - Bbb],
+    [*C\#*],
+    [C\# - D - E - F\# - G - A - Bb],
+    [*D*],
+    [D - Eb - F - G - Ab - Bb - Cb],
+    [*D\#*],
+    [D\# - E - F\# - G\# - A - B - C],
+    [*E*],
+    [E - F - G - A - Bb - C - Db],
+    [*F*],
+    [F - Gb - Ab - Bb - Cb - Db - Ebb],
+    [*F\#*],
+    [F\# - G - A - B - C - D - Eb],
+    [*G*],
+    [G - Ab - Bb - C - Db - Eb - Fb],
+    [*G\#*],
+    [G\# - A - B - C\# - D - E - F],
+    [*A*],
+    [A - Bb - C - D - Eb - F - Gb],
+    [*A\#*],
+    [A\# - B - C\# - D\# - E - F\# - G],
+    [*B*],
+    [B - C - D - E - F - G - Ab],
+  ),
+)
+
+#render-modo(
+  nome: "Messiaen 1",
+  subtitulo: "Escala Hexafônica",
+  intervalos: "T - 2 - 3 - #4 - #5 - 7",
+  distancias: "T - T - T - T - T - T",
+  triades: "I+ - II+ - III+ - #IV+ - #V+ - bVII+",
+  tetrades: "I7(#5) - II7(#5) - III7(#5) - #IV7(#5) - #V7(#5) - bVII7(#5)",
+  notas: (
+    [*C*],
+    [C - D - E - F\# - G\# - Bb],
+    [*Db*],
+    [Db - Eb - F - G - A - Cb],
+    [*D*],
+    [D - E - F\# - G\# - A\# - C],
+    [*Eb*],
+    [Eb - F - G - A - B - Db],
+    [*E*],
+    [E - F\# - G\# - A\# - B\# - D],
+    [*F*],
+    [F - G - A - B - C\# - Eb],
+    [*F\#*],
+    [F\# - G\# - A\# - B\# - C\#\# - E],
+    [*G*],
+    [G - A - B - C\# - D\# - F],
+    [*Ab*],
+    [Ab - Bb - C - D - E - Gb],
+    [*A*],
+    [A - B - C\# - D\# - E\# - G],
+    [*Bb*],
+    [Bb - C - D - E - F\# - Ab],
+    [*B*],
+    [B - C\# - D\# - E\# - F\#\# - A],
+  ),
+)
+
+#render-modo(
+  nome: "Messiaen 2",
+  subtitulo: "Escala Dominante Diminuta",
+  intervalos: "T - b2 - #2 - 3 - #4 - 5 - 6 - 7",
+  distancias: "ST - T - ST - T - ST - T - ST - T",
+  triades: "I - bIIº - bIII - IIIº - bV - Vº - VI - bVIIº",
+  tetrades: "I7 - bIIº7 - bIII7 - IIIº7 - bV7 - Vº7 - VI7 - bVIIº7",
+  notas: (
+    [*C*],
+    [C - Db - D\# - E - F\# - G - A - Bb],
+    [*C\#*],
+    [C\# - D - D\#\# - E\# - F\#\# - G\# - A\# - B],
+    [*D*],
+    [D - Eb - E\# - F\# - G\# - A - B - C],
+    [*Eb*],
+    [Eb - Fb - F\# - G - A - Bb - C - Db],
+    [*E*],
+    [E - F - F\#\# - G\# - A\# - B - C\# - D],
+    [*F*],
+    [F - Gb - G\# - A - B - C - D - Eb],
+    [*F\#*],
+    [F\# - G - G\#\# - A\# - B\# - C\# - D\# - E],
+    [*G*],
+    [G - Ab - A\# - B - C\# - D - E - F],
+    [*Ab*],
+    [Ab - Bbb - B - C - D - Eb - F - Gb],
+    [*A*],
+    [A - Bb - B\# - C\# - D\# - E - F\# - G],
+    [*Bb*],
+    [Bb - Cb - C\# - D - E - F - G - Ab],
+    [*B*],
+    [B - C - C\#\# - D\# - E\# - F\# - G\# - A],
+  ),
+)
+
+#render-modo(
+  nome: "Messiaen 3",
+  subtitulo: "Escala Tcherepnin",
+  intervalos: "T - 2 - b3 - 3 - #4 - 5 - b6 - 7 - 7M",
+  distancias: "T - ST - ST - T - ST - ST - T - ST - ST",
+  triades: "I - II+ - bIII - III - #IV+ - V - bVI - bVII+ - VII",
+  tetrades: "I7M - II+7 - bIII7M - III7M - #IV+7 - V7M - bVI7M - bVII+7 - VII7M",
+  notas: (
+    [*C*],
+    [C - D - Eb - E - F\# - G - Ab - Bb - B],
+    [*C\#*],
+    [C\# - D\# - E - E\# - F\#\# - G\# - A - B - B\#],
+    [*D*],
+    [D - E - F - F\# - G\# - A - Bb - C - C\#],
+    [*Eb*],
+    [Eb - F - Gb - G - A - Bb - Cb - Db - D],
+    [*E*],
+    [E - F\# - G - G\# - A\# - B - C - D - D\#],
+    [*F*],
+    [F - G - Ab - A - B - C - Db - Eb - E],
+    [*F\#*],
+    [F\# - G\# - A - A\# - B\# - C\# - D - E - E\#],
+    [*G*],
+    [G - A - Bb - B - C\# - D - Eb - F - F\#],
+    [*Ab*],
+    [Ab - Bb - Cb - C - D - Eb - Fb - Gb - G],
+    [*A*],
+    [A - B - C - C\# - D\# - E - F - G - G\#],
+    [*Bb*],
+    [Bb - C - Db - D - E - F - Gb - Ab - A],
+    [*B*],
+    [B - C\# - D - D\# - E\# - F\# - G - A - A\#],
+  ),
+)
+
+#render-modo(
+  nome: "Messiaen 4",
+  subtitulo: "",
+  intervalos: "T - b2 - 2 - 4 - #4 - 5 - b6 - 7M",
+  distancias: "ST - ST - 1,5T - ST - ST - ST - 1,5T - ST",
+  triades: "I - bII - II - IV - #IV - V - bVI - VII",
+  tetrades: "I(sus4) - bII7M - IIº7 - IVº7 - #IV(sus4) - V7(b5) - bVIº7 - VIIº7",
+  notas: (
+    [*C*],
+    [C - Db - D - F - F\# - G - Ab - B],
+    [*C\#*],
+    [C\# - D - D\# - F\# - G - G\# - A - B\#],
+    [*D*],
+    [D - Eb - E - G - G\# - A - Bb - C\#],
+    [*Eb*],
+    [Eb - Fb - F - Ab - A - Bb - Cb - D],
+    [*E*],
+    [E - F - F\# - A - A\# - B - C - D\#],
+    [*F*],
+    [F - Gb - G - Bb - B - C - Db - E],
+    [*F\#*],
+    [F\# - G - G\# - B - B\# - C\# - D - E\#],
+    [*G*],
+    [G - Ab - A - C - C\# - D - Eb - F\#],
+    [*Ab*],
+    [Ab - Bbb - Bb - Db - D - Eb - Fb - G],
+    [*A*],
+    [A - Bb - B - D - D\# - E - F - G\#],
+    [*Bb*],
+    [Bb - Cb - C - Eb - E - F - Gb - A],
+    [*B*],
+    [B - C - C\# - E - E\# - F\# - G - A\#],
+  ),
+)
+
+#render-modo(
+  nome: "Messiaen 5",
+  subtitulo: "",
+  intervalos: "T - b2 - 4 - #4 - 5 - 7M",
+  distancias: "ST - 2T - ST - ST - 2T - ST",
+  triades: "I - bII - IV - #IV - V - VII",
+  tetrades: "I(sus4) - bII(b5) - IV(sus#4) - #IV(sus4) - V(b5) - VII(b5)",
+  notas: (
+    [*C*],
+    [C - Db - F - F\# - G - B],
+    [*C\#*],
+    [C\# - D - F\# - F\#\# - G\# - B\#],
+    [*D*],
+    [D - Eb - G - G\# - A - C\#],
+    [*Eb*],
+    [Eb - Fb - Ab - A - Bb - D],
+    [*E*],
+    [E - F - A - A\# - B - D\#],
+    [*F*],
+    [F - Gb - Bb - B - C - E],
+    [*F\#*],
+    [F\# - G - B - B\# - C\# - E\#],
+    [*G*],
+    [G - Ab - C - C\# - D - F\#],
+    [*Ab*],
+    [Ab - Bbb - Db - D - Eb - G],
+    [*A*],
+    [A - Bb - D - D\# - E - G\#],
+    [*Bb*],
+    [Bb - Cb - Eb - E - F - A],
+    [*B*],
+    [B - C - E - E\# - F\# - A\#],
+  ),
+)
+
+#render-modo(
+  nome: "Messiaen 6",
+  subtitulo: "",
+  intervalos: "T - 2 - 3 - 4 - #4 - #5 - 7 - 7M",
+  distancias: "T - T - ST - ST - T - T - ST - ST",
+  triades: "I - II - III - IV - #IV - #V - bVII - VII",
+  tetrades: "I7M - II7 - III7 - IV7M - #IV7(b5) - #V7(b5) - bVII7 - VIIº7",
+  notas: (
+    [*C*],
+    [C - D - E - F - F\# - G\# - Bb - B],
+    [*C\#*],
+    [C\# - D\# - E\# - F\# - F\#\# - G\#\# - B - B\#],
+    [*D*],
+    [D - E - F\# - G - G\# - A\# - C - C\#],
+    [*Eb*],
+    [Eb - F - G - Ab - A - B - Db - D],
+    [*E*],
+    [E - F\# - G\# - A - A\# - B\# - D - D\#],
+    [*F*],
+    [F - G - A - Bb - B - C\# - Eb - E],
+    [*F\#*],
+    [F\# - G\# - A\# - B - B\# - C\#\# - E - E\#],
+    [*G*],
+    [G - A - B - C - C\# - D\# - F - F\#],
+    [*Ab*],
+    [Ab - Bb - C - Db - D - E - Gb - G],
+    [*A*],
+    [A - B - C\# - D - D\# - E\# - G - G\#],
+    [*Bb*],
+    [Bb - C - D - Eb - E - F\# - Ab - A],
+    [*B*],
+    [B - C\# - D\# - E - E\# - F\#\# - A - A\#],
+  ),
+)
+
+#render-modo(
+  nome: "Messiaen 7",
+  subtitulo: "",
+  intervalos: "T - b2 - 2 - b3 - 4 - #4 - 5 - b6 - 6 - 7M",
+  distancias: "ST - ST - ST - T - ST - ST - ST - ST - T - ST",
+  triades: "I - bII - II - bIII - IV - #IV - V - bVI - VI - VII",
+  tetrades: "I7M - bII7M - IIº7 - bIII7 - IV7M - #IVº7 - V7 - bVI7 - VIº7 - VIIº7",
+  notas: (
+    [*C*],
+    [C - Db - D - Eb - F - F\# - G - Ab - A - B],
+    [*C\#*],
+    [C\# - D - D\# - E - F\# - F\#\# - G\# - A - A\# - B\#],
+    [*D*],
+    [D - Eb - E - F - G - G\# - A - Bb - B - C\#],
+    [*Eb*],
+    [Eb - Fb - F - Gb - Ab - A - Bb - Cb - C - D],
+    [*E*],
+    [E - F - F\# - G - A - A\# - B - C - C\# - D\#],
+    [*F*],
+    [F - Gb - G - Ab - Bb - B - C - Db - D - E],
+    [*F\#*],
+    [F\# - G - G\# - A - B - B\# - C\# - D - D\# - E\#],
+    [*G*],
+    [G - Ab - A - Bb - C - C\# - D - Eb - E - F\#],
+    [*Ab*],
+    [Ab - Bbb - Bb - Cb - Db - D - Eb - Fb - F - G],
+    [*A*],
+    [A - Bb - B - C - D - D\# - E - F - F\# - G\#],
+    [*Bb*],
+    [Bb - Cb - C - Db - Eb - E - F - Gb - G - A],
+    [*B*],
+    [B - C - C\# - D - E - E\# - F\# - G - G\# - A\#],
+  ),
+  ultimo: true,
+)
 
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - D - E - F - G - Ab - Bb],
-        [*Db*], [Db - Eb - F - Gb - Ab - Bbb - Cb],
-        [*D*], [D - E - F\# - G - A - Bb - C],
-        [*Eb*], [Eb - F - G - Ab - Bb - Cb - Db],
-        [*E*], [E - F\# - G\# - A - B - C - D],
-        [*F*], [F - G - A - Bb - C - Db - Eb],
-        [*F\#*], [F\# - G\# - A\# - B - C\# - D - E],
-        [*G*], [G - A - B - C - D - Eb - F],
-        [*Ab*], [Ab - Bb - C - Db - Eb - Fb - Gb],
-        [*A*], [A - B - C\# - D - E - F - G],
-        [*Bb*], [Bb - C - D - Eb - F - Gb - Ab],
-        [*B*], [B - C\# - D\# - E - F\# - G - A],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Lócrio 9
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    VIø da escala Menor Melódica
-  ]
-]
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - 2 - b3 - 4 - b5 - b6 - 7
-
-      #v(0.8em)
-      *Distâncias:* \
-      T - ST - T - ST - T - T - T
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      Iº - IIº - bIIIm - IVm - bV+ - bVI - bVII
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      Iø - IIø - bIIIm(7M) - IVm7 - bV7M(\#5) - bVI7 - bVII7
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - D - Eb - F - Gb - Ab - Bb],
-        [*C\#*], [C\# - D\# - E - F\# - G - A - B],
-        [*D*], [D - E - F - G - Ab - Bb - C],
-        [*D\#*], [D\# - E\# - F\# - G\# - A - B - C\#],
-        [*E*], [E - F\# - G - A - Bb - C - D],
-        [*F*], [F - G - Ab - Bb - Cb - Db - Eb],
-        [*F\#*], [F\# - G\# - A - B - C - D - E],
-        [*G*], [G - A - Bb - C - Db - Eb - F],
-        [*G\#*], [G\# - A\# - B - C\# - D - E - F\#],
-        [*A*], [A - B - C - D - Eb - F - G],
-        [*A\#*], [A\# - B\# - C\# - D\# - E - F\# - G\#],
-        [*B*], [B - C\# - D - E - F - G - A],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Alterado
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    VII7(\#5) da escala Menor Melódica
-  ]
-]
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - b2 - \#2 - 3 - b5 - \#5 - 7
-
-      #v(0.8em)
-      *Distâncias:* \
-      ST - T - ST - T - T - T - T
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      Iº - bIIm - bIIIm - bIV+ - bV - bVI - bVIIº
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      Iø - bIIm(7M) - bIIIm7 - bIV7M(\#5) - bV7 - bVI7 - bVIIø
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - Db - D\# - E - Gb - G\# - Bb],
-        [*Db*], [Db - Ebb - E - F - Abb - A - Cb],
-        [*D*], [D - Eb - E\# - F\# - Ab - A\# - C],
-        [*Eb*], [Eb - Fb - F\# - G - Bbb - B - Db],
-        [*E*], [E - F - F\#\# - G\# - Bb - B\# - D],
-        [*F*], [F - Gb - G\# - A - Cb - C\# - Eb],
-        [*F\#*], [F\# - G - G\#\# - A\# - C - C\#\# - E],
-        [*G*], [G - Ab - A\# - B - Db - D\# - F],
-        [*G\#*], [G\# - A - A\#\# - B\# - D - D\#\# - F\#],
-        [*A*], [A - Bb - B\# - C\# - Eb - E\# - G],
-        [*Bb*], [Bb - Cb - C\# - D - Fb - F\# - Ab],
-        [*B*], [B - C - C\#\# - D\# - F - F\#\# - A],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Jônico b6
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    I7M da escala Maior Harmônica
-  ]
-]
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - 2 - 3 - 4 - 5 - b6 - 7M
-
-      #v(0.8em)
-      *Distâncias:* \
-      T - T - ST - T - ST - 1,5T - ST
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      I - IIº - IIIm - IVm - V - bVI+ - VIIº
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      I7M - IIø - IIIm7 - IVm(7M) - V7 - bVI7M(\#5) - VIIº7
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - D - E - F - G - Ab - B],
-        [*Db*], [Db - Eb - F - Gb - Ab - Bbb - C],
-        [*D*], [D - E - F\# - G - A - Bb - C\#],
-        [*Eb*], [Eb - F - G - Ab - Bb - Cb - D],
-        [*E*], [E - F\# - G\# - A - B - C - D\#],
-        [*F*], [F - G - A - Bb - C - Db - E],
-        [*F\#*], [F\# - G\# - A\# - B - C\# - D - E\#],
-        [*G*], [G - A - B - C - D - Eb - F\#],
-        [*Ab*], [Ab - Bb - C - Db - Eb - Fb - G],
-        [*A*], [A - B - C\# - D - E - F - G\#],
-        [*Bb*], [Bb - C - D - Eb - F - Gb - A],
-        [*B*], [B - C\# - D\# - E - F\# - G - A\#],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Lócrio 6/9
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    IIø da escala Maior Harmônica
-  ]
-]
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - 2 - b3 - 4 - b5 - 6 - 7
-
-      #v(0.8em)
-      *Distâncias:* \
-      T - ST - T - ST - 1,5T - ST - T
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      Iº - IIm - bIIIm - IV - bV+ - VIº - bVII
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      Iø - IIm7 - bIIIm(7M) - IV7 - bV7M(\#5) - VIº7 - bVII7M
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - D - Eb - F - Gb - A - Bb],
-        [*C\#*], [C\# - D\# - E - F\# - G - A\# - B],
-        [*D*], [D - E - F - G - Ab - B - C],
-        [*D\#*], [D\# - E\# - F\# - G\# - A - B\# - C\#],
-        [*E*], [E - F\# - G - A - Bb - C\# - D],
-        [*F*], [F - G - Ab - Bb - Cb - D - Eb],
-        [*F\#*], [F\# - G\# - A - B - C - D\# - E],
-        [*G*], [G - A - Bb - C - Db - E - F],
-        [*G\#*], [G\# - A\# - B - C\# - D - E\# - F\#],
-        [*A*], [A - B - C - D - Eb - F\# - G],
-        [*A\#*], [A\# - B\# - C\# - D\# - E - F\#\# - G\#],
-        [*B*], [B - C\# - D - E - F - G\# - A],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Frígio b4
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    IIIm7 da escala Maior Harmônica
-  ]
-]
-
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - b2 - b3 - b4 - 5 - b6 - 7
-
-      #v(0.8em)
-      *Distâncias:* \
-      ST - T - ST - 1,5T - ST - T - T
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      Im - bIIm - bIII - bIV+ - Vº - bVI - bVIIº
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      Im7 - bIIm(7M) - bIII7 - bIV7M(\#5) - Vº7 - bVI7M - bVIIø
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - Db - Eb - Fb - G - Ab - Bb],
-        [*C\#*], [C\# - D - E - F - G\# - A - B],
-        [*D*], [D - Eb - F - Gb - A - Bb - C],
-        [*D\#*], [D\# - E - F\# - G - A\# - B - C\#],
-        [*E*], [E - F - G - Ab - B - C - D],
-        [*F*], [F - Gb - Ab - Bbb - C - Db - Eb],
-        [*F\#*], [F\# - G - A - Bb - C\# - D - E],
-        [*G*], [G - Ab - Bb - Cb - D - Eb - F],
-        [*G\#*], [G\# - A - B - C - D\# - E - F\#],
-        [*A*], [A - Bb - C - Db - E - F - G],
-        [*Bb*], [Bb - Cb - Db - Ebb - F - Gb - Ab],
-        [*B*], [B - C - D - Eb - F\# - G - A],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Dórico 7M / \#4
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    IVm7M da escala Maior Harmônica
-  ]
-]
-
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - 2 - b3 - \#4 - 5 - 6 - 7M
-
-      #v(0.8em)
-      *Distâncias:* \
-      T - ST - 1,5T - ST - T - T - ST
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      Im - II - bIII+ - \#IVº - V - VIº - VIIm
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      Im(7M) - II7 - bIII7M(\#5) - \#IVº7 - V7M - VIø - VIIm7
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - D - Eb - F\# - G - A - B],
-        [*C\#*], [C\# - D\# - E - F\#\# - G\# - A\# - B\#],
-        [*D*], [D - E - F - G\# - A - B - C\#],
-        [*D\#*], [D\# - E\# - F\# - G\#\# - A\# - B\# - C\#\#],
-        [*E*], [E - F\# - G - A\# - B - C\# - D\#],
-        [*F*], [F - G - Ab - B - C - D - E],
-        [*F\#*], [F\# - G\# - A - B\# - C\# - D\# - E\#],
-        [*G*], [G - A - Bb - C\# - D - E - F\#],
-        [*G\#*], [G\# - A\# - B - C\#\# - D\# - E\# - F\#\#],
-        [*A*], [A - B - C - D\# - E - F\# - G\#],
-        [*Bb*], [Bb - C - Db - E - F - G - A],
-        [*B*], [B - C\# - D - E\# - F\# - G\# - A\#],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Mixolídio b9
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    V7 da escala Maior Harmônica
-  ]
-]
-
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - b2 - 3 - 4 - 5 - 6 - 7
-
-      #v(0.8em)
-      *Distâncias:* \
-      ST - 1,5T - ST - T - T - ST - T
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      I - bII+ - IIIº - IV - Vº - VIm - bVIIm
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      I7 - bII7M(\#5) - IIIº7 - IV7M - Vø - VIm7 - bVIIm(7M)
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - Db - E - F - G - A - Bb],
-        [*Db*], [Db - Ebb - F - Gb - Ab - Bb - Cb],
-        [*D*], [D - Eb - F\# - G - A - B - C],
-        [*D\#*], [D\# - E - F\#\# - G\# - A\# - B\# - C\#],
-        [*Eb*], [Eb - Fb - G - Ab - Bb - C - Db],
-        [*E*], [E - F - G\# - A - B - C\# - D],
-        [*F*], [F - Gb - A - Bb - C - D - Eb],
-        [*F\#*], [F\# - G - A\# - B - C\# - D\# - E],
-        [*G*], [G - Ab - B - C - D - E - F],
-        [*Ab*], [Ab - Bbb - C - Db - Eb - F - Gb],
-        [*A*], [A - Bb - C\# - D - E - F\# - G],
-        [*Bb*], [Bb - Cb - D - Eb - F - G - Ab],
-        [*B*], [B - C - D\# - E - F\# - G\# - A],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Lídio \#5 / \#9
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    bVI7M(\#5) da escala Maior Harmônica
-  ]
-]
-
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - \#2 - 3 - \#4 - \#5 - 6 - 7M
-
-      #v(0.8em)
-      *Distâncias:* \
-      1,5T - ST - T - T - ST - T - ST
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      I+ - \#IIº - III - \#IVº - \#Vm - VIm - VII
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      I7M(\#5) - \#IIº7 - III7M - \#IVø - \#Vm7 - VIm(7M) - VII7
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - D\# - E - F\# - G\# - A - B],
-        [*Db*], [Db - E - F - G - A - Bb - C],
-        [*D*], [D - E\# - F\# - G\# - A\# - B - C\#],
-        [*Eb*], [Eb - F\# - G - A - B - C - D],
-        [*E*], [E - F\#\# - G\# - A\# - B\# - C\# - D\#],
-        [*F*], [F - G\# - A - B - C\# - D - E],
-        [*F\#*], [F\# - G\#\# - A\# - B\# - C\#\# - D\# - E\#],
-        [*G*], [G - A\# - B - C\# - D\# - E - F\#],
-        [*Ab*], [Ab - B - C - D - E - F - G],
-        [*A*], [A - B\# - C\# - D\# - E\# - F\# - G\#],
-        [*Bb*], [Bb - C\# - D - E - F\# - G - A],
-        [*B*], [B - C\#\# - D\# - E\# - F\#\# - G\# - A\#],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Lócrio b7
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    VIIº da escala Maior Harmônica
-  ]
-]
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - b2 - b3 - 4 - b5 - b6 - b7
-
-      #v(0.8em)
-      *Distâncias:* \
-      ST - T - T - ST - T - ST - 1,5T
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      Iº - bII - bIIIº - IVm - bVm - bVI - bVII(#5)
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      Iº - bII7M - bIIIø - IVm7 - bVm(7M) - bVI7 - bVII7M(\#5)
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - Db - Eb - F - Gb - Ab - Bbb],
-        [*C\#*], [C\# - D - E - F\# - G - A - Bb],
-        [*D*], [D - Eb - F - G - Ab - Bb - Cb],
-        [*D\#*], [D\# - E - F\# - G\# - A - B - C],
-        [*E*], [E - F - G - A - Bb - C - Db],
-        [*F*], [F - Gb - Ab - Bb - Cb - Db - Ebb],
-        [*F\#*], [F\# - G - A - B - C - D - Eb],
-        [*G*], [G - Ab - Bb - C - Db - Eb - Fb],
-        [*G\#*], [G\# - A - B - C\# - D - E - F],
-        [*A*], [A - Bb - C - D - Eb - F - Gb],
-        [*A\#*], [A\# - B - C\# - D\# - E - F\# - G],
-        [*B*], [B - C - D - E - F - G - Ab],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Messiaen 1
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    Escala Hexafônica
-  ]
-]
-
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - 2 - 3 - \#4 - \#5 - 7
-
-      #v(0.8em)
-      *Distâncias:* \
-      T - T - T - T - T - T
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      I+ - II+ - III+ - \#IV+ - \#V+ - bVII+
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      I7(\#5) - II7(\#5) - III7(\#5) - \#IV7(\#5) - \#V7(\#5) - bVII7(\#5)
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - D - E - F\# - G\# - Bb],
-        [*Db*], [Db - Eb - F - G - A - Cb],
-        [*D*], [D - E - F\# - G\# - A\# - C],
-        [*Eb*], [Eb - F - G - A - B - Db],
-        [*E*], [E - F\# - G\# - A\# - B\# - D],
-        [*F*], [F - G - A - B - C\# - Eb],
-        [*F\#*], [F\# - G\# - A\# - B\# - C\#\# - E],
-        [*G*], [G - A - B - C\# - D\# - F],
-        [*Ab*], [Ab - Bb - C - D - E - Gb],
-        [*A*], [A - B - C\# - D\# - E\# - G],
-        [*Bb*], [Bb - C - D - E - F\# - Ab],
-        [*B*], [B - C\# - D\# - E\# - F\#\# - A],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Messiaen 2
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    Escala Dominante Diminuta
-  ]
-]
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - b2 - \#2 - 3 - \#4 - 5 - 6 - 7
-
-      #v(0.8em)
-      *Distâncias:* \
-      ST - T - ST - T - ST - T - ST - T
-    ],
-    [
-      *Campo Harmônico (Tríades):* \
-      I - bIIº - bIII - IIIº - bV - Vº - VI - bVIIº
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      I7 - bIIº7 - bIII7 - IIIº7 - bV7 - Vº7 - VI7 - bVIIº7
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - Db - D\# - E - F\# - G - A - Bb],
-        [*C\#*], [C\# - D - D\#\# - E\# - F\#\# - G\# - A\# - B],
-        [*D*], [D - Eb - E\# - F\# - G\# - A - B - C],
-        [*Eb*], [Eb - Fb - F\# - G - A - Bb - C - Db],
-        [*E*], [E - F - F\#\# - G\# - A\# - B - C\# - D],
-        [*F*], [F - Gb - G\# - A - B - C - D - Eb],
-        [*F\#*], [F\# - G - G\#\# - A\# - B\# - C\# - D\# - E],
-        [*G*], [G - Ab - A\# - B - C\# - D - E - F],
-        [*Ab*], [Ab - Bbb - B - C - D - Eb - F - Gb],
-        [*A*], [A - Bb - B\# - C\# - D\# - E - F\# - G],
-        [*Bb*], [Bb - Cb - C\# - D - E - F - G - Ab],
-        [*B*], [B - C - C\#\# - D\# - E\# - F\# - G\# - A],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Messiaen 3
-
-#v(-1em)
-#align(center)[
-  #text(size: 14pt, fill: color-secondary, weight: "medium")[
-    Escala Tcherepnin
-  ]
-]
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - 2 - b3 - 3 - \#4 - 5 - b6 - 7 - 7M
-
-      #v(0.8em)
-      *Distâncias:* \
-      T - ST - ST - T - ST - ST - T - ST - ST
-    ],
-    [
-      *Campo Harmônico (Tríades Simétricas):* \
-      I - II+ - bIII - III - \#IV+ - V - bVI - bVII+ - VII
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades):* \
-      I7M - II+7 - bIII7M - III7M - \#IV+7 - V7M - bVI7M - bVII+7 - VII7M
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - D - Eb - E - F\# - G - Ab - Bb - B],
-        [*C\#*], [C\# - D\# - E - E\# - F\#\# - G\# - A - B - B\#],
-        [*D*], [D - E - F - F\# - G\# - A - Bb - C - C\#],
-        [*Eb*], [Eb - F - Gb - G - A - Bb - Cb - Db - D],
-        [*E*], [E - F\# - G - G\# - A\# - B - C - D - D\#],
-        [*F*], [F - G - Ab - A - B - C - Db - Eb - E],
-        [*F\#*], [F\# - G\# - A - A\# - B\# - C\# - D - E - E\#],
-        [*G*], [G - A - Bb - B - C\# - D - Eb - F - F\#],
-        [*Ab*], [Ab - Bb - Cb - C - D - Eb - Fb - Gb - G],
-        [*A*], [A - B - C - C\# - D\# - E - F - G - G\#],
-        [*Bb*], [Bb - C - Db - D - E - F - Gb - Ab - A],
-        [*B*], [B - C\# - D - D\# - E\# - F\# - G - A - A\#],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Messiaen 4
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - b2 - 2 - 4 - \#4 - 5 - b6 - 7M
-
-      #v(0.8em)
-      *Distâncias:* \
-      ST - ST - 1,5T - ST - ST - ST - 1,5T - ST
-    ],
-    [
-      *Campo Harmônico (Bases):* \
-      I - bII - II - IV - \#IV - V - bVI - VII
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades Formadas):* \
-      I(sus4) - bII7M - IIº7 - IVº7 - \#IV(sus4) - V7(b5) - bVIº7 - VIIº7
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - Db - D - F - F\# - G - Ab - B],
-        [*C\#*], [C\# - D - D\# - F\# - G - G\# - A - B\#],
-        [*D*], [D - Eb - E - G - G\# - A - Bb - C\#],
-        [*Eb*], [Eb - Fb - F - Ab - A - Bb - Cb - D],
-        [*E*], [E - F - F\# - A - A\# - B - C - D\#],
-        [*F*], [F - Gb - G - Bb - B - C - Db - E],
-        [*F\#*], [F\# - G - G\# - B - B\# - C\# - D - E\#],
-        [*G*], [G - Ab - A - C - C\# - D - Eb - F\#],
-        [*Ab*], [Ab - Bbb - Bb - Db - D - Eb - Fb - G],
-        [*A*], [A - Bb - B - D - D\# - E - F - G\#],
-        [*Bb*], [Bb - Cb - C - Eb - E - F - Gb - A],
-        [*B*], [B - C - C\# - E - E\# - F\# - G - A\#],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Messiaen 5
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - b2 - 4 - \#4 - 5 - 7M
-
-      #v(0.8em)
-      *Distâncias:* \
-      ST - 2T - ST - ST - 2T - ST
-    ],
-    [
-      *Campo Harmônico (Bases):* \
-      I - bII - IV - \#IV - V - VII
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades Formadas):* \
-      I(sus4) - bII(b5) - IV(sus\#4) - \#IV(sus4) - V(b5) - VII(b5)
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - Db - F - F\# - G - B],
-        [*C\#*], [C\# - D - F\# - F\#\# - G\# - B\#],
-        [*D*], [D - Eb - G - G\# - A - C\#],
-        [*Eb*], [Eb - Fb - Ab - A - Bb - D],
-        [*E*], [E - F - A - A\# - B - D\#],
-        [*F*], [F - Gb - Bb - B - C - E],
-        [*F\#*], [F\# - G - B - B\# - C\# - E\#],
-        [*G*], [G - Ab - C - C\# - D - F\#],
-        [*Ab*], [Ab - Bbb - Db - D - Eb - G],
-        [*A*], [A - Bb - D - D\# - E - G\#],
-        [*Bb*], [Bb - Cb - Eb - E - F - A],
-        [*B*], [B - C - E - E\# - F\# - A\#],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Messiaen 6
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - 2 - 3 - 4 - \#4 - \#5 - 7 - 7M
-
-      #v(0.8em)
-      *Distâncias:* \
-      T - T - ST - ST - T - T - ST - ST
-    ],
-    [
-      *Campo Harmônico (Bases):* \
-      I - II - III - IV - \#IV - \#V - bVII - VII
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades Formadas):* \
-      I7M - II7 - III7 - IV7M - \#IV7(b5) - \#V7(b5) - bVII7 - VIIº7
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - D - E - F - F\# - G\# - Bb - B],
-        [*C\#*], [C\# - D\# - E\# - F\# - F\#\# - G\#\# - B - B\#],
-        [*D*], [D - E - F\# - G - G\# - A\# - C - C\#],
-        [*Eb*], [Eb - F - G - Ab - A - B - Db - D],
-        [*E*], [E - F\# - G\# - A - A\# - B\# - D - D\#],
-        [*F*], [F - G - A - Bb - B - C\# - Eb - E],
-        [*F\#*], [F\# - G\# - A\# - B - B\# - C\#\# - E - E\#],
-        [*G*], [G - A - B - C - C\# - D\# - F - F\#],
-        [*Ab*], [Ab - Bb - C - Db - D - E - Gb - G],
-        [*A*], [A - B - C\# - D - D\# - E\# - G - G\#],
-        [*Bb*], [Bb - C - D - Eb - E - F\# - Ab - A],
-        [*B*], [B - C\# - D\# - E - E\# - F\#\# - A - A\#],
-      )
-    ],
-  )
-]
-
-#pagebreak()
-
-= Modo Messiaen 7
-
-#v(0.5em)
-
-#block(
-  fill: luma(248),
-  stroke: 0.5pt + luma(200),
-  radius: 6pt,
-  inset: 1.5em,
-  width: 100%,
-)[
-  #grid(
-    columns: (40%, 60%),
-    gutter: 1.5em,
-    [
-      *Estrutura de Intervalos:* \
-      T - b2 - 2 - b3 - 4 - \#4 - 5 - b6 - 6 - 7M
-
-      #v(0.8em)
-      *Distâncias:* \
-      ST - ST - ST - T - ST - ST - ST - ST - T - ST
-    ],
-    [
-      *Campo Harmônico (Bases):* \
-      I - bII - II - bIII - IV - \#IV - V - bVI - VI - VII
-
-      #v(0.8em)
-      *Campo Harmônico (Tétrades Formadas):* \
-      I7M - bII7M - IIº7 - bIII7 - IV7M - \#IVº7 - V7 - bVI7 - VIº7 - VIIº7
-    ],
-  )
-]
-
-#v(1.5em)
-
-#align(center)[
-  #block(
-    radius: 4pt,
-    stroke: 0.75pt + black,
-    clip: true,
-    [
-      #table(
-        columns: (0.5fr, 2fr),
-        align: (col, row) => if col == 0 { center + horizon } else { left + horizon },
-        inset: (x: 1.5em, y: 0.8em),
-
-        stroke: 0.5pt + black,
-
-        fill: (_, row) => if row == 0 { luma(50) } else if calc.even(row) { luma(240) } else { white },
-
-        [#text(fill: white)[*Tom*]], [#text(fill: white)[*Notas*]],
-
-        [*C*], [C - Db - D - Eb - F - F\# - G - Ab - A - B],
-        [*C\#*], [C\# - D - D\# - E - F\# - F\#\# - G\# - A - A\# - B\#],
-        [*D*], [D - Eb - E - F - G - G\# - A - Bb - B - C\#],
-        [*Eb*], [Eb - Fb - F - Gb - Ab - A - Bb - Cb - C - D],
-        [*E*], [E - F - F\# - G - A - A\# - B - C - C\# - D\#],
-        [*F*], [F - Gb - G - Ab - Bb - B - C - Db - D - E],
-        [*F\#*], [F\# - G - G\# - A - B - B\# - C\# - D - D\# - E\#],
-        [*G*], [G - Ab - A - Bb - C - C\# - D - Eb - E - F\#],
-        [*Ab*], [Ab - Bbb - Bb - Cb - Db - D - Eb - Fb - F - G],
-        [*A*], [A - Bb - B - C - D - D\# - E - F - F\# - G\#],
-        [*Bb*], [Bb - Cb - C - Db - Eb - E - F - Gb - G - A],
-        [*B*], [B - C - C\# - D - E - E\# - F\# - G - G\# - A\#],
-      )
-    ],
-  )
-]
