@@ -53,10 +53,13 @@
 
       #let separator = h(5pt) + "•" + h(5pt)
 
+      // Verifica se a página atual (física) é a página 1 (capa)
+      #let is-cover = here().page() == 1
+
       #grid(
         columns: (1fr, auto),
         align: (left + horizon, right + horizon),
-        // Left side: Logo and Info
+        // Lado Esquerdo: Logo e Informações
         grid(
           columns: (auto, auto, auto),
           gutter: 6pt,
@@ -75,9 +78,10 @@
             ],
           ),
         ),
-        // Right side: Page numbering
         text(weight: "bold", size: 11pt, fill: color-secondary)[
-          #counter(page).display("01")
+          #if not is-cover [
+            #counter(page).display("01")
+          ]
         ],
       )
     ],

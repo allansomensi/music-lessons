@@ -5,6 +5,161 @@
   nivel: "Teoria Musical",
 )
 
+// ==========================================
+// CONFIGURAÇÕES GERAIS E PALETA DE CORES
+// ==========================================
+#let color-brand = rgb("#1e293b")       // Azul ardósia escuro
+#let color-secondary = rgb("#0f766e")   // Verde esmeralda profundo
+#let color-accent = rgb("#d97706")      // Âmbar para destaque
+#let color-muted = rgb("#64748b")       // Cinza fosco para textos secundários
+
+// ==========================================
+// 1. PÁGINA DE CAPA
+// ==========================================
+#page()[
+  // Linha decorativa geométrica no topo da página
+  #place(top + left, dx: -3cm, dy: -4cm)[
+    #rect(fill: color-brand, width: 100em, height: 1.5cm)
+  ]
+
+  #align(left)[
+    #v(2cm)
+    // Sub-elemento de contextualização superior
+    #text(size: 12pt, weight: "bold", tracking: 4pt, fill: color-muted)[CADERNOS DE HARMONIA]
+
+    #v(0.8cm)
+    #line(length: 100%, stroke: 1.5pt + color-secondary)
+    #v(0.5em)
+
+    // Título Principal
+    #text(size: 56pt, weight: "bold", fill: color-brand)[Modos]
+
+    #v(0.2em)
+    // Subtítulo
+    #text(
+      size: 20pt,
+      weight: "light",
+      style: "italic",
+      fill: color-secondary,
+    )[Sistemas Modais e Estruturas Harmônicas]
+
+    #v(1.2cm)
+    // Pequeno detalhe de cor para quebrar a monotonia
+    #rect(fill: color-accent, width: 40pt, height: 4pt, radius: 2pt)
+
+    #v(1.5cm)
+    // Bloco descritivo adicionado para explicar o escopo real do material
+    #block(width: 85%)[
+      #set text(size: 13pt, fill: color-brand)
+      #par(leading: 0.8em)[
+        Uma coletânea abrangente dos principais modos gerados pelas escalas fundamentais.
+        Este guia mapeia com rigor matemático os campos harmônicos de escalas fundamentais, exóticas e simétricas, oferecendo uma referência estrutural completa para arranjadores, compositores e instrumentistas que buscam precisão absoluta e expansão de vocabulário harmônico.
+      ]
+    ]
+  ]
+
+  // Metadados
+  #align(bottom + left)[
+    #stack(
+      spacing: 0.6em,
+      text(size: 11pt, weight: "bold", fill: color-brand)[Estudos Avançados de Formação de Escalas e Harmonia Modal],
+      text(size: 10pt, fill: color-muted)[Guia de Consulta: Modos, Intervalos, Tríades e Tétrades],
+      text(size: 10pt, fill: color-muted)[Edição Revisada],
+    )
+  ]
+]
+
+// ==========================================
+// 2. ÍNDICE
+// ==========================================
+#outline(
+  title: "Índice",
+  indent: 2em,
+  depth: 2,
+)
+
+#pagebreak()
+
+// ==========================================
+// INTRODUÇÃO
+// ==========================================
+#heading(level: 1)[Prefácio]
+
+Este caderno foi concebido para servir como uma ferramenta de consulta definitiva e estrutural para o estudo da harmonia avançada.
+
+O aprofundamento em escalas exóticas, simétricas e modos alterados costuma exigir do músico um esforço exaustivo. Recalcular mentalmente as distâncias intervalares, realizar o empilhamento de terças e deduzir a formação e notação exata de cada tríade e tétrade para todos os modos gerados por uma escala é um processo mecânico, sujeito a erros, que consome um tempo valioso de estudo.
+
+Este guia foi estruturado justamente para eliminar essa etapa braçal. Todas as matrizes intervalares e os campos harmônicos de cada modo já se encontram minuciosamente mapeados neste documento, preservando o rigor técnico e a matemática das enarmonias.
+
+O objetivo principal deste material é entregar eficiência. Com as estruturas previamente deduzidas e organizadas, o estudante, o arranjador ou o compositor pode direcionar sua energia estritamente ao que importa: a análise sonora com o instrumento na mão, a aplicação prática na composição e a fluidez na improvisação, sem precisar interromper o processo criativo para montar as estruturas de cada modo.
+
+#v(2em)
+#line(length: 30%, stroke: 0.5pt + color-rule-light)
+#v(2em)
+
+// ==========================================
+// GUIA DE USO
+// ==========================================
+#heading(level: 1)[Guia de Uso Prático]
+
+Como extrair o máximo deste material? Este guia é um manual de bancada. Para que estas tabelas se transformem em música real, recomendo a seguinte abordagem prática:
+
+- *Toque as Estruturas:* Ao estudar um modo, grave um backing track simples ou utilize um pedal de loop para tocar a tríade ou tétrade base indicada no Grau I.
+- *Sinta a Cor do Modo:* Toque a escala sobre o acorde e preste atenção aos intervalos característicos de cada estrutura.
+- *Explore a Harmonia:* Aplique os campos harmônicos listados aqui na sua prática de composição. Experimente substituir acordes diatônicos comuns pelas opções exóticas e simétricas mapeadas neste documento para criar texturas totalmente novas.
+
+#pagebreak()
+
+// ==========================================
+// RIGOR TÉCNICO E CIFRAGEM
+// ==========================================
+#heading(level: 1)[Rigor Enarmônico e Cifragem]
+
+Este material adota um rigor matemático estrito em sua construção. Escalas heptatônicas são apresentadas respeitando a regra clássica de utilizar uma letra de cada nota do alfabeto musical (Dó, Ré, Mi, Fá, Sol, Lá, Si). Por conta disso, em modos mais exóticos (como os formados pela escala Enigmática, a Persa ou os modos de Messiaen), surgem grafias complexas, envolvendo sustenidos duplos (\#\#) ou duplos bemóis (bb).
+
+Entenda este rigor como uma base teórica sólida. No entanto, é fundamental lembrar que a teoria deve servir à música, e não o contrário. Caso encontre uma anotação que dificulte sua leitura ou aplicação prática no instrumento, sinta-se inteiramente livre para simplificar as enarmonias. Se substituir um E\# por um Fá natural tornar seu processo criativo ou sua leitura mais fluida, faça-o sem hesitação. A música acontece no som, não no papel. Priorize sempre a sua expressividade em vez de prender-se a formalismos técnicos excessivos.
+
+*Notação das Sétimas* \
+Para garantir a máxima clareza prática e evitar as ambiguidades históricas comuns em partituras antigas de Bossa Nova e MPB (como a confusão do uso do sinal `+` para sétimas maiores (Ex. F7+, C7+, etc.)), este documento adota estritamente a seguinte convenção para a cifragem de sétimas:
+
+- *b7* : Sétima diminuta (ex: Cº(b7), indicando a tríade diminuta com a sétima diminuta).
+- *7* : Sétima menor (ex: C7, Cm7).
+- *7M* : Sétima Maior (ex: C7M, Cm(7M)).
+
+*(Nota: O sinal de adição `+` é reservado de forma exclusiva e isolada para indicar a Quinta Aumentada na formação de tríades, como em C+).*
+
+#pagebreak()
+
+// ==========================================
+// REGRAS DE ESTILO LOCAL
+// ==========================================
+#show heading.where(level: 2): it => align(center, block(
+  above: 1.5em,
+  below: 1em,
+  text(size: 24pt, weight: "bold", fill: color-brand, it.body),
+))
+
+// ==========================================
+// 3. FUNÇÃO DE PÁGINA SEPARADORA (Capítulos)
+// ==========================================
+#let separador-escala(nome: "", descricao: "") = [
+  #show heading.where(level: 1): it => block(
+    below: 0.5em,
+    text(size: 40pt, weight: "bold", fill: color-brand, it.body),
+  )
+
+  #align(center + horizon)[
+    = #nome
+
+    #v(1.5em)
+    #text(size: 16pt)[#descricao]
+  ]
+  #pagebreak()
+]
+
+// ==========================================
+// 4. FUNÇÃO RENDER-MODO
+// ==========================================
 #let render-modo(
   nome: "",
   subtitulo: "",
@@ -15,7 +170,10 @@
   notas: (),
   ultimo: false,
 ) = [
-  = Modo #nome
+  #align(center)[
+    #show heading.where(level: 2): set text(size: 22pt)
+    == Modo #nome
+  ]
 
   #v(-1em)
   #align(center)[
@@ -81,6 +239,14 @@
     pagebreak()
   }
 ]
+
+// ==========================================
+// ESCALA MAIOR
+// ==========================================
+#separador-escala(
+  nome: "Modos da Escala Maior",
+  descricao: "A escala diatônica mais fundamental da música ocidental, caracterizada por sua sonoridade clara, natural e estável.",
+)
 
 #render-modo(
   nome: "Jônico",
@@ -327,13 +493,21 @@
   ),
 )
 
+// ==========================================
+// ESCALA MENOR HARMÔNICA
+// ==========================================
+#separador-escala(
+  nome: "Modos da Escala Menor Harmônica",
+  descricao: "Caracterizada pelo intervalo de segunda aumentada entre o 6º e 7º graus, criando uma forte sonoridade de tensão, frequentemente associada à música neoclássica e oriental.",
+)
+
 #render-modo(
   nome: "Eólio 7M",
   subtitulo: "Im7M da escala Menor Harmônica",
   intervalos: "T - 2 - b3 - 4 - 5 - b6 - 7M",
   distancias: "T - ST - T - T - ST - 1,5T - ST",
   triades: "Im - IIº - bIII+ - IVm - V - bVI - VIIº",
-  tetrades: "Im7M - IIø - bIII7M(#5) - IVm7 - V7 - bVI7M - VIIº7",
+  tetrades: "Im7M - IIø - bIII7M(#5) - IVm7 - V7 - bVI7M - VIIº(b7)",
   notas: (
     [*C*],
     [C - D - Eb - F - G - Ab - B],
@@ -368,7 +542,7 @@
   intervalos: "T - b2 - b3 - 4 - b5 - 6 - 7",
   distancias: "ST - T - T - ST - 1,5T - ST - T",
   triades: "Iº - bII+ - bIIIm - IV - bV - VIº - bVIIm",
-  tetrades: "Iø - bII7M(#5) - bIIIm7 - IV7 - bV7M - VIº7 - bVIIm(7M)",
+  tetrades: "Iø - bII7M(#5) - bIIIm7 - IV7 - bV7M - VIº(b7) - bVIIm(7M)",
   notas: (
     [*C*],
     [C - Db - Eb - F - Gb - A - Bb],
@@ -403,7 +577,7 @@
   intervalos: "T - 2 - 3 - 4 - #5 - 6 - 7M",
   distancias: "T - T - ST - 1,5T - ST - T - ST",
   triades: "I+ - IIm - III - IV - #Vº - VIm - VIIº",
-  tetrades: "I7M(#5) - IIm7 - III7 - IV7M - #Vº7 - VIm(7M) - VIIø",
+  tetrades: "I7M(#5) - IIm7 - III7 - IV7M - #Vº(b7) - VIm(7M) - VIIø",
   notas: (
     [*C*],
     [C - D - E - F - G\# - A - B],
@@ -438,7 +612,7 @@
   intervalos: "T - 2 - b3 - #4 - 5 - 6 - 7",
   distancias: "T - ST - 1,5T - ST - T - ST - T",
   triades: "Im - II - bIII - #IVº - Vm - VIº - bVII+",
-  tetrades: "Im7 - II7 - bIII7M - #IVº7 - Vm(7M) - VIø - bVII7M(#5)",
+  tetrades: "Im7 - II7 - bIII7M - #IVº(b7) - Vm(7M) - VIø - bVII7M(#5)",
   notas: (
     [*C*],
     [C - D - Eb - F\# - G - A - Bb],
@@ -473,7 +647,7 @@
   intervalos: "T - b2 - 3 - 4 - 5 - b6 - 7",
   distancias: "ST - 1,5T - ST - T - ST - T - T",
   triades: "I - bII - IIIº - IVm - Vº - bVI+ - bVIIm",
-  tetrades: "I7 - bII7M - IIIº7 - IVm(7M) - Vø - bVI7M(#5) - bVIIm7",
+  tetrades: "I7 - bII7M - IIIº(b7) - IVm(7M) - Vø - bVI7M(#5) - bVIIm7",
   notas: (
     [*C*],
     [C - Db - E - F - G - Ab - Bb],
@@ -508,7 +682,7 @@
   intervalos: "T - #2 - 3 - #4 - 5 - 6 - 7M",
   distancias: "1,5T - ST - T - ST - T - T - ST",
   triades: "I - #IIº - IIIm - #IVº - V+ - VIm - VII",
-  tetrades: "I7M - #IIº7 - IIIm(7M) - #IVø - V7M(#5) - VIm7 - VII7",
+  tetrades: "I7M - #IIº(b7) - IIIm(7M) - #IVø - V7M(#5) - VIm7 - VII7",
   notas: (
     [*C*],
     [C - D\# - E - F\# - G - A - B],
@@ -543,7 +717,7 @@
   intervalos: "T - b2 - b3 - b4 - b5 - b6 - b7",
   distancias: "ST - T - ST - T - T - ST - 1,5T",
   triades: "Iº - bIIm - bIIIº - bIV+ - bVm - bVI - bVII",
-  tetrades: "Iº7 - bIIm(7M) - bIIIø - bIV7M(#5) - bVm7 - bVI7 - bVII7M",
+  tetrades: "Iº(b7) - bIIm(7M) - bIIIø - bIV7M(#5) - bVm7 - bVI7 - bVII7M",
   notas: (
     [*C*],
     [C - Db - Eb - Fb - Gb - Ab - Bbb],
@@ -570,6 +744,14 @@
     [*B*],
     [B - C - D - Eb - F - G - Ab],
   ),
+)
+
+// ==========================================
+// ESCALA MENOR MELÓDICA
+// ==========================================
+#separador-escala(
+  nome: "Modos da Escala Menor Melódica",
+  descricao: "Criada historicamente para suavizar o salto da menor harmônica. Na harmonia moderna, gera modos riquíssimos e é amplamente utilizada no jazz, por não possuir 'notas evitadas'.",
 )
 
 #render-modo(
@@ -785,36 +967,44 @@
 #render-modo(
   nome: "Alterado",
   subtitulo: "VII7(#5) da escala Menor Melódica",
-  intervalos: "T - b2 - #2 - 3 - b5 - #5 - 7",
+  intervalos: "T - b2 - b3 - b4 - b5 - b6 - 7",
   distancias: "ST - T - ST - T - T - T - T",
   triades: "Iº - bIIm - bIIIm - bIV+ - bV - bVI - bVIIº",
   tetrades: "Iø - bIIm(7M) - bIIIm7 - bIV7M(#5) - bV7 - bVI7 - bVIIø",
   notas: (
     [*C*],
-    [C - Db - D\# - E - Gb - G\# - Bb],
+    [C - Db - Eb - Fb - Gb - Ab - Bb],
     [*Db*],
-    [Db - Ebb - E - F - Abb - A - Cb],
+    [Db - Ebb - Fb - Gbb - Abb - Bbb - Cb],
     [*D*],
-    [D - Eb - E\# - F\# - Ab - A\# - C],
+    [D - Eb - F - Gb - Ab - Bb - C],
     [*Eb*],
-    [Eb - Fb - F\# - G - Bbb - B - Db],
+    [Eb - Fb - Gb - Abb - Bbb - Cb - Db],
     [*E*],
-    [E - F - F\#\# - G\# - Bb - B\# - D],
+    [E - F - G - Ab - Bb - C - D],
     [*F*],
-    [F - Gb - G\# - A - Cb - C\# - Eb],
+    [F - Gb - Ab - Bbb - Cb - Db - Eb],
     [*F\#*],
-    [F\# - G - G\#\# - A\# - C - C\#\# - E],
+    [F\# - G - A - Bb - C - D - E],
     [*G*],
-    [G - Ab - A\# - B - Db - D\# - F],
-    [*G\#*],
-    [G\# - A - A\#\# - B\# - D - D\#\# - F\#],
+    [G - Ab - Bb - Cb - Db - Eb - F],
+    [*Ab*],
+    [Ab - Bbb - Cb - Dbb - Ebb - Fb - Gb],
     [*A*],
-    [A - Bb - B\# - C\# - Eb - E\# - G],
+    [A - Bb - C - Db - Eb - F - G],
     [*Bb*],
-    [Bb - Cb - C\# - D - Fb - F\# - Ab],
+    [Bb - Cb - Db - Ebb - Fb - Gb - Ab],
     [*B*],
-    [B - C - C\#\# - D\# - F - F\#\# - A],
+    [B - C - D - Eb - F - G - A],
   ),
+)
+
+// ==========================================
+// ESCALA MAIOR HARMÔNICA
+// ==========================================
+#separador-escala(
+  nome: "Modos da Escala Maior Harmônica",
+  descricao: "Uma escala maior com a sexta menor (b6), gerando modos exóticos e acordes com sonoridades ricas, dramáticas e muito peculiares.",
 )
 
 #render-modo(
@@ -823,7 +1013,7 @@
   intervalos: "T - 2 - 3 - 4 - 5 - b6 - 7M",
   distancias: "T - T - ST - T - ST - 1,5T - ST",
   triades: "I - IIº - IIIm - IVm - V - bVI+ - VIIº",
-  tetrades: "I7M - IIø - IIIm7 - IVm(7M) - V7 - bVI7M(#5) - VIIº7",
+  tetrades: "I7M - IIø - IIIm7 - IVm(7M) - V7 - bVI7M(#5) - VIIº(b7)",
   notas: (
     [*C*],
     [C - D - E - F - G - Ab - B],
@@ -858,7 +1048,7 @@
   intervalos: "T - 2 - b3 - 4 - b5 - 6 - 7",
   distancias: "T - ST - T - ST - 1,5T - ST - T",
   triades: "Iº - IIm - bIIIm - IV - bV+ - VIº - bVII",
-  tetrades: "Iø - IIm7 - bIIIm(7M) - IV7 - bV7M(#5) - VIº7 - bVII7M",
+  tetrades: "Iø - IIm7 - bIIIm(7M) - IV7 - bV7M(#5) - VIº(b7) - bVII7M",
   notas: (
     [*C*],
     [C - D - Eb - F - Gb - A - Bb],
@@ -893,7 +1083,7 @@
   intervalos: "T - b2 - b3 - b4 - 5 - b6 - 7",
   distancias: "ST - T - ST - 1,5T - ST - T - T",
   triades: "Im - bIIm - bIII - bIV+ - Vº - bVI - bVIIº",
-  tetrades: "Im7 - bIIm(7M) - bIII7 - bIV7M(#5) - Vº7 - bVI7M - bVIIø",
+  tetrades: "Im7 - bIIm(7M) - bIII7 - bIV7M(#5) - Vº(b7) - bVI7M - bVIIø",
   notas: (
     [*C*],
     [C - Db - Eb - Fb - G - Ab - Bb],
@@ -928,7 +1118,7 @@
   intervalos: "T - 2 - b3 - #4 - 5 - 6 - 7M",
   distancias: "T - ST - 1,5T - ST - T - T - ST",
   triades: "Im - II - bIII+ - #IVº - V - VIº - VIIm",
-  tetrades: "Im(7M) - II7 - bIII7M(#5) - #IVº7 - V7M - VIø - VIIm7",
+  tetrades: "Im(7M) - II7 - bIII7M(#5) - #IVº(b7) - V7M - VIø - VIIm7",
   notas: (
     [*C*],
     [C - D - Eb - F\# - G - A - B],
@@ -963,7 +1153,7 @@
   intervalos: "T - b2 - 3 - 4 - 5 - 6 - 7",
   distancias: "ST - 1,5T - ST - T - T - ST - T",
   triades: "I - bII+ - IIIº - IV - Vº - VIm - bVIIm",
-  tetrades: "I7 - bII7M(#5) - IIIº7 - IV7M - Vø - VIm7 - bVIIm(7M)",
+  tetrades: "I7 - bII7M(#5) - IIIº(b7) - IV7M - Vø - VIm7 - bVIIm(7M)",
   notas: (
     [*C*],
     [C - Db - E - F - G - A - Bb],
@@ -1000,7 +1190,7 @@
   intervalos: "T - #2 - 3 - #4 - #5 - 6 - 7M",
   distancias: "1,5T - ST - T - T - ST - T - ST",
   triades: "I+ - #IIº - III - #IVº - #Vm - VIm - VII",
-  tetrades: "I7M(#5) - #IIº7 - III7M - #IVø - #Vm7 - VIm(7M) - VII7",
+  tetrades: "I7M(#5) - #IIº(b7) - III7M - #IVø - #Vm7 - VIm(7M) - VII7",
   notas: (
     [*C*],
     [C - D\# - E - F\# - G\# - A - B],
@@ -1034,8 +1224,8 @@
   subtitulo: "VIIº da escala Maior Harmônica",
   intervalos: "T - b2 - b3 - 4 - b5 - b6 - b7",
   distancias: "ST - T - T - ST - T - ST - 1,5T",
-  triades: "Iº - bII - bIIIº - IVm - bVm - bVI - bVII(#5)",
-  tetrades: "Iº - bII7M - bIIIø - IVm7 - bVm(7M) - bVI7 - bVII7M(#5)",
+  triades: "Iº - bII - bIIIº - IVm - bVm - bVI - bVII+",
+  tetrades: "Iº(b7) - bII7M - bIIIø - IVm7 - bVm(7M) - bVI7 - bVII7M(#5)",
   notas: (
     [*C*],
     [C - Db - Eb - F - Gb - Ab - Bbb],
@@ -1062,6 +1252,14 @@
     [*B*],
     [B - C - D - E - F - G - Ab],
   ),
+)
+
+// ==========================================
+// MODOS DE TRANSPOSIÇÃO LIMITADA DE MESSIAEN
+// ==========================================
+#separador-escala(
+  nome: "Modos de Transposição Limitada de Messiaen",
+  descricao: "Escalas simétricas catalogadas pelo compositor Olivier Messiaen. Dividem a oitava em padrões intervalares que se repetem, limitando matematicamente as suas possibilidades de transposição.",
 )
 
 #render-modo(
@@ -1105,7 +1303,7 @@
   intervalos: "T - b2 - #2 - 3 - #4 - 5 - 6 - 7",
   distancias: "ST - T - ST - T - ST - T - ST - T",
   triades: "I - bIIº - bIII - IIIº - bV - Vº - VI - bVIIº",
-  tetrades: "I7 - bIIº7 - bIII7 - IIIº7 - bV7 - Vº7 - VI7 - bVIIº7",
+  tetrades: "I7 - bIIº(b7) - bIII7 - IIIº(b7) - bV7 - Vº(b7) - VI7 - bVIIº(b7)",
   notas: (
     [*C*],
     [C - Db - D\# - E - F\# - G - A - Bb],
@@ -1140,7 +1338,7 @@
   intervalos: "T - 2 - b3 - 3 - #4 - 5 - b6 - 7 - 7M",
   distancias: "T - ST - ST - T - ST - ST - T - ST - ST",
   triades: "I - II+ - bIII - III - #IV+ - V - bVI - bVII+ - VII",
-  tetrades: "I7M - II+7 - bIII7M - III7M - #IV+7 - V7M - bVI7M - bVII+7 - VII7M",
+  tetrades: "I7M - II7(#5) - bIII7M - III7M - #IV7(#5) - V7M - bVI7M - bVII7(#5) - VII7M",
   notas: (
     [*C*],
     [C - D - Eb - E - F\# - G - Ab - Bb - B],
@@ -1175,7 +1373,7 @@
   intervalos: "T - b2 - 2 - 4 - #4 - 5 - b6 - 7M",
   distancias: "ST - ST - 1,5T - ST - ST - ST - 1,5T - ST",
   triades: "I - bII - II - IV - #IV - V - bVI - VII",
-  tetrades: "I(sus4) - bII7M - IIº7 - IVº7 - #IV(sus4) - V7(b5) - bVIº7 - VIIº7",
+  tetrades: "I(sus4) - bII7M - IIº(b7) - IVº(b7) - #IV(sus4) - V7(b5) - bVIº(b7) - VIIº(b7)",
   notas: (
     [*C*],
     [C - Db - D - F - F\# - G - Ab - B],
@@ -1245,7 +1443,7 @@
   intervalos: "T - 2 - 3 - 4 - #4 - #5 - 7 - 7M",
   distancias: "T - T - ST - ST - T - T - ST - ST",
   triades: "I - II - III - IV - #IV - #V - bVII - VII",
-  tetrades: "I7M - II7 - III7 - IV7M - #IV7(b5) - #V7(b5) - bVII7 - VIIº7",
+  tetrades: "I7M - II7 - III7 - IV7M - #IV7(b5) - #V7(b5) - bVII7 - VIIº(b7)",
   notas: (
     [*C*],
     [C - D - E - F - F\# - G\# - Bb - B],
@@ -1280,7 +1478,7 @@
   intervalos: "T - b2 - 2 - b3 - 4 - #4 - 5 - b6 - 6 - 7M",
   distancias: "ST - ST - ST - T - ST - ST - ST - ST - T - ST",
   triades: "I - bII - II - bIII - IV - #IV - V - bVI - VI - VII",
-  tetrades: "I7M - bII7M - IIº7 - bIII7 - IV7M - #IVº7 - V7 - bVI7 - VIº7 - VIIº7",
+  tetrades: "I7M - bII7M - IIº(b7) - bIII7 - IV7M - #IVº(b7) - V7 - bVI7 - VIº(b7) - VIIº(b7)",
   notas: (
     [*C*],
     [C - Db - D - Eb - F - F\# - G - Ab - A - B],
@@ -1309,13 +1507,21 @@
   ),
 )
 
+// ==========================================
+// ESCALA DUPLO HARMÔNICA MAIOR
+// ==========================================
+#separador-escala(
+  nome: "Modos da Escala Duplo Harmônica Maior",
+  descricao: "Possui dois intervalos de segunda aumentada, o que lhe confere uma fortíssima sonoridade oriental, árabe, cigana ou bizantina.",
+)
+
 #render-modo(
   nome: "Duplo Harmônica Maior",
   subtitulo: "I7M da escala Duplo Harmônica Maior",
   intervalos: "T - b2 - 3 - 4 - 5 - b6 - 7M",
   distancias: "ST - 1,5T - ST - T - ST - 1,5T - ST",
   triades: "I - bII - IIIm - IVm - V(b5) - bVI+ - VIIº(bb3)",
-  tetrades: "I7M - bII7M - IIIm(b7) - IVm(7M) - V7(b5) - bVI7M(#5) - VIIº7(bb3)",
+  tetrades: "I7M - bII7M - IIIm(b7) - IVm(7M) - V7(b5) - bVI7M(#5) - VIIº(bb3, b7)",
   notas: (
     [*C*],
     [C - Db - E - F - G - Ab - B],
@@ -1350,7 +1556,7 @@
   intervalos: "T - #2 - 3 - #4 - 5 - #6 - 7M",
   distancias: "1,5T - ST - T - ST - 1,5T - ST - ST",
   triades: "I - #IIm - IIIm - #IV(b5) - V+ - #VIº(bb3) - VII",
-  tetrades: "I7M - #IIm(b7) - IIIm(7M) - #IV7(b5) - V7M(#5) - #VIº7(bb3) - VII7M",
+  tetrades: "I7M - #IIm(b7) - IIIm(7M) - #IV7(b5) - V7M(#5) - #VIº(bb3, b7) - VII7M",
   notas: (
     [*C*],
     [C - D\# - E - F\# - G - A\# - B],
@@ -1385,7 +1591,7 @@
   intervalos: "T - b2 - b3 - b4 - 5 - b6 - b7",
   distancias: "ST - T - ST - 1,5T - ST - ST - 1,5T",
   triades: "Im - bIIm - bIII(b5) - bIV+ - Vº(bb3) - bVI - bbVII",
-  tetrades: "Im(b7) - bIIm(7M) - bIII7(b5) - bIV7M(#5) - Vº7(bb3) - bVI7M - bbVII7M",
+  tetrades: "Im(b7) - bIIm(7M) - bIII7(b5) - bIV7M(#5) - Vº(bb3, b7) - bVI7M - bbVII7M",
   notas: (
     [*C*],
     [C - Db - Eb - Fb - G - Ab - Bbb],
@@ -1420,7 +1626,7 @@
   intervalos: "T - 2 - b3 - #4 - 5 - b6 - 7M",
   distancias: "T - ST - 1,5T - ST - ST - 1,5T - ST",
   triades: "Im - II(b5) - bIII+ - #IVº(bb3) - V - bVI - VIIm",
-  tetrades: "Im(7M) - II7(b5) - bIII7M(#5) - #IVº7(bb3) - V7M - bVI7M - VIIm(b7)",
+  tetrades: "Im(7M) - II7(b5) - bIII7M(#5) - #IVº(bb3, b7) - V7M - bVI7M - VIIm(b7)",
   notas: (
     [*C*],
     [C - D - Eb - F\# - G - Ab - B],
@@ -1455,7 +1661,7 @@
   intervalos: "T - b2 - 3 - 4 - b5 - 6 - 7",
   distancias: "ST - 1,5T - ST - ST - 1,5T - ST - T",
   triades: "I(b5) - bII+ - IIIº(bb3) - IV - bV - VIm - bVIIm",
-  tetrades: "I7(b5) - bII7M(#5) - IIIº7(bb3) - IV7M - bV7M - VIm(b7) - bVIIm(7M)",
+  tetrades: "I7(b5) - bII7M(#5) - IIIº(bb3, b7) - IV7M - bV7M - VIm(b7) - bVIIm(7M)",
   notas: (
     [*C*],
     [C - Db - E - F - Gb - A - Bb],
@@ -1490,7 +1696,7 @@
   intervalos: "T - #2 - 3 - 4 - #5 - 6 - 7M",
   distancias: "1,5T - ST - ST - 1,5T - ST - T - ST",
   triades: "I+ - #IIº(bb3) - III - IV - #Vm - VIm - VII(b5)",
-  tetrades: "I7M(#5) - #IIº7(bb3) - III7M - IV7M - #Vm(b7) - VIm(7M) - VII7(b5)",
+  tetrades: "I7M(#5) - #IIº(bb3, b7) - III7M - IV7M - #Vm(b7) - VIm(7M) - VII7(b5)",
   notas: (
     [*C*],
     [C - D\# - E - F - G\# - A - B],
@@ -1525,7 +1731,7 @@
   intervalos: "T - b2 - bb3 - 4 - b5 - b6 - b7",
   distancias: "ST - ST - 1,5T - ST - T - ST - 1,5T",
   triades: "Iº(bb3) - bII - bbIII - IVm - bVm - bVI(b5) - bbVII+",
-  tetrades: "Iº7(bb3) - bII7M - bbIII7M - IVm(b7) - bVm(7M) - bVI7(b5) - bbVII7M(#5)",
+  tetrades: "Iº(bb3, b7) - bII7M - bbIII7M - IVm(b7) - bVm(7M) - bVI7(b5) - bbVII7M(#5)",
   notas: (
     [*C*],
     [C - Db - Ebb - F - Gb - Ab - Bbb],
@@ -1552,6 +1758,14 @@
     [*B*],
     [B - C - Db - E - F - G - Ab],
   ),
+)
+
+// ==========================================
+// ESCALA NAPOLITANA MAIOR
+// ==========================================
+#separador-escala(
+  nome: "Modos da Escala Napolitana Maior",
+  descricao: "Diferencia-se por possuir a segunda menor (b2), trazendo uma cor escura e melancólica, combinada com a resolução luminosa da sétima maior.",
 )
 
 #render-modo(
@@ -1733,7 +1947,7 @@
   nome: "Eólio b4",
   subtitulo: "VIø da escala Napolitana Maior",
   intervalos: "T - 2 - b3 - b4 - b5 - b6 - 7",
-  distancias: "T - ST - ST - T - T - T - ST",
+  distancias: "T - ST - ST - T - T - T - T",
   triades: "Iº - IIº(bb3) - bIIIm - bIV+ - bV+ - bVI - bVII(b5)",
   tetrades: "Iø - IIø(bb3) - bIIIm(7M) - bIV7M(#5) - bV7(#5) - bVI7 - bVII7(b5)",
   notas: (
@@ -1768,7 +1982,7 @@
   nome: "Super Lócrio bb3",
   subtitulo: "VIIø(bb3) da escala Napolitana Maior",
   intervalos: "T - b2 - bb3 - b4 - b5 - b6 - 7",
-  distancias: "ST - ST - T - T - T - ST - T",
+  distancias: "ST - ST - T - T - T - T - T",
   triades: "Iº(bb3) - bIIm - bbIII+ - bIV+ - bV - bVI(b5) - bVIIº",
   tetrades: "Iø(bb3) - bIIm(7M) - bbIII7M(#5) - bIV7(#5) - bV7 - bVI7(b5) - bVIIø",
   notas: (
@@ -1797,7 +2011,14 @@
     [*B*],
     [B - C - Db - Eb - F - G - A],
   ),
-  ultimo: true,
+)
+
+// ==========================================
+// ESCALA NAPOLITANA MENOR
+// ==========================================
+#separador-escala(
+  nome: "Modos da Escala Napolitana Menor",
+  descricao: "Semelhante à Napolitana Maior, mas com a sexta menor (b6), aproximando-a fortemente das escalas ciganas e da música tradicional do Oriente Médio.",
 )
 
 #render-modo(
@@ -1806,7 +2027,7 @@
   intervalos: "T - b2 - b3 - 4 - 5 - b6 - 7M",
   distancias: "ST - T - T - T - ST - 1,5T - ST",
   triades: "Im - bII - bIII+ - IVm - V(b5) - bVI - VIIº(bb3)",
-  tetrades: "Im(7M) - bII7M - bIII7M(#5) - IVm7 - V7(b5) - bVI7M - VIIº7(bb3)",
+  tetrades: "Im(7M) - bII7M - bIII7M(#5) - IVm7 - V7(b5) - bVI7M - VIIº(bb3, b7)",
   notas: (
     [*C*],
     [C - Db - Eb - F - G - Ab - B],
@@ -1841,7 +2062,7 @@
   intervalos: "T - 2 - 3 - #4 - 5 - #6 - 7M",
   distancias: "T - T - T - ST - 1,5T - ST - ST",
   triades: "I - II+ - IIIm - #IV(b5) - V - #VIº(bb3) - VIIm",
-  tetrades: "I7M - II7(#5) - IIIm7 - #IV7(b5) - V7M - #VIº7(bb3) - VIIm(7M)",
+  tetrades: "I7M - II7(#5) - IIIm7 - #IV7(b5) - V7M - #VIº(bb3, b7) - VIIm(7M)",
   notas: (
     [*C*],
     [C - D - E - F\# - G - A\# - B],
@@ -1876,7 +2097,7 @@
   intervalos: "T - 2 - 3 - 4 - #5 - 6 - 7",
   distancias: "T - T - ST - 1,5T - ST - ST - T",
   triades: "I+ - IIm - III(b5) - IV - #Vº(bb3) - VIm - bVII",
-  tetrades: "I7(#5) - IIm7 - III7(b5) - IV7M - #Vº7(bb3) - VIm(7M) - bVII7M",
+  tetrades: "I7(#5) - IIm7 - III7(b5) - IV7M - #Vº(bb3, b7) - VIm(7M) - bVII7M",
   notas: (
     [*C*],
     [C - D - E - F - G\# - A - Bb],
@@ -1911,7 +2132,7 @@
   intervalos: "T - 2 - b3 - #4 - 5 - b6 - 7",
   distancias: "T - ST - 1,5T - ST - ST - T - T",
   triades: "Im - II(b5) - bIII - #IVº(bb3) - Vm - bVI - bVII+",
-  tetrades: "Im7 - II7(b5) - bIII7M - #IVº7(bb3) - Vm(7M) - bVI7M - bVII7(#5)",
+  tetrades: "Im7 - II7(b5) - bIII7M - #IVº(bb3, b7) - Vm(7M) - bVI7M - bVII7(#5)",
   notas: (
     [*C*],
     [C - D - Eb - F\# - G - Ab - Bb],
@@ -1946,7 +2167,7 @@
   intervalos: "T - b2 - 3 - 4 - b5 - b6 - 7",
   distancias: "ST - 1,5T - ST - ST - T - T - T",
   triades: "I(b5) - bII - IIIº(bb3) - IVm - bV - bVI+ - bVIIm",
-  tetrades: "I7(b5) - bII7M - IIIº7(bb3) - IVm(7M) - bV7M - bVI7(#5) - bVIIm7",
+  tetrades: "I7(b5) - bII7M - IIIº(bb3, b7) - IVm(7M) - bV7M - bVI7(#5) - bVIIm7",
   notas: (
     [*C*],
     [C - Db - E - F - Gb - Ab - Bb],
@@ -1981,7 +2202,7 @@
   intervalos: "T - #2 - 3 - 4 - 5 - 6 - 7M",
   distancias: "1,5T - ST - ST - T - T - T - ST",
   triades: "I - #IIº(bb3) - IIIm - IV - V+ - VIm - VII(b5)",
-  tetrades: "I7M - #IIº7(bb3) - IIIm(7M) - IV7M - V7(#5) - VIm7 - VII7(b5)",
+  tetrades: "I7M - #IIº(bb3, b7) - IIIm(7M) - IV7M - V7(#5) - VIm7 - VII7(b5)",
   notas: (
     [*C*],
     [C - D\# - E - F - G - A - B],
@@ -2016,7 +2237,7 @@
   intervalos: "T - b2 - bb3 - b4 - b5 - b6 - b7",
   distancias: "ST - ST - T - T - T - ST - 1,5T",
   triades: "Iº(bb3) - bIIm - bbIII - bIV+ - bVm - bVI(b5) - bbVII",
-  tetrades: "Iº7(bb3) - bIIm(7M) - bbIII7M - bIV7(#5) - bVm7 - bVI7(b5) - bbVII7M",
+  tetrades: "Iº(bb3, b7) - bIIm(7M) - bbIII7M - bIV7(#5) - bVm7 - bVI7(b5) - bbVII7M",
   notas: (
     [*C*],
     [C - Db - Ebb - Fb - Gb - Ab - Bbb],
@@ -2045,13 +2266,21 @@
   ),
 )
 
+// ==========================================
+// ESCALA MAIOR HÚNGARA
+// ==========================================
+#separador-escala(
+  nome: "Modos da Escala Maior Húngara",
+  descricao: "Famosa por seu uso nas músicas folclóricas do leste europeu. A combinação de terça maior, quarta aumentada e sexta menor gera uma sonoridade bastante exótica.",
+)
+
 #render-modo(
   nome: "Maior Húngara",
   subtitulo: "I7 da escala Maior Húngara",
   intervalos: "T - #2 - 3 - #4 - 5 - 6 - 7",
   distancias: "1,5T - ST - T - ST - T - ST - T",
-  triades: "I - #IIº(bb3) - IIIº - #IVº - Vm(#5) - VIm - bVII(##3, #5)",
-  tetrades: "I7 - #IIº7(bb3) - IIIº(7M) - #IVø - Vm(7M, #5) - VIm7 - bVII7(##3, #5)",
+  triades: "I - #IIº - IIIº - #IVº - Vm(#5) - VIm - bVII(##3, #5)",
+  tetrades: "I7 - #IIº(b7) - IIIº(7M) - #IVø - Vm(7M, #5) - VIm7 - bVII7M(##3, #5)",
   notas: (
     [*C*],
     [C - D\# - E - F\# - G - A - Bb],
@@ -2082,11 +2311,11 @@
 
 #render-modo(
   nome: "2 Maior Húngara",
-  subtitulo: "#IIm7(b5) da escala Maior Húngara",
+  subtitulo: "#IIº(b7) da escala Maior Húngara",
   intervalos: "T - b2 - b3 - b4 - b5 - bb6 - bb7",
   distancias: "ST - T - ST - T - ST - T - 1,5T",
-  triades: "Im - bIIº - bIIIº - bIVm(#5) - bVm - bbVI(##3, #5) - bbVII",
-  tetrades: "Im(b7) - bIIø - bIIIº(7M) - bIVm(7M, #5) - bVm7 - bbVI7(##3, #5) - bbVII7",
+  triades: "Iº - bIIº - bIIIº - bIVm(#5) - bVm - bbVI(##3, #5) - bbVII",
+  tetrades: "Iº(b7) - bIIº(7M) - bIIIø - bIVm(7M, #5) - bVm7 - bbVI7(##3, #5) - bbVII7",
   notas: (
     [*C*],
     [C - Db - Eb - Fb - Gb - Abb - Bbb],
@@ -2120,8 +2349,8 @@
   subtitulo: "IIIº(7M) da escala Maior Húngara",
   intervalos: "T - 2 - b3 - 4 - b5 - b6 - 7M",
   distancias: "T - ST - T - ST - T - 1,5T - ST",
-  triades: "Iº - IIº - IIIm(#5) - IVm - bV(##3, #5) - bVI - VII",
-  tetrades: "Iº(7M) - IIº7 - IIIm(7M, #5) - IVm7 - bV7(##3, #5) - bVI7 - VII7M",
+  triades: "Iº - IIº - bIIIm(#5) - IVm - bV(##3, #5) - bVI - VIIº",
+  tetrades: "Iº(7M) - IIø - bIIIm(7M, #5) - IVm7 - bV7(##3, #5) - bVI7 - VIIº(b7)",
   notas: (
     [*C*],
     [C - D - Eb - F - Gb - Ab - B],
@@ -2152,11 +2381,11 @@
 
 #render-modo(
   nome: "4 Maior Húngara",
-  subtitulo: "#IVm7(b5) da escala Maior Húngara",
+  subtitulo: "#IVø da escala Maior Húngara",
   intervalos: "T - b2 - b3 - bb4 - b5 - 6 - 7",
   distancias: "ST - T - ST - T - 1,5T - ST - T",
-  triades: "Iº - IIm(#5) - bIIIm - bIV(##3, #5) - bV - VI - bVIIº",
-  tetrades: "Iø - IIm(7M, #5) - bIIIm7 - bIV7(##3, #5) - bV7 - VI7 - bVIIø",
+  triades: "Iº - bIIm(#5) - bIIIm - bbIV(##3, #5) - bV - VIº - bVIIº",
+  tetrades: "Iø - bIIm(7M, #5) - bIIIm7 - bbIV7(##3, #5) - bV7 - VIº(b7) - bVIIº(7M)",
   notas: (
     [*C*],
     [C - Db - Eb - Fb - Gb - A - Bb],
@@ -2190,13 +2419,13 @@
   subtitulo: "Vm(7M, #5) da escala Maior Húngara",
   intervalos: "T - 2 - b3 - 4 - #5 - 6 - 7M",
   distancias: "T - ST - T - 1,5T - ST - T - ST",
-  triades: "Im(#5) - IIm - bIII(##3, #5) - IV - V - VIº - VIIº",
-  tetrades: "Im(7M, #5) - IIm7 - bIII7(##3, #5) - IV7 - V7 - VIø - VIIº(7M)",
+  triades: "Im(#5) - IIm - bIII(##3, #5) - IV - #Vº - VIº - VIIº",
+  tetrades: "Im(7M, #5) - IIm7 - bIII7M(##3, #5) - IV7 - #Vº(b7) - VIº(7M) - VIIø",
   notas: (
     [*C*],
     [C - D - Eb - F - G\# - A - B],
     [*C\#*],
-    [C\# - D\# - E - F\# - A - A\# - B\#],
+    [C\# - D\# - E - F\# - G\#\# - A\# - B\#],
     [*D*],
     [D - E - F - G - A\# - B - C\#],
     [*Eb*],
@@ -2206,7 +2435,7 @@
     [*F*],
     [F - G - Ab - Bb - C\# - D - E],
     [*F\#*],
-    [F\# - G\# - A - B - D - D\# - E\#],
+    [F\# - G\# - A - B - C\#\# - D\# - E\#],
     [*G*],
     [G - A - Bb - C - D\# - E - F\#],
     [*Ab*],
@@ -2224,9 +2453,9 @@
   nome: "6 Maior Húngara",
   subtitulo: "VIm7 da escala Maior Húngara",
   intervalos: "T - b2 - b3 - #4 - 5 - 6 - 7",
-  distancias: "ST - T - 1,5T - ST - T - T - ST",
-  triades: "Im - bII(##3, #5) - bIII - #IV - Vº - VIº - bVIIm(#5)",
-  tetrades: "Im7 - bII7(##3, #5) - bIII7M - #IV7 - Vø - VIº(7M) - bVIIm(7M, #5)",
+  distancias: "ST - T - 1,5T - ST - T - ST - T",
+  triades: "Im - bII(##3, #5) - bIII - #IVº - Vº - VIº - bVIIm(#5)",
+  tetrades: "Im7 - bII7M(##3, #5) - bIII7M - #IVº(b7) - Vº(7M) - VIø - bVIIm(7M, #5)",
   notas: (
     [*C*],
     [C - Db - Eb - F\# - G - A - Bb],
@@ -2259,9 +2488,9 @@
   nome: "7 Maior Húngara",
   subtitulo: "bVII7(##3, #5) da escala Maior Húngara",
   intervalos: "T - 2 - #3 - #4 - #5 - 6 - 7M",
-  distancias: "T - 1,5T - ST - T - T - ST - T",
-  triades: "I(##3, #5) - II - III - #IVº - Vº - VIm(#5) - VIIm",
-  tetrades: "I7M(##3, #5) - II7 - III7 - #IVø - Vº(7M) - VIm(7M, #5) - VIIm7",
+  distancias: "T - 1,5T - ST - T - ST - T - ST",
+  triades: "I(##3, #5) - II - #IIIº - #IVº - #Vº - VIm(#5) - VIIm",
+  tetrades: "I7M(##3, #5) - II7 - #IIIº(b7) - #IVº(7M) - #Vø - VIm(7M, #5) - VIIm7",
   notas: (
     [*C*],
     [C - D - E\# - F\# - G\# - A - B],
@@ -2290,13 +2519,21 @@
   ),
 )
 
+// ==========================================
+// ESCALA PERSA
+// ==========================================
+#separador-escala(
+  nome: "Modos da Escala Persa",
+  descricao: "Uma escala muito exótica caracterizada pela intensa sucessão cromática e por intervalos bem inusitados, muito presente na música do Oriente Médio.",
+)
+
 #render-modo(
   nome: "Persa",
   subtitulo: "I7M(b5) da escala Persa",
   intervalos: "T - b2 - 3 - 4 - b5 - b6 - 7M",
   distancias: "ST - 1,5T - ST - ST - T - 1,5T - ST",
   triades: "I(b5) - bII - III(bb3) - IVm - bV(##3) - bVI+ - VIIº(bb3)",
-  tetrades: "I7M(b5) - bII7M - III7M(bb3) - IVm(7M) - bV7M(##3) - bVI7M(#5) - VIIº7(bb3)",
+  tetrades: "I7M(b5) - bII7M - III(bb3, b7) - IVm(7M) - bV7M(##3) - bVI7(#5) - VIIº(b7)",
   notas: (
     [*C*],
     [C - Db - E - F - Gb - Ab - B],
@@ -2328,45 +2565,45 @@
 #render-modo(
   nome: "2 Persa",
   subtitulo: "bII7M da escala Persa",
-  intervalos: "T - #2 - 3 - 4 - 5 - 6 - 7M",
+  intervalos: "T - #2 - 3 - 4 - 5 - #6 - 7M",
   distancias: "1,5T - ST - ST - T - 1,5T - ST - ST",
   triades: "I - II(bb3) - IIIm - IV(##3) - V+ - #VIº(bb3) - VII(b5)",
-  tetrades: "I7M - II7M(bb3) - IIIm(7M) - IV7M(##3) - V7M(#5) - #VIº7(bb3) - VII7M(b5)",
+  tetrades: "I7M - II7M(bb3) - IIIm(7M) - IV7M(##3) - V7M(#5) - #VIº(bb3, b7) - VII7M(b5)",
   notas: (
     [*C*],
-    [C - D\# - E - F - G - A - B],
+    [C - D\# - E - F - G - A\# - B],
     [*Db*],
-    [Db - E - F - Gb - Ab - Bb - C],
+    [Db - E - F - Gb - Ab - B - C],
     [*D*],
-    [D - E\# - F\# - G - A - B - C\#],
+    [D - E\# - F\# - G - A - B\# - C\#],
     [*Eb*],
-    [Eb - F\# - G - Ab - Bb - C - D],
+    [Eb - F\# - G - Ab - Bb - C\# - D],
     [*E*],
-    [E - F\#\# - G\# - A - B - C\# - D\#],
+    [E - F\#\# - G\# - A - B - C\#\# - D\#],
     [*F*],
-    [F - G\# - A - Bb - C - D - E],
+    [F - G\# - A - Bb - C - D\# - E],
     [*F\#*],
-    [F\# - G\#\# - A\# - B - C\# - D\# - E\#],
+    [F\# - G\#\# - A\# - B - C\# - D\#\# - E\#],
     [*G*],
-    [G - A\# - B - C - D - E - F\#],
+    [G - A\# - B - C - D - E\# - F\#],
     [*Ab*],
-    [Ab - B - C - Db - Eb - F - G],
+    [Ab - B - C - Db - Eb - F\# - G],
     [*A*],
-    [A - B\# - C\# - D - E - F\# - G\#],
+    [A - B\# - C\# - D - E - F\#\# - G\#],
     [*Bb*],
-    [Bb - C\# - D - Eb - F - G - A],
+    [Bb - C\# - D - Eb - F - G\# - A],
     [*B*],
-    [B - C\#\# - D\# - E - F\# - G\# - A\#],
+    [B - C\#\# - D\# - E - F\# - G\#\# - A\#],
   ),
 )
 
 #render-modo(
   nome: "3 Persa",
-  subtitulo: "III7M(bb3) da escala Persa",
+  subtitulo: "III(bb3, b7) da escala Persa",
   intervalos: "T - b2 - bb3 - b4 - 5 - b6 - bb7",
   distancias: "ST - ST - T - 1,5T - ST - ST - 1,5T",
   triades: "I(bb3) - bIIm - bIII(##3) - bIV+ - Vº(bb3) - bVI(b5) - bbVII",
-  tetrades: "I7M(bb3) - bIIm(7M) - bIII7M(##3) - bIV7M(#5) - Vº7(bb3) - bVI7M(b5) - bbVII7",
+  tetrades: "I(bb3, b7) - bIIm(7M) - bIII7M(##3) - bIV7(#5) - Vº(b7) - bVI7M(b5) - bbVII7M",
   notas: (
     [*C*],
     [C - Db - Ebb - Fb - G - Ab - Bbb],
@@ -2401,7 +2638,7 @@
   intervalos: "T - b2 - b3 - #4 - 5 - b6 - 7M",
   distancias: "ST - T - 1,5T - ST - ST - 1,5T - ST",
   triades: "Im - bII(##3) - bIII+ - #IVº(bb3) - V(b5) - bVI - VII(bb3)",
-  tetrades: "Im(7M) - bII7M(##3) - bIII7M(#5) - #IVº7(bb3) - V7M(b5) - bVI7M - VII7M(bb3)",
+  tetrades: "Im(7M) - bII7M(##3) - bIII7(#5) - #IVº(b7) - V7M(b5) - bVI7M - VII(bb3, b7)",
   notas: (
     [*C*],
     [C - Db - Eb - F\# - G - Ab - B],
@@ -2433,45 +2670,45 @@
 #render-modo(
   nome: "5 Persa",
   subtitulo: "bV7M(##3) da escala Persa",
-  intervalos: "T - 2 - #3 - #4 - 5 - b7 - 7M",
+  intervalos: "T - 2 - #3 - #4 - 5 - #6 - 7M",
   distancias: "T - 1,5T - ST - ST - 1,5T - ST - ST",
-  triades: "I(##3) - II+ - IIIº(bb3) - #IV(b5) - V - bVIIm(bb7) - VII",
-  tetrades: "I7M(##3) - II7M(#5) - IIIº7(bb3) - #IV7(b5) - V7 - bVIIm(b7) - VII7M",
+  triades: "I(##3) - II+ - IIIº(bb3) - #IV(b5) - V - bVII(bb3) - VIIm",
+  tetrades: "I7M(##3) - II7(#5) - IIIº(b7) - #IV7(b5) - V7 - bVII(bb3, b7) - VIIm(7M)",
   notas: (
     [*C*],
-    [C - D - E\# - F\# - G - Bb - B],
+    [C - D - E\# - F\# - G - A\# - B],
     [*Db*],
-    [Db - Eb - F\# - G - Ab - Cb - C],
+    [Db - Eb - F\# - G - Ab - B - C],
     [*D*],
-    [D - E - F\#\# - G\# - A - C - C\#],
+    [D - E - F\#\# - G\# - A - B\# - C\#],
     [*Eb*],
-    [Eb - F - G\# - A - Bb - Db - D],
+    [Eb - F - G\# - A - Bb - C\# - D],
     [*E*],
-    [E - F\# - G\#\# - A\# - B - D - D\#],
+    [E - F\# - G\#\# - A\# - B - C\#\# - D\#],
     [*F*],
-    [F - G - A\# - B - C - Eb - E],
+    [F - G - A\# - B - C - D\# - E],
     [*F\#*],
-    [F\# - G\# - A\#\# - B\# - C\# - E - E\#],
+    [F\# - G\# - A\#\# - B\# - C\# - D\#\# - E\#],
     [*G*],
-    [G - A - B\# - C\# - D - F - F\#],
+    [G - A - B\# - C\# - D - E\# - F\#],
     [*Ab*],
-    [Ab - Bb - C\# - D - Eb - Gb - G],
+    [Ab - Bb - C\# - D - Eb - F\# - G],
     [*A*],
-    [A - B - C\#\# - D\# - E - G - G\#],
+    [A - B - C\#\# - D\# - E - F\#\# - G\#],
     [*Bb*],
-    [Bb - C - D\# - E - F - Ab - A],
+    [Bb - C - D\# - E - F - G\# - A],
     [*B*],
-    [B - C\# - D\#\# - E\# - F\# - A - A\#],
+    [B - C\# - D\#\# - E\# - F\# - G\#\# - A\#],
   ),
 )
 
 #render-modo(
   nome: "6 Persa",
-  subtitulo: "bVI7M(#5) da escala Persa",
+  subtitulo: "bVI7(#5) da escala Persa",
   intervalos: "T - #2 - 3 - 4 - #5 - 6 - 7",
   distancias: "1,5T - ST - ST - 1,5T - ST - ST - T",
-  triades: "I+ - #IIº(bb3) - III(b5) - IV - #Vm - VIm(bb7) - bVII",
-  tetrades: "I7(#5) - #IIº7(bb3) - III7(b5) - IV7 - #Vm7 - VIm(b7) - bVII7",
+  triades: "I+ - #IIº(bb3) - III(b5) - IV - #Vm - VIm - bVII(##3)",
+  tetrades: "I7(#5) - #IIº(b7) - III7(b5) - IV7 - #Vm7 - VIm(7M) - bVII7M(##3)",
   notas: (
     [*C*],
     [C - D\# - E - F - G\# - A - Bb],
@@ -2505,8 +2742,8 @@
   subtitulo: "VIIº7(bb3) da escala Persa",
   intervalos: "T - b2 - bb3 - 4 - b5 - bb6 - bb7",
   distancias: "ST - ST - 1,5T - ST - ST - T - 1,5T",
-  triades: "Iº(bb3) - bIIm(b5) - bbIII - bIVm - bVm(bb7) - bbVI - bbVII+",
-  tetrades: "Iº7(bb3) - bIIm7(b5) - bbIII7 - bIVm7 - bVm(b7) - bbVI7 - bbVII7M(#5)",
+  triades: "Iº(bb3) - bIIm(b5) - bbIII - bIVm - bVm - bbVI - bbVII+",
+  tetrades: "Iº(b7) - bII7M(b5) - bbIII7M - bIV(bb3, b7) - bVm(7M) - bbVI7M(##3) - bbVII7(#5)",
   notas: (
     [*C*],
     [C - Db - Ebb - F - Gb - Abb - Bbb],
@@ -2535,13 +2772,21 @@
   ),
 )
 
+// ==========================================
+// ESCALA ENIGMÁTICA
+// ==========================================
+#separador-escala(
+  nome: "Modos da Escala Enigmática",
+  descricao: "Uma escala não convencional e muito ambígua, repleta de tensão melódica. Ficou historicamente famosa por ter sido utilizada pelo compositor erudito Giuseppe Verdi.",
+)
+
 #render-modo(
   nome: "Enigmática",
   subtitulo: "I+ da escala Enigmática",
   intervalos: "T - b2 - 3 - #4 - #5 - #6 - 7M",
   distancias: "ST - 1,5T - T - T - T - ST - ST",
-  triades: "I+ - bII(##3, #5) - III - #IV(b5) - #V(bb3) - #VIº(bb3) - VII",
-  tetrades: "I7M(#5) - bII7M(##3, #5) - III7M - #IV7(b5) - #V7(bb3) - #VIº7(bb3) - VII7M",
+  triades: "I+ - bII(#3, ##5) - III - #IV(b5) - #Vm(bb5) - #VIº(bb3) - VII(bb3)",
+  tetrades: "I7M(#5) - bII7M(#3, ##5) - III(b7) - #IV7(b5) - #Vm7(bb5) - #VIº(bb3, b7) - VII(bb3, 7M)",
   notas: (
     [*C*],
     [C - Db - E - F\# - G\# - A\# - B],
@@ -2573,45 +2818,45 @@
 #render-modo(
   nome: "2 Enigmática",
   subtitulo: "bII7M(##3, #5) da escala Enigmática",
-  intervalos: "T - #2 - 4 - 5 - 6 - 7 - 7M",
+  intervalos: "T - #2 - #3 - ##4 - ##5 - #6 - 7M",
   distancias: "1,5T - T - T - T - ST - ST - ST",
-  triades: "I(##3, #5) - #II - III(b5) - IV(bb3) - Vº(bb3) - VI - #VI",
-  tetrades: "I7M(##3, #5) - #II7M - III7(b5) - IV7(bb3) - Vº7(bb3) - VI7M - #VI7M",
+  triades: "I(#3, ##5) - #II - #III(b5) - ##IVm(bb5) - ##Vº(bb3) - #VI(bb3) - VII+",
+  tetrades: "I7M(#3, ##5) - #II(b7) - #III7(b5) - ##IVm7(bb5) - ##Vº(bb3, b7) - #VI(bb3, 7M) - VII7M(#5)",
   notas: (
     [*C*],
-    [C - D\# - F - G - A - Bb - B],
+    [C - D\# - E\# - F\#\# - G\#\# - A\# - B],
     [*Db*],
-    [Db - E - Gb - Ab - Bb - Cb - C],
+    [Db - E - F\# - G\# - A\# - B - C],
     [*D*],
-    [D - E\# - G - A - B - C - C\#],
+    [D - E\# - F\#\# - G\#\# - A\#\# - B\# - C\#],
     [*Eb*],
-    [Eb - F\# - Ab - Bb - C - Db - D],
+    [Eb - F\# - G\# - A\# - B\# - C\# - D],
     [*E*],
-    [E - F\#\# - A - B - C\# - D - D\#],
+    [E - F\#\# - G\#\# - A\#\# - B\#\# - C\#\# - D\#],
     [*F*],
-    [F - G\# - Bb - C - D - Eb - E],
+    [F - G\# - A\# - B\# - C\#\# - D\# - E],
     [*F\#*],
-    [F\# - G\#\# - B - C\# - D\# - E - E\#],
+    [F\# - G\#\# - A\#\# - B\#\# - C\#\#\# - D\#\# - E\#],
     [*G*],
-    [G - A\# - C - D - E - F - F\#],
+    [G - A\# - B\# - C\#\# - D\#\# - E\# - F\#],
     [*Ab*],
-    [Ab - B - Db - Eb - F - Gb - G],
+    [Ab - B - C\# - D\# - E\# - F\# - G],
     [*A*],
-    [A - B\# - D - E - F\# - G - G\#],
+    [A - B\# - C\#\# - D\#\# - E\#\# - F\#\# - G\#],
     [*Bb*],
-    [Bb - C\# - Eb - F - G - Ab - A],
+    [Bb - C\# - D\# - E\# - F\#\# - G\# - A],
     [*B*],
-    [B - C\#\# - E - F\# - G\# - A - A\#],
+    [B - C\#\# - D\#\# - E\#\# - F\#\#\# - G\#\# - A\#],
   ),
 )
 
 #render-modo(
   nome: "3 Enigmática",
-  subtitulo: "III7M da escala Enigmática",
+  subtitulo: "III(b7) da escala Enigmática",
   intervalos: "T - 2 - 3 - #4 - 5 - b6 - bb7",
   distancias: "T - T - T - ST - ST - ST - 1,5T",
-  triades: "I - II(b5) - III(bb3) - #IVº(bb3) - V - bVI - bVII(##3, #5)",
-  tetrades: "I7 - II7(b5) - III7(bb3) - #IVº7(bb3) - V7M - bVI7M - bVII7M(##3, #5)",
+  triades: "I - II(b5) - IIIm(bb5) - #IVº(bb3) - V(bb3) - bVI+ - bbVII(#3, ##5)",
+  tetrades: "I(b7) - II7(b5) - IIIm7(bb5) - #IVº(bb3, b7) - V(bb3, 7M) - bVI7M(#5) - bbVII7M(#3, ##5)",
   notas: (
     [*C*],
     [C - D - E - F\# - G - Ab - Bbb],
@@ -2645,13 +2890,13 @@
   subtitulo: "#IV7(b5) da escala Enigmática",
   intervalos: "T - 2 - 3 - 4 - b5 - bb6 - b7",
   distancias: "T - T - ST - ST - ST - 1,5T - T",
-  triades: "I(b5) - II(bb3) - IIIº(bb3) - IV - bV - bVI(##3, #5) - bVII",
-  tetrades: "I7(b5) - II7(bb3) - IIIº7(bb3) - IV7M - bV7M - bVI7M(##3, #5) - bVII7",
+  triades: "I(b5) - IIm(bb5) - IIIº(bb3) - IV(bb3) - bV+ - bbVI(#3, ##5) - bVII",
+  tetrades: "I7(b5) - IIm7(bb5) - IIIº(bb3, b7) - IV(bb3, 7M) - bV7M(#5) - bbVI7M(#3, ##5) - bVII(b7)",
   notas: (
     [*C*],
     [C - D - E - F - Gb - Abb - Bb],
     [*Db*],
-    [Db - Eb - F - Gb - Abb - Bbb - Cb],
+    [Db - Eb - F - Gb - Abb - Bbbb - Cb],
     [*D*],
     [D - E - F\# - G - Ab - Bbb - C],
     [*Eb*],
@@ -2677,30 +2922,30 @@
 
 #render-modo(
   nome: "5 Enigmática",
-  subtitulo: "#V7(bb3) da escala Enigmática",
+  subtitulo: "#Vm7(bb5) da escala Enigmática",
   intervalos: "T - 2 - b3 - b4 - bb5 - b6 - b7",
   distancias: "T - ST - ST - ST - 1,5T - T - T",
-  triades: "I(bb3) - IIm(bb5) - bIII - bIV - bV(##3, #5) - bVI - bVII(b5)",
-  tetrades: "I7(bb3) - IIm7(bb5) - bIII7M - bIV7M - bV7M(##3, #5) - bVI7 - bVII7(b5)",
+  triades: "Im(bb5) - IIº(bb3) - bIII(bb3) - bIV+ - bbV(#3, ##5) - bVI - bVII(b5)",
+  tetrades: "Im7(bb5) - IIº(bb3, b7) - bIII(bb3, 7M) - bIV7M(#5) - bbV7M(#3, ##5) - bVI(b7) - bVII7(b5)",
   notas: (
     [*C*],
     [C - D - Eb - Fb - Gbb - Ab - Bb],
     [*C\#*],
-    [C\# - D\# - E - F - G - A - B],
+    [C\# - D\# - E - F - Gb - A - B],
     [*D*],
     [D - E - F - Gb - Abb - Bb - C],
     [*Eb*],
-    [Eb - F - Gb - Abb - Bbb - Cb - Db],
+    [Eb - F - Gb - Abb - Bbbb - Cb - Db],
     [*E*],
     [E - F\# - G - Ab - Bbb - C - D],
     [*F*],
     [F - G - Ab - Bbb - Cbb - Db - Eb],
     [*F\#*],
-    [F\# - G\# - A - Bb - C - D - E],
+    [F\# - G\# - A - Bb - Cb - D - E],
     [*G*],
     [G - A - Bb - Cb - Dbb - Eb - F],
     [*G\#*],
-    [G\# - A\# - B - C - D - E - F\#],
+    [G\# - A\# - B - C - Db - E - F\#],
     [*A*],
     [A - B - C - Db - Ebb - F - G],
     [*Bb*],
@@ -2712,11 +2957,11 @@
 
 #render-modo(
   nome: "6 Enigmática",
-  subtitulo: "#VIº7(bb3) da escala Enigmática",
+  subtitulo: "#VI(bb3, b5, 7) da escala Enigmática",
   intervalos: "T - b2 - bb3 - bb4 - b5 - b6 - b7",
   distancias: "ST - ST - ST - 1,5T - T - T - T",
-  triades: "Iº(bb3) - bII - bbIII - bbIV(##3, #5) - bV - bVIm - bbVII(b5)",
-  tetrades: "Iº7(bb3) - bII7M - bbIII7M - bbIV7M(##3, #5) - bV7 - bVIm7 - bbVII7(b5)",
+  triades: "Iº(bb3) - bII(bb3) - bbIII+ - bbIV(#3, ##5) - bV - bVI(b5) - bVIIm(bb5)",
+  tetrades: "Iº(bb3, b7) - bII(bb3, 7M) - bbIII7M(#5) - bbIV7M(#3, ##5) - bV(b7) - bVI7(b5) - bVIIm7(bb5)",
   notas: (
     [*C*],
     [C - Db - Ebb - Fbb - Gb - Ab - Bb],
@@ -2729,7 +2974,7 @@
     [*E*],
     [E - F - Gb - Abb - Bb - C - D],
     [*F*],
-    [F - Gb - Abb - Bbb - Cb - Db - Eb],
+    [F - Gb - Abb - Bbbb - Cb - Db - Eb],
     [*F\#*],
     [F\# - G - Ab - Bbb - C - D - E],
     [*G*],
@@ -2747,11 +2992,11 @@
 
 #render-modo(
   nome: "7 Enigmática",
-  subtitulo: "VII7M da escala Enigmática",
+  subtitulo: "VII(bb3, 7M) da escala Enigmática",
   intervalos: "T - b2 - bb3 - 4 - 5 - 6 - 7M",
   distancias: "ST - ST - 1,5T - T - T - T - ST",
-  triades: "I - bII - bbIII(##3, #5) - IV - Vm - VI(b5) - bVII(bb3)",
-  tetrades: "I7M - bII7M - bbIII7M(##3, #5) - IV7 - Vm7 - VI7(b5) - bVII7(bb3)",
+  triades: "I(bb3) - bII+ - bbIII(#3, ##5) - IV - V(b5) - VIm(bb5) - VIIº(bb3)",
+  tetrades: "I(bb3, 7M) - bII7M(#5) - bbIII7M(#3, ##5) - IV(b7) - V7(b5) - VIm7(bb5) - VIIº(bb3, b7)",
   notas: (
     [*C*],
     [C - Db - Ebb - F - G - A - B],
@@ -2780,3 +3025,19 @@
   ),
   ultimo: true,
 )
+
+// ==========================================
+// DIREITOS AUTORAIS
+// ==========================================
+#v(1fr)
+#align(center + bottom)[
+  #text(size: 10pt, fill: color-muted)[
+    *© 2026 Allan Somensi. Todos os direitos reservados.* \
+    Este material é protegido por leis de direitos autorais. A reprodução, distribuição,
+    compartilhamento ou venda deste conteúdo, no todo ou em parte, sem autorização
+    expressa do autor é estritamente proibida e sujeita às sanções legais cabíveis. \
+
+    #v(0.5em)
+    *Edição exclusiva para fins educacionais e de referência técnica.*
+  ]
+]
