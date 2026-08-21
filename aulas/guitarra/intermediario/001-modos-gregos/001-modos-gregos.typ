@@ -15,14 +15,18 @@ Os *modos gregos* são 7 escalas derivadas da escala maior. Cada modo começa em
 #align(center)[
   #diagram(
     spacing: (18mm, 18mm),
-    node((0, 0), [Escala Maior], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: color-subtle-bg),
-    node((1, -1.5), [I — *Jônico*], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: color-brand-soft),
-    node((1, -0.9), [II — *Dórico*], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: color-accent-soft),
-    node((1, -0.3), [III — *Frígio*], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: rgb("#fef9c3")),
-    node((1, 0.3), [IV — *Lídio*], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: rgb("#ede9fe")),
-    node((1, 0.9), [V — *Mixolídio*], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: rgb("#ffe4e6")),
-    node((1, 1.5), [VI — *Eólio*], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: color-subtle-bg),
-    node((1, 2.1), [VII — *Lócrio*], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: color-subtle-bg),
+    node-stroke: 0.5pt + color-rule-dark,
+    node-shape: rect,
+
+    node((0, 0), [Escala Maior], fill: color-subtle-bg),
+    node((1, -1.5), [I — *Jônico*], fill: white),
+    node((1, -0.9), [II — *Dórico*], fill: white),
+    node((1, -0.3), [III — *Frígio*], fill: white),
+    node((1, 0.3), [IV — *Lídio*], fill: white),
+    node((1, 0.9), [V — *Mixolídio*], fill: white),
+    node((1, 1.5), [VI — *Eólio*], fill: white),
+    node((1, 2.1), [VII — *Lócrio*], fill: white),
+
     edge((0, 0), (1, -1.5), "->"),
     edge((0, 0), (1, -0.9), "->"),
     edge((0, 0), (1, -0.3), "->"),
@@ -46,15 +50,7 @@ Todos derivados de C Maior (C D E F G A B), cada modo começando em uma nota dif
     columns: (0.4fr, 1fr, 1.2fr, 1fr, 0.7fr, 1.8fr),
     align: center + horizon,
     stroke: 0.5pt + color-rule-dark,
-    fill: (col, row) => {
-      if row == 0 { color-subtle-bg } else if row == 1 { color-brand-soft } else if row == 2 {
-        color-accent-soft
-      } else if (
-        row == 3
-      ) { rgb("#fef9c3") } else if row == 4 { rgb("#ede9fe") } else if row == 5 { rgb("#ffe4e6") } else if row == 6 {
-        luma(245)
-      } else { luma(250) }
-    },
+    fill: (col, row) => if row == 0 { color-subtle-bg } else if calc.odd(row) { white } else { luma(245) },
     [*Grau*], [*Modo*], [*Notas (em C)*], [*Fórmula*], [*Tipo*], [*Caráter*],
     [I], [Jônico], [C D E F G A B], [T T ½ T T T ½], [Maior], [Alegre, brilhante],
     [II], [Dórico], [D E F G A B C], [T ½ T T T ½ T], [Menor], [Jazz-funk, suave],
@@ -80,8 +76,8 @@ O Dórico é um modo menor com a *6ª maior* (não bemolizada). Isso o torna mai
   columns: (1fr, 1fr),
   gutter: 1.5em,
   block(
-    fill: rgb("#f0fdf4"),
-    stroke: 0.6pt + rgb("#86efac"),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     [
@@ -95,8 +91,8 @@ O Dórico é um modo menor com a *6ª maior* (não bemolizada). Isso o torna mai
     ],
   ),
   block(
-    fill: rgb("#f0fdf4"),
-    stroke: 0.6pt + rgb("#86efac"),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     [
@@ -119,8 +115,8 @@ O Frígio começa com um *semitom* (b2), dando-lhe um caráter espanhol, árabe 
   columns: (1fr, 1fr),
   gutter: 1.5em,
   block(
-    fill: rgb("#fef9c3"),
-    stroke: 0.6pt + rgb("#eab308"),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     [
@@ -134,8 +130,8 @@ O Frígio começa com um *semitom* (b2), dando-lhe um caráter espanhol, árabe 
     ],
   ),
   block(
-    fill: rgb("#fef9c3"),
-    stroke: 0.6pt + rgb("#eab308"),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     [
@@ -158,8 +154,8 @@ O Mixolídio é idêntico ao modo maior, mas com a *7ª bemolizada* (b7). É o s
   columns: (1fr, 1fr),
   gutter: 1.5em,
   block(
-    fill: rgb("#ffe4e6"),
-    stroke: 0.6pt + rgb("#f43f5e"),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     [
@@ -173,8 +169,8 @@ O Mixolídio é idêntico ao modo maior, mas com a *7ª bemolizada* (b7). É o s
     ],
   ),
   block(
-    fill: rgb("#ffe4e6"),
-    stroke: 0.6pt + rgb("#f43f5e"),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     [
@@ -209,15 +205,6 @@ Há duas formas de enxergar modos. A forma *relativa* parte das notas de C Maior
 
 #v(1.5em)
 
-#align(center)[
-  #block(
-    fill: color-subtle-bg,
-    stroke: 0.5pt + color-rule-dark,
-    inset: 12pt,
-    radius: 5pt,
-    width: 85%,
-    [
-      *Dica prática:* Para improvisar em modo Dórico, *não* pense "vou tocar a escala de C Maior começando em D". Pense: *"estou em Am, mas uso a 6ª maior (F\#) quando quiser aquela cor jazzística"*. O pensamento paralelo conecta o modo diretamente ao acorde que você está tocando.
-    ],
-  )
+#caixa-destaque(width: 85%)[
+  *Dica prática:* Para improvisar em modo Dórico, *não* pense "vou tocar a escala de C Maior começando em D". Pense: *"estou em Am, mas uso a 6ª maior (F\#) quando quiser aquela cor jazzística"*. O pensamento paralelo conecta o modo diretamente ao acorde que você está tocando.
 ]

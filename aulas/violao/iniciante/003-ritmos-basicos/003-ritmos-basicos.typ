@@ -7,16 +7,17 @@
 
 #let sc(sym) = {
   let (bg, fg, label) = if sym == "D" {
-    (color-brand-soft, color-brand, "↓")
+    (color-subtle-bg, color-strong, "↓")
   } else if sym == "U" {
-    (color-accent-soft, rgb("#15803d"), "↑")
+    (white, color-strong, "↑")
   } else if sym == "X" {
-    (luma(215), luma(50), "✕")
+    (luma(220), color-strong, "✕")
   } else if sym == "d" {
-    (color-brand-soft, rgb("color-brand-soft"), "↓")
+    (color-subtle-bg, color-strong, "↓")
   } else {
     (white, color-rule-dark, "·")
   }
+
   box(
     width: 24pt,
     height: 26pt,
@@ -65,8 +66,8 @@ A mão direita no violão é responsável pelo *ritmo* — o que mais define o e
   columns: (1fr, 1fr, 1fr),
   gutter: 1em,
   block(
-    fill: color-brand-soft,
-    stroke: 0.6pt + color-brand-soft,
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 10pt,
     radius: 5pt,
     [
@@ -77,15 +78,15 @@ A mão direita no violão é responsável pelo *ritmo* — o que mais define o e
     ],
   ),
   block(
-    fill: color-accent-soft,
-    stroke: 0.6pt + rgb("#86efac"),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 10pt,
     radius: 5pt,
     [
       #align(center)[#text(weight: "bold")[↑ Batida para Cima]]
       #v(0.3em)
       #set text(size: 9pt)
-      A palheta passa *de baixo para cima* (da 1ª para a 6ª corda). Geralmente cai nos contratempos ("e" ou "&").
+      A palheta ataca as cordas *de baixo para cima* (da 1ª para a 6ª corda). Geralmente cai nos contratempos ("e" ou "&").
     ],
   ),
   block(
@@ -117,9 +118,9 @@ A mão direita no violão é responsável pelo *ritmo* — o que mais define o e
 
 == Batidas Essenciais
 
-=== Batida 1 — Down-Strokes (Iniciante absoluto)
+=== Batida 1 — Down-Strokes (Iniciante)
 
-Apenas batidas para baixo em cada tempo. É a base — aprenda a manter o tempo antes de qualquer coisa.
+Apenas batidas para baixo em cada tempo tempo forte.
 
 #v(0.8em)
 
@@ -141,7 +142,7 @@ A batida mais comum em músicas pop e rock. Tempos 1 e 3 mais fortes, contratemp
 
 === Batida 3 — Balada / Folk
 
-Suave e fluida. Bastante usada em músicas lentas e canciones acústicas.
+Suave e fluida. Bastante usada em músicas lentas.
 
 #v(0.8em)
 
@@ -150,20 +151,9 @@ Suave e fluida. Bastante usada em músicas lentas e canciones acústicas.
   #strum-row([Balada], ("D", " ", "D", "U", " ", "U", "D", "U"))
 ]
 
-=== Batida 4 — Samba/MPB
+=== Batida 4 — Reggae
 
-Ritmo binário (2/4 na prática), com o acento no contratempo. Base do samba e de muito MPB.
-
-#v(0.8em)
-
-#align(center)[
-  #beat-header(([1], [e], [2], [e], [3], [e], [4], [e]))
-  #strum-row([Samba / MPB], ("D", "X", "D", "U", "X", "U", "D", "U"))
-]
-
-=== Batida 5 — Reggae
-
-O reggae tem o acento no contratempo dos tempos 2 e 4 (o "offbeat"). As batidas são curtas e abafadas.
+O reggae tem o acento no contratempo dos tempos 2 e 4. As batidas são curtas e abafadas.
 
 #v(0.8em)
 
@@ -181,7 +171,7 @@ O reggae tem o acento no contratempo dos tempos 2 e 4 (o "offbeat"). As batidas 
       columns: 1,
       gutter: 0.8em,
       block(
-        fill: luma(245),
+        fill: color-subtle-bg,
         stroke: 0.5pt + color-rule-dark,
         inset: 10pt,
         radius: 4pt,
@@ -197,7 +187,7 @@ O reggae tem o acento no contratempo dos tempos 2 e 4 (o "offbeat"). As batidas 
     )
   ],
   [
-    O erro mais comum é *olhar para a mão direita* enquanto troca de acordes. Treine a troca de acorde sem batida primeiro — os dedos precisam saber onde ir sem precisar de sua atenção total.
+    O erro mais comum é *olhar para a mão direita* enquanto troca de acordes. Treine a troca de acorde sem batida primeiro, os dedos precisam saber onde ir sem precisar de sua atenção total.
 
     *A mão direita nunca para.* Mesmo que você não toque o acorde a tempo, mantenha o movimento da mão direita. É melhor errar o acorde do que errar o ritmo.
   ],
@@ -214,9 +204,7 @@ O reggae tem o acento no contratempo dos tempos 2 e 4 (o "offbeat"). As batidas 
     [*Estilo*], [*Batida Base*], [*Referência*],
     [Pop / Rock Acústico], [Batida 2], ["Wonderwall" - Oasis, músicas do Ed Sheeran],
     [Balada / Folk], [Batida 3], ["Blackbird" intro, músicas de João Gilberto],
-    [Samba / MPB], [Batida 4], [Tim Maia, Caetano Veloso, Djavan],
     [Reggae / Bob Marley], [Batida 5], ["No Woman No Cry", "Redemption Song"],
-    [Bossa Nova], [Dedilhado], [João Gilberto, Tom Jobim],
   )
 ]
 
@@ -224,8 +212,8 @@ O reggae tem o acento no contratempo dos tempos 2 e 4 (o "offbeat"). As batidas 
 
 #align(center)[
   #block(
-    fill: color-brand-soft,
-    stroke: 0.5pt + color-brand-soft,
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     width: 80%,

@@ -9,6 +9,9 @@
 
 #let chord = new-chordgen(number-to-left: true, use-shadow-barre: false, colors: (hold: black, barre: black))
 
+// Garantindo diagramas legíveis e em preto forte
+#show <chord>: set text(fill: color-strong, weight: "bold")
+
 = Tons Menores
 
 Até aqui estudamos a *Escala Maior* e seu campo harmônico. Agora vamos ao *modo menor natural* — o modo mais expressivo e melancólico da música ocidental, base do blues, flamenco, música clássica e boa parte do rock.
@@ -44,18 +47,9 @@ O modo menor natural é idêntico ao modo maior, mas começa do *6º grau* (o re
 
 #v(0.5em)
 
-#align(center)[
-  #block(
-    fill: color-subtle-bg,
-    stroke: 0.5pt + color-rule-dark,
-    inset: 10pt,
-    radius: 5pt,
-    width: 80%,
-    [
-      *Padrão do modo menor natural:* T – T – *½T* – T – T – *½T* – T
-      #h(1em) → #h(1em) T · 2 · b3 · 4 · 5 · b6 · b7
-    ],
-  )
+#caixa-destaque(width: 80%)[
+  *Padrão do modo menor natural:* T – T – *½T* – T – T – *½T* – T
+  #h(1em) → #h(1em) T · 2 · b3 · 4 · 5 · b6 · b7
 ]
 
 == Diferenças em Intervalos: Maior × Menor
@@ -93,7 +87,7 @@ O modo menor natural é idêntico ao modo maior, mas começa do *6º grau* (o re
 
 Empilhando terças sobre cada grau da escala de Lá Menor Natural:
 
-#v(0.8em)
+#v(0.5em)
 
 #align(center)[
   #table(
@@ -114,31 +108,19 @@ Empilhando terças sobre cada grau da escala de Lá Menor Natural:
   )
 ]
 
-#v(1em)
 
-#align(center)[
-  #block(
-    fill: color-subtle-bg,
-    stroke: 0.5pt + color-rule-dark,
-    inset: 10pt,
-    radius: 5pt,
-    width: 90%,
-    [
-      *Padrão do campo menor natural:* Im7 · IIø · IIIM7 · IVm7 · Vm7 · VIM7 · VII7 \
-      #v(0.3em)
-      #text(
-        size: 9pt,
-        fill: color-muted,
-      )[Repare: é o mesmo campo harmônico de Dó Maior, apenas começando do grau VI (Lá).]
-    ],
-  )
+#caixa-destaque(width: 90%)[
+  *Padrão do campo menor natural:* Im7 · IIø · IIIM7 · IVm7 · Vm7 · VIM7 · VII7 \
+  #v(0.3em)
+  #text(
+    size: 9pt,
+    fill: color-muted,
+  )[Repare: é o mesmo campo harmônico de Dó Maior, apenas começando do grau VI (Lá).]
 ]
-
-#v(1.5em)
 
 == Acordes Práticos em Am
 
-#v(1em)
+#v(0.2em)
 
 #align(center)[
   #grid(
@@ -183,45 +165,44 @@ Empilhando terças sobre cada grau da escala de Lá Menor Natural:
   )
 ]
 
-#v(2em)
-
 == Progressão Clássica em Tom Menor
 
 Uma das progressões mais comuns em Lá Menor, usada em centenas de músicas:
 
-#v(0.8em)
+#v(0.5em)
 
-#explainer-component(
-  align(center)[
-    #grid(
-      columns: 4,
-      gutter: 1em,
-      align: center,
-      block[
-        #box(chord("x,0,2,2,1,0", name: "Am"))
-        #v(0.2em)
-        #text(size: 8pt)[Am (I)]
-      ],
-      block[
-        #box(chord("1,3,3,2,1,1", name: "F"))
-        #v(0.2em)
-        #text(size: 8pt)[F (VI)]
-      ],
-      block[
-        #box(chord("x,3,2,0,1,0", name: "C"))
-        #v(0.2em)
-        #text(size: 8pt)[C (III)]
-      ],
-      block[
-        #box(chord("3,2,0,0,0,3", name: "G"))
-        #v(0.2em)
-        #text(size: 8pt)[G (VII)]
-      ],
-    )
-  ],
-  [
-    A progressão *I – VI – III – VII* (Am – F – C – G) é a base de inúmeras músicas: desde baladas pop até rock e música latina.
+#align(center)[
+  #grid(
+    columns: 4,
+    gutter: 2.5em,
+    align: center,
+    block[
+      #box(chord("x,0,2,2,1,0", name: "Am"))
+      #v(0.1em)
+      #text(size: 8.5pt, weight: "bold")[Am (I)]
+    ],
+    block[
+      #box(chord("1,3,3,2,1,1", name: "F"))
+      #v(0.1em)
+      #text(size: 8.5pt, weight: "bold")[F (VI)]
+    ],
+    block[
+      #box(chord("x,3,2,0,1,0", name: "C"))
+      #v(0.1em)
+      #text(size: 8.5pt, weight: "bold")[C (III)]
+    ],
+    block[
+      #box(chord("3,2,0,0,0,3", name: "G"))
+      #v(0.1em)
+      #text(size: 8.5pt, weight: "bold")[G (VII)]
+    ],
+  )
+]
 
-    Em termos de funções: Tônica – Relativo Maior da Sub. – Relativo Maior – Dominante natural. O campo menor é rico em possibilidades!
-  ],
-)
+#v(1em)
+
+#caixa-destaque(width: 90%)[
+  A progressão *I – VI – III – VII* (Am – F – C – G) é a base de inúmeras músicas: desde baladas pop até rock e música latina.
+
+  Em termos de funções: Tônica – Relativo Maior da Sub. – Relativo Maior – Dominante natural. O campo menor é rico em possibilidades!
+]

@@ -6,33 +6,38 @@
   nivel: "Intermediário",
 )
 
-// ─── fretboard helper ──────────────────────────────────────────────────────
+// Fretboard helper
 #let nd(k) = box(
   width: 20pt,
   height: 20pt,
-  align(center + horizon, if k == "R" { box(width: 14pt, height: 14pt, fill: color-brand, radius: 7pt) } else if k
-    == "N" { box(width: 14pt, height: 14pt, fill: color-muted, radius: 7pt) } else if k == "X" {
-    box(width: 14pt, height: 14pt, fill: rgb("#dc2626"), radius: 7pt)
-  } else { line(start: (0pt, 0pt), end: (20pt, 0pt), stroke: 0.5pt + color-rule-dark) }),
+  align(center + horizon, if k == "R" {
+    box(width: 14pt, height: 14pt, fill: color-strong, radius: 7pt)
+  } else if k == "N" {
+    box(width: 14pt, height: 14pt, fill: white, stroke: 1pt + color-strong, radius: 7pt)
+  } else if k == "X" {
+    box(width: 14pt, height: 14pt, fill: luma(150), stroke: 1pt + color-strong, radius: 7pt)
+  } else {
+    line(start: (0pt, 0pt), end: (20pt, 0pt), stroke: 0.5pt + color-rule-dark)
+  }),
 )
 
 #let neck(data, fs: 1) = {
   let nf = data.at(0).len()
-  let hdr = ([],) + range(nf).map(i => align(center, text(size: 7.5pt, weight: "bold")[#(fs + i)]))
+  let hdr = ([],) + range(nf).map(i => align(center, text(size: 8pt, weight: "bold")[#(fs + i)]))
   let bdy = data
     .enumerate()
     .map(p => {
       let i = p.at(0)
       let row = p.at(1)
-      (align(center, text(size: 8pt, fill: luma(50))[#(6 - i)]),) + row.map(nd)
+      (align(center, text(size: 8pt, fill: color-strong)[#(6 - i)]),) + row.map(nd)
     })
     .flatten()
   table(
-    columns: (13pt,) + range(nf).map(_ => 22pt),
+    columns: (15pt,) + range(nf).map(_ => 24pt),
     align: center + horizon,
     inset: (x: 0pt, y: 3pt),
-    stroke: (x, y) => if x == 0 or y == 0 { 0.5pt + color-rule-dark } else { 0.4pt + luma(220) },
-    fill: (c, r) => if r == 0 { color-subtle-bg } else if c == 0 { luma(242) } else { white },
+    stroke: (x, y) => if x == 0 or y == 0 { 0.5pt + color-strong } else { 0.4pt + color-rule-dark },
+    fill: (c, r) => if r == 0 { color-subtle-bg } else if c == 0 { color-subtle-bg } else { white },
     ..hdr, ..bdy,
   )
 }
@@ -51,9 +56,9 @@ O modo menor natural tem um "problema" do ponto de vista tonal: seu V grau é *m
     align: center + horizon,
     stroke: 0.5pt + color-rule-dark,
     fill: (col, row) => {
-      if row == 0 { color-subtle-bg } else if col == 6 and row == 2 { rgb("#fef9c3") } else if (
+      if row == 0 { color-subtle-bg } else if col == 6 and row == 2 { luma(230) } else if (
         (col == 6 or col == 7) and row == 3
-      ) { color-accent-soft } else { white }
+      ) { luma(230) } else { white }
     },
     [*Escala*], [*1*], [*2*], [*b3*], [*4*], [*5*], [*6*], [*7*], [*Notas (em Lá)*],
     [Menor Natural], [A], [B], [C], [D], [E], [F], [G], [A B C D E F G],
@@ -81,10 +86,28 @@ A *Menor Harmônica* eleva o *7º grau em ½ tom*, criando a *sensível* (nota q
 #align(center)[
   #diagram(
     spacing: (15mm, 15mm),
-    node((0, 0), [Menor Natural \ V = *Em*], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: color-subtle-bg),
-    node((1, 0), [Cadência fraca \ Em → Am], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: rgb("#fef2f2")),
-    node((0, 1), [Menor Harmônica \ V = *E7*], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: color-accent-soft),
-    node((1, 1), [Cadência forte \ E7 → Am ✓], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: color-accent-soft),
+    node(
+      (0, 0),
+      [Menor Natural \ V = *Em*],
+      stroke: 0.5pt + color-rule-dark,
+      shape: fletcher.shapes.rect,
+      fill: color-subtle-bg,
+    ),
+    node((1, 0), [Cadência fraca \ Em → Am], stroke: 0.5pt + color-rule-dark, shape: fletcher.shapes.rect, fill: white),
+    node(
+      (0, 1),
+      [Menor Harmônica \ V = *E7*],
+      stroke: 0.5pt + color-rule-dark,
+      shape: fletcher.shapes.rect,
+      fill: color-subtle-bg,
+    ),
+    node(
+      (1, 1),
+      [Cadência forte \ E7 → Am ✓],
+      stroke: 0.5pt + color-rule-dark,
+      shape: fletcher.shapes.rect,
+      fill: white,
+    ),
     edge((0, 0), (1, 0), "->"),
     edge((0, 1), (1, 1), "->"),
     edge((0, 0), (0, 1), "->", label: "G → G#"),
@@ -101,7 +124,7 @@ A *Menor Harmônica* eleva o *7º grau em ½ tom*, criando a *sensível* (nota q
     align: center + horizon,
     stroke: 0.5pt + color-rule-dark,
     fill: (col, row) => {
-      if row == 0 { color-subtle-bg } else if row == 5 { rgb("#ffe4e6") } // V grau destacado
+      if row == 0 { color-subtle-bg } else if row == 5 { luma(230) } // V grau destacado
       else if col == 0 { color-subtle-bg } else { white }
     },
     [*Grau*], [*Acorde*], [*T*], [*3ª*], [*5ª*], [*7ª*], [*Notas*], [*Tipo*],
@@ -119,9 +142,9 @@ A *Menor Harmônica* eleva o *7º grau em ½ tom*, criando a *sensível* (nota q
 
 #align(center)[
   #block(
-    fill: rgb("#ffe4e6"),
-    stroke: 0.5pt + rgb("#fca5a5"),
-    inset: 10pt,
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
+    inset: 12pt,
     radius: 5pt,
     width: 85%,
     [
@@ -152,11 +175,11 @@ A mesma estrutura da pentatônica, agora com as 7 notas. O G\# (nota caracterís
       ),
       fs: 5,
     ),
-    block(fill: rgb("#fef9c3"), stroke: 0.6pt + rgb("#eab308"), inset: 11pt, radius: 5pt, [
+    block(fill: white, stroke: 0.5pt + color-rule-dark, inset: 11pt, radius: 5pt, [
       #set text(size: 9pt)
-      *●* azul = Tônica (A) \
-      *●* cinza = notas da escala \
-      *●* vermelho = G\# (nota característica)
+      *●* preto = Tônica (A) \
+      *○* branco = notas da escala \
+      *●* cinza = G\# (nota característica)
       #v(0.5em)
       O G\# cria um intervalo de *2ª aumentada* entre o F e o G\# — o som "oriental" característico da escala.
     ]),
@@ -186,7 +209,7 @@ Na música clássica, a Menor Melódica sobe com F\# e G\# e *desce com os graus
       #grid(
         columns: (1fr, 1fr),
         gutter: 1.5em,
-        block(fill: color-brand-soft, stroke: 0.5pt + color-brand-soft, inset: 10pt, radius: 4pt, [
+        block(fill: white, stroke: 0.5pt + color-rule-dark, inset: 10pt, radius: 4pt, [
           #align(center)[#text(weight: "bold")[Uso Clássico (bidirecional)]]
           #v(0.4em)
           #set text(size: 9pt)
@@ -194,7 +217,7 @@ Na música clássica, a Menor Melódica sobe com F\# e G\# e *desce com os graus
           *Descida:* A G F E D C B A \
           (= menor natural descendo)
         ]),
-        block(fill: color-accent-soft, stroke: 0.5pt + rgb("#86efac"), inset: 10pt, radius: 4pt, [
+        block(fill: white, stroke: 0.5pt + color-rule-dark, inset: 10pt, radius: 4pt, [
           #align(center)[#text(weight: "bold")[Uso Moderno / Jazz (unidirecional)]]
           #v(0.4em)
           #set text(size: 9pt)
@@ -218,7 +241,7 @@ A Menor Melódica gera acordes muito usados no jazz e na fusão. Veja os graus m
     align: center + horizon,
     stroke: 0.5pt + color-rule-dark,
     fill: (col, row) => if row == 0 { color-subtle-bg } else if row == 2 or row == 5 or row == 7 {
-      color-brand-soft
+      luma(230)
     } else if col == 0 { color-subtle-bg } else { white },
     [*Grau*], [*Acorde*], [*Tipo*], [*Modo gerado*], [*Aplicação típica*],
     [I], [Am(maj7)], [Menor Maj7], [Menor Melódica], [Im em progressões modais],
@@ -235,9 +258,9 @@ A Menor Melódica gera acordes muito usados no jazz e na fusão. Veja os graus m
 
 #align(center)[
   #block(
-    fill: color-brand-soft,
-    stroke: 0.5pt + color-brand-soft,
-    inset: 11pt,
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
+    inset: 12pt,
     radius: 5pt,
     width: 85%,
     [
@@ -269,7 +292,7 @@ A Menor Melódica gera acordes muito usados no jazz e na fusão. Veja os graus m
       ),
       fs: 5,
     ),
-    block(fill: color-subtle-bg, stroke: 0.5pt + color-rule-dark, inset: 11pt, radius: 5pt, [
+    block(fill: white, stroke: 0.5pt + color-rule-dark, inset: 11pt, radius: 5pt, [
       #set text(size: 9pt)
       Compare com a Menor Natural: a diferença está no *F\#* (6ª corda, posições específicas) e no *G\#*.
       #v(0.5em)
@@ -283,7 +306,7 @@ A Menor Melódica gera acordes muito usados no jazz e na fusão. Veja os graus m
 #explainer-component(
   align(center)[
     #block(
-      fill: luma(245),
+      fill: color-subtle-bg,
       stroke: 0.5pt + color-rule-dark,
       inset: 11pt,
       radius: 5pt,

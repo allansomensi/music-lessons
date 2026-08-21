@@ -9,6 +9,44 @@
 
 #let chord = new-chordgen(number-to-left: true, use-shadow-barre: false, colors: (hold: black, barre: black))
 
+#show <chord>: set text(fill: color-strong, weight: "bold")
+
+// ─── fretboard helper
+#let nd(k) = box(
+  width: 20pt,
+  height: 20pt,
+  align(center + horizon, if k == "R" {
+    box(width: 14pt, height: 14pt, fill: color-strong, radius: 7pt)
+  } else if k == "N" {
+    box(width: 14pt, height: 14pt, fill: white, stroke: 1pt + color-strong, radius: 7pt)
+  } else if k == "X" {
+    box(width: 14pt, height: 14pt, fill: luma(150), stroke: 1pt + color-strong, radius: 7pt)
+  } else {
+    line(start: (0pt, 0pt), end: (20pt, 0pt), stroke: 0.5pt + color-rule-dark)
+  }),
+)
+
+#let neck(data, fs: 1) = {
+  let nf = data.at(0).len()
+  let hdr = ([],) + range(nf).map(i => align(center, text(size: 8pt, weight: "bold")[#(fs + i)]))
+  let bdy = data
+    .enumerate()
+    .map(p => {
+      let i = p.at(0)
+      let row = p.at(1)
+      (align(center, text(size: 8pt, fill: color-strong)[#(6 - i)]),) + row.map(nd)
+    })
+    .flatten()
+  table(
+    columns: (15pt,) + range(nf).map(_ => 24pt),
+    align: center + horizon,
+    inset: (x: 0pt, y: 3pt),
+    stroke: (x, y) => if x == 0 or y == 0 { 0.5pt + color-strong } else { 0.4pt + color-rule-dark },
+    fill: (c, r) => if r == 0 { color-subtle-bg } else if c == 0 { color-subtle-bg } else { white },
+    ..hdr, ..bdy,
+  )
+}
+
 = Cadências Avançadas
 
 Uma *cadência* é qualquer movimento harmônico que cria sensação de repouso ou resolução. Você já conhece o II-V-I básico. Aqui vamos expandir o vocabulário de cadências para tom maior, menor, e as técnicas de *substituição e dominante secundário*.
@@ -57,7 +95,7 @@ Para cada grau do campo, criamos um acorde dominante que aponta para ele: o *V7 
         align: center + horizon,
         stroke: 0.5pt + color-rule-dark,
         fill: (col, row) => {
-          if row == 0 { color-subtle-bg } else if col == 3 { rgb("#ffe4e6") } else if col == 0 {
+          if row == 0 { color-subtle-bg } else if col == 3 { luma(230) } else if col == 0 {
             color-subtle-bg
           } else {
             white
@@ -78,37 +116,41 @@ Para cada grau do campo, criamos um acorde dominante que aponta para ele: o *V7 
 
 #v(1em)
 
-#explainer-component(
-  align(center)[
-    #grid(
-      columns: 4,
-      gutter: 1.2em,
-      align: center,
-      block[
-        #box(chord("x,x,0,2,3,1", name: "Dm7")) \
-        #text(size: 8pt)[Dm7 (II)]
-      ],
-      block[
-        #box(chord("x,0,2,2,2,0", name: "A7")) \
-        #text(size: 8pt)[A7 (V/II)]
-      ],
-      block[
-        #box(chord("x,x,0,2,3,1", name: "Dm7")) \
-        #text(size: 8pt)[Dm7 (II)]
-      ],
-      block[
-        #box(chord("3,2,0,0,0,1", name: "G7")) \
-        #text(size: 8pt)[G7 (V)]
-      ],
-    )
-  ],
-  [
-    Progressão: *Dm7 – A7 – Dm7 – G7 – C*
+#align(center)[
+  #grid(
+    columns: 4,
+    gutter: 2.5em,
+    align: center,
+    block[
+      #box(chord("x,x,0,2,3,1", name: "Dm7")) \
+      #v(0.4em)
+      #text(size: 8.5pt, weight: "bold")[Dm7 (II)]
+    ],
+    block[
+      #box(chord("x,0,2,2,2,0", name: "A7")) \
+      #v(0.4em)
+      #text(size: 8.5pt, weight: "bold")[A7 (V/II)]
+    ],
+    block[
+      #box(chord("x,x,0,2,3,1", name: "Dm7")) \
+      #v(0.4em)
+      #text(size: 8.5pt, weight: "bold")[Dm7 (II)]
+    ],
+    block[
+      #box(chord("3,2,0,0,0,1", name: "G7")) \
+      #v(0.4em)
+      #text(size: 8.5pt, weight: "bold")[G7 (V)]
+    ],
+  )
+]
 
-    O A7 é o V/II. Quando ele aparece, o ouvido "teletransporta" momentaneamente para o tom de Ré menor, antes de retornar ao tom principal. É exatamente esse "desvio" que cria a sensação de riqueza harmônica.
-  ],
-  inverted: true,
-)
+#v(1.5em)
+
+#caixa-destaque(width: 90%)[
+  Progressão: *Dm7 – A7 – Dm7 – G7 – C*
+
+  O A7 é o V/II. Quando ele aparece, o ouvido "teletransporta" momentaneamente para o tom de Ré menor, antes de retornar ao tom principal. É exatamente esse "desvio" que cria a sensação de riqueza harmônica.
+]
 
 #pagebreak()
 
@@ -123,11 +165,11 @@ A *substituição de trítono* (SubV) é a técnica jazz mais importante depois 
 #align(center)[
   #diagram(
     spacing: (18mm, 14mm),
-    node((0, 0), [G7 \ (3ª=Si, 7ª=Fá)], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: rgb("#ffe4e6")),
-    node((1, 0), [Trítono \ Si ↔ Fá], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: rgb("#fef9c3")),
-    node((2, 0), [Db7 \ (3ª=Fá, 7ª=Si)], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: rgb("#ffe4e6")),
-    node((0, 1), [G7 → C], stroke: 0.4pt, shape: fletcher.shapes.rect, fill: luma(245)),
-    node((2, 1), [*Db7 → C*], stroke: 0.4pt, shape: fletcher.shapes.rect, fill: color-accent-soft),
+    node((0, 0), [G7 \ (3ª=Si, 7ª=Fá)], stroke: 0.5pt + color-rule-dark, shape: fletcher.shapes.rect, fill: white),
+    node((1, 0), [Trítono \ Si ↔ Fá], stroke: 0.5pt + color-rule-dark, shape: fletcher.shapes.rect, fill: luma(230)),
+    node((2, 0), [Db7 \ (3ª=Fá, 7ª=Si)], stroke: 0.5pt + color-rule-dark, shape: fletcher.shapes.rect, fill: white),
+    node((0, 1), [G7 → C], stroke: 0.5pt + color-rule-dark, shape: fletcher.shapes.rect, fill: color-subtle-bg),
+    node((2, 1), [*Db7 → C*], stroke: 0.5pt + color-rule-dark, shape: fletcher.shapes.rect, fill: color-subtle-bg),
     edge((0, 0), (1, 0), "->"),
     edge((1, 0), (2, 0), "->"),
     edge((0, 0), (0, 1), "->"),
@@ -138,18 +180,9 @@ A *substituição de trítono* (SubV) é a técnica jazz mais importante depois 
 
 #v(0.8em)
 
-#align(center)[
-  #block(
-    fill: color-subtle-bg,
-    stroke: 0.5pt + color-rule-dark,
-    inset: 10pt,
-    radius: 5pt,
-    width: 80%,
-    [
-      *Regra:* o SubV de qualquer dominante está a *trítono de distância* (6 semitons). \
-      SubV do G7 = *Db7*. SubV do D7 = *Ab7*. SubV do A7 = *Eb7*.
-    ],
-  )
+#caixa-destaque(width: 80%)[
+  *Regra:* o SubV de qualquer dominante está a *trítono de distância* (6 semitons). \
+  SubV do G7 = *Db7*. SubV do D7 = *Ab7*. SubV do A7 = *Eb7*.
 ]
 
 == Aplicação no II-V-I
@@ -165,7 +198,7 @@ A *substituição de trítono* (SubV) é a técnica jazz mais importante depois 
       #table(
         columns: (1fr, 1fr, 1fr, 1fr),
         align: center + horizon,
-        stroke: 0.5pt + luma(195),
+        stroke: 0.5pt + color-rule-light,
         fill: (col, row) => if row == 0 { color-subtle-bg } else if row == 1 { white } else { color-subtle-bg },
         [*Progressão*], [*II*], [*V*], [*I*],
         [Original], [Dm7], [G7], [C7M],
@@ -195,9 +228,9 @@ O tom menor tem particularidades importantes. A *cadência autêntica em menor* 
 #align(center)[
   #diagram(
     spacing: (16mm, 14mm),
-    node((0, 0), [IIø (Bø)], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: rgb("#fef9c3")),
-    node((1, 0), [V7 (E7)], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: rgb("#ffe4e6")),
-    node((2, 0), [Im (Am)], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: color-brand-soft),
+    node((0, 0), [IIø (Bø)], stroke: 0.5pt + color-rule-dark, shape: fletcher.shapes.rect, fill: white),
+    node((1, 0), [V7 (E7)], stroke: 0.5pt + color-rule-dark, shape: fletcher.shapes.rect, fill: luma(230)),
+    node((2, 0), [Im (Am)], stroke: 0.5pt + color-rule-dark, shape: fletcher.shapes.rect, fill: color-subtle-bg),
     edge((0, 0), (1, 0), "->"),
     edge((1, 0), (2, 0), "->"),
     node((0, 1), text(size: 8pt)[Subdominante \ Meio-Dim.], stroke: none),
@@ -247,14 +280,14 @@ A progressão por *quintas descendentes* é a mais natural da harmonia tonal: ca
 #align(center)[
   #diagram(
     spacing: (12mm, 12mm),
-    node-stroke: 0.5pt,
+    node-stroke: 0.5pt + color-rule-dark,
     node-shape: fletcher.shapes.rect,
     node((0, 0), [Bø], fill: color-subtle-bg),
-    node((1, 0), [E7], fill: rgb("#ffe4e6")),
-    node((2, 0), [Am7], fill: color-brand-soft),
-    node((3, 0), [D7], fill: rgb("#ffe4e6")),
-    node((4, 0), [G7M], fill: color-brand-soft),
-    node((5, 0), [C7M], fill: color-accent-soft),
+    node((1, 0), [E7], fill: white),
+    node((2, 0), [Am7], fill: color-subtle-bg),
+    node((3, 0), [D7], fill: white),
+    node((4, 0), [G7M], fill: color-subtle-bg),
+    node((5, 0), [C7M], fill: white),
     edge((0, 0), (1, 0), "->"),
     edge((1, 0), (2, 0), "->"),
     edge((2, 0), (3, 0), "->"),
@@ -303,7 +336,7 @@ A progressão por *quintas descendentes* é a mais natural da harmonia tonal: ca
 
 #explainer-component(
   align(center)[
-    #block(fill: luma(245), stroke: 0.5pt + color-rule-dark, inset: 11pt, radius: 5pt, width: 88%, [
+    #block(fill: color-subtle-bg, stroke: 0.5pt + color-rule-dark, inset: 11pt, radius: 5pt, width: 88%, [
       #set text(size: 9pt)
       *Passo a passo para aplicar dominantes secundários:*
       #v(0.5em)

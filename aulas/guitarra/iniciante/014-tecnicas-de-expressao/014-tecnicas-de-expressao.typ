@@ -13,15 +13,13 @@ A guitarra elétrica tem uma vantagem única: a capacidade de *dobrar e prolonga
 
 O *legato* conecta notas com fluidez, sem que a palheta precise tocar cada nota individualmente. O resultado é um som mais suave e rápido.
 
-#v(1em)
-
 #grid(
   columns: (1fr, 1fr),
   gutter: 1.5em,
   block(
     width: 100%,
-    fill: color-brand-soft,
-    stroke: 0.6pt + color-brand-soft,
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     [
@@ -34,8 +32,8 @@ O *legato* conecta notas com fluidez, sem que a palheta precise tocar cada nota 
   ),
   block(
     width: 100%,
-    fill: rgb("#f0fdf4"),
-    stroke: 0.6pt + rgb("#86efac"),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     [
@@ -50,7 +48,7 @@ O *legato* conecta notas com fluidez, sem que a palheta precise tocar cada nota 
 
 #align(center)[
   #block(
-    fill: color-subtle-bg,
+    fill: white,
     stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
@@ -88,17 +86,23 @@ O *bend* estica a corda, elevando a afinação em tempo real. É a técnica mais
   )
 ]
 
-
 Use *dois ou três dedos* para dobrar (ex: anelar apoiado por médio e indicador). Toda a força vem do pulso girando, não só dos dedos.
+
 Para verificar se seu bend está afinado, toque a nota alvo primeiro (ex: casa 7), depois faça o bend a partir da casa 5. Ambas devem soar *idênticas*.
 
-*Dica:* encordoamento .009 facilita muito os bends. Com .011 ou .012 você precisa de mais força (e mais calos).
+#v(1em)
+
+#caixa-destaque(width: 85%)[
+  *Dica:* Encordoamento .009 (tensão super leve) facilita muito os bends. Com encordoamentos .011 ou .012 você precisa de mais força na mão esquerda (e mais calos).
+]
 
 #pagebreak()
 
 == Vibrato
 
 O *vibrato* é uma oscilação rítmica da afinação que *sustenta e anima* uma nota longa. É a assinatura pessoal do guitarrista e cada um desenvolve o seu com o tempo.
+
+#v(0.5em)
 
 #grid(
   columns: (1fr, 1fr),
@@ -131,9 +135,13 @@ O *vibrato* é uma oscilação rítmica da afinação que *sustenta e anima* uma
   ),
 )
 
+#v(1.5em)
+
 == Slide
 
 O *slide* conecta duas notas deslizando o dedo pelo braço, mantendo a pressão na corda. O som é contínuo e fluido, sem interrupção entre as notas.
+
+#v(0.5em)
 
 #align(center)[
   #grid(
@@ -149,7 +157,7 @@ O *slide* conecta duas notas deslizando o dedo pelo braço, mantendo a pressão 
         #set text(size: 9.5pt)
         Toque a nota de origem com a palheta e *deslize o dedo* até o destino, mantendo a pressão. O destino soa sem nova palhetada.
         #v(0.4em)
-        *Na tablatura:* `5/7` (slide para cima) ou `7\\5` (slide para baixo)
+        *Na tablatura:* `5/7` (slide para cima) ou `7\5` (slide para baixo)
       ],
     ),
     block(
@@ -165,6 +173,8 @@ O *slide* conecta duas notas deslizando o dedo pelo braço, mantendo a pressão 
     ),
   )
 ]
+
+#v(2em)
 
 = Exercício
 
@@ -193,15 +203,8 @@ E|---------------------|
   )
 ]
 
-#align(center)[
-  #block(
-    fill: color-subtle-bg,
-    stroke: 0.5pt + color-rule-dark,
-    inset: 12pt,
-    radius: 5pt,
-    width: 80%,
-    [
-      *Conceito fundamental:* Não é a velocidade que torna uma frase musical — é a *intenção*. Uma nota longa com vibrato e bend bem afinado comunica mais do que 20 notas rápidas sem expressão.
-    ],
-  )
+#v(1.5em)
+
+#caixa-destaque(width: 85%)[
+  *Conceito fundamental:* Não é a velocidade que torna uma frase musical — é a *intenção*. Uma nota longa com vibrato e bend bem afinado comunica mais do que 20 notas rápidas sem expressão.
 ]

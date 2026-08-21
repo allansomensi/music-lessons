@@ -50,9 +50,10 @@ Os dedos recebem nomes do sistema espanhol de música, universalmente usados:
 #grid(
   columns: (1fr, 1fr, 1fr),
   gutter: 1em,
+  // BLOCO 1 - CORRIGIDO
   block(
-    fill: color-brand-soft,
-    stroke: 0.6pt + color-brand-soft,
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 10pt,
     radius: 5pt,
     [
@@ -62,9 +63,10 @@ Os dedos recebem nomes do sistema espanhol de música, universalmente usados:
       A mão forma uma curva natural, como se segurasse uma laranja. O pulso fica levemente elevado acima do tampo.
     ],
   ),
+  // BLOCO 2 - CORRIGIDO
   block(
-    fill: color-brand-soft,
-    stroke: 0.6pt + color-brand-soft,
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 10pt,
     radius: 5pt,
     [
@@ -74,9 +76,10 @@ Os dedos recebem nomes do sistema espanhol de música, universalmente usados:
       Cada dedo sobe *para dentro da mão* após tocar a corda (movimento de "beliscar"). Evite movimentos paralelos ao tampo.
     ],
   ),
+  // BLOCO 3 - CORRIGIDO (Removido os tons de vermelho/rosa)
   block(
-    fill: rgb("#fef2f2"),
-    stroke: 0.6pt + rgb("#fca5a5"),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 10pt,
     radius: 5pt,
     [
@@ -147,7 +150,7 @@ O polegar toca o baixo, depois os três dedos tocam as cordas agudas juntos. Mui
       #raw(
         lang: "text",
         block: true,
-        "Am                          Em
+        "Am                        Em
 e|--0---0-0-0---0---0-0-0---|
 B|--1---1-1-1---0---0-0-0---|
 G|--2---2-2-2---0---0-0-0---|

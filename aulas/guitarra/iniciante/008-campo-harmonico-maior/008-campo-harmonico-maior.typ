@@ -9,6 +9,8 @@
 
 #let chord = new-chordgen(number-to-left: true, use-shadow-barre: false, colors: (hold: black, barre: black))
 
+#show <chord>: set text(fill: color-strong, weight: "bold")
+
 = Campo Harmônico Maior
 
 O *campo harmônico* é o conjunto de todos os acordes que podem ser construídos a partir de uma escala, sem usar notas de fora dela. Para montá-lo, basta empilhar terças sobre cada nota da escala usando *apenas* as notas da própria escala. O resultado é um conjunto de acordes que pertencem ao mesmo tom.
@@ -55,7 +57,7 @@ Empilhando terças sobre cada grau usando apenas notas da escala, obtemos os seg
     stroke: 0.5pt + color-rule-dark,
     fill: (col, row) => {
       if row == 0 { color-subtle-bg } else if col == 0 { color-subtle-bg } else if row == 1 or row == 4 or row == 6 {
-        color-brand-soft
+        luma(235)
       } else { white }
     },
     [*Grau*], [*Acorde*], [*T*], [*3ª*], [*5ª*], [*Notas*], [*Tipo*],
@@ -71,23 +73,13 @@ Empilhando terças sobre cada grau usando apenas notas da escala, obtemos os seg
 
 #v(1em)
 
-#align(center)[
-  #block(
-    fill: color-subtle-bg,
-    stroke: 0.5pt + color-rule-dark,
-    inset: 10pt,
-    radius: 5pt,
-    width: 85%,
-    [
-      *Padrão do Campo Maior:* I Maior · II Menor · III Menor · IV Maior · V Maior · VI Menor · VII Diminuta
-    ],
-  )
+#caixa-destaque(width: 100%)[
+  *Padrão do Campo Maior:* I Maior · II Menor · III Menor · IV Maior · V Maior · VI Menor · VII Diminuta
 ]
 
 == Pensando em Graus (Numerais Romanos)
 
 É muito mais prático memorizar a progressão em numerais romanos (I, II, III...) do que apenas os nomes dos acordes (C, Dm, Em...). Como o braço do instrumento é simétrico, os "desenhos" geométricos e as distâncias entre os acordes se mantêm iguais em qualquer tom.
-
 
 #explainer-component(
   align(center)[
@@ -98,11 +90,11 @@ Empilhando terças sobre cada grau usando apenas notas da escala, obtemos os seg
       gutter: 2em,
       block[
         #text(size: 9.5pt)[*Em Dó Maior (C)*] \
-        #text(size: 10pt, fill: luma(80))[C · F · G]
+        #text(size: 10pt, weight: "bold", fill: color-strong)[C · F · G]
       ],
       block[
         #text(size: 9.5pt)[*Em Sol Maior (G)*] \
-        #text(size: 10pt, fill: luma(80))[G · C · D]
+        #text(size: 10pt, weight: "bold", fill: color-strong)[G · C · D]
       ],
     )
   ],
@@ -127,7 +119,7 @@ Acrescentando mais uma terça (a sétima) sobre cada tríade:
     stroke: 0.5pt + color-rule-dark,
     fill: (col, row) => {
       if row == 0 { color-subtle-bg } else if col == 0 { color-subtle-bg } else if row == 1 or row == 4 or row == 6 {
-        color-brand-soft
+        luma(235)
       } else { white }
     },
     [*Grau*], [*Acorde*], [*T*], [*3ª*], [*5ª*], [*7ª*], [*Notas*], [*Tipo*],
@@ -143,17 +135,8 @@ Acrescentando mais uma terça (a sétima) sobre cada tríade:
 
 #v(1em)
 
-#align(center)[
-  #block(
-    fill: color-subtle-bg,
-    stroke: 0.5pt + color-rule-dark,
-    inset: 10pt,
-    radius: 5pt,
-    width: 85%,
-    [
-      *Padrão das Tétrades:* I 7M · II m7 · III m7 · IV 7M · V 7 · VI m7 · VII Ø
-    ],
-  )
+#caixa-destaque(width: 85%)[
+  *Padrão das Tétrades:* I 7M · II m7 · III m7 · IV 7M · V 7 · VI m7 · VII Ø
 ]
 
 #v(2em)

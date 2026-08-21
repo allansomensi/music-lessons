@@ -9,6 +9,8 @@
 
 #let chord = new-chordgen(number-to-left: true, use-shadow-barre: false, colors: (hold: black, barre: black))
 
+#show <chord>: set text(fill: color-strong, weight: "bold")
+
 = Campo Harmônico Menor Harmônico — Aplicações
 
 Você já viu a construção da Menor Harmônica. Nesta aula vamos explorar *como usar o campo* na prática: os acordes mais importantes, as progressões características e os modos gerados pela escala.
@@ -23,9 +25,7 @@ Você já viu a construção da Menor Harmônica. Nesta aula vamos explorar *com
     align: center + horizon,
     stroke: 0.5pt + color-rule-dark,
     fill: (col, row) => {
-      if row == 0 { color-subtle-bg } else if row == 5 { rgb("#ffe4e6") } else if row == 1 or row == 7 {
-        color-brand-soft
-      } else if col == 0 { color-subtle-bg } else { white }
+      if row == 0 { color-subtle-bg } else if row == 5 { luma(230) } else if col == 0 { color-subtle-bg } else { white }
     },
     [*Grau*], [*Acorde*], [*Notas*], [*Tipo*], [*Modo gerado*],
     [I], [Am(maj7)], [A C E G\#], [Menor Maj7], [*Menor Harmônica*],
@@ -76,21 +76,12 @@ O acorde mais característico do tom menor harmônico. Esse acorde existe porque
 
 #v(0.8em)
 
-#align(center)[
-  #block(
-    fill: color-subtle-bg,
-    stroke: 0.5pt + color-rule-dark,
-    inset: 10pt,
-    radius: 5pt,
-    width: 80%,
-    [
-      *Progressão clássica:* Am(maj7) → Am7 → Am6 → E7 → Am \
-      #text(
-        size: 8.5pt,
-        fill: color-muted,
-      )[A descida cromática no baixo (G\# → G → F\#) cria uma das progressões mais emocionantes da música ocidental. Usada em "Misty", tangos, e inúmeras músicas de cinema.]
-    ],
-  )
+#caixa-destaque(width: 80%)[
+  *Progressão clássica:* Am(maj7) → Am7 → Am6 → E7 → Am \
+  #text(
+    size: 8.5pt,
+    fill: color-secondary,
+  )[A descida cromática no baixo (G\# → G → F\#) cria uma das progressões mais emocionantes da música ocidental. Usada em "Misty", tangos, e inúmeras músicas de cinema.]
 ]
 
 == 2. E7 — O Dominante com Sensível
@@ -122,8 +113,8 @@ O VII grau gera um *acorde diminuto com quatro notas*, completamente simétrico 
       ],
     ),
     block(
-      fill: rgb("#fef9c3"),
-      stroke: 0.6pt + rgb("#eab308"),
+      fill: color-subtle-bg, // Fundo amarelo removido
+      stroke: 0.5pt + color-rule-dark,
       inset: 11pt,
       radius: 5pt,
       [
@@ -153,11 +144,7 @@ Cada grau da escala gera um modo com caráter único. Os mais usados na guitarra
     align: center + horizon,
     stroke: 0.5pt + color-rule-dark,
     fill: (col, row) => {
-      if row == 0 { color-subtle-bg } else if row == 1 { color-brand-soft } else if row == 5 {
-        rgb("#ffe4e6")
-      } else if (
-        row == 7
-      ) { rgb("#fef9c3") } else if col == 0 { color-subtle-bg } else { white }
+      if row == 0 { color-subtle-bg } else if row == 5 { luma(230) } else if calc.odd(row) { white } else { luma(245) }
     },
     [*Grau*], [*Nome do Modo*], [*Fórmula*], [*Acorde base*], [*Caráter*],
     [I], [Menor Harmônica], [1 2 b3 4 5 b6 7M], [Im(maj7)], [Dramático, profundo],
@@ -183,8 +170,8 @@ Este modo é o *coração do flamenco e do metal neoclássico*. Ele soa sobre o 
     columns: (1fr, 1fr),
     gutter: 1.5em,
     block(
-      fill: rgb("#ffe4e6"),
-      stroke: 0.6pt + rgb("#f43f5e"),
+      fill: color-subtle-bg, // Fundo vermelho removido
+      stroke: 0.5pt + color-rule-dark,
       inset: 11pt,
       radius: 5pt,
       [
@@ -198,8 +185,8 @@ Este modo é o *coração do flamenco e do metal neoclássico*. Ele soa sobre o 
       ],
     ),
     block(
-      fill: rgb("#ffe4e6"),
-      stroke: 0.6pt + rgb("#f43f5e"),
+      fill: color-subtle-bg, // Fundo vermelho removido
+      stroke: 0.5pt + color-rule-dark,
       inset: 11pt,
       radius: 5pt,
       [
@@ -229,33 +216,33 @@ Este modo é o *coração do flamenco e do metal neoclássico*. Ele soa sobre o 
     align: center,
     block[
       #box(chord("x,0,2,1,1,0", name: "Am(maj7)")) \
-      #text(size: 8pt)[Im(maj7)]
+      #v(0.3em)
+      #text(size: 8.5pt, weight: "bold")[Im(maj7)]
     ],
     block[
       #box(chord("x,0,2,2,1,0", name: "Am7")) \
-      #text(size: 8pt)[Im7]
+      #v(0.3em)
+      #text(size: 8.5pt, weight: "bold")[Im7]
     ],
     block[
       #box(chord("x,0,2,2,2,0", name: "Am6")) \
-      #text(size: 8pt)[Im6]
+      #v(0.3em)
+      #text(size: 8.5pt, weight: "bold")[Im6]
     ],
     block[
       #box(chord("0,2,0,1,0,0", name: "E7")) \
-      #text(size: 8pt)[V7]
+      #v(0.3em)
+      #text(size: 8.5pt, weight: "bold")[V7]
     ],
   )
 ]
 
-#v(0.5em)
-
 #align(center)[
   #text(
     size: 8.5pt,
-    fill: color-muted,
+    fill: color-secondary,
   )[A linha cromática no baixo: Sol\# → Sol → Fá\# → Mi. Progressão usada em "Stairway to Heaven" (intro) e inúmeros tangos.]
 ]
-
-#v(1.2em)
 
 == Progressão 2: IIø – V7 – Im (Cadência Menor Clássica)
 
@@ -268,24 +255,22 @@ Este modo é o *coração do flamenco e do metal neoclássico*. Ele soa sobre o 
       #box(chord("x,2,3,2,3,x", name: "Bø")) \
       #v(0.3em)
       #text(size: 9pt, weight: "bold")[Bø (IIø)] \
-      #text(size: 8pt, fill: color-muted)[Subdominante]
+      #text(size: 8pt, fill: color-secondary)[Subdominante]
     ],
     block[
       #box(chord("0,2,0,1,0,0", name: "E7")) \
       #v(0.3em)
       #text(size: 9pt, weight: "bold")[E7 (V7)] \
-      #text(size: 8pt, fill: color-muted)[Dominante]
+      #text(size: 8pt, fill: color-secondary)[Dominante]
     ],
     block[
       #box(chord("x,0,2,2,1,0", name: "Am")) \
       #v(0.3em)
       #text(size: 9pt, weight: "bold")[Am (Im)] \
-      #text(size: 8pt, fill: color-muted)[Tônica]
+      #text(size: 8pt, fill: color-secondary)[Tônica]
     ],
   )
 ]
-
-#v(1.2em)
 
 == Progressão 3: Lídio \#2 (VI grau) → V7 → Im
 
@@ -300,7 +285,7 @@ Uma das progressões mais exóticas e cinematográficas:
       #box(chord("1,3,3,2,1,1", name: "Fmaj7")) \
       #v(0.3em)
       #text(size: 9pt, weight: "bold")[Fmaj7 (VI)] \
-      #text(size: 8pt, fill: color-muted)[Lídio \#2 em F]
+      #text(size: 8pt, fill: color-secondary)[Lídio \#2 em F]
     ],
     block[
       #box(chord("0,2,0,1,0,0", name: "E7")) \
@@ -315,17 +300,15 @@ Uma das progressões mais exóticas e cinematográficas:
   )
 ]
 
-#v(1.5em)
-
 #explainer-component(
   align(center)[
-    #block(fill: luma(245), stroke: 0.5pt + color-rule-dark, inset: 11pt, radius: 5pt, width: 90%, [
+    #block(fill: color-subtle-bg, stroke: 0.5pt + color-rule-dark, inset: 11pt, radius: 5pt, width: 90%, [
       #set text(size: 9pt)
       #table(
         columns: (1fr, 1.5fr, 1.5fr),
         align: center + horizon,
         stroke: 0.4pt + color-rule-dark,
-        fill: (col, row) => if row == 0 { luma(228) } else { white },
+        fill: (col, row) => if row == 0 { luma(230) } else { white },
         [*Estilo*], [*Progressão típica*], [*Acorde característico*],
         [Flamenco], [Im – VII – VI – V7], [E7 com Frígio Dom.],
         [Jazz menor], [IIø – V7 – Im(maj7)], [Bø – E7 – Am(maj7)],

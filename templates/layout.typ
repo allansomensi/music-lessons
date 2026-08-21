@@ -1,19 +1,15 @@
-// Tons neutros (escala de cinza)
-#let color-ink = luma(15)   // texto principal
-#let color-strong = luma(30)   // negrito em destaque (nome, rótulos)
-#let color-secondary = luma(70)   // textos secundários (header, info de rodapé)
-#let color-muted = luma(110)  // textos sutis (bullet separador, nível)
-#let color-rule-dark = luma(130)  // linhas / divisores visíveis
-#let color-rule-light = luma(170)  // linhas sutis (separador de seção)
-#let color-subtle-bg = luma(235)  // fundo de caixas leves
+#let color-ink = luma(0)         // Texto principal
+#let color-strong = luma(0)      // Negrito em destaque
+#let color-secondary = luma(60)  // Textos secundários (cinza escuro, header/info de rodapé)
+#let color-muted = luma(120)     // Textos sutis (bullet separador, nível)
+#let color-rule-dark = luma(80)  // Linhas / divisores visíveis (cinza médio-escuro)
+#let color-rule-light = luma(180)// Linhas sutis (separador de seção)
+#let color-subtle-bg = luma(245) // Fundo de caixas (cinza quase branco, economiza tinta)
 
-// Cor de marca — azul profundo, imprime bem em P&B e colorido
-#let color-brand = rgb("#1A3A5C")  // azul marinho (headings, acentos)
-#let color-brand-soft = rgb("#2E5F8A")  // variante mais clara para sub-acentos
-
-// Cor de detalhe — verde escuro sóbrio, legível no papel
-#let color-accent = rgb("#1F5C3A")  // verde escuro (tabelas, destaques)
-#let color-accent-soft = rgb("#2E7D52") // variante mais clara
+#let color-brand = luma(0)       // Headings principais
+#let color-brand-soft = luma(40) // Sub-headings (cinza grafite)
+#let color-accent = luma(0)      // Tabelas e destaques (preto puro)
+#let color-accent-soft = luma(80)// Variante mais clara para sub-destaques
 
 // ============================================================
 // CONTATO
@@ -115,5 +111,21 @@
     #let column_ratios = if inverted { (1fr, 1.5fr) } else { (1.5fr, 1fr) }
     #let final_content = if inverted { (image_content, text_content) } else { (text_content, image_content) }
     #grid(columns: column_ratios, gutter: 2em, align: horizon, ..final_content)
+  ]
+}
+
+// ============================================================
+// COMPONENTE: Caixa de Destaque / Dica
+// ============================================================
+#let caixa-destaque(body, width: 85%) = {
+  align(center)[
+    #block(
+      fill: color-subtle-bg,
+      stroke: 0.5pt + color-rule-dark,
+      inset: 12pt,
+      radius: 5pt,
+      width: width,
+      body,
+    )
   ]
 }

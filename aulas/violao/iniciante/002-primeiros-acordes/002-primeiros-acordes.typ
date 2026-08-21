@@ -12,20 +12,13 @@
 
 Os acordes abertos são o ponto de partida do violão. Eles usam cordas soltas (abertas), o que facilita o som e reduz o esforço da mão esquerda. Dominar esses 7 acordes abre a porta para centenas de músicas.
 
-#align(center)[
-  #block(
-    fill: color-subtle-bg,
-    stroke: 0.5pt + color-rule-dark,
-    inset: 10pt,
-    radius: 5pt,
-    width: 82%,
-    [
-      *Dica:* pressione a corda *logo atrás do traste*, não em cima e não no meio. Use a *ponta dos dedos* e mantenha os outros dedos curvados para não abafar as cordas soltas.
-    ],
-  )
+#v(1em)
+
+#caixa-destaque[
+  *Dica:* pressione a corda *logo atrás do traste*, não em cima e não no meio. Use a *ponta dos dedos* e mantenha os outros dedos curvados para não abafar as cordas soltas.
 ]
 
-#v(1.5em)
+#v(1em)
 
 == Os 7 Acordes Essenciais
 
@@ -188,15 +181,6 @@ As trocas de acorde são o maior desafio no início. Treine as transições *aba
 
 #v(1.5em)
 
-#align(center)[
-  #block(
-    fill: color-brand-soft,
-    stroke: 0.5pt + color-brand-soft,
-    inset: 12pt,
-    radius: 5pt,
-    width: 80%,
-    [
-      *Plano de estudo:* não tente aprender os 7 acordes de uma vez. Comece com *Em, Am e C* na primeira semana. Adicione *G e D* na segunda. Com esses 5, você já toca dezenas de músicas populares.
-    ],
-  )
+#caixa-destaque(width: 80%)[
+  *Plano de estudo:* não tente aprender os 7 acordes de uma vez. Comece com *Em, Am e C* na primeira semana. Adicione *G e D* na segunda. Com esses 5, você já toca dezenas de músicas populares.
 ]

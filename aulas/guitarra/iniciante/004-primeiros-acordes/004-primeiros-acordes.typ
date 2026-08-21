@@ -160,7 +160,7 @@ As trocas de acorde são o maior desafio no início. Treine as transições abai
       ],
       block[
         #align(center + horizon)[
-          #text(size: 20pt, fill: luma(150))[→]
+          #text(size: 20pt, fill: color-strong)[→]
         ]
       ],
       block[
@@ -226,26 +226,16 @@ Para colocar o que aprendemos em prática, treine esta que é uma das progressõ
 ]
 
 #v(2.5em)
-
-#align(center)[
-  #block(
-    fill: rgb("#fef3c7"),
-    stroke: 0.5pt + rgb("#fde68a"),
-    inset: 12pt,
-    radius: 5pt,
-    width: 85%,
-    [
-      *Como praticar:* \ Toque cada acorde 4 vezes para baixo usando a palheta, focando na precisão. O desafio aqui é a transição do *G para o D*. Comece devagar, mas tente não parar a batida da mão direita durante as trocas de acorde.
-    ],
-  )
-]
+#caixa-destaque[
+  *Como praticar:* \ Toque cada acorde 4 vezes para baixo usando a palheta, focando na precisão. O desafio aqui é a transição do *G para o D*. Comece devagar, mas tente não parar a batida da mão direita durante as trocas de acorde.
+],
 
 #v(1.5em)
 
 #align(center)[
   #block(
-    fill: rgb("#f0fdf4"),
-    stroke: 0.5pt + rgb("#bbf7d0"),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     width: 85%,

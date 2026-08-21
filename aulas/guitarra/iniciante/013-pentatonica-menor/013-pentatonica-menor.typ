@@ -7,33 +7,48 @@
 )
 
 #let chord = new-chordgen(number-to-left: true, use-shadow-barre: false, colors: (hold: black, barre: black))
+#show <chord>: set text(fill: color-strong, weight: "bold")
 
-// Fretboard diagram helper
+// ============================================================
+// FRETBOARD DIAGRAM HELPER (Otimizado para Impressão P&B)
+// ============================================================
 #let nd(k) = box(
   width: 20pt,
   height: 20pt,
-  align(center + horizon, if k == "R" { box(width: 14pt, height: 14pt, fill: black, radius: 7pt) } else if k == "N" {
-    box(width: 14pt, height: 14pt, fill: color-muted, radius: 7pt)
-  } else { line(start: (0pt, 0pt), end: (20pt, 0pt), stroke: 0.5pt + color-rule-dark) }),
+  align(center + horizon, if k == "R" {
+    // Tônica (Raiz): Círculo preto sólido
+    box(width: 14pt, height: 14pt, fill: color-strong, radius: 7pt)
+  } else if k == "N" {
+    // Notas da escala: Círculo aberto com contorno preto
+    box(width: 14pt, height: 14pt, fill: white, stroke: 1pt + color-strong, radius: 7pt)
+  } else {
+    // Corda vazia: Linha passando no meio
+    line(start: (0pt, 0pt), end: (20pt, 0pt), stroke: 0.5pt + color-rule-dark)
+  }),
 )
 
 #let neck(data, fs: 1) = {
   let nf = data.at(0).len()
-  let hdr = ([],) + range(nf).map(i => align(center, text(size: 7.5pt, weight: "bold")[#(fs + i)]))
+  // Cabeçalho dos trastes (ex: 5, 6, 7, 8)
+  let hdr = ([],) + range(nf).map(i => align(center, text(size: 8pt, weight: "bold")[#(fs + i)]))
+
   let bdy = data
     .enumerate()
     .map(p => {
       let i = p.at(0)
       let row = p.at(1)
-      (align(center, text(size: 8pt, fill: luma(50))[#(6 - i)]),) + row.map(nd)
+      // Números das cordas à esquerda (6, 5, 4, 3, 2, 1)
+      (align(center, text(size: 8pt, fill: color-strong)[#(6 - i)]),) + row.map(nd)
     })
     .flatten()
+
   table(
-    columns: (13pt,) + range(nf).map(_ => 22pt),
+    columns: (15pt,) + range(nf).map(_ => 24pt),
     align: center + horizon,
     inset: (x: 0pt, y: 3pt),
-    stroke: (x, y) => if x == 0 or y == 0 { 0.5pt + color-rule-dark } else { 0.4pt + luma(220) },
-    fill: (c, r) => if r == 0 { color-subtle-bg } else if c == 0 { luma(242) } else { white },
+    // Bordas pretas sólidas para maior clareza na impressão
+    stroke: (x, y) => if x == 0 or y == 0 { 0.5pt + color-strong } else { 0.4pt + color-rule-dark },
+    fill: (c, r) => if r == 0 { color-subtle-bg } else if c == 0 { color-subtle-bg } else { white },
     ..hdr, ..bdy,
   )
 }
@@ -53,7 +68,8 @@ A pentatônica menor retira o 2º e o 6º grau da escala menor natural, deixando
     columns: (1fr, 0.6fr, 0.6fr, 0.6fr, 0.6fr, 0.6fr, 1.6fr),
     align: center + horizon,
     stroke: 0.5pt + color-rule-dark,
-    fill: (col, row) => if row == 0 { color-subtle-bg } else if col == 5 { color-brand-soft } else { white },
+    // Destaque suave em luma(230) ao invés de cor preta/escura
+    fill: (col, row) => if row == 0 { color-subtle-bg } else if col == 5 { luma(230) } else { white },
     [*Escala*], [*1*], [*b3*], [*4*], [*5*], [*b7*], [*Em Lá Menor (Am)*],
     [Menor Natural], [T], [b3], [4], [5], [b6], [b7],
     [*Penta Menor*], [*T*], [*b3*], [*4*], [*5*], [—], [*b7*],
@@ -61,11 +77,9 @@ A pentatônica menor retira o 2º e o 6º grau da escala menor natural, deixando
   )
 ]
 
-#pagebreak()
-
 == As 5 Posições (Em Am — Tônica no 5º traste)
 
-Cada posição cobre uma região do braço. Juntas, elas formam um mapa completo. A tônica (●) é a referência de cada posição.
+Cada posição cobre uma região do braço. Juntas, elas formam um mapa completo. A tônica (●) é a referência principal de cada posição.
 
 #v(1em)
 
@@ -220,7 +234,7 @@ G|----------7-5----|
 D|----------7-5----|
 A|-----------------|
 E|-----------------|
-  bend   pull-off",
+ bend  pull-off",
         )
       ],
     )
@@ -236,15 +250,6 @@ E|-----------------|
 
 #v(1.5em)
 
-#align(center)[
-  #block(
-    fill: color-subtle-bg,
-    stroke: 0.5pt + color-rule-dark,
-    inset: 12pt,
-    radius: 5pt,
-    width: 85%,
-    [
-      *Plano de estudo:* Domine a *Posição 1* por completo antes de aprender as outras. Toque subindo e descendo, improvise sobre uma base de Am, experimente bends e vibratos. Só então expanda para a Posição 2. A conexão entre posições vem naturalmente com o tempo.
-    ],
-  )
+#caixa-destaque(width: 85%)[
+  *Plano de estudo:* Domine a *Posição 1* por completo antes de aprender as outras. Toque subindo e descendo, improvise sobre uma base de Am, experimente bends e vibratos. Só então expanda para a Posição 2. A conexão entre posições vem naturalmente com o tempo.
 ]

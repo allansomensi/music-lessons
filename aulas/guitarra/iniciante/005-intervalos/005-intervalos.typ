@@ -9,6 +9,8 @@
 
 #let chord = new-chordgen(number-to-left: true, use-shadow-barre: false, colors: (hold: black, barre: black))
 
+#show <chord>: set text(fill: color-strong, weight: "bold")
+
 = Intervalos Musicais
 
 Na música, os *intervalos* funcionam como a nossa régua de medição. Em termos simples, um intervalo é a distância exata entre duas notas musicais. São os intervalos que ditam a diferença entre acordes maiores e menores, e criam as regras de como todas as escalas são construídas ao longo do braço.
@@ -66,19 +68,9 @@ Os intervalos possuem "nomes" e "sobrenomes". O nome é a distância numérica p
 
 #v(2em)
 
-#align(center)[
-  #block(
-    fill: color-subtle-bg,
-    stroke: 0.5pt + color-rule-dark,
-    inset: 12pt,
-    radius: 5pt,
-    width: 80%,
-    [
-      #text(weight: "bold")[Resumo Rápido:] *1 Semitom* equivale a andar *1 casa* na guitarra. *1 Tom* equivale a andar *2 casas*. Compreender essa matemática espacial e respeitar a ortografia musical (enarmonia) é o primeiro passo para mapear o braço do instrumento.
-    ],
-  )
+#caixa-destaque(width: 80%)[
+  #text(weight: "bold")[Resumo Rápido:] *1 Semitom* equivale a andar *1 casa* na guitarra. *1 Tom* equivale a andar *2 casas*. Compreender essa matemática espacial e respeitar a ortografia musical (enarmonia) é o primeiro passo para mapear o braço do instrumento.
 ]
-
 
 == Movimentação no Braço
 
@@ -130,8 +122,6 @@ Se posicionarmos nossa Tônica Dó na 5ª corda (3ª casa), os intervalos vizinh
     ],
   )
 ]
-
-
 
 == Enarmonia
 

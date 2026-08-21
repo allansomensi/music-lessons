@@ -26,13 +26,13 @@ Antes de qualquer efeito, é preciso entender o percurso que o sinal elétrico f
 #align(center)[
   #diagram(
     spacing: (10mm, 10mm),
-    node-stroke: 0.5pt,
-    node-fill: color-subtle-bg,
+    node-stroke: 0.5pt + color-rule-dark,
+    node-fill: white,
     node-shape: rect,
 
     node((0, 0), [*Guitarra* \ #text(size: 7.5pt, fill: color-muted)[sinal passivo]], name: <G>),
     node((1, 0), [*Pedais* \ #text(size: 7.5pt, fill: color-muted)[pré-sinal]], name: <P>),
-    node((2, 0), [*Pré-Amp* \ #text(size: 7.5pt, fill: color-muted)[ganho + EQ]], name: <PRE>),
+    node((2, 0), [*Pré-Amp* \ #text(size: 7.5pt, fill: color-muted)[ganho + EQ]], name: <PRE>, fill: color-subtle-bg),
     node((3, 0), [*Power Amp* \ #text(size: 7.5pt, fill: color-muted)[amplificação]], name: <PWR>),
     node((4, 0), [*Caixa* \ #text(size: 7.5pt, fill: color-muted)[alto-falante]], name: <CAB>),
     node((5, 0), [*Ouvido*], name: <EAR>),
@@ -46,12 +46,12 @@ Antes de qualquer efeito, é preciso entender o percurso que o sinal elétrico f
     node(
       (2, 0.8),
       text(size: 8pt)[Aqui nascem \ o *ganho* e o *timbre*],
-      stroke: 0.4pt + rgb("#86efac"),
-      fill: rgb("#f0fdf4"),
+      stroke: 0.5pt + color-rule-dark,
+      fill: white,
       shape: fletcher.shapes.rect,
       name: <LA>,
     ),
-    edge(<LA>, <PRE>, "-->", stroke: 0.5pt + rgb("#86efac")),
+    edge(<LA>, <PRE>, "-->", stroke: 0.5pt + color-rule-dark),
   )
 ]
 
@@ -67,8 +67,8 @@ Esses dois estágios têm *funções completamente distintas*. Confundi-los é o
     gutter: 1.2em,
     block(
       width: 100%,
-      fill: color-brand-soft,
-      stroke: 0.6pt + color-brand-soft,
+      fill: color-subtle-bg,
+      stroke: 0.5pt + color-rule-dark,
       inset: 11pt,
       radius: 5pt,
       [
@@ -78,13 +78,13 @@ Esses dois estágios têm *funções completamente distintas*. Confundi-los é o
         Recebe o sinal *fraco* da guitarra e o amplifica para um nível de linha utilizável. É aqui que vivem o *ganho*, o *EQ de 3 bandas* e a *coloração tonal* do amplificador. O caráter sonoro — brilhante, quente, agressivo — nasce quase que inteiramente no pré-amp.
 
         #v(0.4em)
-        #text(fill: color-muted)[_Exemplos: o canal de ganho de um Marshall JCM800, o drive de uma pedaleira._]
+        #text(fill: color-secondary)[_Exemplos: o canal de ganho de um Marshall JCM800, o drive de uma pedaleira._]
       ],
     ),
     block(
       width: 100%,
-      fill: rgb("#fdf4ff"),
-      stroke: 0.6pt + rgb("#d8b4fe"),
+      fill: color-subtle-bg,
+      stroke: 0.5pt + color-rule-dark,
       inset: 11pt,
       radius: 5pt,
       [
@@ -94,7 +94,7 @@ Esses dois estágios têm *funções completamente distintas*. Confundi-los é o
         Recebe o sinal *já processado* do pré-amp e o amplifica em termos de *potência elétrica* (watts) para movimentar o cone do alto-falante. Ele não tem como objetivo colorir o som; ele apenas o torna *forte o suficiente* para mover o ar.
 
         #v(0.4em)
-        #text(fill: color-muted)[_Exemplos: a seção de power do próprio amplificador, um power amp de rack._]
+        #text(fill: color-secondary)[_Exemplos: a seção de power do próprio amplificador, um power amp de rack._]
       ],
     ),
   )
@@ -105,25 +105,23 @@ Esses dois estágios têm *funções completamente distintas*. Confundi-los é o
 #align(center)[
   #diagram(
     spacing: (12mm, 9mm),
-    node-stroke: 0.4pt,
+    node-stroke: 0.5pt + color-rule-dark,
     node-shape: rect,
 
     node(
       (0, 0),
       [Pedaleira \ #text(size: 7pt)[*simulando pré-amp*]],
-      fill: rgb("#fef9c3"),
-      stroke: 0.5pt + rgb("#eab308"),
+      fill: white,
       name: <PED>,
     ),
     node(
       (1, 0),
       [Entrada do Amp \ #text(size: 7pt)[*pré-amp interno*]],
-      fill: rgb("#fef9c3"),
-      stroke: 0.5pt + rgb("#eab308"),
+      fill: white,
       name: <AMP>,
     ),
-    node((2, 0), [Power Amp], fill: rgb("#f0fdf4"), stroke: 0.5pt + rgb("#86efac"), name: <PWR>),
-    node((3, 0), [Caixa], fill: rgb("#f0fdf4"), stroke: 0.5pt + rgb("#86efac"), name: <CAB>),
+    node((2, 0), [Power Amp], fill: color-subtle-bg, name: <PWR>),
+    node((3, 0), [Caixa], fill: color-subtle-bg, name: <CAB>),
 
     edge(<PED>, <AMP>, "->"),
     edge(<AMP>, <PWR>, "->"),
@@ -131,14 +129,18 @@ Esses dois estágios têm *funções completamente distintas*. Confundi-los é o
 
     node(
       (0.5, 0.8),
-      text(size: 8pt, fill: rgb("#dc2626"))[⚠ Pré-amp em cima de pré-amp \ sinal distorcido e sem controle],
-      fill: rgb("#fef2f2"),
-      stroke: 0.5pt + rgb("#fca5a5"),
+      text(
+        size: 8pt,
+        weight: "bold",
+        fill: color-strong,
+      )[⚠ Pré-amp em cima de pré-amp \ sinal distorcido e sem controle],
+      fill: color-subtle-bg,
+      stroke: 0.5pt + color-rule-dark,
       shape: fletcher.shapes.rect,
       name: <WARN>,
     ),
-    edge(<WARN>, <PED>, "-->", stroke: 0.5pt + rgb("#fca5a5")),
-    edge(<WARN>, <AMP>, "-->", stroke: 0.5pt + rgb("#fca5a5")),
+    edge(<WARN>, <PED>, "-->", stroke: 0.5pt + color-rule-dark),
+    edge(<WARN>, <AMP>, "-->", stroke: 0.5pt + color-rule-dark),
   )
 ]
 
@@ -157,22 +159,22 @@ A ordem dos pedais importa. Um chorus antes de uma distorção soa completamente
 #align(center)[
   #diagram(
     spacing: (4mm, 12mm),
-    node-stroke: 0.5pt,
+    node-stroke: 0.5pt + color-rule-dark,
     node-shape: rect,
+    node-fill: white,
 
     // Row 1: before amp
     node((0, 0), [*Guitarra*], name: <G>, fill: color-subtle-bg),
-    node((1, 0), [*Afinador* \ #text(size: 7pt, fill: color-muted)[sempre primeiro]], name: <TUN>, fill: luma(245)),
-    node((2, 0), [*Dinâmicos* \ #text(size: 7pt, fill: color-muted)[comp, boost]], name: <DYN>, fill: color-brand-soft),
-    node((3, 0), [*Ganho* \ #text(size: 7pt, fill: color-muted)[od, dist, fuzz]], name: <GAI>, fill: rgb("#fee2e2")),
+    node((1, 0), [*Afinador* \ #text(size: 7pt, fill: color-muted)[sempre primeiro]], name: <TUN>),
+    node((2, 0), [*Dinâmicos* \ #text(size: 7pt, fill: color-muted)[comp, boost]], name: <DYN>),
+    node((3, 0), [*Ganho* \ #text(size: 7pt, fill: color-muted)[od, dist, fuzz]], name: <GAI>),
     node(
       (4, 0),
       [*Modulação* \ #text(size: 7pt, fill: color-muted)[chorus, flanger]],
       name: <MOD>,
-      fill: rgb("#fef9c3"),
     ),
-    node((5, 0), [*Delay* \ #text(size: 7pt, fill: color-muted)[eco, tape]], name: <DEL>, fill: color-accent-soft),
-    node((6, 0), [*Reverb* \ #text(size: 7pt, fill: color-muted)[ambiente]], name: <REV>, fill: rgb("#f3e8ff")),
+    node((5, 0), [*Delay* \ #text(size: 7pt, fill: color-muted)[eco, tape]], name: <DEL>),
+    node((6, 0), [*Reverb* \ #text(size: 7pt, fill: color-muted)[ambiente]], name: <REV>),
     node((7, 0), [*Amp*], name: <AMP>, fill: color-subtle-bg),
 
     edge(<G>, <TUN>, "->"),
@@ -187,17 +189,8 @@ A ordem dos pedais importa. Um chorus antes de uma distorção soa completamente
 
 #v(1.5em)
 
-#align(center)[
-  #block(
-    fill: color-subtle-bg,
-    stroke: 0.5pt + color-rule-dark,
-    inset: 11pt,
-    radius: 5pt,
-    width: 88%,
-    [
-      #text(weight: "bold")[Por que essa ordem?] Os pedais de *ganho* operam melhor com um sinal limpo e dinâmico chegando neles. Os pedais de *modulação e tempo* (delay, reverb) precisam receber o sinal *já distorcido e equalizado* para que os efeitos se repitam e decaiam de forma musical, sem criar caos sonoro.
-    ],
-  )
+#caixa-destaque(width: 88%)[
+  #text(weight: "bold")[Por que essa ordem?] Os pedais de *ganho* operam melhor com um sinal limpo e dinâmico chegando neles. Os pedais de *modulação e tempo* (delay, reverb) precisam receber o sinal *já distorcido e equalizado* para que os efeitos se repitam e decaiam de forma musical, sem criar caos sonoro.
 ]
 
 #pagebreak()
@@ -209,8 +202,8 @@ A ordem dos pedais importa. Um chorus antes de uma distorção soa completamente
 #explainer-component(
   align(center)[
     #block(
-      fill: color-brand-soft,
-      stroke: 0.6pt + color-brand-soft,
+      fill: color-subtle-bg,
+      stroke: 0.5pt + color-rule-dark,
       inset: 12pt,
       radius: 5pt,
       width: 100%,
@@ -262,8 +255,8 @@ A ordem dos pedais importa. Um chorus antes de uma distorção soa completamente
     columns: (1fr, 1fr, 1fr),
     gutter: 1em,
     block(
-      fill: rgb("#fef2f2"),
-      stroke: 0.5pt + rgb("#fca5a5"),
+      fill: color-subtle-bg,
+      stroke: 0.5pt + color-rule-dark,
       inset: 9pt,
       radius: 5pt,
       [
@@ -274,8 +267,8 @@ A ordem dos pedais importa. Um chorus antes de uma distorção soa completamente
       ],
     ),
     block(
-      fill: rgb("#fef2f2"),
-      stroke: 0.5pt + rgb("#fca5a5"),
+      fill: color-subtle-bg,
+      stroke: 0.5pt + color-rule-dark,
       inset: 9pt,
       radius: 5pt,
       [
@@ -286,8 +279,8 @@ A ordem dos pedais importa. Um chorus antes de uma distorção soa completamente
       ],
     ),
     block(
-      fill: rgb("#fef2f2"),
-      stroke: 0.5pt + rgb("#fca5a5"),
+      fill: color-subtle-bg,
+      stroke: 0.5pt + color-rule-dark,
       inset: 9pt,
       radius: 5pt,
       [
@@ -307,7 +300,7 @@ A ordem dos pedais importa. Um chorus antes de uma distorção soa completamente
 #explainer-component(
   align(center)[
     #block(
-      fill: luma(245),
+      fill: color-subtle-bg,
       stroke: 0.5pt + color-rule-dark,
       inset: 12pt,
       radius: 5pt,
@@ -324,8 +317,8 @@ A ordem dos pedais importa. Um chorus antes de uma distorção soa completamente
           columns: (1fr, 1fr),
           gutter: 0.8em,
           block(
-            fill: rgb("#fef9c3"),
-            stroke: 0.5pt + rgb("#eab308"),
+            fill: white,
+            stroke: 0.5pt + color-rule-dark,
             inset: 8pt,
             radius: 4pt,
             [
@@ -335,8 +328,8 @@ A ordem dos pedais importa. Um chorus antes de uma distorção soa completamente
             ],
           ),
           block(
-            fill: rgb("#fef9c3"),
-            stroke: 0.5pt + rgb("#eab308"),
+            fill: white,
+            stroke: 0.5pt + color-rule-dark,
             inset: 8pt,
             radius: 4pt,
             [
@@ -393,8 +386,8 @@ Esses dois efeitos criam a *sensação de espaço* do som. São os últimos da c
     columns: (1fr, 1fr),
     gutter: 1.5em,
     block(
-      fill: color-accent-soft,
-      stroke: 0.6pt + rgb("#86efac"),
+      fill: color-subtle-bg,
+      stroke: 0.5pt + color-rule-dark,
       inset: 11pt,
       radius: 5pt,
       [
@@ -409,7 +402,7 @@ Esses dois efeitos criam a *sensação de espaço* do som. São os últimos da c
           columns: (1fr, 1fr),
           align: center + horizon,
           stroke: 0.4pt + color-rule-dark,
-          fill: color-subtle-bg,
+          fill: white,
           inset: 6pt,
           [*Digital*], [*Tape/Analog*],
           [Eco limpo e preciso], [Eco quente e que degenera],
@@ -421,8 +414,8 @@ Esses dois efeitos criam a *sensação de espaço* do som. São os últimos da c
       ],
     ),
     block(
-      fill: rgb("#f3e8ff"),
-      stroke: 0.6pt + rgb("#d8b4fe"),
+      fill: color-subtle-bg,
+      stroke: 0.5pt + color-rule-dark,
       inset: 11pt,
       radius: 5pt,
       [
@@ -437,7 +430,7 @@ Esses dois efeitos criam a *sensação de espaço* do som. São os últimos da c
           columns: (1fr, 1fr),
           align: center + horizon,
           stroke: 0.4pt + color-rule-dark,
-          fill: color-subtle-bg,
+          fill: white,
           inset: 6pt,
           [*Room / Hall*], [*Spring / Plate*],
           [Ambiente natural], [Metálico, vintage],
@@ -462,21 +455,21 @@ A maioria dos amplificadores possui uma entrada chamada *FX Loop* (ou Effects Lo
 #align(center)[
   #diagram(
     spacing: (3mm, 12mm),
-    node-stroke: 0.5pt,
+    node-stroke: 0.5pt + color-rule-dark,
     node-shape: rect,
+    node-fill: white,
 
     node((0, 0), [*Guitarra*], name: <G>, fill: color-subtle-bg),
-    node((1, 0), [*OD / Dist*\ #text(size: 7pt)[ganho]], name: <DRV>, fill: rgb("#fee2e2")),
-    node((2, 0), [*Pré-Amp* \ #text(size: 7pt)[amp input]], name: <PRE>, fill: color-brand-soft),
+    node((1, 0), [*OD / Dist*\ #text(size: 7pt)[ganho]], name: <DRV>),
+    node((2, 0), [*Pré-Amp* \ #text(size: 7pt)[amp input]], name: <PRE>),
     node((3, 0), [→ *Send* →], name: <SND>, fill: color-subtle-bg),
     node(
       (4, 0),
       [*Chorus* \ *Delay* \ *Reverb* \ #text(size: 7pt)[modulação/tempo]],
       name: <LOOP>,
-      fill: color-accent-soft,
     ),
     node((5, 0), [→ *Return* →], name: <RET>, fill: color-subtle-bg),
-    node((6, 0), [*Power Amp* \ + *Caixa*], name: <PWR>, fill: rgb("#f3e8ff")),
+    node((6, 0), [*Power Amp* \ + *Caixa*], name: <PWR>),
 
     edge(<G>, <DRV>, "->"),
     edge(<DRV>, <PRE>, "->"),
@@ -492,7 +485,7 @@ A maioria dos amplificadores possui uma entrada chamada *FX Loop* (ou Effects Lo
 #explainer-component(
   align(center)[
     #block(
-      fill: luma(245),
+      fill: color-subtle-bg,
       stroke: 0.5pt + color-rule-dark,
       inset: 10pt,
       radius: 5pt,
@@ -503,8 +496,8 @@ A maioria dos amplificadores possui uma entrada chamada *FX Loop* (ou Effects Lo
           columns: (1fr, 1fr),
           gutter: 0.8em,
           block(
-            fill: rgb("#fef2f2"),
-            stroke: 0.5pt + rgb("#fca5a5"),
+            fill: white,
+            stroke: 0.5pt + color-rule-dark,
             inset: 8pt,
             radius: 4pt,
             [
@@ -514,8 +507,8 @@ A maioria dos amplificadores possui uma entrada chamada *FX Loop* (ou Effects Lo
             ],
           ),
           block(
-            fill: rgb("#f0fdf4"),
-            stroke: 0.5pt + rgb("#86efac"),
+            fill: white,
+            stroke: 0.5pt + color-rule-dark,
             inset: 8pt,
             radius: 4pt,
             [
@@ -571,8 +564,8 @@ A maioria dos amplificadores possui uma entrada chamada *FX Loop* (ou Effects Lo
     gutter: 1.2em,
     block(
       width: 100%,
-      fill: rgb("#f0fdf4"),
-      stroke: 0.6pt + rgb("#86efac"),
+      fill: color-subtle-bg,
+      stroke: 0.5pt + color-rule-dark,
       inset: 10pt,
       radius: 5pt,
       [
@@ -590,8 +583,8 @@ A maioria dos amplificadores possui uma entrada chamada *FX Loop* (ou Effects Lo
     ),
     block(
       width: 100%,
-      fill: rgb("#fef2f2"),
-      stroke: 0.6pt + rgb("#fca5a5"),
+      fill: color-subtle-bg,
+      stroke: 0.5pt + color-rule-dark,
       inset: 10pt,
       radius: 5pt,
       [
@@ -612,15 +605,6 @@ A maioria dos amplificadores possui uma entrada chamada *FX Loop* (ou Effects Lo
 
 #v(1.5em)
 
-#align(center)[
-  #block(
-    fill: rgb("#fef3c7"),
-    stroke: 0.5pt + rgb("#fde68a"),
-    inset: 12pt,
-    radius: 5pt,
-    width: 88%,
-    [
-      *Regra de ouro do timbre:* A melhor cadeia de efeitos do mundo não compensa um som ruim na fonte. Comece sempre pela guitarra, pelas cordas e pelo amplificador. Efeitos são *temperos*, não a refeição.
-    ],
-  )
+#caixa-destaque(width: 88%)[
+  *Regra de ouro do timbre:* A melhor cadeia de efeitos do mundo não compensa um som ruim na fonte. Comece sempre pela guitarra, pelas cordas e pelo amplificador. Efeitos são *temperos*, não a refeição.
 ]

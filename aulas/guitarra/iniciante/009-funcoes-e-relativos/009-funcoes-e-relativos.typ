@@ -9,6 +9,8 @@
 
 #let chord = new-chordgen(number-to-left: true, use-shadow-barre: false, colors: (hold: black, barre: black))
 
+#show <chord>: set text(fill: color-strong, weight: "bold")
+
 = Funções Harmônicas e Cadências
 
 No campo harmônico maior, cada acorde exerce uma *função*: um papel emocional e estrutural dentro do tom. Entender funções é o que permite criar progressões coerentes, identificar acordes em músicas de ouvido e improvisar com consciência.
@@ -22,8 +24,8 @@ No campo harmônico maior, cada acorde exerce uma *função*: um papel emocional
   gutter: 1em,
   block(
     width: 100%,
-    fill: color-brand-soft,
-    stroke: 0.6pt + rgb("#3b82f6"),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     [
@@ -37,8 +39,8 @@ No campo harmônico maior, cada acorde exerce uma *função*: um papel emocional
   ),
   block(
     width: 100%,
-    fill: rgb("#fefce8"),
-    stroke: 0.6pt + rgb("#eab308"),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     [
@@ -52,8 +54,8 @@ No campo harmônico maior, cada acorde exerce uma *função*: um papel emocional
   ),
   block(
     width: 100%,
-    fill: rgb("#fff1f2"),
-    stroke: 0.6pt + rgb("#f43f5e"),
+    fill: color-subtle-bg,
+    stroke: 0.5pt + color-rule-dark,
     inset: 12pt,
     radius: 5pt,
     [
@@ -79,9 +81,7 @@ No campo harmônico maior, cada acorde exerce uma *função*: um papel emocional
     align: center + horizon,
     stroke: 0.5pt + color-rule-dark,
     fill: (col, row) => {
-      if row == 0 or row == 1 { color-subtle-bg } else if row == 2 { color-subtle-bg } else if row == 3 {
-        rgb("#fef9c3")
-      } else { rgb("#ffe4e6") }
+      if row == 0 { luma(230) } else if row == 1 { white } else { color-subtle-bg }
     },
     [*Grau*], [I], [II], [III], [IV], [V], [VI], [VII],
     [*Acorde*], [C7M], [Dm7], [Em7], [F7M], [G7], [Am7], [Bø],
@@ -92,8 +92,7 @@ No campo harmônico maior, cada acorde exerce uma *função*: um papel emocional
 #v(0.5em)
 
 #align(center)[
-  #text(size: 8.5pt, fill: color-muted)[T = Tônica · S = Subdominante · D = Dominante · R = Relativo]
-
+  #text(size: 8.5pt, fill: color-secondary)[T = Tônica · S = Subdominante · D = Dominante · R = Relativo]
 ]
 
 == Cadências
@@ -116,8 +115,8 @@ Uma *cadência* é um movimento de acordes que cria uma sensação de repouso ou
       #align(center)[
         #diagram(
           spacing: 16mm,
-          node((0, 0), [V], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: rgb("#ffe4e6")),
-          node((1, 0), [I], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: color-brand-soft),
+          node((0, 0), [V], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: white),
+          node((1, 0), [I], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: white),
           edge((0, 0), (1, 0), "->"),
         )
         #v(0.3em)
@@ -139,8 +138,8 @@ Uma *cadência* é um movimento de acordes que cria uma sensação de repouso ou
       #align(center)[
         #diagram(
           spacing: 16mm,
-          node((0, 0), [IV], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: rgb("#fef9c3")),
-          node((1, 0), [I], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: color-brand-soft),
+          node((0, 0), [IV], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: white),
+          node((1, 0), [I], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: white),
           edge((0, 0), (1, 0), "->"),
         )
         #v(0.3em)
@@ -162,9 +161,9 @@ Uma *cadência* é um movimento de acordes que cria uma sensação de repouso ou
       #align(center)[
         #diagram(
           spacing: 13mm,
-          node((0, 0), [II], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: rgb("#fef9c3")),
-          node((1, 0), [V], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: rgb("#ffe4e6")),
-          node((2, 0), [I], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: color-brand-soft),
+          node((0, 0), [II], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: white),
+          node((1, 0), [V], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: white),
+          node((2, 0), [I], stroke: 0.5pt, shape: fletcher.shapes.rect, fill: white),
           edge((0, 0), (1, 0), "->"),
           edge((1, 0), (2, 0), "->"),
         )
@@ -196,19 +195,19 @@ O *II-V-I* é onipresente na música ocidental. Ele combina as três funções e
         #box(chord("x,x,0,2,1,1", name: "Dm7"))
         #v(0.2em)
         #text(size: 8.5pt, weight: "bold")[Dm7 (II)]\
-        #text(size: 8pt, fill: color-muted)[Subdominante]
+        #text(size: 8pt, fill: color-secondary)[Subdominante]
       ],
       block[
         #box(chord("3,2,0,0,0,1", name: "G7"))
         #v(0.2em)
         #text(size: 8.5pt, weight: "bold")[G7 (V)]\
-        #text(size: 8pt, fill: color-muted)[Dominante]
+        #text(size: 8pt, fill: color-secondary)[Dominante]
       ],
       block[
         #box(chord("x,3,2,0,0,0", name: "C7M"))
         #v(0.2em)
         #text(size: 8.5pt, weight: "bold")[C7M (I)]\
-        #text(size: 8pt, fill: color-muted)[Tônica]
+        #text(size: 8pt, fill: color-secondary)[Tônica]
       ],
     )
   ],
@@ -242,7 +241,7 @@ Todo tom maior possui um *relativo menor* (um tom menor que compartilha exatamen
 #v(1em)
 
 #align(center)[
-  #text(size: 9pt, fill: color-muted)[
-    *Nota:* C7M e Am7 são *relativos*: compartilham as mesmas notas (do, ré, mi, fá, sol, lá, si). Por isso soam "parecidos" e podem se substituir em muitos contextos.
+  #text(size: 9pt, fill: color-secondary)[
+    *Nota:* C7M e Am7 são *relativos*: compartilham as mesmas notas (dó, ré, mi, fá, sol, lá, si). Por isso soam "parecidos" e podem se substituir em muitos contextos.
   ]
 ]
