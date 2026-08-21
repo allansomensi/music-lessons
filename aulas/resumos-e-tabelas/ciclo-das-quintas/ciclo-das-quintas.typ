@@ -12,5 +12,3 @@
 
   #text(size: 8pt, fill: color-muted)[Disponível em: https://www.musicca.com/circle-of-fifths]
 ]
-
-#pagebreak()
