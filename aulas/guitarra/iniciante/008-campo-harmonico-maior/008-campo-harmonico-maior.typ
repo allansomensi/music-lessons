@@ -19,8 +19,6 @@ O *campo harmônico* é o conjunto de todos os acordes que podem ser construído
 
 Na *Escala de Dó Maior* (C), as 7 notas são separadas pelas distâncias abaixo:
 
-#v(1em)
-
 #align(center)[
   #diagram(
     spacing: 13mm,
@@ -40,15 +38,11 @@ Na *Escala de Dó Maior* (C), as 7 notas são separadas pelas distâncias abaixo
   )
 ]
 
-#v(1em)
-
 O padrão de tons e semitons é: *T - T - ST - T - T - T - ST*. Esse é o padrão de toda Escala Maior, em qualquer tonalidade.
 
 == Campo Harmônico em Tríades
 
 Empilhando terças sobre cada grau usando apenas notas da escala, obtemos os seguintes acordes:
-
-#v(0.8em)
 
 #align(center)[
   #table(
@@ -70,8 +64,6 @@ Empilhando terças sobre cada grau usando apenas notas da escala, obtemos os seg
     [VII], [Bm#super[b5]], [si], [ré], [fá], [si · ré · fá], [Diminuta],
   )
 ]
-
-#v(1em)
 
 #caixa-destaque(width: 100%)[
   *Padrão do Campo Maior:* I Maior · II Menor · III Menor · IV Maior · V Maior · VI Menor · VII Diminuta

@@ -2,7 +2,7 @@
 
 #show: aula.with(
   instrumento: "Teoria Musical",
-  nivel: "Módulo 1: Fundamentos",
+  nivel: "Fundamentos",
 )
 
 = O Som e a Música

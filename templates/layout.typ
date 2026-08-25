@@ -1,15 +1,15 @@
-#let color-ink = luma(0)         // Texto principal
-#let color-strong = luma(0)      // Negrito em destaque
-#let color-secondary = luma(60)  // Textos secundários (cinza escuro, header/info de rodapé)
-#let color-muted = luma(120)     // Textos sutis (bullet separador, nível)
-#let color-rule-dark = luma(80)  // Linhas / divisores visíveis (cinza médio-escuro)
-#let color-rule-light = luma(180)// Linhas sutis (separador de seção)
-#let color-subtle-bg = luma(245) // Fundo de caixas (cinza quase branco, economiza tinta)
-
-#let color-brand = luma(0)       // Headings principais
-#let color-brand-soft = luma(40) // Sub-headings (cinza grafite)
-#let color-accent = luma(0)      // Tabelas e destaques (preto puro)
-#let color-accent-soft = luma(80)// Variante mais clara para sub-destaques
+#let color-ink = luma(15)          // Texto principal (preto suavizado)
+#let color-strong = luma(0)        // Negrito em destaque / títulos principais
+#let color-secondary = luma(70)    // Textos secundários (header, rodapé, legendas)
+#let color-muted = luma(110)       // Textos sutis (observações, bullets de apoio)
+#let color-rule-dark = luma(60)    // Linhas / divisores visíveis, bordas de caixas
+#let color-rule-light = luma(170)  // Linhas sutis (separador de seção, grades leves)
+#let color-subtle-bg = luma(240)   // Fundo de caixas — visível mas econômico em tinta
+#let color-subtle-bg-alt = luma(222) // Fundo mais forte — cabeçalhos de tabela, zebra-striping
+#let color-brand = luma(0)         // Headings principais (H1)
+#let color-brand-soft = luma(35)   // Sub-headings (H2) — grafite
+#let color-accent = luma(0)        // Tabelas e destaques fortes
+#let color-accent-soft = luma(60)  // Variante para sub-destaques
 
 // ============================================================
 // CONTATO
@@ -37,9 +37,9 @@
   set page(
     margin: (top: 2.5cm, bottom: 3cm, x: 2cm),
     header: [
-      #set text(font: "Linux Libertine", size: 10pt)
+      #set text(font: "Linux Libertine", size: 9.5pt)
       #align(right)[
-        #text(weight: "bold", fill: color-secondary)[#instrumento]
+        #text(weight: "bold", fill: color-secondary, tracking: 0.3pt)[#instrumento]
         #text(fill: color-muted)[ #h(5pt) • #h(5pt) #nivel ]
       ]
     ],
@@ -66,7 +66,7 @@
             dir: ttb,
             spacing: 5pt,
             text(weight: "bold", size: 12pt, fill: color-strong, CONTACT_INFO.name),
-            text(fill: color-muted)[
+            text(size: 8.5pt, fill: color-muted)[
               #CONTACT_INFO.instagram #separator
               #CONTACT_INFO.phone #separator
               #CONTACT_INFO.website #separator
@@ -85,18 +85,37 @@
 
   // Text and Paragraph Styles
   set text(font: "Linux Libertine", size: 11pt, fill: color-ink)
-  set par(justify: true, leading: 0.80em)
+  set par(justify: true, leading: 0.95em, first-line-indent: 0pt)
 
   // Heading Rules
+  // H1 — Título de abertura de aula/capítulo. Centralizado, com regra fina
   show heading.where(level: 1): it => align(center, block(
-    below: 1.5em,
-    text(size: 24pt, weight: "bold", fill: color-brand, it.body),
+    above: 0.5em,
+    below: 1.8em,
+    [
+      #text(size: 23pt, weight: "bold", fill: color-brand, it.body)
+      #v(0em)
+      #box(width: 3.2cm, line(length: 100%, stroke: 1pt + color-rule-dark))
+    ],
   ))
 
+  // H2 — Seção principal. Barra vertical à esquerda, estilo "marcador didático".
   show heading.where(level: 2): it => block(
-    above: 1.5em,
+    above: 1.6em,
     below: 1em,
-    text(size: 14pt, weight: "bold", fill: color-brand-soft, it.body),
+    [
+      #box(width: 3pt, height: 0.85em, fill: color-brand-soft, baseline: 15%)
+      #h(6pt)
+      #text(size: 13.5pt, weight: "bold", fill: color-brand-soft, it.body)
+    ],
+  )
+
+  // H3 — Subseção. Discreto, itálico grafite, sem numeração visual pesada,
+  // para não competir com H2 mas ainda marcar hierarquia com clareza.
+  show heading.where(level: 3): it => block(
+    above: 1.1em,
+    below: 0.7em,
+    text(size: 11.5pt, weight: "bold", style: "italic", fill: color-secondary, it.body),
   )
 
   body

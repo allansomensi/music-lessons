@@ -119,13 +119,9 @@ As quatro tríades abaixo partem da mesma tônica, mas soam completamente difere
   )
 ]
 
-#v(1em)
-
 == Formas Fechadas
 
 Tríades *sem cordas soltas* são chamadas de *formas fechadas* e podem ser transportadas para qualquer tonalidade simplesmente deslizando o formato pelo braço. A geometria da mão não muda, apenas a casa em que a tônica se encontra.
-
-#v(0.8em)
 
 #explainer-component(
   align(center)[
@@ -144,8 +140,6 @@ Tríades *sem cordas soltas* são chamadas de *formas fechadas* e podem ser tran
   ],
 )
 
-#v(1em)
-
 #align(center)[
   #block(
     fill: color-subtle-bg,
@@ -159,9 +153,9 @@ Tríades *sem cordas soltas* são chamadas de *formas fechadas* e podem ser tran
   )
 ]
 
-= Inversões de Tríades
+== Inversões de Tríades
 
-Uma tríade não precisa ter obrigatoriamente a Tônica como a nota mais grave. Quando alteramos a nota que fica no baixo, criamos as *inversões*. Dominar as inversões permite tocar o mesmo acorde em diferentes regiões do braço e criar linhas de baixo mais melódicas.
+Uma tríade não precisa ter obrigatoriamente a Tônica como a nota mais grave. Quando alteramos a nota que fica no baixo, criamos as *inversões*.
 
 == As 3 Posições Possíveis
 
@@ -178,13 +172,9 @@ Uma tríade não precisa ter obrigatoriamente a Tônica como a nota mais grave. 
   )
 ]
 
-#v(1em)
-
 == Exemplos de Inversões em Acordes Abertos (Dó Maior)
 
 Podemos visualizar como as inversões funcionam na prática alterando a nota mais grave dos acordes abertos tradicionais. Abaixo, vemos como o formato clássico de Dó Maior (C) é adaptado para criar suas inversões, mantendo a base do acorde e mudando apenas o baixo.
-
-#v(1em)
 
 #align(center)[
   #grid(

@@ -40,7 +40,7 @@ Antes de tocar qualquer música ou estudar um acorde novo, você precisa dominar
 
 == As Notas Musicais e a Cifra
 
-A música ocidental usa *7 notas naturais*. No Brasil usamos os nomes em português (Dó, Ré, Mi...), mas a cifragem popular e a teoria internacional usam *letras em inglês*. Você precisa conhecer as duas formas.
+A música ocidental usa *7 notas naturais*. No Brasil usamos os nomes em português (Dó, Ré, Mi...), mas a cifragem popular e a teoria internacional usam *letras em inglês*. Você deve conhecer as duas formas.
 
 #v(0.5em)
 
@@ -77,8 +77,6 @@ A correspondência é simples, mas precisa ser memorizada. Na prática, quando v
     width: 86%,
     [
       #set text(size: 8.5pt)
-      *Observação*
-
       A cifra é uma linguagem simplificada: ela funciona como um guia simples de *localização harmônica*, indicando onde estamos na música. Já a *partitura* é completa, pois detalha a melodia exata, a duração das notas (tempo/ritmo) e a dinâmica da execução.
     ],
   )
@@ -100,7 +98,7 @@ As 7 notas naturais não cobrem todos os sons. Entre a maioria delas há *notas 
       #let acc = color-rule-dark
       #table(
         columns: 12,
-        rows: (auto, auto),
+        rows: auto,
         align: center + horizon,
         stroke: 0.5pt + color-rule-dark,
         inset: (x: 5pt, y: 7pt),
@@ -133,30 +131,7 @@ As 7 notas naturais não cobrem todos os sons. Entre a maioria delas há *notas 
               fill: if blacks.contains(col-idx) { white } else { color-strong },
             )[#n]
           })
-        },
-        ..{
-          let nomes = (
-            [Dó],
-            [Dó\#\ Réb],
-            [Ré],
-            [Ré\#\ Mib],
-            [Mi],
-            [Fá],
-            [Fá\#\ Solb],
-            [Sol],
-            [Sol\#\ Láb],
-            [Lá],
-            [Lá\#\ Sib],
-            [Si],
-          )
-          let blacks = (1, 3, 6, 8, 10)
-          nomes
-            .enumerate()
-            .map(((i, n)) => text(
-              size: 7.5pt,
-              fill: if blacks.contains(i) { white.transparentize(15%) } else { luma(40) },
-            )[#n])
-        },
+        }
       )
     ],
   )
@@ -176,7 +151,6 @@ As 7 notas naturais não cobrem todos os sons. Entre a maioria delas há *notas 
       radius: 5pt,
       [
         #align(center)[#text(weight: "bold", size: 10pt)[♯ Sustenido]]
-        #v(0.4em)
         #set text(size: 9pt)
         Sobe a nota em *1 semitom* (1 casa para cima no braço). \
         Ex.: *F\#* = Fá Sustenido = a nota entre Fá e Sol.
@@ -190,7 +164,6 @@ As 7 notas naturais não cobrem todos os sons. Entre a maioria delas há *notas 
       radius: 5pt,
       [
         #align(center)[#text(weight: "bold", size: 10pt)[♭ Bemol]]
-        #v(0.4em)
         #set text(size: 9pt)
         Desce a nota em *1 semitom* (1 casa para baixo no braço). \
         Ex.: *Bb* = Si Bemol = a nota entre Lá e Si.

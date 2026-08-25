@@ -17,8 +17,6 @@ No campo harmônico maior, cada acorde exerce uma *função*: um papel emocional
 
 == As 3 Funções Fundamentais
 
-#v(0.8em)
-
 #grid(
   columns: (1fr, 1fr, 1fr),
   gutter: 1em,
@@ -69,11 +67,7 @@ No campo harmônico maior, cada acorde exerce uma *função*: um papel emocional
   ),
 )
 
-#v(1.5em)
-
 == Mapa de Funções no Campo de C
-
-#v(0.8em)
 
 #align(center)[
   #table(
@@ -89,8 +83,6 @@ No campo harmônico maior, cada acorde exerce uma *função*: um papel emocional
   )
 ]
 
-#v(0.5em)
-
 #align(center)[
   #text(size: 8.5pt, fill: color-secondary)[T = Tônica · S = Subdominante · D = Dominante · R = Relativo]
 ]
@@ -98,8 +90,6 @@ No campo harmônico maior, cada acorde exerce uma *função*: um papel emocional
 == Cadências
 
 Uma *cadência* é um movimento de acordes que cria uma sensação de repouso ou movimento. As três cadências principais são:
-
-#v(1em)
 
 #grid(
   columns: (1fr, 1fr, 1fr),
@@ -176,8 +166,6 @@ Uma *cadência* é um movimento de acordes que cria uma sensação de repouso ou
     ],
   ),
 )
-
-#v(2em)
 
 == Progressão II–V–I
 

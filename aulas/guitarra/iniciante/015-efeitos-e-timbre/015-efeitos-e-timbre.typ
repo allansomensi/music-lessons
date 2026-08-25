@@ -21,7 +21,7 @@ O timbre da guitarra elétrica raramente vem do instrumento sozinho. Ele é o re
 
 Antes de qualquer efeito, é preciso entender o percurso que o sinal elétrico faz desde a guitarra até o ouvido. Cada elo da cadeia *adiciona cor e molda* o som de forma irreversível.
 
-#v(1.5em)
+#v(1em)
 
 #align(center)[
   #diagram(
@@ -58,8 +58,6 @@ Antes de qualquer efeito, é preciso entender o percurso que o sinal elétrico f
 == Pré-Amp vs. Power Amp
 
 Esses dois estágios têm *funções completamente distintas*. Confundi-los é o erro mais comum ao montar um setup.
-
-#v(0.8em)
 
 #align(center)[
   #grid(
@@ -100,7 +98,7 @@ Esses dois estágios têm *funções completamente distintas*. Confundi-los é o
   )
 ]
 
-#v(1.5em)
+#v(0.5em)
 
 #align(center)[
   #diagram(

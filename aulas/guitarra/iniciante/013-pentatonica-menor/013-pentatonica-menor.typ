@@ -9,20 +9,20 @@
 #let chord = new-chordgen(number-to-left: true, use-shadow-barre: false, colors: (hold: black, barre: black))
 #show <chord>: set text(fill: color-strong, weight: "bold")
 
-// ============================================================
-// FRETBOARD DIAGRAM HELPER (Otimizado para Impressão P&B)
-// ============================================================
+// =============================
+// FRETBOARD DIAGRAM HELPER
+// =============================
 #let nd(k) = box(
   width: 20pt,
   height: 20pt,
   align(center + horizon, if k == "R" {
-    // Tônica (Raiz): Círculo preto sólido
+    // Tônica
     box(width: 14pt, height: 14pt, fill: color-strong, radius: 7pt)
   } else if k == "N" {
-    // Notas da escala: Círculo aberto com contorno preto
+    // Notas da escala
     box(width: 14pt, height: 14pt, fill: white, stroke: 1pt + color-strong, radius: 7pt)
   } else {
-    // Corda vazia: Linha passando no meio
+    // Corda vazia
     line(start: (0pt, 0pt), end: (20pt, 0pt), stroke: 0.5pt + color-rule-dark)
   }),
 )
@@ -68,7 +68,6 @@ A pentatônica menor retira o 2º e o 6º grau da escala menor natural, deixando
     columns: (1fr, 0.6fr, 0.6fr, 0.6fr, 0.6fr, 0.6fr, 1.6fr),
     align: center + horizon,
     stroke: 0.5pt + color-rule-dark,
-    // Destaque suave em luma(230) ao invés de cor preta/escura
     fill: (col, row) => if row == 0 { color-subtle-bg } else if col == 5 { luma(230) } else { white },
     [*Escala*], [*1*], [*b3*], [*4*], [*5*], [*b7*], [*Em Lá Menor (Am)*],
     [Menor Natural], [T], [b3], [4], [5], [b6], [b7],

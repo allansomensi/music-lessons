@@ -7,7 +7,7 @@
 
 = Conhecendo o Instrumento
 
-#v(5em)
+#v(4em)
 
 #align(center)[
   #image("attachments/anatomia-violao.png", width: 100%)

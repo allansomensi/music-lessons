@@ -14,8 +14,6 @@ Além das 4 notas da tétrade (T, 3, 5, 7), é possível adicionar mais notas ao
 
 == A Relação entre Intervalos e Tensões
 
-#v(0.8em)
-
 #align(center)[
   #table(
     columns: (1fr, 0.6fr, 0.6fr, 2.5fr),
@@ -33,8 +31,6 @@ Além das 4 notas da tétrade (T, 3, 5, 7), é possível adicionar mais notas ao
   )
 ]
 
-#v(0.8em)
-
 #align(center)[
   #block(
     fill: color-subtle-bg,
@@ -51,8 +47,6 @@ Além das 4 notas da tétrade (T, 3, 5, 7), é possível adicionar mais notas ao
 == Tensões Disponíveis por Acorde (Campo de C)
 
 Nem toda tensão funciona sobre todo acorde. As tensões "disponíveis" são as que pertencem à escala do campo harmônico e soam bem com o acorde. A tabela abaixo mostra as tensões naturais de cada grau em Dó Maior:
-
-#v(0.8em)
 
 #align(center)[
   #table(
@@ -79,13 +73,9 @@ Nem toda tensão funciona sobre todo acorde. As tensões "disponíveis" são as 
   ]
 ]
 
-#v(2em)
-
 == Exemplos Sonoros: Acordes com Tensões
 
 Os exemplos abaixo mostram como as tensões enriquecem acordes do campo de Dó. As notas extras não mudam a função do acorde — apenas adicionam cor:
-
-#v(1em)
 
 #align(center)[
   #grid(

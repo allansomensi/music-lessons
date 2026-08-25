@@ -27,7 +27,6 @@ A escala cromática contém todas as 12 notas disponíveis na música ocidental,
   )
 ]
 
-#v(1em)
 
 == 2. Tabela Geral de Intervalos (Simples)
 
@@ -64,7 +63,6 @@ Quando as notas ultrapassam a primeira oitava (passando do limite da 8ª justa),
 
 Para descobrir visual e matematicamente qual intervalo simples corresponde à tensão na oitava superior, basta usar a regra de *somar 7*:
 
-#v(1em)
 
 #align(center)[
   #block(

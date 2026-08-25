@@ -12,8 +12,6 @@
 
 A *tétrade* é uma tríade com mais uma nota empilhada em terça acima da quinta: a *Sétima*. Enquanto as tríades definem o caráter básico do acorde (maior ou menor), as tétrades adicionam cor, tensão e profundidade harmônica. São a base da harmonia do Jazz, Blues, Bossa Nova e de boa parte da música popular.
 
-#v(1em)
-
 == As 4 Principais Tétrades
 
 #align(center)[
@@ -29,8 +27,6 @@ A *tétrade* é uma tríade com mais uma nota empilhada em terça acima da quint
     [Meio-Diminuto], [Cm7#super[b5] / C#sym.circle.small], [T], [b3], [b5], [7], [Muito tenso, instável],
   )
 ]
-
-#v(1em)
 
 == Construção: Empilhando Terças
 
@@ -121,11 +117,7 @@ A *tétrade* é uma tríade com mais uma nota empilhada em terça acima da quint
   )
 ]
 
-#v(1em)
-
 == Exemplos com Tônica em Dó (C)
-
-#v(1em)
 
 #align(center)[
   #grid(
@@ -134,32 +126,28 @@ A *tétrade* é uma tríade com mais uma nota empilhada em terça acima da quint
     align: center,
     block[
       #box(chord("x,3,2,0,0,0", name: "Cmaj7"))
-      #v(0.4em)
-      #text(size: 9.5pt, weight: "bold")[C7M] \
+      #v(0em)
       #text(size: 8.5pt, fill: color-muted)[do · mi · sol · si]
     ],
     block[
       #box(chord("x,3,2,3,1,0", name: "C7"))
-      #v(0.4em)
-      #text(size: 9.5pt, weight: "bold")[C7] \
+      #v(0em)
       #text(size: 8.5pt, fill: color-muted)[do · mi · sib · do]
     ],
     block[
       #box(chord("x,3,5,3,4,3", name: "Cm7"))
-      #v(0.4em)
-      #text(size: 9.5pt, weight: "bold")[Cm7] \
+      #v(0em)
       #text(size: 8.5pt, fill: color-muted)[do · sol · sib · mib]
     ],
     block[
       #box(chord("x,3,4,3,4,x", name: "CØ"))
-      #v(0.4em)
-      #text(size: 9.5pt, weight: "bold")[CØ (Cm7#super[b5])] \
+      #v(0em)
       #text(size: 8.5pt, fill: color-muted)[do · solb · sib · mib]
     ],
   )
 ]
 
-#v(1em)
+#v(2em)
 
 #align(center)[
   #block(
@@ -173,8 +161,6 @@ A *tétrade* é uma tríade com mais uma nota empilhada em terça acima da quint
     ],
   )
 ]
-
-#pagebreak()
 
 == O Acorde Dominante
 
@@ -206,9 +192,7 @@ O acorde de *7ª dominante* (ex: G7, C7, A7) é o acorde de maior tensão harmô
   inverted: true,
 )
 
-#v(1em)
-
-= Inversões de Tétrades
+== Inversões de Tétrades
 
 Como as tétrades são compostas por quatro notas, possuem quatro posições estruturais. Alterar a nota mais grave (o baixo) transforma a textura do acorde, oferecendo novas possibilidades de condução de vozes.
 
@@ -361,7 +345,7 @@ Abaixo estão mapeadas as inversões dos quatro tipos fundamentais, todas constr
 
 #v(1em)
 
-= Aplicação Prática: Condução de Vozes
+== Aplicação Prática: Condução de Vozes
 
 Na prática, os guitarristas raramente saltam pelo braço do instrumento tocando apenas acordes no estado fundamental. A grande utilidade de conhecer todas as inversões é permitir uma *condução de vozes* suave. Isso significa conectar acordes movendo as notas o mínimo possível de uma posição para a outra.
 

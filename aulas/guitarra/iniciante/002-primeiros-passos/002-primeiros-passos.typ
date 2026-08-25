@@ -32,8 +32,7 @@ Segure a palheta entre o *polegar e o indicador*, com apenas uma pequena ponta a
         #set text(size: 9pt)
         Polegar sobre indicador. \
         Ponta curta. \
-        Pulso *relaxado*. \
-        Movimento vindo do pulso.
+        Pulso *relaxado*.
       ],
     ),
     block(
@@ -48,8 +47,7 @@ Segure a palheta entre o *polegar e o indicador*, com apenas uma pequena ponta a
         #set text(size: 9pt)
         Palheta presa com força. \
         Muita ponta exposta. \
-        Pulso rígido. \
-        Movimento do cotovelo/antebraço.
+        Pulso rígido.
       ],
     ),
   )
@@ -57,7 +55,7 @@ Segure a palheta entre o *polegar e o indicador*, com apenas uma pequena ponta a
 
 == Mão Esquerda: Pressão e Postura
 
-Pressione a corda *logo atrás do traste* (não em cima e não no meio). Use a *ponta dos dedos*, nunca a barriga, para evitar esbarrar nas cordas adjacentes. O polegar fica na parte traseira do braço, aproximadamente oposto ao dedo médio, funcionando como um ponto de apoio e não como um alicate.
+Pressione a corda *logo atrás do traste*. Use a *ponta dos dedos*, nunca a barriga, para evitar esbarrar nas cordas adjacentes. O polegar fica na parte traseira do braço, aproximadamente oposto ao dedo médio, funcionando como um ponto de apoio e não como um alicate.
 
 #align(center)[
   #block(
@@ -68,8 +66,6 @@ Pressione a corda *logo atrás do traste* (não em cima e não no meio). Use a *
     width: 85%,
     [
       *Teste da nota limpa:* pressione qualquer corda e toque devagar. Se houver um trastejamento (chiado metálico), aumente levemente a pressão ou aproxime o dedo do traste. Se as cordas vizinhas abafarem quando não deveriam, ajuste a curvatura do dedo.
-
-      Objetivo de ouro: *aplicar o mínimo de força necessária para a nota soar limpa*. Excesso de força gera tensão, lentidão e pode até desafinar a nota.
     ],
   )
 ]
@@ -84,9 +80,9 @@ Um dos maiores segredos para ganhar fluidez é manter os dedos que não estão t
 
 = Power Chords
 
-O *Power Chord* é o acorde do rock. Usa apenas *2 notas* (Tônica e Quinta Justa) e por não ter terça, ele não é maior nem menor. Funciona perfeitamente com distorção sem soar "sujo". É a porta de entrada para centenas de músicas.
+O *Power Chord* é o acorde do rock. Usa apenas *2 notas* (Tônica e Quinta Justa) e por não ter terça, ele não é maior nem menor. Funciona perfeitamente com distorção sem soar "sujo".
 
-== Os 4 Shapes Essenciais
+== Os 4 Shapes Iniciais
 
 #v(0.5em)
 
@@ -122,23 +118,6 @@ O *Power Chord* é o acorde do rock. Usa apenas *2 notas* (Tônica e Quinta Just
   )
 ]
 
-== Movendo pelo Braço
-
-O shape nunca muda, apenas desliza. A nota que o *indicador pressiona na corda mais grave* é a tônica do acorde.
-
-#align(center)[
-  #table(
-    columns: (1.3fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
-    align: center + horizon,
-    stroke: 0.4pt + color-rule-dark,
-    fill: (col, row) => if row == 0 or col == 0 { color-subtle-bg } else { white },
-    inset: (x: 4pt, y: 5pt),
-    [*Corda / Casa*], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12],
-    [*6ª corda (E)*], [F5], [F\#5], [G5], [Ab5], [A5], [Bb5], [B5], [C5], [C\#5], [D5], [Eb5], [E5],
-    [*5ª corda (A)*], [Bb5], [B5], [C5], [C\#5], [D5], [Eb5], [E5], [F5], [F\#5], [G5], [Ab5], [A5],
-  )
-]
-
 == Palm Mute
 
 O *Palm Mute* cria aquele som percussivo e abafado característico do rock e metal. A lateral da mão direita (a parte abaixo do dedo mínimo) repousa *levemente* sobre as cordas, próximo à ponte.
@@ -148,9 +127,9 @@ O *Palm Mute* cria aquele som percussivo e abafado característico do rock e met
     #block(
       fill: color-subtle-bg,
       stroke: 0.5pt,
-      inset: 14pt,
+      inset: 5pt,
       radius: 5pt,
-      width: 90%,
+      width: 100%,
       [
         #set text(size: 9.5pt)
         #grid(
@@ -189,7 +168,7 @@ O *Palm Mute* cria aquele som percussivo e abafado característico do rock e met
   ],
 )
 
-= Exercício
+== Exercício
 
 Progressão *E5 - G5 - A5 - G5* com Palm Mute nos tempos 1 e 2 de cada compasso. Metrônomo em *♩ = 60 BPM*. Foco total na limpeza, não na velocidade.
 

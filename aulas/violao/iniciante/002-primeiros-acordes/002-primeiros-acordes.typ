@@ -133,8 +133,6 @@ Os acordes abertos são o ponto de partida do violão. Eles usam cordas soltas (
 
 As trocas de acorde são o maior desafio no início. Treine as transições *abaixo em loop*, sem se preocupar com ritmo no início. Quando sair limpo, adicione o metrônomo em ♩ = 50 BPM.
 
-#v(1em)
-
 #explainer-component(
   align(center)[
     #grid(

@@ -7,7 +7,7 @@
 
 = Conhecendo o Instrumento
 
-#v(5em)
+#v(3em)
 
 #align(center)[
   #image("attachments/anatomia-baixo.jpg", width: 100%)

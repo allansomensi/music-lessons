@@ -230,8 +230,6 @@ Para colocar o que aprendemos em prática, treine esta que é uma das progressõ
   *Como praticar:* \ Toque cada acorde 4 vezes para baixo usando a palheta, focando na precisão. O desafio aqui é a transição do *G para o D*. Comece devagar, mas tente não parar a batida da mão direita durante as trocas de acorde.
 ],
 
-#v(1.5em)
-
 #align(center)[
   #block(
     fill: color-subtle-bg,

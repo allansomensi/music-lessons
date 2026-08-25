@@ -9,7 +9,6 @@
 
 #let chord = new-chordgen(number-to-left: true, use-shadow-barre: false, colors: (hold: black, barre: black))
 
-// Garantindo diagramas legíveis e em preto forte
 #show <chord>: set text(fill: color-strong, weight: "bold")
 
 = Tons Menores
@@ -20,7 +19,7 @@ Até aqui estudamos a *Escala Maior* e seu campo harmônico. Agora vamos ao *mod
 
 O modo menor natural é idêntico ao modo maior, mas começa do *6º grau* (o relativo menor). Em Dó Maior, o relativo menor é *Lá* — portanto, a Escala de Lá Menor Natural usa exatamente as mesmas notas que Dó Maior.
 
-#v(1em)
+#v(2em)
 
 #align(center)[
   #diagram(
@@ -45,16 +44,12 @@ O modo menor natural é idêntico ao modo maior, mas começa do *6º grau* (o re
   )
 ]
 
-#v(0.5em)
-
 #caixa-destaque(width: 80%)[
   *Padrão do modo menor natural:* T – T – *½T* – T – T – *½T* – T
   #h(1em) → #h(1em) T · 2 · b3 · 4 · 5 · b6 · b7
 ]
 
 == Diferenças em Intervalos: Maior × Menor
-
-#v(0.8em)
 
 #align(center)[
   #table(
@@ -73,8 +68,6 @@ O modo menor natural é idêntico ao modo maior, mas começa do *6º grau* (o re
   )
 ]
 
-#v(0.5em)
-
 #align(center)[
   #text(size: 9pt, fill: color-muted)[
     Os graus *b3, b6 e b7* distinguem o modo menor do maior — são os graus "bemolizados" que dão o caráter sombrio.
@@ -86,8 +79,6 @@ O modo menor natural é idêntico ao modo maior, mas começa do *6º grau* (o re
 == Campo Harmônico de Am
 
 Empilhando terças sobre cada grau da escala de Lá Menor Natural:
-
-#v(0.5em)
 
 #align(center)[
   #table(
@@ -119,8 +110,6 @@ Empilhando terças sobre cada grau da escala de Lá Menor Natural:
 ]
 
 == Acordes Práticos em Am
-
-#v(0.2em)
 
 #align(center)[
   #grid(
@@ -169,8 +158,6 @@ Empilhando terças sobre cada grau da escala de Lá Menor Natural:
 
 Uma das progressões mais comuns em Lá Menor, usada em centenas de músicas:
 
-#v(0.5em)
-
 #align(center)[
   #grid(
     columns: 4,
@@ -198,8 +185,6 @@ Uma das progressões mais comuns em Lá Menor, usada em centenas de músicas:
     ],
   )
 ]
-
-#v(1em)
 
 #caixa-destaque(width: 90%)[
   A progressão *I – VI – III – VII* (Am – F – C – G) é a base de inúmeras músicas: desde baladas pop até rock e música latina.
