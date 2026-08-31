@@ -1,0 +1,111 @@
+name: Build Aula PDFs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**/*.typ"
+  pull_request:
+    paths:
+      - "**/*.typ"
+  workflow_dispatch: {}
+
+concurrency:
+  group: build-pdfs-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Typst
+        run: |
+          curl -fsSL \
+            https://github.com/typst/typst/releases/latest/download/typst-x86_64-unknown-linux-musl.tar.xz \
+            -o typst.tar.xz
+          tar -xf typst.tar.xz
+          sudo mv typst-x86_64-unknown-linux-musl/typst /usr/local/bin/typst
+          typst --version
+
+      - name: Cache Typst packages (conchord, fletcher, etc.)
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/typst/packages
+          key: typst-packages-${{ hashFiles('**/*.typ') }}
+          restore-keys: |
+            typst-packages-
+
+      - name: Detect changed .typ files
+        id: changed
+        uses: tj-actions/changed-files@v45
+        with:
+          files: |
+            **/*.typ
+
+      - name: Decide which lessons to (re)build
+        id: targets
+        run: |
+          set -e
+          TEMPLATE_CHANGED="false"
+
+          # Se for execução manual, compila tudo
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "Execução manual detectada — recompilando todas as aulas."
+            FILES=$(find . -type f -name "*.typ" -not -path "*/templates/*" | sort)
+          
+          # Se algum arquivo compartilhado mudou, compila tudo
+          elif echo "${{ steps.changed.outputs.all_changed_files }}" \
+              | tr ' ' '\n' \
+              | grep -Eq '(^|/)templates/(layout|components)\.typ$'; then
+            echo "layout.typ ou components.typ mudou — recompilando todas as aulas."
+            FILES=$(find . -type f -name "*.typ" -not -path "*/templates/*" | sort)
+          
+          # Caso contrário, compila apenas os modificados
+          else
+            FILES=$(echo "${{ steps.changed.outputs.all_changed_files }}" \
+              | tr ' ' '\n' \
+              | grep -v '/templates/' || true)
+          fi
+
+          {
+            echo "files<<EOF"
+            echo "$FILES"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Compile PDFs
+        run: |
+          set -e
+          FILES="${{ steps.targets.outputs.files }}"
+          if [ -z "$FILES" ]; then
+            echo "Nenhuma aula para compilar."
+            exit 0
+          fi
+          echo "$FILES" | while IFS= read -r f; do
+            [ -z "$f" ] && continue
+            [ -f "$f" ] || continue
+            out="${f%.typ}.pdf"
+            echo "::group::Compilando $f"
+            # Aponta o Typst para usar as fontes da pasta
+            typst compile --font-path ./fonts --root . "$f" "$out"
+            echo "::endgroup::"
+          done
+
+      - name: Upload PDFs as workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aula-pdfs
+          path: "**/*.pdf"
+          if-no-files-found: warn
+
+      - name: Commit PDFs gerados
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update lesson PDFs"
+          file_pattern: "**/*.pdf"
