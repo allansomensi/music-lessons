@@ -14,9 +14,6 @@
 // que precisam quebrar, como `exercicio`, já declaram breakable: true).
 #set block(breakable: false)
 
-// Texto de células de tabela sem justificação (evita espaços esticados)
-#show table: set par(justify: false)
-
 // Exercício que não se divide entre páginas (enunciado + área de resposta juntos)
 #let ex(..args) = block(breakable: false, above: 1.5em, below: 0.9em, exercicio(..args))
 
@@ -218,7 +215,7 @@ Ou seja, aprender as casas 0 a 12 é aprender o braço inteiro. Acima da casa 12
 
 == 6. Shapes de oitava: a mesma nota em outras cordas
 
-Uma *oitava* é a mesma nota, mais aguda. No braço, as oitavas formam desenhos fixos que levam uma nota de uma corda grave para uma corda duas posições acima. Em todos eles a oitava fica *duas cordas acima*; o que muda é quantas casas você avança. São quatro shapes — e os dois últimos têm uma "pegadinha" causada pela afinação da corda Si.
+Uma *oitava* é a mesma nota, mais aguda. No braço, as oitavas formam desenhos fixos: em todos eles a oitava fica *duas cordas acima* (pulando uma corda); o que muda é quantas casas você avança. São quatro shapes — e os dois últimos têm uma "pegadinha" causada pela afinação da corda Si.
 
 #v(0.4em)
 
@@ -291,7 +288,7 @@ Uma *oitava* é a mesma nota, mais aguda. No braço, as oitavas formam desenhos 
 
 #v(0.6em)
 
-#caixa(tipo: "atencao", titulo: "Por que a corda Si desloca uma casa?")[
+#caixa(tipo: "atencao", titulo: "A exceção da corda Si")[
   Entre cordas vizinhas a distância é de 5 semitons (uma 4ª justa) — *exceto entre a 3ª (Sol) e a 2ª (Si)*, que estão a apenas 4 semitons (uma 3ª maior). Por isso, todo desenho que *atravessa* a fronteira entre a 3ª e a 2ª corda precisa avançar *uma casa a mais*. É a mesma razão pela qual os shapes de escala "entortam" nas cordas agudas.
 ]
 
@@ -304,7 +301,7 @@ Há ainda um atalho valioso: a *6ª e a 1ª corda têm as mesmas notas na mesma 
 #align(center, block(breakable: false)[
   #braco-notas(mapa(0, 12, so-nota(7)), fs: 0, cordas: ("6", "5", "4", "3", "2", "1"))
 ])
-#legenda[Todas as notas G entre as casas 0 e 12. Siga a corrente: 6ª (3) → 4ª (5) → 2ª (8); 5ª (10) → 3ª (12); 1ª (3).]
+#legenda[Todas as notas G entre as casas 0 e 12. Siga a corrente: 6ª (3) → 4ª (5) → 2ª (8); 5ª (10) → 3ª (12, ou solta); 1ª (3), igual à 6ª.]
 
 == 7. Método de memorização por etapas
 

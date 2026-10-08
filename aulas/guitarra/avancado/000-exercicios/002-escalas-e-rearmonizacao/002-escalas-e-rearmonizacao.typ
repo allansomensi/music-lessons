@@ -10,8 +10,6 @@
 // Ajustes locais
 // ------------------------------------------------------------
 
-#show table: set par(justify: false)
-
 // Resposta do gabarito que não se divide entre páginas.
 #let resp(n, body) = block(breakable: false, width: 100%, resposta(n, body))
 
@@ -77,9 +75,9 @@ Escolher a escala certa para cada acorde e saber trocar acordes sem perder a mel
   #set text(size: 10pt)
   #passos((
     [Resolva *na ordem*: cada bloco vai do nível *Médio* (aplicação direta) ao *Desafio* (escolhas, análise, rearmonização).],
-    [Para cada escala, escreva as notas *a partir da fundamental do acorde* — é assim que você vai pensá-la ao improvisar.],
+    [Escreva as notas de cada escala *a partir da fundamental do acorde*, como ao improvisar.],
     [Grave as progressões (ou use um backing track) e *toque* cada escala e cada rearmonização: o ouvido é o juiz final.],
-    [Confira no *Gabarito*. Nas rearmonizações há várias respostas válidas: o gabarito traz uma resposta-modelo e o critério de correção.],
+    [Confira no *Gabarito*. Nas rearmonizações há várias respostas válidas: ele traz um modelo e o critério de correção.],
   ))
 ]
 
@@ -93,19 +91,34 @@ Escolher a escala certa para cada acorde e saber trocar acordes sem perder a mel
     ([Bloco], [O que você pratica], [Exerc.]),
     (
       ([*1. Menor melódica*], [Os 7 modos, notas em vários tons, qual escala para qual acorde], [1–4]),
-      ([*2. Escalas simétricas*], [As 3 diminutas, dom-dim, as 2 de tons inteiros, quando usar cada uma], [5–8]),
-      ([*3. Escala acorde a acorde*], [Progressões de jazz em tom maior e menor, frase sobre V7alt], [9–12]),
-      ([*4. Rearmonização*], [Tarefas guiadas, melodia rearmonizada, análise com SubV, II-V relacionado, back-door e diminutos], [13–17]),
+      ([*2. Escalas simétricas*], [Diminutas, dom-dim, tons inteiros e quando usar cada uma], [5–8]),
+      ([*3. Acorde a acorde*], [Progressões de jazz em tom maior e menor, frase sobre V7alt], [9–12]),
+      ([*4. Rearmonização*], [Tarefas guiadas, melodia rearmonizada, análise harmônica], [13–17]),
     ),
   )
 ]
 
-#v(0.4em)
+== Referência rápida
 
-#caixa(tipo: "resumo", titulo: none, width: 100%)[
+#[
   #set text(size: 9.5pt)
-  #align(left)[*Convenções:* #h(4pt) "mm" = menor melódica (forma do jazz, igual subindo e descendo). Nomes dos modos da menor melódica: I menor melódica · II dórico b2 · III lídio aumentado · IV lídio dominante · V mixolídio b6 · VI lócrio 9 · VII alterada (superlócrio). Em escalas de oito ou seis notas (diminutas e tons inteiros) a enarmonia é livre. *b7* = 7ª menor, *7M* = 7ª maior.]
+  #tabela(
+    columns: (1.35fr, 2.5fr, 1.75fr),
+    alinhamento: (left + horizon, left + horizon, center + horizon),
+    ([Ferramenta], [O que é], [Exemplo em Lá maior]),
+    (
+      ([*Dominante secundário*], [X7 que prepara um grau que não é a tônica], [F\#7 → Bm7 (V7/II)]),
+      ([*II-V relacionado*], [o II do alvo antes do dominante secundário], [C\#m7(b5) – F\#7 → Bm7]),
+      ([*SubV*], [dominante a um trítono; resolve ½ tom abaixo], [Bb7 → A7M (no lugar de E7)]),
+      ([*Empréstimo modal*], [acorde do tom menor de mesma tônica], [Dm6 ou F7M em Lá maior]),
+      ([*Back-door*], [IVm7 – bVII7 → I, vinda do tom menor], [Dm7 – G7 → A7M]),
+      ([*Diminuto de passagem*], [º7 cromático entre dois acordes vizinhos], [A7M – A\#º7 – Bm7]),
+    ),
+  )
 ]
+
+#v(0.3em)
+#text(size: 9pt, fill: color-secondary)[*Convenções:* “mm” = menor melódica (forma do jazz, igual subindo e descendo). Em escalas de oito ou seis notas (diminutas e tons inteiros), a grafia das notas é livre. *7* = 7ª menor, *7M* = 7ª maior.]
 
 #pagebreak()
 
@@ -116,7 +129,7 @@ Escolher a escala certa para cada acorde e saber trocar acordes sem perder a mel
 #block(sticky: true)[
   == 1. Modos da Menor Melódica
 
-  A menor melódica gera quatro dos sons mais usados no jazz moderno: o acorde menor com 7ª maior, o lídio dominante (X7(\#11)), o lócrio 9 (Xø com 9ª natural) e a escala alterada (X7alt).
+  A menor melódica gera quatro dos sons mais usados no jazz moderno: o acorde menor com 7ª maior, o lídio dominante (X7(\#11)), o lócrio 9 (Xm7(b5) com 9ª natural) e a escala alterada (X7alt).
 ]
 
 #ex(titulo: "Os sete modos", nivel: "Médio")[
@@ -170,13 +183,13 @@ Escolher a escala certa para cada acorde e saber trocar acordes sem perder a mel
       ([G7alt], [Ab mm], [alterada], [G Ab Bb Cb Db Eb F]),
       ([Bb7(\#11)], none, none, none),
       ([E7(b13)], none, none, none),
-      ([Bø], none, none, none),
+      ([Bm7(b5)], none, none, none),
       ([Eb7M(\#5)], none, none, none),
       ([Cm(7M)], none, none, none),
       ([B7alt], none, none, none),
       ([D7(\#11)], none, none, none),
       ([A7alt], none, none, none),
-      ([F\#ø], none, none, none),
+      ([F\#m7(b5)], none, none, none),
       ([Ab7(\#11)], none, none, none),
       ([E7alt], none, none, none),
     ),
@@ -233,7 +246,7 @@ Escolher a escala certa para cada acorde e saber trocar acordes sem perder a mel
 ]
 
 #ex(titulo: "A escala dom-dim", nivel: "Médio")[
-  A dom-dim (semitom-tom) contém T, b9, \#9, 3, \#11, 5, 13 e b7. Escreva a dom-dim de cada dominante, a diminuta tom-semitom com as mesmas notas e os outros três dominantes que usam a mesma escala.
+  A dom-dim (semitom-tom) contém T, b9, \#9, 3, \#11, 5, 13 e 7. Escreva a dom-dim de cada dominante, a diminuta tom-semitom com as mesmas notas e os outros três dominantes que usam a mesma escala.
 
   #v(0.4em)
   #tabela-preencher(
@@ -253,7 +266,7 @@ Escolher a escala certa para cada acorde e saber trocar acordes sem perder a mel
 
   #v(0.4em)
   #tabela-preencher(
-    columns: (0.9fr, 2.4fr, 2.4fr),
+    columns: (1.3fr, 2.3fr, 2.2fr),
     altura: 1.2cm,
     ([Escala], [Notas (6)], [Dominantes atendidos]),
     (
@@ -312,9 +325,9 @@ Escolher a escala certa para cada acorde e saber trocar acordes sem perder a mel
   Escreva a escala de cada acorde nos dois tons. Para o IIø, indique as duas opções (lócrio e lócrio 9) e diga qual nota as diferencia.
 
   #v(0.3em)
-  #prog[Lá menor: Bø – E7(b9) – Am(7M) #h(2em) Fá menor: Gø – C7alt – Fm6]
+  #prog[Lá menor: Bm7(b5) – E7(b9) – Am(7M) #h(2em) Fá menor: Gm7(b5) – C7alt – Fm6]
   #v(0.2em)
-  #escala-a-escala(([Bø], [E7(b9)], [Am(7M)], [Gø], [C7alt], [Fm6]), altura: 1cm)
+  #escala-a-escala(([Bm7(b5)], [E7(b9)], [Am(7M)], [Gm7(b5)], [C7alt], [Fm6]), altura: 1cm)
 ]
 
 #ex(titulo: "Uma progressão de jazz completa", nivel: "Desafio")[
@@ -384,7 +397,7 @@ Escolher a escala certa para cada acorde e saber trocar acordes sem perder a mel
 
   #v(0.3em)
   #tabela-preencher(
-    columns: (1.5fr,) + (1fr,) * 4,
+    columns: (2fr,) + (1fr,) * 4,
     altura: 1.25cm,
     ([], [Compasso 1], [Compasso 2], [Compasso 3], [Compasso 4]),
     (
@@ -429,10 +442,10 @@ Escolher a escala certa para cada acorde e saber trocar acordes sem perder a mel
   #analise(([G7M], [Bm7], [E7], [Am7], [Cm7], [F7], [G7M]))
 
   *c) Tom de Mi bemol maior*
-  #analise(([Eb7M], [Gø], [C7(b9)], [Fm7], [Bbm7], [Eb7], [Ab7M], [Abm7], [Db7], [Eb7M]))
+  #analise(([Eb7M], [Gm7(b5)], [C7(b9)], [Fm7], [Bbm7], [Eb7], [Ab7M], [Abm7], [Db7], [Eb7M]))
 
   *d) Tom de Ré menor*
-  #analise(([Dm7], [C\#º7], [Dm7], [Gm7], [C7], [F7M], [Eø], [Eb7], [Dm(7M)]))
+  #analise(([Dm7], [C\#º7], [Dm7], [Gm7], [C7], [F7M], [Em7(b5)], [Eb7], [Dm(7M)]))
 ]
 
 #v(0.8em)
@@ -441,7 +454,7 @@ Escolher a escala certa para cada acorde e saber trocar acordes sem perder a mel
   == Autoavaliação
 
   #checklist((
-    [Encontro a menor melódica certa para Xm(7M), X7(\#11), Xø, X7(b13) e X7alt em qualquer tom.],
+    [Encontro a menor melódica certa para Xm(7M), X7(\#11), Xm7(b5), X7(b13) e X7alt em qualquer tom.],
     [Escrevo as três diminutas, a dom-dim e as duas escalas de tons inteiros e sei a que acordes elas servem.],
     [Escolho a escala de cada acorde numa progressão de jazz respeitando as notas do tom.],
     [Aplico dominantes secundários, SubV, II-V relacionado, back-door e diminutos numa progressão dada.],
@@ -459,15 +472,15 @@ Escolher a escala certa para cada acorde e saber trocar acordes sem perder a mel
       columns: (0.4fr, 1.2fr, 1.9fr, 1fr, 2.2fr),
       ([Grau], [Modo], [Fórmula], [Tétrade], [Uso típico]),
       (
-        ([II], [dórico b2], [T b2 b3 4 5 6 b7], [Xm7], [Xm7 e X7sus4(b9)]),
+        ([II], [dórico b2], [T b2 b3 4 5 6 7], [Xm7], [Xm7 e X7sus4(b9)]),
         ([III], [lídio aumentado], [T 2 3 \#4 \#5 6 7M], [X7M(\#5)], [maior com 5ª aumentada]),
-        ([IV], [lídio dominante], [T 2 3 \#4 5 6 b7], [X7], [X7(\#11), SubV, bVII7]),
-        ([V], [mixolídio b6], [T 2 3 4 5 b6 b7], [X7], [X7(9,b13), V7 de acorde menor]),
-        ([VI], [lócrio 9], [T 2 b3 4 b5 b6 b7], [Xø], [IIø do tom menor]),
-        ([VII], [alterada], [T b2 \#2 3 \#4 b6 b7], [X7], [X7alt (b9, \#9, \#11, b13)]),
+        ([IV], [lídio dominante], [T 2 3 \#4 5 6 7], [X7], [X7(\#11), SubV, bVII7]),
+        ([V], [mixolídio b6], [T 2 3 4 5 b6 7], [X7], [X7(9,b13), V7 de acorde menor]),
+        ([VI], [lócrio 9], [T 2 b3 4 b5 b6 7], [Xm7(b5)], [IIø do tom menor]),
+        ([VII], [alterada], [T b2 \#2 3 \#4 b6 7], [X7], [X7alt (b9, \#9, \#11, b13)]),
       ),
     )
-    Critério: aceite a grafia da alterada como T b9 \#9 3 b5 b13 b7 e os sinônimos dórico b9, lídio \#5, mixolídio b13, lócrio \#2 e superlócrio.
+    Critério: aceite a grafia da alterada como T b9 \#9 3 b5 b13 7 e os sinônimos dórico b9, lídio \#5, mixolídio b13, lócrio \#2 e superlócrio.
   ]
 
   #resp(2)[
@@ -481,22 +494,22 @@ Escolher a escala certa para cada acorde e saber trocar acordes sem perder a mel
       (
         ([Bb7(\#11)], [F mm], [lídio dominante], [Bb C D E F G Ab]),
         ([E7(b13)], [A mm], [mixolídio b6], [E F\# G\# A B C D]),
-        ([Bø], [D mm], [lócrio 9], [B C\# D E F G A]),
+        ([Bm7(b5)], [D mm], [lócrio 9], [B C\# D E F G A]),
         ([Eb7M(\#5)], [C mm], [lídio aumentado], [Eb F G A B C D]),
         ([Cm(7M)], [C mm], [menor melódica], [C D Eb F G A B]),
         ([B7alt], [C mm], [alterada], [B C D Eb F G A]),
         ([D7(\#11)], [A mm], [lídio dominante], [D E F\# G\# A B C]),
         ([A7alt], [Bb mm], [alterada], [A Bb C Db Eb F G]),
-        ([F\#ø], [A mm], [lócrio 9], [F\# G\# A B C D E]),
+        ([F\#m7(b5)], [A mm], [lócrio 9], [F\# G\# A B C D E]),
         ([Ab7(\#11)], [Eb mm], [lídio dominante], [Ab Bb C D Eb F Gb]),
         ([E7alt], [F mm], [alterada], [E F G Ab Bb C D]),
       ),
     )
-    Regras rápidas: X7alt → mm ½ tom acima · X7(\#11) → mm uma 5ª acima · Xø (lócrio 9) → mm uma 3ª menor acima · X7(b13) → mm uma 4ª acima · X7M(\#5) → mm uma 3ª menor abaixo.
+    Regras rápidas: X7alt → mm ½ tom acima · X7(\#11) → mm uma 5ª acima · Xm7(b5) (lócrio 9) → mm uma 3ª menor acima · X7(b13) → mm uma 4ª acima · X7M(\#5) → mm uma 3ª menor abaixo.
   ]
 
   #resp(4)[
-    a) I Cm(7M) → Cm(7M)(9) · II Dm7 → Dm7(b9) ou D7sus4(b9) · III Eb7M(\#5) → Eb7M(\#5)(9,\#11) · IV F7 → F7(9,\#11,13) · V G7 → G7(9,b13) · VI Aø → Aø(9) · VII Bø (B D F A) → usado como B7alt (o Ré\# = Mib faz o papel de 3ª). \
+    a) I Cm(7M) → Cm(7M,9) · II Dm7 → Dm7(b9) ou D7sus4(b9) · III Eb7M(\#5) → Eb7M(\#5,9,\#11) · IV F7 → F7(9,\#11,13) · V G7 → G7(9,b13) · VI Am7(b5) → Am7(b5,9) · VII Bm7(b5) (B D F A) → usado como B7alt (o Ré\# = Mib faz o papel de 3ª). \
     b) Estão a um trítono de distância (B7 é o SubV de F7 e vice-versa) e compartilham o trítono Lá–Mib (Ré\#). Sobre um SubV com \#11 (lídio dominante), você pode pensar a alterada do dominante original, e vice-versa: as notas são as mesmas.
   ]
 
@@ -531,8 +544,8 @@ Escolher a escala certa para cada acorde e saber trocar acordes sem perder a mel
   ]
 
   #resp(10)[
-    Bø: IIø · B lócrio (B C D E F G A) ou B lócrio 9 (B C\# D E F G A — difere no Dó/Dó\#) — E7(b9): V7 · E frígio dominante (E F G\# A B C D) — Am(7M): Im · A menor melódica (A B C D E F\# G\#). \
-    Gø: IIø · G lócrio (G Ab Bb C Db Eb F) ou G lócrio 9 (G A Bb C Db Eb F — difere no Láb/Lá) — C7alt: V7 · C alterada (Db mm): C Db Eb Fb Gb Ab Bb — Fm6: Im · F menor melódica (F G Ab Bb C D E) ou F dórico. \
+    Bm7(b5): IIø · B lócrio (B C D E F G A) ou B lócrio 9 (B C\# D E F G A — difere no Dó/Dó\#) — E7(b9): V7 · E frígio dominante (E F G\# A B C D) — Am(7M): Im · A menor melódica (A B C D E F\# G\#). \
+    Gm7(b5): IIø · G lócrio (G Ab Bb C Db Eb F) ou G lócrio 9 (G A Bb C Db Eb F — difere no Láb/Lá) — C7alt: V7 · C alterada (Db mm): C Db Eb Fb Gb Ab Bb — Fm6: Im · F menor melódica (F G Ab Bb C D E) ou F dórico. \
     Critério: o lócrio respeita as notas do tom menor natural; o lócrio 9 é a opção "jazz" e soa mais aberta.
   ]
 
@@ -557,7 +570,7 @@ Escolher a escala certa para cada acorde e saber trocar acordes sem perder a mel
     Resposta-modelo:
     #v(0.2em)
     #tab("   G7alt            C7M\ne|-4-1-------------|-----------|\nB|-----4-2---------|-----------|\nG|---------4-3-1---|-----------|\nD|---------------3-|-2---------|\nA|-----------------|-----------|\nE|-----------------|-----------|")
-    Notas: Láb (b9) – Fá (b7) – Mib (b13) – Réb (b5) – Si (3) – Sib (\#9) – Láb (b9) – Fá (b7) → Mi (3ª de C7M), resolução por ½ tom (Fá → Mi). Critério: todas as notas do 1º compasso na escala G Ab Bb B Db Eb F, casas 1–5, e resolução por grau conjunto em Mi (3) ou Ré (9).
+    Notas: Láb (b9) – Fá (7) – Mib (b13) – Réb (b5) – Si (3) – Sib (\#9) – Láb (b9) – Fá (7) → Mi (3ª de C7M), resolução por ½ tom (Fá → Mi). Critério: todas as notas do 1º compasso na escala G Ab Bb B Db Eb F, casas 1–5, e resolução por grau conjunto em Mi (3) ou Ré (9).
   ]
 
   #resp(13)[
@@ -565,7 +578,7 @@ Escolher a escala certa para cada acorde e saber trocar acordes sem perder a mel
   ]
 
   #resp(14)[
-    a) F7M – F\#º7 – Gm7 – C7 – F7M · b) F7M – Dm7 – Bbm7 – Eb7 – F7M · c) F7M – Aø – D7 – Gm7 – C7 – F7M (aceite Am7 – D7) · d) F7M – Ebm7 – Ab7 – Gm7 – C7 – F7M (Ab7 é o SubV de D7; Ebm7 é o II relacionado de Ab7).
+    a) F7M – F\#º7 – Gm7 – C7 – F7M · b) F7M – Dm7 – Bbm7 – Eb7 – F7M · c) F7M – Am7(b5) – D7 – Gm7 – C7 – F7M (aceite Am7 – D7) · d) F7M – Ebm7 – Ab7 – Gm7 – C7 – F7M (Ab7 é o SubV de D7; Ebm7 é o II relacionado de Ab7).
   ]
 
   #resp(15)[
@@ -574,7 +587,7 @@ Escolher a escala certa para cada acorde e saber trocar acordes sem perder a mel
       ([Versão], [Comp. 1 (Mi)], [Comp. 2 (Fá)], [Comp. 3 (Ré)], [Comp. 4 (Dó)]),
       (
         ([a) Empréstimo / back-door], [C7M (3) ou Am7 (5)], [Fm7 (T)], [Bb7 (3)], [C7M (T)]),
-        ([b) II-V secundário → VIm], [Em7 (T) – A7 (5)], [Dm7 (b3)], [Bø (b3) – E7 (b7)], [Am7 (b3)]),
+        ([b) II-V secundário → VIm], [Em7 (T) – A7 (5)], [Dm7 (b3)], [Bm7(b5) (b3) – E7 (7)], [Am7 (b3)]),
       ),
     )
     c) Ré sobre Db7 é a b9 (½ tom acima da fundamental); o SubV soa com lídio dominante (9 natural = Mib), e a b9 choca com a fundamental. Melhor manter G7 (Ré = 5) ou usar Bb7 (Ré = 3). \
@@ -583,7 +596,7 @@ Escolher a escala certa para cada acorde e saber trocar acordes sem perder a mel
 
   #resp(16)[
     a) C7M – A7 – D7 – G7 · b) C7M – Eb7 – D7 – Db7 (aceite C7M – Eb7 – Dm7 – Db7) · c) C7M – C\#º7 – Dm7 – G7 · d) C7M – Eb7M – Ab7M – Db7M. \
-    Critério: em (b) o Eb7 é SubV de A7 e o Db7 é SubV de G7; em (c) o C\#º7 equivale a A7(b9) sem fundamental; em (d) as fundamentais são as mesmas de (b) com acordes 7M. A última pergunta é pessoal.
+    Critério: em (b) o Eb7 é SubV de A7 e o Db7 é SubV de G7; em (c) o C\#º7 equivale a A7(b9) sem fundamental; em (d) as fundamentais são os SubV de A7, D7 e G7 (Eb, Ab, Db), tocados como acordes 7M. A última pergunta é pessoal.
   ]
 
   #resp(17)[

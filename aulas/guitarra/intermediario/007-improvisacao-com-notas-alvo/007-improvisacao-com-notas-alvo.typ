@@ -6,13 +6,8 @@
   nivel: "Intermediário",
 )
 
-#show heading: set block(sticky: true)
-#show table: set par(justify: false)
-
 // ─── Helpers locais ──────────────────────────────────────────
-// caixas e exercícios nunca se dividem entre duas páginas
-#let caixa-base = caixa
-#let caixa(..args) = block(breakable: false, width: 100%, caixa-base(..args))
+// exercícios curtos não se dividem entre páginas (enunciado e área de resposta juntos)
 #let exercicio-base = exercicio
 #let exercicio(..args) = block(breakable: false, width: 100%, exercicio-base(..args))
 
@@ -127,8 +122,8 @@ Das quatro notas de uma tétrade, duas definem o acorde: a *3ª* diz se ele é m
   columns: (1fr, 1fr, 1fr, 1fr),
   ([Acorde], [3ª], [7ª], [Notas do acorde]),
   (
-    ([Dm7 (IIm7)], [F (b3)], [C (b7)], [D · F · A · C]),
-    ([G7 (V7)], [B (3)], [F (b7)], [G · B · D · F]),
+    ([Dm7 (IIm7)], [F (b3)], [C (7)], [D · F · A · C]),
+    ([G7 (V7)], [B (3)], [F (7)], [G · B · D · F]),
     ([C7M (I)], [E (3)], [B (7M)], [C · E · G · B]),
   ),
 )
@@ -141,8 +136,8 @@ Num II-V-I, os acordes andam por quartas (D → G → C). Nesse movimento aconte
   columns: (1.2fr, 1fr, 0.5fr, 1fr, 0.5fr, 1fr),
   ([Voz], [Dm7], [], [G7], [], [C7M]),
   (
-    ([Linha 1], [C (b7)], [↘ ½], [B (3)], [=], [B (7M)]),
-    ([Linha 2], [F (b3)], [=], [F (b7)], [↘ ½], [E (3)]),
+    ([Linha 1], [C (7)], [↘ ½], [B (3)], [=], [B (7M)]),
+    ([Linha 2], [F (b3)], [=], [F (7)], [↘ ½], [E (3)]),
   ),
 )
 
@@ -153,11 +148,11 @@ Confira: C → B é a 7ª do Dm7 resolvendo na 3ª do G7; F → E é a 7ª do G7
 #align(center, grid(
   columns: 3,
   column-gutter: 16pt,
-  figura([Dm7], [b3 = F · b7 = C], mapa(raiz: "D", fs: 7, casas: 4, (
-    (6, 8, "*b7"), (5, 8, "b3"), (4, 10, "*b7"), (3, 10, "b3"), (1, 8, "*b7"),
+  figura([Dm7], [b3 = F · 7 = C], mapa(raiz: "D", fs: 7, casas: 4, (
+    (6, 8, "*7"), (5, 8, "b3"), (4, 10, "*7"), (3, 10, "b3"), (1, 8, "*7"),
   ))),
-  figura([G7], [3 = B · b7 = F], mapa(raiz: "G", fs: 7, casas: 4, (
-    (6, 7, "3"), (5, 8, "*b7"), (4, 9, "3"), (3, 10, "*b7"), (1, 7, "3"),
+  figura([G7], [3 = B · 7 = F], mapa(raiz: "G", fs: 7, casas: 4, (
+    (6, 7, "3"), (5, 8, "*7"), (4, 9, "3"), (3, 10, "*7"), (1, 7, "3"),
   ))),
   figura([C7M], [3 = E · 7M = B], mapa(raiz: "C", fs: 7, casas: 4, (
     (6, 7, "7M"), (5, 7, "3"), (4, 9, "7M"), (3, 9, "3"), (1, 7, "7M"),
@@ -214,39 +209,39 @@ No blues em Lá (a forma de 12 compassos construída com os acordes dominantes d
 
 #tabela(
   columns: (0.9fr, 1fr, 1fr, 2.6fr),
-  ([Acorde], [3ª (alvo)], [b7], [Relação com a pentatônica de Lá menor]),
+  ([Acorde], [3ª (alvo)], [7ª], [Relação com a pentatônica de Lá menor]),
   (
     ([A7 (I)], [C\#], [G], [O C, b3 do acorde e nota da escala, sobe meio tom até a 3ª (C\#): o clássico "b3 → 3" do blues.]),
-    ([D7 (IV)], [F\#], [C], [F\# não está na escala; a b7 (C) está. Chegue no F\# vindo do G (meio tom acima).]),
-    ([E7 (V)], [G\#], [D], [G\# não está na escala; a b7 (D) está. Chegue no G\# vindo do G (meio tom abaixo).]),
+    ([D7 (IV)], [F\#], [C], [F\# não está na escala; a 7ª (C) está. Chegue no F\# vindo do G (meio tom acima).]),
+    ([E7 (V)], [G\#], [D], [G\# não está na escala; a 7ª (D) está. Chegue no G\# vindo do G (meio tom abaixo).]),
   ),
 )
 
 #v(0.4em)
 
-Os diagramas mostram a forma 1 da pentatônica (casas 5 a 8) com o intervalo de cada nota *em relação ao acorde do momento*, e as 3ªs acrescentadas em cinza. Repare como a mesma nota muda de papel: o C é b3 sobre A7, b7 sobre D7 e b13 sobre E7.
+Os diagramas mostram a forma 1 da pentatônica (casas 5 a 8) com o intervalo de cada nota *em relação ao acorde do momento*, e as 3ªs acrescentadas em cinza. Repare como a mesma nota muda de papel: o C é b3 sobre A7, 7ª sobre D7 e b13 sobre E7.
 
 #align(center, grid(
   columns: 3,
   column-gutter: 12pt,
   figura([Sobre A7], [alvo: C\# (3)], mapa(raiz: "A", fs: 4, casas: 5, largura: 21pt, (
-    (6, 5, "T"), (6, 8, "b3"), (5, 4, "*3"), (5, 5, "4"), (5, 7, "5"), (4, 5, "b7"), (4, 7, "T"),
-    (3, 5, "b3"), (3, 6, "*3"), (3, 7, "4"), (2, 5, "5"), (2, 8, "b7"), (1, 5, "T"), (1, 8, "b3"),
+    (6, 5, "T"), (6, 8, "b3"), (5, 4, "*3"), (5, 5, "4"), (5, 7, "5"), (4, 5, "7"), (4, 7, "T"),
+    (3, 5, "b3"), (3, 6, "*3"), (3, 7, "4"), (2, 5, "5"), (2, 8, "7"), (1, 5, "T"), (1, 8, "b3"),
   ))),
   figura([Sobre D7], [alvo: F\# (3)], mapa(raiz: "D", fs: 4, casas: 5, largura: 21pt, (
-    (6, 5, "5"), (6, 8, "b7"), (5, 5, "T"), (5, 7, "9"), (4, 4, "*3"), (4, 5, "4"), (4, 7, "5"),
-    (3, 5, "b7"), (3, 7, "T"), (2, 5, "9"), (2, 7, "*3"), (2, 8, "4"), (1, 5, "5"), (1, 8, "b7"),
+    (6, 5, "5"), (6, 8, "7"), (5, 5, "T"), (5, 7, "9"), (4, 4, "*3"), (4, 5, "4"), (4, 7, "5"),
+    (3, 5, "7"), (3, 7, "T"), (2, 5, "9"), (2, 7, "*3"), (2, 8, "4"), (1, 5, "5"), (1, 8, "7"),
   ))),
   figura([Sobre E7], [alvo: G\# (3)], mapa(raiz: "E", fs: 4, casas: 5, largura: 21pt, (
-    (6, 4, "*3"), (6, 5, "4"), (6, 8, "b13"), (5, 5, "b7"), (5, 7, "T"), (4, 5, "b3"), (4, 6, "*3"),
-    (4, 7, "4"), (3, 5, "b13"), (3, 7, "b7"), (2, 5, "T"), (2, 8, "b3"), (1, 4, "*3"), (1, 5, "4"), (1, 8, "b13"),
+    (6, 4, "*3"), (6, 5, "4"), (6, 8, "b13"), (5, 5, "7"), (5, 7, "T"), (4, 5, "b3"), (4, 6, "*3"),
+    (4, 7, "4"), (3, 5, "b13"), (3, 7, "7"), (2, 5, "T"), (2, 8, "b3"), (1, 4, "*3"), (1, 5, "4"), (1, 8, "b13"),
   ))),
 ))
 
 #v(0.4em)
 
 #caixa(tipo: "dica")[
-  Sobre o A7, o movimento C → C\# (3ª corda, casas 5 → 6) pode ser um hammer-on, um slide ou um bend de meio tom: é o som mais característico do blues. Sobre o D7 e o E7, use a b7 do acorde (C e D, que já estão na pentatônica) como ponto de apoio e a 3ª como chegada.
+  Sobre o A7, o movimento C → C\# (3ª corda, casas 5 → 6) pode ser um hammer-on, um slide ou um bend de meio tom: é o som mais característico do blues. Sobre o D7 e o E7, use a 7ª do acorde (C e D, que já estão na pentatônica) como ponto de apoio e a 3ª como chegada.
 ]
 
 == 6. Frases que resolvem na nota-alvo
@@ -256,14 +251,14 @@ Os exemplos a seguir aplicam tudo o que foi visto. Antes de tocar, localize em c
 #tab(
   titulo: "Exemplo 3 — II-V-I em Dó: 7ª → 3ª e envolvimento",
   tamanho: 8.2pt,
-  legenda: [Dm7 sobe pelas notas da escala com as notas do acorde nos tempos e termina em C (b7). C → B (3ª do G7) no tempo 1. No G7, F – D\# envolvem o alvo E (3ª do C7M).],
+  legenda: [Dm7 sobe pelas notas da escala com as notas do acorde nos tempos e termina em C (7ª do Dm7). C → B (3ª do G7) no tempo 1. No G7, F – D\# envolvem o alvo E (3ª do C7M).],
   "   Dm7                       G7                        C7M\ne|----------------7--8-----|-7-----------------------|-------------------------|\nB|----------8--10----------|----10-8-----------------|-------------------------|\nG|-7--9--10----------------|----------9--7--9--10-8--|-9-----------------------|\nD|-------------------------|-------------------------|-------------------------|\nA|-------------------------|-------------------------|-------------------------|\nE|-------------------------|-------------------------|-------------------------|\n   1  &  2  &  3  &  4  &    1  &  2  &  3  &  4  &    1  &  2  &  3  &  4  &",
 )
 
 #tab(
   titulo: "Exemplo 4 — Blues em Lá, compassos 4 e 5 (A7 → D7)",
   tamanho: 8.2pt,
-  legenda: [No A7, C → C\# (b3 → 3) cai no tempo 3. O G (b7 do A7) desce meio tom até F\#, a 3ª do D7, no tempo 1 do compasso seguinte.],
+  legenda: [No A7, C → C\# (b3 → 3) cai no tempo 3. O G (7ª do A7) desce meio tom até F\#, a 3ª do D7, no tempo 1 do compasso seguinte.],
   "   A7                        D7\ne|-5-----------------------|-------------------------|\nB|----8--5--------5--8-----|-7-----------------------|\nG|----------5--6-----------|-------7-----5-----------|\nD|-------------------------|----------------7--4-----|\nA|-------------------------|-------------------------|\nE|-------------------------|-------------------------|\n   1  &  2  &  3  &  4  &    1  &  2  &  3  &  4  &",
 )
 
@@ -346,10 +341,10 @@ Notas-alvo são um hábito de escuta, e não uma fórmula para decorar. Construa
 ]
 
 #exercicio(titulo: "Blues em Mi", nivel: "Escrita")[
-  Num blues em Mi (E7 – A7 – B7), use a pentatônica menor de Mi (E · G · A · B · D). Para cada acorde, escreva a 3ª e a b7 e diga se cada uma está ou não na escala.
+  Num blues em Mi (E7 – A7 – B7), use a pentatônica menor de Mi (E · G · A · B · D). Para cada acorde, escreva a 3ª e a 7ª e diga se cada uma está ou não na escala.
 
   #tabela-preencher(
-    ([Acorde], [3ª], [Está na pentatônica?], [b7], [Está na pentatônica?]),
+    ([Acorde], [3ª], [Está na pentatônica?], [7ª], [Está na pentatônica?]),
     (
       ([E7], none, none, none, none),
       ([A7], none, none, none, none),
@@ -362,7 +357,7 @@ Notas-alvo são um hábito de escuta, e não uma fórmula para decorar. Construa
 #exercicio(titulo: "Componha frases com alvo", nivel: "Tablatura")[
   *a)* Escreva dois compassos de colcheias sobre *G7 – C7M* que terminem na 3ª do C7M (E) no tempo 1, usando um envolvimento. #h(0.3em) *b)* Escreva dois compassos sobre *A7 – D7* (blues em Lá) que cheguem ao F\# no tempo 1 do D7. Use os compassos 1–2 para o item a e os compassos 3–4 para o item b.
 
-  #tab-vazia(sistemas: 1, compassos: 4)
+  #tab-vazia(sistemas: 1, compassos: 4, altura-linha: 10pt)
 ]
 
 #exercicio(titulo: "Linhas de guide tones", nivel: "Prática")[
@@ -380,13 +375,13 @@ Notas-alvo são um hábito de escuta, e não uma fórmula para decorar. Construa
 #v(0.6em)
 
 #block(breakable: false)[
-  === Sugestão de prática (35 min)
+  === Sugestão de prática
 
   #rotina-estudo((
     ([Pares de guide tones do II-V-I (Exemplo 1) em C, F e Bb], [5 min], [60–80]),
     ([Aproximações e envolvimentos em alvos de 3ª (Exemplo 2)], [5 min], [60–80]),
     ([Exemplos 3, 4 e 5 até tocar de memória], [10 min], [70–100]),
-    ([Etapa 1 e 2 do método sobre II-V-I], [10 min], [70–90]),
+    ([Etapas 1 e 2 do método sobre II-V-I], [10 min], [70–90]),
     ([Blues em Lá mirando a 3ª de cada acorde], [5 min], [80]),
   ))
 ]
@@ -411,7 +406,7 @@ Notas-alvo são um hábito de escuta, e não uma fórmula para decorar. Construa
     Am7: C / G · D7: F\# / C · G7M: B / F\#. Linhas: G → F\# → F\# e C → C → B.
   ]
   #resposta(2)[
-    a) Nos tempos: G, B, D, F — as quatro notas do G7; a linha descreve bem o acorde. b) Nos tempos: D, F, A, C — só o C pertence ao C7M, e o F (4ª, que choca com a 3ª) cai no tempo 3. Correção: começar a linha em B (B · A · G · F · E · D · C · B, como a linha B da seção 2), deixando B, G, E e C nos tempos; ou começar em E subindo (E · F · G · A · B · C · D · E), com E, G e B nos tempos 1, 2 e 3.
+    a) Nos tempos: G, B, D, F — as quatro notas do G7; a linha descreve bem o acorde. b) Nos tempos: D, F, A, C — só o C pertence ao C7M, e o F (4ª, que choca com a 3ª) cai no tempo 2. Correção: começar a linha em B (B · A · G · F · E · D · C · B, como a linha B da seção 2), deixando B, G, E e C nos tempos; ou começar em E subindo (E · F · G · A · B · C · D · E), com E, G e B nos tempos 1, 2 e 3.
   ]
   #resposta(3)[
     #tabela(
@@ -426,7 +421,7 @@ Notas-alvo são um hábito de escuta, e não uma fórmula para decorar. Construa
     )
   ]
   #resposta(4)[
-    E7: 3ª G\# (não está) · b7 D (está). A7: 3ª C\# (não está) · b7 G (está). B7: 3ª D\# (não está) · b7 A (está). Como no blues em Lá, a pentatônica menor contém as b7 de todos os acordes, mas nenhuma das 3ªs.
+    E7: 3ª G\# (não está) · 7ª D (está). A7: 3ª C\# (não está) · 7ª G (está). B7: 3ª D\# (não está) · 7ª A (está). Como no blues em Lá, a pentatônica menor contém as 7ªs de todos os acordes, mas nenhuma das 3ªs.
   ]
   #resposta(5)[
     Há várias respostas corretas. Critérios: todas as notas do acorde nos tempos (ou passagem justificada nos contratempos); a nota-alvo exatamente no tempo 1 do segundo compasso; as notas de aproximação imediatamente antes dela. Modelos: o compasso de G7 e o de C7M do Exemplo 3; e o Exemplo 4.

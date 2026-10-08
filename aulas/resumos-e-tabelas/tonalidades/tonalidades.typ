@@ -73,7 +73,7 @@
 #let INTERVALOS = (
   "T": (0, 0), "b2": (1, 1), "2": (1, 2), "#2": (1, 3), "b3": (2, 3), "3": (2, 4),
   "4": (3, 5), "#4": (3, 6), "b5": (4, 6), "5": (4, 7), "#5": (4, 8), "b6": (5, 8),
-  "6": (5, 9), "bb7": (6, 9), "b7": (6, 10), "7M": (6, 11),
+  "6": (5, 9), "bb7": (6, 9), "7": (6, 10), "7M": (6, 11),
   "b9": (1, 1), "9": (1, 2), "#9": (1, 3), "11": (3, 5), "#11": (3, 6), "b13": (5, 8), "13": (5, 9),
 )
 #let transp(n, iv) = {
@@ -92,7 +92,7 @@
 // ============================================================
 
 #let MAIOR = ("T", "2", "3", "4", "5", "6", "7M")
-#let MENOR = ("T", "2", "b3", "4", "5", "b6", "b7")
+#let MENOR = ("T", "2", "b3", "4", "5", "b6", "7")
 #let ORDEM-SUST = ("F", "C", "G", "D", "A", "E", "B")
 #let ORDEM-BEM = ("B", "E", "A", "D", "G", "C", "F")
 
@@ -201,7 +201,7 @@ A armadura de clave é o conjunto de sustenidos ou bemóis escrito logo após a 
   tamanho: 9.5pt,
 )
 
-#nota-rodape[Regra rápida: entre os tons maiores, só Fá maior tem bemol na armadura sem ter bemol no nome. Entre os menores, Ré, Sol, Dó e Fá menor usam bemóis.]
+#nota-rodape[Regra rápida: entre os tons maiores, só Fá maior tem bemol na armadura sem ter bemol no nome. Entre os menores, Ré, Sol, Dó e Fá menor também usam bemóis sem ter bemol no nome.]
 
 == 4. Tons enarmônicos
 

@@ -6,14 +6,7 @@
   nivel: "Intermediário",
 )
 
-#show heading: set block(sticky: true)
-#show table: set par(justify: false)
-
 // ─── Helpers locais ──────────────────────────────────────────
-// caixas nunca se dividem entre duas páginas
-#let caixa-base = caixa
-#let caixa(..args) = block(breakable: false, width: 100%, caixa-base(..args))
-
 // arpejo: monta um braco-notas a partir de uma lista de notas
 // (corda, casa, rótulo). `raiz` documenta a tônica usada (C, D…).
 #let arpejo(raiz: none, fs: 1, casas: 5, largura: 24pt, notas) = {
@@ -77,7 +70,7 @@ Repare que o arpejo é um *subconjunto* da escala: de cada sete notas da escala 
 
 == 2. As fórmulas
 
-Um arpejo é definido pela mesma fórmula de intervalos do acorde correspondente. Os exemplos abaixo usam sempre *Dó (C)* como tônica, para que você compare apenas os intervalos.
+Um arpejo é definido pela mesma fórmula de intervalos do acorde correspondente. Os exemplos abaixo usam sempre *Dó (C)* como tônica, para que você compare apenas os intervalos. Nas fórmulas, *7* indica a sétima menor e *7M*, a sétima maior.
 
 === Tríades (3 notas)
 
@@ -99,9 +92,9 @@ Um arpejo é definido pela mesma fórmula de intervalos do acorde correspondente
   ([Tipo], [Cifra], [Fórmula], [Notas em C], [Onde aparece]),
   (
     ([Maior com 7ª maior], [C7M], [T · 3 · 5 · 7M], [C · E · G · B], [I e IV do tom maior]),
-    ([Dominante], [C7], [T · 3 · 5 · b7], [C · E · G · Bb], [V do tom maior]),
-    ([Menor com 7ª], [Cm7], [T · b3 · 5 · b7], [C · Eb · G · Bb], [II, III e VI]),
-    ([Meio-diminuto], [Cm7(b5)], [T · b3 · b5 · b7], [C · Eb · Gb · Bb], [VII do tom maior]),
+    ([Dominante], [C7], [T · 3 · 5 · 7], [C · E · G · Bb], [V do tom maior]),
+    ([Menor com 7ª], [Cm7], [T · b3 · 5 · 7], [C · Eb · G · Bb], [II, III e VI]),
+    ([Meio-diminuto], [Cm7(b5)], [T · b3 · b5 · 7], [C · Eb · Gb · Bb], [VII do tom maior]),
     ([Diminuto], [Cº7], [T · b3 · b5 · bb7], [C · Eb · Gb · Bbb], [VII da menor harmônica]),
   ),
 )
@@ -109,12 +102,12 @@ Um arpejo é definido pela mesma fórmula de intervalos do acorde correspondente
 #v(0.4em)
 
 #caixa(tipo: "atencao")[
-  No Cº7 a sétima é *diminuta* (bb7): escrevemos Bbb, que soa igual a Lá (A). No braço você vai tocar a casa de Lá, mas o *intervalo* continua sendo bb7 — por isso o diagrama mostra "bb7", e não "6".
+  No Cº7 a sétima é *diminuta* (bb7): escrevemos Bbb, que soa igual a Lá (A). No braço você toca a casa de Lá, mas o *intervalo* continua sendo bb7 — por isso o diagrama mostra "bb7", e não "6".
 ]
 
 === Como ler os diagramas
 
-Os desenhos das próximas páginas são *móveis*: aprenda-os com tônica em Dó e depois arraste-os para qualquer tom, usando a tônica como âncora. Nos diagramas, o círculo preto é a tônica (T) e cada círculo branco traz o intervalo em relação a ela. A primeira linha é a 6ª corda (Mi grave). Os nomes dos grupos vêm do sistema CAGED, que leva as cinco formas de acorde abertas (C, A, G, E e D) para qualquer ponto do braço com pestana. Há dois grupos de desenhos:
+Os desenhos das próximas páginas são *móveis*: aprenda-os com tônica em Dó e depois arraste-os para qualquer tom, usando a tônica como âncora. O círculo preto é a tônica (T), cada círculo branco traz o intervalo em relação a ela e a primeira linha é a 6ª corda (Mi grave). Os nomes vêm do sistema CAGED, que leva as formas abertas de C, A, G, E e D para qualquer ponto do braço com pestana:
 
 - *Tônica na 6ª corda* (C na casa 8): derivam da forma de *Mi* do CAGED. A tônica aparece três vezes — 6ª corda casa 8, 4ª corda casa 10 e 1ª corda casa 8 —, cobrindo duas oitavas.
 - *Tônica na 5ª corda* (C na casa 3): derivam da forma de *Lá* do CAGED. A tônica aparece na 5ª corda (casa 3) e na 3ª corda (casa 5). A 6ª corda fica livre: quando dominar o desenho, acrescente as notas do acorde que estiverem nela, na mesma região.
@@ -163,8 +156,6 @@ Os desenhos das próximas páginas são *móveis*: aprenda-os com tônica em Dó
 
 #v(0.6em)
 
-#v(0.6em)
-
 #caixa(tipo: "dica")[
   Compare os quatro desenhos de cada linha: eles partem do *mesmo* desenho maior e mudam *uma nota por vez*. Menor = abaixe a 3ª um semitom; diminuta = abaixe também a 5ª; aumentada = suba a 5ª. Pensar nas alterações é mais rápido do que decorar quatro desenhos independentes.
 ]
@@ -184,11 +175,11 @@ Para as tétrades, basta acrescentar a sétima ao desenho da tríade. Os desenho
   figura([C7M], [T · 3 · 5 · 7M #h(4pt) (C E G B)], arpejo(raiz: "C", fs: 7, (
     (6, 8, "T"), (5, 7, "3"), (5, 10, "5"), (4, 9, "7M"), (4, 10, "T"), (3, 9, "3"), (2, 8, "5"), (1, 7, "7M"), (1, 8, "T"),
   ))),
-  figura([C7], [T · 3 · 5 · b7 #h(4pt) (C E G Bb)], arpejo(raiz: "C", fs: 7, (
-    (6, 8, "T"), (5, 7, "3"), (5, 10, "5"), (4, 8, "b7"), (4, 10, "T"), (3, 9, "3"), (2, 8, "5"), (2, 11, "b7"), (1, 8, "T"),
+  figura([C7], [T · 3 · 5 · 7 #h(4pt) (C E G Bb)], arpejo(raiz: "C", fs: 7, (
+    (6, 8, "T"), (5, 7, "3"), (5, 10, "5"), (4, 8, "7"), (4, 10, "T"), (3, 9, "3"), (2, 8, "5"), (2, 11, "7"), (1, 8, "T"),
   ))),
-  figura([Cm7], [T · b3 · 5 · b7 #h(4pt) (C Eb G Bb)], arpejo(raiz: "C", fs: 7, (
-    (6, 8, "T"), (6, 11, "b3"), (5, 10, "5"), (4, 8, "b7"), (4, 10, "T"), (3, 8, "b3"), (2, 8, "5"), (2, 11, "b7"), (1, 8, "T"), (1, 11, "b3"),
+  figura([Cm7], [T · b3 · 5 · 7 #h(4pt) (C Eb G Bb)], arpejo(raiz: "C", fs: 7, (
+    (6, 8, "T"), (6, 11, "b3"), (5, 10, "5"), (4, 8, "7"), (4, 10, "T"), (3, 8, "b3"), (2, 8, "5"), (2, 11, "7"), (1, 8, "T"), (1, 11, "b3"),
   ))),
 ))
 
@@ -197,8 +188,8 @@ Para as tétrades, basta acrescentar a sétima ao desenho da tríade. Os desenho
 #align(center, grid(
   columns: 2,
   column-gutter: 14pt,
-  figura([Cm7(b5) — Cø], [T · b3 · b5 · b7 #h(4pt) (C Eb Gb Bb)], arpejo(raiz: "C", fs: 7, (
-    (6, 8, "T"), (6, 11, "b3"), (5, 9, "b5"), (4, 8, "b7"), (4, 10, "T"), (3, 8, "b3"), (2, 7, "b5"), (2, 11, "b7"), (1, 8, "T"), (1, 11, "b3"),
+  figura([Cm7(b5) — meio-diminuto], [T · b3 · b5 · 7 #h(4pt) (C Eb Gb Bb)], arpejo(raiz: "C", fs: 7, (
+    (6, 8, "T"), (6, 11, "b3"), (5, 9, "b5"), (4, 8, "7"), (4, 10, "T"), (3, 8, "b3"), (2, 7, "b5"), (2, 11, "7"), (1, 8, "T"), (1, 11, "b3"),
   ))),
   figura([Cº7], [T · b3 · b5 · bb7 #h(4pt) (C Eb Gb A)], arpejo(raiz: "C", fs: 7, (
     (6, 8, "T"), (6, 11, "b3"), (5, 9, "b5"), (4, 7, "bb7"), (4, 10, "T"), (3, 8, "b3"), (2, 7, "b5"), (2, 10, "bb7"), (1, 8, "T"), (1, 11, "b3"),
@@ -220,11 +211,11 @@ Para as tétrades, basta acrescentar a sétima ao desenho da tríade. Os desenho
   figura([C7M], [T · 3 · 5 · 7M #h(4pt) (C E G B)], arpejo(raiz: "C", fs: 2, (
     (5, 3, "T"), (4, 2, "3"), (4, 5, "5"), (3, 4, "7M"), (3, 5, "T"), (2, 5, "3"), (1, 3, "5"),
   ))),
-  figura([C7], [T · 3 · 5 · b7 #h(4pt) (C E G Bb)], arpejo(raiz: "C", fs: 2, (
-    (5, 3, "T"), (4, 2, "3"), (4, 5, "5"), (3, 3, "b7"), (3, 5, "T"), (2, 5, "3"), (1, 3, "5"), (1, 6, "b7"),
+  figura([C7], [T · 3 · 5 · 7 #h(4pt) (C E G Bb)], arpejo(raiz: "C", fs: 2, (
+    (5, 3, "T"), (4, 2, "3"), (4, 5, "5"), (3, 3, "7"), (3, 5, "T"), (2, 5, "3"), (1, 3, "5"), (1, 6, "7"),
   ))),
-  figura([Cm7], [T · b3 · 5 · b7 #h(4pt) (C Eb G Bb)], arpejo(raiz: "C", fs: 2, (
-    (5, 3, "T"), (5, 6, "b3"), (4, 5, "5"), (3, 3, "b7"), (3, 5, "T"), (2, 4, "b3"), (1, 3, "5"), (1, 6, "b7"),
+  figura([Cm7], [T · b3 · 5 · 7 #h(4pt) (C Eb G Bb)], arpejo(raiz: "C", fs: 2, (
+    (5, 3, "T"), (5, 6, "b3"), (4, 5, "5"), (3, 3, "7"), (3, 5, "T"), (2, 4, "b3"), (1, 3, "5"), (1, 6, "7"),
   ))),
 ))
 
@@ -233,8 +224,8 @@ Para as tétrades, basta acrescentar a sétima ao desenho da tríade. Os desenho
 #align(center, grid(
   columns: 2,
   column-gutter: 14pt,
-  figura([Cm7(b5) — Cø], [T · b3 · b5 · b7 #h(4pt) (C Eb Gb Bb)], arpejo(raiz: "C", fs: 2, (
-    (5, 3, "T"), (5, 6, "b3"), (4, 4, "b5"), (3, 3, "b7"), (3, 5, "T"), (2, 4, "b3"), (1, 2, "b5"), (1, 6, "b7"),
+  figura([Cm7(b5) — meio-diminuto], [T · b3 · b5 · 7 #h(4pt) (C Eb Gb Bb)], arpejo(raiz: "C", fs: 2, (
+    (5, 3, "T"), (5, 6, "b3"), (4, 4, "b5"), (3, 3, "7"), (3, 5, "T"), (2, 4, "b3"), (1, 2, "b5"), (1, 6, "7"),
   ))),
   figura([Cº7], [T · b3 · b5 · bb7 #h(4pt) (C Eb Gb A)], arpejo(raiz: "C", fs: 2, (
     (5, 3, "T"), (5, 6, "b3"), (4, 4, "b5"), (3, 2, "bb7"), (3, 5, "T"), (2, 4, "b3"), (1, 2, "b5"), (1, 5, "bb7"),
@@ -324,7 +315,7 @@ No campo harmônico, cada arpejo começava "do zero" na tônica. Num solo real, 
 
 Observe as *emendas* entre os compassos:
 
-- *Dm7 → G7:* o compasso de Dm7 termina em Dó (C, a b7 do Dm7, 1ª corda casa 8) e o G7 começa em Si (B, a 3ª do G7, casa 7). Um semitom de distância — a mesma condução de vozes que existe dentro da cadência.
+- *Dm7 → G7:* o compasso de Dm7 termina em Dó (C, a 7ª do Dm7, 1ª corda casa 8) e o G7 começa em Si (B, a 3ª do G7, casa 7). Um semitom de distância — a mesma condução de vozes que existe dentro da cadência.
 - *G7 → C7M:* o G7 termina em Ré (D, a 5ª, 6ª corda casa 10) e o C7M começa em Dó (C, a tônica, casa 8). Um tom de distância.
 - *C7M → final:* a frase sobe até Si (7M) e resolve um semitom acima, em Dó.
 
@@ -382,7 +373,7 @@ Observe as *emendas* entre os compassos:
 ]
 
 #exercicio(titulo: "Transponha os desenhos", nivel: "Braço")[
-  Desenhe cada arpejo no braço, escrevendo o *intervalo* dentro de cada nota (T, 3, b3, 5, b7…).
+  Desenhe cada arpejo no braço, escrevendo o *intervalo* dentro de cada nota (T, 3, b3, 5, 7…).
 
   #v(0.3em)
   #align(center, grid(
@@ -422,7 +413,7 @@ Observe as *emendas* entre os compassos:
 #exercicio(titulo: "Seguindo a harmonia em G", nivel: "Tablatura")[
   Escreva uma linha de colcheias sobre *Am7 – D7 – G7M – G7M* (um compasso cada), usando apenas notas do acorde de cada compasso. Regra: a primeira nota de cada compasso deve estar a, no máximo, um tom da última nota do compasso anterior. Termine na tônica de G7M.
 
-  #tab-vazia(sistemas: 2, compassos: 2)
+  #tab-vazia(sistemas: 2, compassos: 2, altura-linha: 10pt)
 ]
 
 #exercicio(titulo: "A nota mais próxima", nivel: "Escrita")[
@@ -442,7 +433,9 @@ Observe as *emendas* entre os compassos:
 ]
 
 #exercicio(titulo: "Sweep leve com metrônomo", nivel: "Prática")[
-  Toque os quatro arpejos de tríade com tônica na 6ª corda (C, Cm, Cº, C+) em colcheias, subindo e descendo com sweep leve, como no Exemplo 1. Comece a 50 BPM e suba de 5 em 5 BPM somente quando conseguir três repetições seguidas com todas as notas separadas e de mesmo volume. Anote seu BPM máximo limpo: #box(width: 2.5cm, line(length: 100%, stroke: 0.5pt + color-rule-light))
+  Toque os quatro arpejos de tríade com tônica na 6ª corda (C, Cm, Cº, C+) em colcheias, subindo e descendo com sweep leve, como no Exemplo 1. Comece a 50 BPM e suba de 5 em 5 BPM somente quando conseguir três repetições seguidas com todas as notas separadas e de mesmo volume.
+
+  Anote seu BPM máximo limpo: #box(width: 3cm, line(length: 100%, stroke: 0.5pt + color-rule-light))
 ]
 
 #exercicio(titulo: "Campo harmônico sem parar", nivel: "Prática")[
@@ -452,7 +445,7 @@ Observe as *emendas* entre os compassos:
 #v(0.8em)
 
 #block(breakable: false)[
-=== Sugestão de prática (40 min)
+=== Sugestão de prática
 
 #rotina-estudo((
   ([Tríades C, Cm, Cº, C+ — tônica na 6ª e na 5ª corda], [5 min], [60–80]),
@@ -481,14 +474,14 @@ Observe as *emendas* entre os compassos:
     #grid(
       columns: (1fr, 1fr),
       row-gutter: 0.55em,
-      [G7M: T 3 5 7M → G B D F\#], [A7: T 3 5 b7 → A C\# E G],
-      [Em7: T b3 5 b7 → E G B D], [F\#m7(b5): T b3 b5 b7 → F\# A C E],
+      [G7M: T 3 5 7M → G B D F\#], [A7: T 3 5 7 → A C\# E G],
+      [Em7: T b3 5 7 → E G B D], [F\#m7(b5): T b3 b5 7 → F\# A C E],
       [Bº7: T b3 b5 bb7 → B D F Ab], [D+: T 3 \#5 → D F\# A\#],
       [Fm: T b3 5 → F Ab C], [Eº: T b3 b5 → E G Bb],
     )
   ]
   #resposta(2)[
-    a) F7M · b) Bb7 · c) Em7(b5) (Eø) · d) G\#º7 · e) Dm7 · f) A+ (E\# é a \#5 de Lá) · g) C\#º · h) Eb7M.
+    a) F7M · b) Bb7 · c) Em7(b5) · d) G\#º7 · e) Dm7 · f) A+ (E\# é a \#5 de Lá) · g) C\#º · h) Eb7M.
   ]
   #resposta(3)[
     #grid(
@@ -496,13 +489,13 @@ Observe as *emendas* entre os compassos:
       column-gutter: 1em,
       align(center)[
         #arpejo(raiz: "G", fs: 2, (
-          (6, 3, "T"), (5, 2, "3"), (5, 5, "5"), (4, 3, "b7"), (4, 5, "T"), (3, 4, "3"), (2, 3, "5"), (2, 6, "b7"), (1, 3, "T"),
+          (6, 3, "T"), (5, 2, "3"), (5, 5, "5"), (4, 3, "7"), (4, 5, "T"), (3, 4, "3"), (2, 3, "5"), (2, 6, "7"), (1, 3, "T"),
         ))
         #text(size: 8.5pt)[a) G7: G B D F — desenho do C7 deslocado 5 casas para baixo.]
       ],
       align(center)[
         #arpejo(raiz: "D", fs: 4, (
-          (5, 5, "T"), (5, 8, "b3"), (4, 7, "5"), (3, 5, "b7"), (3, 7, "T"), (2, 6, "b3"), (1, 5, "5"), (1, 8, "b7"),
+          (5, 5, "T"), (5, 8, "b3"), (4, 7, "5"), (3, 5, "7"), (3, 7, "T"), (2, 6, "b3"), (1, 5, "5"), (1, 8, "7"),
         ))
         #text(size: 8.5pt)[b) Dm7: D F A C — desenho do Cm7 deslocado 2 casas para cima.]
       ],
@@ -526,7 +519,7 @@ Observe as *emendas* entre os compassos:
     )
   ]
   #resposta(6)[
-    C → B (3ª do G7, semitom abaixo) · F → E (3ª do C7M, semitom abaixo) · E → E (5ª do A7, nota comum) · B → C (b3 do Am7, semitom acima) · D → D (b7 do E7, nota comum).
+    C → B (3ª do G7, semitom abaixo) · F → E (3ª do C7M, semitom abaixo) · E → E (5ª do A7, nota comum) · B → C (b3 do Am7, semitom acima) · D → D (7ª do E7, nota comum).
   ]
   #resposta(7)[
     Exercício prático — critério de sucesso: três repetições seguidas de cada arpejo, sem notas soando juntas, com a palheta sempre no sentido indicado (↓ na subida, ↑ na descida).

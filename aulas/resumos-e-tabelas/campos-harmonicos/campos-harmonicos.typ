@@ -73,7 +73,7 @@
 #let INTERVALOS = (
   "T": (0, 0), "b2": (1, 1), "2": (1, 2), "#2": (1, 3), "b3": (2, 3), "3": (2, 4),
   "4": (3, 5), "#4": (3, 6), "b5": (4, 6), "5": (4, 7), "#5": (4, 8), "b6": (5, 8),
-  "6": (5, 9), "bb7": (6, 9), "b7": (6, 10), "7M": (6, 11),
+  "6": (5, 9), "bb7": (6, 9), "7": (6, 10), "7M": (6, 11),
   "b9": (1, 1), "9": (1, 2), "#9": (1, 3), "11": (3, 5), "#11": (3, 6), "b13": (5, 8), "13": (5, 9),
 )
 #let transp(n, iv) = {
@@ -93,18 +93,18 @@
 
 #let ESCALAS = (
   maior: ("T", "2", "3", "4", "5", "6", "7M"),
-  natural: ("T", "2", "b3", "4", "5", "b6", "b7"),
+  natural: ("T", "2", "b3", "4", "5", "b6", "7"),
   harmonica: ("T", "2", "b3", "4", "5", "b6", "7M"),
   melodica: ("T", "2", "b3", "4", "5", "6", "7M"),
 )
 #let SUF-TRIADE = ("4-7": ("", ("T", "3", "5")), "3-7": ("m", ("T", "b3", "5")), "3-6": ("º", ("T", "b3", "b5")), "4-8": ("+", ("T", "3", "#5")))
 #let SUF-TETRADE = (
   "4-7-11": ("7M", ("T", "3", "5", "7M")),
-  "4-7-10": ("7", ("T", "3", "5", "b7")),
-  "3-7-10": ("m7", ("T", "b3", "5", "b7")),
-  "3-6-10": ("ø", ("T", "b3", "b5", "b7")),
+  "4-7-10": ("7", ("T", "3", "5", "7")),
+  "3-7-10": ("m7", ("T", "b3", "5", "7")),
+  "3-6-10": ("m7(b5)", ("T", "b3", "b5", "7")),
   "3-6-9": ("º7", ("T", "b3", "b5", "bb7")),
-  "3-7-11": ("m7M", ("T", "b3", "5", "7M")),
+  "3-7-11": ("m(7M)", ("T", "b3", "5", "7M")),
   "4-8-11": ("7M(#5)", ("T", "3", "#5", "7M")),
 )
 
@@ -154,7 +154,7 @@ Campo harmônico é o conjunto de acordes formados empilhando terças sobre cada
 #tabela-resumo(
   ([Grau], [Maior], [Função], [Menor natural], [Menor harmônico], [Menor melódico]),
   (
-    ([1], [I7M], [T], [Im7], [Im7M], [Im7M]),
+    ([1], [I7M], [T], [Im7], [Im(7M)], [Im(7M)]),
     ([2], [IIm7], [S], [IIø], [IIø], [IIm7]),
     ([3], [IIIm7], [T (D)], [bIII7M], [bIII7M(\#5)], [bIII7M(\#5)]),
     ([4], [IV7M], [S], [IVm7], [IVm7], [IV7]),
@@ -178,7 +178,7 @@ Campo harmônico é o conjunto de acordes formados empilhando terças sobre cada
 
 #campo("maior", 4, ("I7M", "IIm7", "IIIm7", "IV7M", "V7", "VIm7", "VIIø"), funcoes: ("T", "S", "T", "S", "D", "T", "D"))
 
-#nota-rodape[ø = m7(b5) (meio-diminuto). Exemplo: Bø = Bm7(b5) = B - D - F - A.]
+#nota-rodape[Nos graus, ø indica o acorde meio-diminuto, m7(b5): o VIIø de Dó maior é Bm7(b5) = B - D - F - A.]
 
 == 4. Campo menor natural — tétrades
 
@@ -191,7 +191,7 @@ Campo harmônico é o conjunto de acordes formados empilhando terças sobre cada
 )
 
 #v(0.8em)
-#aviso("dica")[O campo menor natural tem exatamente os mesmos acordes do campo maior *relativo*, apenas começando pelo VI grau: Lá menor (Am7, Bø, C7M, Dm7, Em7, F7M, G7) = Dó maior a partir do Am7. Para achar o relativo menor, desça 3 semitons a partir da tônica maior (C → A).]
+#aviso("dica")[O campo menor natural tem exatamente os mesmos acordes do campo maior *relativo*, apenas começando pelo VI grau: Lá menor (Am7, Bm7(b5), C7M, Dm7, Em7, F7M, G7) = Dó maior a partir do Am7. Para achar o relativo menor, desça 3 semitons a partir da tônica maior (C → A).]
 
 #pagebreak()
 
@@ -202,7 +202,7 @@ Campo harmônico é o conjunto de acordes formados empilhando terças sobre cada
 #campo(
   "harmonica",
   4,
-  ("Im7M", "IIø", "bIII7M(#5)", "IVm7", "V7", "bVI7M", "VIIº7"),
+  ("Im(7M)", "IIø", "bIII7M(#5)", "IVm7", "V7", "bVI7M", "VIIº7"),
   funcoes: ("T", "S", "T", "S", "D", "S", "D"),
   tons: TONS-MENORES,
 )
@@ -216,7 +216,7 @@ Campo harmônico é o conjunto de acordes formados empilhando terças sobre cada
 #campo(
   "melodica",
   4,
-  ("Im7M", "IIm7", "bIII7M(#5)", "IV7", "V7", "VIø", "VIIø"),
+  ("Im(7M)", "IIm7", "bIII7M(#5)", "IV7", "V7", "VIø", "VIIø"),
   funcoes: ("T", "S", "T", "S", "D", "S", "D"),
   tons: TONS-MENORES,
 )
@@ -232,7 +232,7 @@ Campo harmônico é o conjunto de acordes formados empilhando terças sobre cada
   #cartoes-info((
     (titulo: "TÔNICA (T)", corpo: [Repouso e estabilidade; é onde a música “chega”. \ *Maior:* I, IIIm, VIm \ *Menor:* Im, bIII]),
     (titulo: "SUBDOMINANTE (S)", corpo: [Afastamento e preparação; leva à dominante ou volta à tônica. \ *Maior:* IIm, IV \ *Menor:* IIø, IVm, bVI]),
-    (titulo: "DOMINANTE (D)", corpo: [Tensão máxima (trítono entre 3ª e b7); pede resolução na tônica. \ *Maior:* V7, VIIø \ *Menor:* V7, VIIº7]),
+    (titulo: "DOMINANTE (D)", corpo: [Tensão máxima (trítono entre a 3ª e a 7ª); pede resolução na tônica. \ *Maior:* V7, VIIø \ *Menor:* V7, VIIº7]),
   ))
 ]
 
@@ -259,7 +259,7 @@ Campo harmônico é o conjunto de acordes formados empilhando terças sobre cada
 #tabela-resumo(
   ([Grau (tom menor)], [Função], [Observação]),
   (
-    ([Im7 / Im7M / Im6], [Tônica], [a forma do acorde depende da escala usada (natural, harmônica ou melódica)]),
+    ([Im7 / Im(7M) / Im6], [Tônica], [a forma do acorde depende da escala usada (natural, harmônica ou melódica)]),
     ([bIII7M], [Tônica (relativa)], [é o I do relativo maior]),
     ([IIø], [Subdominante], [prepara o V7 na cadência menor IIø – V7 – Im]),
     ([IVm7], [Subdominante], [cadência plagal menor IVm – Im]),

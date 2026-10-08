@@ -1,6 +1,5 @@
 #import "/templates/layout.typ": *
 #import "/templates/components.typ": *
-#import "/templates/components.typ" as comp
 #import "@preview/conchord:0.4.0": new-chordgen
 
 #show: aula.with(
@@ -10,14 +9,6 @@
 
 #let chord = new-chordgen(number-to-left: true, use-shadow-barre: false, colors: (hold: black, barre: black))
 #show <chord>: set text(fill: color-strong, weight: "bold")
-#show table: set par(justify: false)
-
-// Caixas inseparáveis (não quebram entre páginas)
-#let caixa(..args) = block(width: 100%, breakable: false, comp.caixa(..args))
-
-// Tabelas inseparáveis (evita tabela partida entre páginas)
-#let tabela(..args) = block(width: 100%, breakable: false, comp.tabela(..args))
-#let tabela-preencher(..args) = block(width: 100%, breakable: false, comp.tabela-preencher(..args))
 
 // Legenda curta abaixo de diagramas
 #let legenda(body) = align(center, text(size: 8.5pt, fill: color-muted, body))
@@ -33,9 +24,9 @@
 #let g-domdim = (
   ("", "T", "*b9", "", "*#9"),
   ("3", "", "*#11", "5", ""),
-  ("*13", "b7", "", "T", "*b9"),
+  ("*13", "7", "", "T", "*b9"),
   ("", "*#9", "3", "", "*#11"),
-  ("", "5", "", "*13", "b7"),
+  ("", "5", "", "*13", "7"),
   ("", "T", "*b9", "", "*#9"),
 )
 
@@ -51,9 +42,9 @@
 #let g-wt = (
   ("", "T", "", "9", ""),
   ("3", "", "*#11", "", "*#5"),
-  ("", "b7", "", "T", ""),
+  ("", "7", "", "T", ""),
   ("9", "", "3", "", "*#11"),
-  ("", "", "*#5", "", "b7"),
+  ("", "", "*#5", "", "7"),
   ("", "T", "", "9", ""),
 )
 
@@ -85,10 +76,7 @@ A oitava tem 12 semitons. Sempre que dividimos esses 12 semitons em *partes igua
   ),
 )
 
-#v(0.6em)
-
 A última coluna é a consequência mais importante: como o padrão se repete a cada X semitons, transpor a escala X semitons acima produz *exatamente as mesmas notas*. Por isso só existem 2 escalas de tons inteiros diferentes e só 3 escalas diminutas diferentes — o compositor francês Olivier Messiaen chamou essas estruturas de *modos de transposição limitada*.
-
 
 == 2. A escala de tons inteiros
 
@@ -96,16 +84,14 @@ A escala de tons inteiros (também chamada *hexafônica*) tem *6 notas*, todas s
 
 #tabela(
   columns: (1.4fr,) + (1fr,) * 6,
-  ([*Tônica*], [*T*], [*9*], [*3*], [*\#11*], [*\#5 (b13)*], [*b7*]),
+  ([*Tônica*], [*T*], [*9*], [*3*], [*\#11*], [*\#5 (b13)*], [*7*]),
   (
     ([Dó], [C], [D], [E], [F\#], [G\#], [Bb]),
     ([Sol], [G], [A], [B], [C\#], [D\#], [F]),
   ),
 )
 
-#v(0.6em)
-
-Repare no que ela *tem*: tônica, 3ª maior e 7ª menor (o esqueleto de um dominante), mais 9, \#11 e \#5. E no que ela *não tem*: 5ª justa, b9, \#9 e 13. Ela é a escala do dominante com *quinta aumentada* — C7(\#5), C7(9, \#5), C7(b13, \#11) — e da tríade aumentada C+. Como não há 5ª justa, evite-a sobre acordes que tenham 5 ou 13 na harmonia ou na melodia.
+Repare no que ela *tem*: tônica, 3ª maior e 7ª menor (o esqueleto de um dominante), mais 9, \#11 e \#5. E no que ela *não tem*: 5ª justa, b9, \#9 e 13. Ela é a escala do dominante com *quinta aumentada* — C7(\#5), C7(9,\#5), C7(\#11,b13) — e da tríade aumentada C+. Como não há 5ª justa, evite-a sobre acordes que tenham 5 ou 13 na harmonia ou na melodia.
 
 === Só existem duas
 
@@ -119,8 +105,6 @@ Como a escala sobe de tom em tom, começar um tom acima reproduz a mesma coleç�
     ([Tons inteiros 2], [Db – Eb – F – G – A – B], [Db7, Eb7, F7, G7, A7, B7]),
   ),
 )
-
-#v(0.6em)
 
 Note que a coleção de Sol (G A B C\# D\# F) é a mesma de Db (Db Eb F G A B), apenas grafada de outra forma. Note também que cada coleção atende a três pares de dominantes a trítono de distância — G7 e seu SubV Db7, por exemplo, usam a mesma escala de tons inteiros.
 
@@ -144,12 +128,6 @@ O desenho abaixo cobre duas oitavas de Sol tons inteiros entre as casas 2 e 6. T
 )
 ]
 
-#v(0.4em)
-
-#caixa(tipo: "dica", titulo: "No braço")[
-  A simetria vira geometria: um desenho da escala diminuta deslocado *3 casas* (uma 3ª menor) toca as mesmas notas; um desenho de tons inteiros deslocado *2 casas* (um tom) também. Você aprende um único desenho e o reaproveita pelo braço inteiro.
-]
-
 === Padrão melódico: tríades aumentadas a cada tom
 
 A escala de tons inteiros é a soma de duas tríades aumentadas a um tom de distância: em Sol, G+ (G B D\#) e A+ (A C\# F). Como cada tríade aumentada também é simétrica (repete a cada 4 casas), um único desenho de três cordas descendo de 2 em 2 casas percorre toda a escala:
@@ -157,9 +135,8 @@ A escala de tons inteiros é a soma de duas tríades aumentadas a um tom de dist
 #tab(
   "  G7(#5)                                C7M\ne|-------7--------5--------3--------1--|-0-----------|\nB|----8--------6--------4--------2-----|-------------|\nG|-8--------6--------4--------2--------|-------------|\nD|-------------------------------------|-------------|\nA|-------------------------------------|-------------|\nE|-------------------------------------|-------------|",
   titulo: "Lick 1 — tríades aumentadas descendo 2 casas (tercinas)",
-  legenda: [Os grupos alternam as duas tríades aumentadas da escala — G+ (D\#-G-B, depois B-D\#-G) e A+ (C\#-F-A, depois A-C\#-F) —, sempre com o mesmo shape. O Fá final (b7 de G7) resolve no Mi (3ª de C7M).],
+  legenda: [Os grupos alternam as duas tríades aumentadas da escala — G+ (D\#-G-B, depois B-D\#-G) e A+ (C\#-F-A, depois A-C\#-F) —, sempre com o mesmo shape. O Fá final (7ª de G7) resolve no Mi (3ª de C7M).],
 )
-
 
 == 3. A escala diminuta: duas leituras da mesma coleção
 
@@ -175,8 +152,6 @@ A escala diminuta tem *8 notas* e alterna tons e semitons. Dependendo de começa
   ),
 )
 
-#v(0.6em)
-
 As notas em negrito formam o próprio *Cº7* (C Eb Gb Bbb — o Lá, grafado como Sibb, é a 7ª diminuta). As outras quatro ficam *um tom acima de cada nota do acorde* — são as tensões disponíveis de um diminuto: 9, 11, b13 e 7M. Use a T-ST sobre acordes º7 em função própria, como o diminuto de passagem C7M – C\#º7 – Dm7.
 
 === Semitom-tom (ST-T): a escala dom-dim
@@ -185,16 +160,14 @@ As notas em negrito formam o próprio *Cº7* (C Eb Gb Bbb — o Lá, grafado com
   columns: (1.5fr,) + (1fr,) * 8,
   ([*Sol ST-T*], [G], [Ab], [Bb], [B], [C\#], [D], [E], [F]),
   (
-    ([Intervalo], [*T*], [b9], [\#9], [*3*], [\#11], [*5*], [13], [*b7*]),
+    ([Intervalo], [*T*], [b9], [\#9], [*3*], [\#11], [*5*], [13], [*7*]),
   ),
 )
 
-#v(0.6em)
-
-Agora o esqueleto é de *dominante*: T, 3, 5 e b7 de G7 — com a 5ª justa e a 13 naturais, mas as nonas alteradas (b9 e \#9) e a \#11. É a escala de *G7(b9, \#9, \#11, 13)*, por isso o apelido *dom-dim* (dominante-diminuta). O \#9 é grafado como Bb por praticidade de leitura; teoricamente é um Lá sustenido.
+Agora o esqueleto é de *dominante*: T, 3, 5 e 7 de G7 — com a 5ª justa e a 13 naturais, mas as nonas alteradas (b9 e \#9) e a \#11. É a escala de *G7(b9,\#9,\#11,13)*, por isso o apelido *dom-dim* (dominante-diminuta). A \#9 é grafada como Bb por praticidade de leitura; teoricamente é um Lá sustenido.
 
 #caixa(tipo: "atencao", titulo: "Dom-dim × alterada")[
-  As duas têm b9, \#9 e \#11, mas a dom-dim tem *5 e 13 naturais*, enquanto a alterada (7º modo da menor melódica: T, b9, \#9, 3, \#11, b13, b7) tem *b13* e nenhuma 5ª justa. Se a melodia ou o acorde pede b13, a dom-dim está errada; se pede 13, a alterada está errada.
+  As duas têm b9, \#9 e \#11, mas a dom-dim tem *5 e 13 naturais*, enquanto a alterada (7º modo da menor melódica: T, b9, \#9, 3, \#11, b13, 7) tem *b13* e nenhuma 5ª justa. Se a melodia ou o acorde pede b13, a dom-dim está errada; se pede 13, a alterada está errada.
 ]
 
 === Mesma coleção, outro ponto de partida
@@ -205,12 +178,10 @@ Escreva as notas de Sol ST-T e as de Láb T-ST lado a lado:
   columns: (1.6fr,) + (1fr,) * 8,
   ([*Notas*], [G], [Ab], [Bb], [B], [C\#], [D], [E], [F]),
   (
-    ([Sol ST-T (G7)], [T], [b9], [\#9], [3], [\#11], [5], [13], [b7]),
+    ([Sol ST-T (G7)], [T], [b9], [\#9], [3], [\#11], [5], [13], [7]),
     ([Láb T-ST (Abº7)], [7M], [T], [2], [b3], [4], [b5], [b6], [bb7]),
   ),
 )
-
-#v(0.6em)
 
 São *as mesmas oito notas*. Isso não é coincidência: G7(b9) = G + B D F Ab, e B D F Ab é um acorde diminuto (Bº7 = Dº7 = Fº7 = Abº7). Daí as duas regras de bolso:
 
@@ -234,10 +205,7 @@ Como a escala repete a cada 3ª menor, as 12 dom-dims (e as 12 T-STs) se reduzem
   ),
 )
 
-#v(0.6em)
-
 Uma consequência prática: os quatro dominantes a uma 3ª menor de distância — G7, Bb7, Db7 e E7 — compartilham a mesma dom-dim. Entre eles está o *SubV* (Db7 é o SubV de G7), o que explica por que linhas dom-dim soam tão naturais na substituição de trítono.
-
 
 == 4. Digitação da escala diminuta
 
@@ -250,10 +218,7 @@ O desenho abaixo é Sol dom-dim entre as casas 2 e 6, três notas por corda (qua
   braco-titulado([Láb T-ST (sobre Abº7)], ab-tst, fs: 2),
 )
 
-#v(0.3em)
 #legenda[Preto = tônica da leitura · branco = notas do acorde · cinza = tensões disponíveis.]
-
-#v(0.6em)
 
 Agora aplique a simetria: o mesmo desenho deslocado *3 casas acima* (tônica na casa 6 da 6ª corda) é Sib dom-dim — mesmas notas de Sol dom-dim. Deslocado 6 casas, é Réb dom-dim; 9 casas, Mi dom-dim. O acorde º7 mostra o mesmo fenômeno de forma ainda mais clara: o shape se repete idêntico a cada 3 casas, e cada inversão tem uma nota diferente no baixo.
 
@@ -269,8 +234,11 @@ Agora aplique a simetria: o mesmo desenho deslocado *3 casas acima* (tônica na 
   ),
 )
 
-#v(0.3em)
 #legenda[As quatro formas são o mesmo acorde (= G7(b9) sem tônica). Todas pertencem à coleção II.]
+]
+
+#caixa(tipo: "dica", titulo: "No braço")[
+  A simetria vira geometria: um desenho da escala diminuta deslocado *3 casas* (uma 3ª menor) toca as mesmas notas; um desenho de tons inteiros deslocado *2 casas* (um tom) também. Você aprende um único desenho e o reaproveita pelo braço inteiro.
 ]
 
 #block(breakable: false)[
@@ -285,14 +253,12 @@ Dentro de Sol dom-dim cabem quatro tríades maiores (e quatro menores) separadas
   ([*Tríade*], [*Notas*], [*Sobre G7 =*], [*Som resultante*]),
   (
     ([G], [G – B – D], [T – 3 – 5], [o próprio acorde, sem tensão]),
-    ([Bb], [Bb – D – F], [\#9 – 5 – b7], [G7(\#9), cor "blues"]),
-    ([Db], [Db – F – Ab], [\#11 – b7 – b9], [G7(b9, \#11), sonoridade do SubV]),
-    ([E], [E – G\# – B], [13 – b9 – 3], [G7(b9, 13), a cor dom-dim clássica]),
+    ([Bb], [Bb – D – F], [\#9 – 5 – 7], [G7(\#9), cor "blues"]),
+    ([Db], [Db – F – Ab], [\#11 – 7 – b9], [G7(b9,\#11), sonoridade do SubV]),
+    ([E], [E – G\# – B], [13 – b9 – 3], [G7(b9,13), a cor dom-dim clássica]),
   ),
 )
 ]
-
-#v(0.6em)
 
 Na guitarra isso fica ainda mais simples: um mesmo shape de tríade nas cordas 3-2-1 deslocado de 3 em 3 casas percorre as quatro tríades. O lick abaixo desce E → Db → Bb e fecha com G, resolvendo a sensível (Si) na tônica de C7M.
 
@@ -316,7 +282,6 @@ Qualquer grupo de notas da escala, deslocado 3 casas, continua dentro da escala.
   Simetria demais soa mecânica. Use o deslocamento para gerar a ideia e depois *quebre o padrão* na resolução: a última nota deve cair numa nota-guia do acorde seguinte (3ª ou 7ª), como nos licks acima.
 ]
 
-
 #block(breakable: false)[
 == 6. Aplicação no II-V-I
 
@@ -326,38 +291,34 @@ O lugar natural das escalas simétricas é o *acorde dominante* (e o diminuto de
   columns: (1.5fr, 1.7fr, 1.5fr, 2fr),
   ([*Acorde*], [*Tensões presentes*], [*Escala simétrica*], [*Observação*]),
   (
-    ([G7(b9, 13)], [b9, 13 (5 justa)], [Sol dom-dim], [a combinação típica da dom-dim]),
-    ([G7(\#9) / G7(b9, \#11)], [\#9 ou b9, \#11], [Sol dom-dim], [também cabe na alterada]),
-    ([G7(\#5) / G7(9, \#5)], [9, \#5], [Sol tons inteiros], [sem 5ª justa, sem b9/\#9]),
-    ([G7(b9, b13)], [b9, b13], [nenhuma], [mixolídio b9 b13 ou alterada]),
+    ([G7(b9,13)], [b9, 13 (5 justa)], [Sol dom-dim], [a combinação típica da dom-dim]),
+    ([G7(\#9) / G7(b9,\#11)], [\#9 ou b9, \#11], [Sol dom-dim], [também cabe na alterada]),
+    ([G7(\#5) / G7(9,\#5)], [9, \#5], [Sol tons inteiros], [sem 5ª justa, sem b9/\#9]),
+    ([G7(b9,b13)], [b9, b13], [nenhuma], [mixolídio b9 b13 ou alterada]),
     ([Bº7 (= G7(b9))], [—], [Si T-ST = Sol dom-dim], [diminuto com função de V7]),
     ([C\#º7 de passagem], [—], [Dó\# T-ST], [equivale a A7(b9) sem tônica → Dm7]),
   ),
 )
 ]
 
-#v(0.6em)
-
 #grid-acordes(
   chord: chord,
   columns: 4,
   (
-    (tabs: "3,x,3,4,5,4", titulo: "G7(b9, 13)", nome: "", detalhe: "dom-dim"),
+    (tabs: "3,x,3,4,5,4", titulo: "G7(b9,13)", nome: "", detalhe: "dom-dim"),
     (tabs: "x,10,9,10,11,x", titulo: "G7(#9)", nome: "", detalhe: "dom-dim"),
     (tabs: "3,x,3,4,4,x", titulo: "G7(#5)", nome: "", detalhe: "tons inteiros"),
     (tabs: "x,2,3,1,3,x", titulo: "Bº7", nome: "", detalhe: "Si T-ST"),
   ),
 )
 
-#v(0.6em)
-
 #block(breakable: false)[
 A frase a seguir usa Ré dórico no IIm7, Sol dom-dim no V7 — com a última célula do Lick 3 seguida de uma célula semelhante nas cordas 3 e 4 — e resolve a 7ª de G7 (Fá) na 3ª de C7M (Mi):
 
 #tab(
-  "  Dm7                       G7(b9)                    C7M\ne|-------------5-----------|-4--3--------------------|-------------------------|\nB|----------6-----6-----5--|-------5--3--------------|-------------------5-----|\nG|-------5-----------7-----|-------------4--3--------|-------------4-----------|\nD|----7--------------------|-------------------6--3--|-2-----5-----------------|\nA|-5-----------------------|-------------------------|-------------------------|\nE|-------------------------|-------------------------|-------------------------|",
+  "  Dm7                       G7(b9)                    C7M\ne|-------------5-----------|-4--3--------------------|-------------------------|\nB|----------6-----6-----5--|-------5--3--------------|-------------------1-----|\nG|-------5-----------7-----|-------------4--3--------|-------------4-----------|\nD|----7--------------------|-------------------6--3--|-2-----5-----------------|\nA|-5-----------------------|-------------------------|-------------------------|\nE|-------------------------|-------------------------|-------------------------|",
   titulo: "Lick 4 — II-V-I em Dó com dom-dim no V7",
-  legenda: [Compassos 1-2 em colcheias; compasso 3 em semínimas (arpejo de C7M a partir da 3ª).],
+  legenda: [Compassos 1-2 em colcheias; compasso 3 em semínimas (arpejo de C7M a partir da 3ª: E – G – B – C).],
 )
 ]
 
@@ -368,7 +329,7 @@ A frase a seguir usa Ré dórico no IIm7, Sol dom-dim no V7 — com a última c�
 == 7. Exercícios
 
 #block(breakable: false)[
-#exercicio(titulo: "Dom-dim e suas equivalências", nivel: "escrita")[
+#exercicio(titulo: "Dom-dim e suas equivalências", nivel: "Escrita")[
   Escreva as 8 notas da escala dom-dim pedida e indique de quais notas a mesma coleção é uma escala T-ST.
 
   #tabela-preencher(
@@ -386,36 +347,36 @@ A frase a seguir usa Ré dórico no IIm7, Sol dom-dim no V7 — com a última c�
 ]
 
 #block(breakable: false)[
-#exercicio(titulo: "Qual escala simétrica?", nivel: "análise")[
+#exercicio(titulo: "Qual escala simétrica?", nivel: "Análise")[
   Para cada acorde, indique a escala simétrica adequada (dom-dim, T-ST ou tons inteiros, com a tônica) ou escreva "nenhuma" e justifique.
 
   #grid(
     columns: (1fr, 1fr, 1fr, 1fr),
     column-gutter: 1em,
     row-gutter: 0.75em,
-    [a) Eb7(\#5)], [b) Bº7], [c) A7(b9, 13)], [d) F7(9, \#11, b13)],
-    [e) D7(b9, b13)], [f) C7(\#9, 13)], [g) Ab7(9, \#5)], [h) F\#º7 (passagem)],
+    [a) Eb7(\#5)], [b) Bº7], [c) A7(b9,13)], [d) F7(9,\#11,b13)],
+    [e) D7(b9,b13)], [f) C7(\#9,13)], [g) Ab7(9,\#5)], [h) F\#º7 (passagem)],
   )
   #linhas-resposta(3)
 ]
 ]
 
 #block(breakable: false)[
-#exercicio(titulo: "Tons inteiros", nivel: "escrita")[
+#exercicio(titulo: "Tons inteiros", nivel: "Escrita")[
   a) Escreva as duas coleções de tons inteiros. b) Por que não existe uma terceira? c) Qual coleção serve para B7(\#5)? E para Bb7(\#5)?
-  #linhas-resposta(2)
+  #linhas-resposta(3)
 ]
 ]
 
 #block(breakable: false)[
-#exercicio(titulo: "Componha um lick", nivel: "composição")[
+#exercicio(titulo: "Componha um lick", nivel: "Composição")[
   Escreva uma frase de 3 compassos sobre *Dm7 | G7(b9) | C7M* usando no G7 pelo menos duas tríades de Sol dom-dim deslocadas por 3 casas. A última nota do G7 deve resolver em uma nota-guia de C7M (Mi ou Si).
 
-  #tab-vazia(sistemas: 1, compassos: 3)
+  #tab-vazia(sistemas: 1, compassos: 3, altura-linha: 12pt)
 ]
 ]
 #block(breakable: false)[
-#exercicio(titulo: "Tríades a cada 3ª menor", nivel: "escrita")[
+#exercicio(titulo: "Tríades a cada 3ª menor", nivel: "Escrita")[
   Na escala Ré dom-dim, encontre as quatro tríades maiores separadas por 3ª menor e diga que tensões cada uma gera sobre D7.
 
   #tabela-preencher(
@@ -427,22 +388,22 @@ A frase a seguir usa Ré dórico no IIm7, Sol dom-dim no V7 — com a última c�
       (none, none, none),
     ),
     columns: (0.8fr, 1.4fr, 2fr),
-    altura: 0.6cm,
+    altura: 0.75cm,
   )
 ]
 ]
 
 #block(breakable: false)[
-#exercicio(titulo: "Desenho no braço", nivel: "braço")[
+#exercicio(titulo: "Desenho no braço", nivel: "Braço")[
   Desenhe *Lá dom-dim* entre as casas 4 e 8, três notas por corda (quatro em uma delas), escrevendo o intervalo dentro de cada círculo. Dica: compare com o desenho de Sol dom-dim da seção 4.
 
-  #align(center, braco-vazio(casas: 5, fs: 4))
+  #align(center, braco-vazio(casas: 5, fs: 4, casa-largura: 36pt))
 ]
 ]
-
 
 #block(breakable: false)[
-#text(weight: "bold", size: 10pt, fill: color-strong)[Sugestão de prática]
+=== Sugestão de prática
+
 #rotina-estudo((
   ([Tons inteiros: desenho das casas 2-6, depois a partir de 4, 6 e 8], [5 min], [60–80]),
   ([Dom-dim (casas 2-6, depois 5, 8 e 11) + º7 em 4 inversões], [10 min], [60–80]),
@@ -471,7 +432,7 @@ A frase a seguir usa Ré dórico no IIm7, Sol dom-dim no V7 — com a última c�
     *Bb dom-dim:* Bb – B – C\# – D – E – F – G – Ab · equivale à T-ST de B, D, F, Ab · coleção II (a mesma de Sol e de Mi).
   ]
   #resposta(2)[
-    a) Eb tons inteiros (coleção 2). b) Si T-ST (= Sol, Sib, Réb ou Mi dom-dim). c) Lá dom-dim. d) Fá tons inteiros (F G A B C\# Eb: 9, \#11, b13, sem 5ª justa). e) *Nenhuma*: a b13 exclui a dom-dim (que tem 13) e a b9 exclui os tons inteiros (que têm 9) — use mixolídio b9 b13 ou alterada. f) Dó dom-dim (\#9 e 13 estão nela). g) Láb tons inteiros (coleção 1). h) Fá\# T-ST (coleção III), pois F\#º7 = F7(b9) / D7(b9)… sem tônica.
+    a) Eb tons inteiros (coleção 2). b) Si T-ST (= Sol, Sib, Réb ou Mi dom-dim). c) Lá dom-dim. d) Fá tons inteiros (F G A B C\# Eb: 9, \#11, b13, sem 5ª justa). e) *Nenhuma*: a b13 exclui a dom-dim (que tem 13) e a b9 exclui os tons inteiros (que têm 9) — use mixolídio b9 b13 ou alterada. f) Dó dom-dim (\#9 e 13 estão nela). g) Láb tons inteiros (coleção 1). h) Fá\# T-ST (coleção III), pois F\#º7 = D7(b9), F7(b9), Ab7(b9) ou B7(b9) sem a fundamental.
   ]
   #resposta(3)[
     a) C D E F\# G\# A\# e Db Eb F G A B. b) Porque a escala se repete a cada tom: começar em qualquer nota da coleção 1 dá a coleção 1; as notas que sobram (um semitom acima) formam a coleção 2 — não há uma terceira posição possível. c) B7(\#5): coleção 2 (B C\# D\# F G A = Db Eb F G A B). Bb7(\#5): coleção 1.
@@ -480,7 +441,7 @@ A frase a seguir usa Ré dórico no IIm7, Sol dom-dim no V7 — com a última c�
     Exercício criativo — critérios: (1) no G7, só notas de G Ab Bb B C\# D E F; (2) ao menos duas tríades entre G, Bb, Db e E, com o mesmo shape a 3 casas de distância; (3) a última nota do G7 caminha por grau conjunto para Mi ou Si no C7M (ex.: Fá → Mi, Ré → Mi ou Sib → Si).
   ]
   #resposta(5)[
-    D (D F\# A) = T – 3 – 5 · F (F A C) = \#9 – 5 – b7 · Ab (Ab C Eb) = \#11 – b7 – b9 · B (B D\# F\#) = 13 – b9 – 3.
+    D (D F\# A) = T – 3 – 5 · F (F A C) = \#9 – 5 – 7 · Ab (Ab C Eb) = \#11 – 7 – b9 · B (B D\# F\#) = 13 – b9 – 3.
   ]
   #resposta(6)[
     Lá dom-dim é o desenho de Sol dom-dim deslocado *2 casas acima*. Todo desenho de escala é móvel; o que a simetria acrescenta é que deslocamentos de *3* casas mantêm as mesmas notas (2 casas mudam de coleção: Lá pertence à coleção I).

@@ -156,7 +156,7 @@
 
 = Ritmo e Sinais de Leitura
 
-Este resumo reúne o essencial da escrita rítmica: figuras e pausas, valores relativos, ponto de aumento, ligadura, quiálteras, fórmulas de compasso, contagem, andamentos, dinâmica, sinais de repetição e os símbolos mais comuns de tablatura. *Como usar:* consulte as tabelas sempre que encontrar um símbolo desconhecido numa partitura, cifra ou tablatura; para estudar, leia em voz alta as contagens da seção 6 batendo o pulso com o pé.
+Este resumo reúne o essencial da escrita rítmica: figuras e pausas, valores relativos, ponto de aumento, ligadura, quiálteras, fórmulas de compasso, contagem, andamentos, dinâmica, articulação, sinais de repetição e os símbolos mais comuns de tablatura. *Como usar:* consulte as tabelas sempre que encontrar um símbolo desconhecido numa partitura, cifra ou tablatura; para estudar, leia em voz alta as contagens da seção 6 batendo o pulso com o pé.
 
 == 1. Figuras rítmicas e pausas
 
@@ -260,7 +260,7 @@ Este resumo reúne o essencial da escrita rítmica: figuras e pausas, valores re
     (fc(2, 4), [binário simples], [2], fig(nota("seminima", escala: 0.8)), fig(grupo-notas(2, escala: 0.8)), [samba, marcha, polca]),
     (fc(3, 4), [ternário simples], [3], fig(nota("seminima", escala: 0.8)), fig(grupo-notas(2, escala: 0.8)), [valsa, minueto]),
     (fc(4, 4), [quaternário simples (C)], [4], fig(nota("seminima", escala: 0.8)), fig(grupo-notas(2, escala: 0.8)), [rock, pop, bossa, funk]),
-    (fc(2, 2), [binário simples (₵)], [2], fig(nota("minima", escala: 0.8)), fig(box(nota("seminima", escala: 0.8) + h(3pt) + nota("seminima", escala: 0.8))), [marchas rápidas, frevo, choro]),
+    (fc(2, 2), [binário simples (₵)], [2], fig(nota("minima", escala: 0.8)), fig(box(nota("seminima", escala: 0.8) + h(3pt) + nota("seminima", escala: 0.8))), [marchas, dobrados, trechos rápidos]),
     (fc(6, 8), [binário composto], [2], fig(nota("seminima", ponto: true, escala: 0.8)), fig(grupo-notas(3, escala: 0.8)), [baladas em 6/8, tarantela]),
     (fc(9, 8), [ternário composto], [3], fig(nota("seminima", ponto: true, escala: 0.8)), fig(grupo-notas(3, escala: 0.8)), [jigas, danças folclóricas]),
     (fc(12, 8), [quaternário composto], [4], fig(nota("seminima", ponto: true, escala: 0.8)), fig(grupo-notas(3, escala: 0.8)), [blues lento, soul, doo-wop]),
@@ -271,7 +271,7 @@ Este resumo reúne o essencial da escrita rítmica: figuras e pausas, valores re
   negrito-1a: false,
 )
 
-#nota-rodape[Regra dos compostos: divida o numerador por 3 para obter o número de tempos (6/8 → 2, 9/8 → 3, 12/8 → 4). O 4/4 também é escrito com o símbolo C; o 2/2 (_alla breve_), com ₵. Os primeiros tempos de cada compasso são os fortes: em 4/4, o 1 é forte e o 3 meio-forte.]
+#nota-rodape[Regra dos compostos: divida o numerador por 3 para obter o número de tempos (6/8 → 2, 9/8 → 3, 12/8 → 4). O 4/4 também é escrito com o símbolo C; o 2/2 (_alla breve_), com ₵. O 1º tempo do compasso é o mais forte; em 4/4, o 3º tempo é meio-forte.]
 
 == 6. Contagem (sílabas)
 
@@ -301,7 +301,7 @@ Este resumo reúne o essencial da escrita rítmica: figuras e pausas, valores re
   tamanho: 10pt,
 )
 
-#nota-rodape[Os números em negrito caem no pulso (onde o pé bate). Tercinas e compassos compostos usam as mesmas sílabas (“e-a”), pois ambos dividem o tempo em três. Existem outras convenções de sílabas (como “ta-ka-di-mi”); escolha uma e use-a sempre, para que cada sílaba corresponda sempre à mesma posição dentro do tempo.]
+#nota-rodape[Os números em negrito caem no pulso (onde o pé bate). Tercinas e compassos compostos usam as mesmas sílabas (“e-a”), pois ambos dividem o tempo em três; atenção: na tercina, o “e” cai no 2º terço do tempo, e não na metade, como nas colcheias. Existem outras convenções de sílabas (como “ta-ka-di-mi”); escolha uma e mantenha-a.]
 
 #pagebreak()
 
@@ -365,7 +365,7 @@ Este resumo reúne o essencial da escrita rítmica: figuras e pausas, valores re
       (din("fff"), [fortississimo], [o mais forte possível]),
     ),
     columns: (0.7fr, 1.2fr, 1.4fr),
-    inset: (x: 0.4em, y: 0.36em),
+    inset: (x: 0.4em, y: 0.26em),
     tamanho: 9.5pt,
     negrito-1a: false,
   ),
@@ -376,7 +376,6 @@ Este resumo reúne o essencial da escrita rítmica: figuras e pausas, valores re
       (hairpin(cresc: false), [_decrescendo_ ou _diminuendo_ (_decresc._, _dim._): diminuir aos poucos]),
       (din("sfz"), [_sforzando_: acento forte e súbito em uma nota]),
       (din("fp"), [_forte-piano_: ataque forte e logo suave]),
-      (text(size: 13pt, weight: "bold")[>], [acento: destacar a nota]),
     ),
     columns: (0.75fr, 1.9fr),
     alinhar: (c, r) => if c == 1 { left + horizon } else { center + horizon },
@@ -388,9 +387,52 @@ Este resumo reúne o essencial da escrita rítmica: figuras e pausas, valores re
 
 #nota-rodape[A dinâmica é sempre relativa: um _f_ num violão solo não tem a mesma intensidade de um _f_ numa banda de rock. O que importa é o contraste entre as indicações.]
 
-#pagebreak()
+== 9. Articulação
 
-== 9. Sinais de repetição e navegação
+#let articulada(sinal) = box(width: 14pt, height: 24pt, baseline: 0pt, {
+  place(top + left, dx: 2pt, nota("seminima", escala: 0.8))
+  place(top + left, dx: 2pt + 3pt, dy: 21.5pt, place(center + horizon, sinal))
+})
+#let marcato-sinal = box(width: 7pt, height: 6pt, {
+  place(top + left, line(start: (0pt, 6pt), end: (3.5pt, 0pt), stroke: 1.2pt + ink))
+  place(top + left, line(start: (3.5pt, 0pt), end: (7pt, 6pt), stroke: 1.2pt + ink))
+})
+#let acento-sinal = box(width: 8pt, height: 6pt, {
+  place(top + left, line(start: (0pt, 0pt), end: (8pt, 3pt), stroke: 1pt + ink))
+  place(top + left, line(start: (0pt, 6pt), end: (8pt, 3pt), stroke: 1pt + ink))
+})
+#let dois-ligados = box(width: 30pt, height: 26pt, baseline: 0pt, {
+  place(top + left, dx: 2pt, nota("seminima", escala: 0.8))
+  place(top + left, dx: 16pt, dy: -2.5pt, nota("seminima", escala: 0.8))
+  place(top + left, dx: 3pt, dy: 21pt, curve(stroke: 0.9pt + ink, curve.move((0pt, 0pt)), curve.cubic((3pt, 5pt), (12pt, 5pt), (17pt, 0pt))))
+})
+
+#tabela-resumo(
+  ([Staccato], [Tenuto], [Acento], [Marcato], [Ligadura de expressão]),
+  (
+    (
+      fig(articulada(circle(radius: 1.4pt, fill: ink))),
+      fig(articulada(line(length: 6pt, stroke: 1.2pt + ink))),
+      fig(articulada(acento-sinal)),
+      fig(articulada(marcato-sinal)),
+      fig(dois-ligados),
+    ),
+    (
+      [nota curta e destacada: solte-a antes do fim do valor],
+      [sustente a nota por todo o valor, com leve ênfase],
+      [ataque mais forte que o das notas vizinhas],
+      [acento ainda mais forte e incisivo],
+      [notas diferentes tocadas sem separação (legato); na guitarra, com hammer-on, pull-off ou slide],
+    ),
+  ),
+  columns: (1fr, 1fr, 1fr, 1fr, 1.45fr),
+  inset: (x: 0.45em, y: 0.4em),
+  tamanho: 9pt,
+  negrito-1a: false,
+)
+
+
+== 10. Sinais de repetição e navegação
 
 #tabela-resumo(
   ([Sinal], [Nome], [Como ler]),
@@ -416,7 +458,7 @@ Este resumo reúne o essencial da escrita rítmica: figuras e pausas, valores re
 
 #nota-rodape[Roteiro típico: Intro – #segno(t: 11pt) Verso – Refrão (_To Coda_ #coda(t: 10pt)) – Ponte – *D.S. al Coda*: volte ao sinal, toque até o _To Coda_ e salte para a Coda final. Em D.C. e D.S., normalmente não se repetem os ritornellos internos.]
 
-== 10. Símbolos de tablatura
+== 11. Símbolos de tablatura
 
 #tabela-resumo(
   ([Símbolo], [Exemplo], [Nome], [Como tocar]),
@@ -429,10 +471,10 @@ Este resumo reúne o essencial da escrita rítmica: figuras e pausas, valores re
     (tabsym("\\"), tabsym("7\\5"), [Slide descendente], [deslize da casa 7 até a 5]),
     (tabsym("~"), tabsym("7~~~"), [Vibrato], [oscile a afinação da nota com pequenos bends]),
     (tabsym("x"), tabsym("x"), [Nota abafada], [encoste sem pressionar e palhete: som percussivo]),
-    (tabsym("PM"), tabsym("PM----"), [Palm mute], [lateral da mão apoiada na ponte durante o tracejado]),
-    (tabsym("<12>"), tabsym("<12>"), [Harmônico natural], [encoste o dedo sobre o traste 12, sem pressionar]),
+    (tabsym("PM"), tabsym("PM----"), [Palm mute], [apoie a lateral da mão da palhetada sobre as cordas, junto à ponte, durante o tracejado]),
+    (tabsym("<12>"), tabsym("<12>"), [Harmônico natural], [encoste o dedo sobre o traste da casa 12 (a barra de metal), sem pressionar]),
     (tabsym("AH / PH"), tabsym("7(AH19)"), [Harmônico artificial], [AH: harmônico 12 casas acima da nota presa; PH: roce o polegar logo após palhetar]),
-    (tabsym("t"), tabsym("t12"), [Tapping], [percuta a casa 12 com um dedo da mão da palheta]),
+    (tabsym("t"), tabsym("t12"), [Tapping], [percuta a casa 12 com um dedo da mão da palhetada]),
     (tabsym("( )"), tabsym("(7)"), [Nota fantasma], [nota tocada bem suave, quase só sugerida]),
   ),
   columns: (0.7fr, 0.8fr, 1.2fr, 2.9fr),

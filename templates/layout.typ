@@ -35,6 +35,7 @@
 ) = {
   // Page Settings
   set page(
+    paper: "a4",
     margin: (top: 2.5cm, bottom: 3cm, x: 2cm),
     header: [
       #set text(font: "Linux Libertine", size: 9.5pt)
@@ -84,12 +85,22 @@
   )
 
   // Text and Paragraph Styles
-  set text(font: "Linux Libertine", size: 11pt, fill: color-ink)
+  set text(font: "Linux Libertine", size: 11pt, fill: color-ink, lang: "pt", region: "br")
   set par(justify: true, leading: 0.95em, first-line-indent: 0pt)
+
+  // Tablaturas e trechos em fonte monoespaçada: fonte embutida no Typst,
+  // idêntica em qualquer computador (evita substituições silenciosas).
+  show raw: set text(font: "DejaVu Sans Mono")
+
+  // Células de tabela não devem ser justificadas (evita espaços esticados
+  // em colunas estreitas).
+  show table: set par(justify: false)
 
   // Heading Rules
   // H1 — Título de abertura de aula/capítulo. Centralizado, com regra fina
+  // Todos os títulos são "sticky": nunca ficam sozinhos no pé da página.
   show heading.where(level: 1): it => align(center, block(
+    sticky: true,
     above: 0.5em,
     below: 1.8em,
     [
@@ -101,6 +112,7 @@
 
   // H2 — Seção principal. Barra vertical à esquerda, estilo "marcador didático".
   show heading.where(level: 2): it => block(
+    sticky: true,
     above: 1.6em,
     below: 1em,
     [
@@ -113,6 +125,7 @@
   // H3 — Subseção. Discreto, itálico grafite, sem numeração visual pesada,
   // para não competir com H2 mas ainda marcar hierarquia com clareza.
   show heading.where(level: 3): it => block(
+    sticky: true,
     above: 1.1em,
     below: 0.7em,
     text(size: 11.5pt, weight: "bold", style: "italic", fill: color-secondary, it.body),
@@ -144,7 +157,8 @@
       inset: 12pt,
       radius: 5pt,
       width: width,
-      body,
+      breakable: false,
+      align(left, body),
     )
   ]
 }

@@ -14,16 +14,10 @@
   colors: (hold: gray, barre: gray),
   scale-length: 1.25pt,
 )
-#show <chord>: set text(fill: color-strong, weight: "bold")
 
 // ------------------------------------------------------------
 // Ajustes locais
 // ------------------------------------------------------------
-
-#show table: set par(justify: false)
-
-// Resposta do gabarito que não se divide entre páginas.
-#let resp(n, body) = block(breakable: false, width: 100%, resposta(n, body))
 
 // Exercício que não se divide entre páginas.
 #let ex(titulo: none, nivel: none, body) = block(
@@ -31,23 +25,6 @@
   width: 100%,
   exercicio(titulo: titulo, nivel: nivel, body),
 )
-
-// Tabela compacta para o gabarito.
-#let tabela-gab(headers, rows, columns: none) = align(center, block(
-  stroke: 0.5pt + color-rule-dark,
-  radius: 4pt,
-  clip: true,
-  width: 100%,
-  table(
-    columns: if columns == none { (1fr,) * headers.len() } else { columns },
-    align: center + horizon,
-    stroke: 0.5pt + color-rule-light,
-    inset: (x: 5pt, y: 4.5pt),
-    fill: (c, r) => if r == 0 { color-subtle-bg-alt } else if calc.even(r) { color-subtle-bg } else { white },
-    ..headers.map(h => text(weight: "bold", h)),
-    ..rows.flatten(),
-  ),
-))
 
 // Linha curta rotulada para resposta abaixo de diagramas.
 #let campo(rotulo, largura: 2.4cm) = box[
@@ -97,7 +74,7 @@
 
 = Harmonia Funcional
 
-Montar um campo harmônico (as tétrades formadas sobre cada grau da escala; em Dó: C7M – Dm7 – Em7 – F7M – G7 – Am7 – Bø) é só o ponto de partida. Aqui o foco é *entender o papel de cada acorde* numa progressão real: de onde ele vem, para onde quer ir e por que soa como soa. Os exercícios vão dos dominantes secundários às análises harmônicas completas.
+Montar um campo harmônico (as tétrades formadas sobre cada grau da escala; em Dó: C7M – Dm7 – Em7 – F7M – G7 – Am7 – Bm7(b5)) é só o ponto de partida. Aqui o foco é *entender o papel de cada acorde* numa progressão real: de onde ele vem, para onde quer ir e por que soa como soa. Os exercícios vão dos dominantes secundários às análises harmônicas completas.
 
 == Como usar este material
 
@@ -133,7 +110,7 @@ Montar um campo harmônico (as tétrades formadas sobre cada grau da escala; em 
 
 #caixa(tipo: "resumo", titulo: none, width: 100%)[
   #set text(size: 9.5pt)
-  #align(left)[*Convenções:* #h(4pt) V7/II = dominante secundário que resolve no IIm7; SubV7 = substituto por trítono do V7; IIm7/IV = II relacionado do V7/IV. Cifras: C7M, Cm7, C7, Cø = Cm7(b5), Cº7; *b7* = 7ª menor, *7M* = 7ª maior.]
+  #align(left)[*Convenções:* #h(4pt) V7/II = dominante secundário que resolve no IIm7; SubV7 = substituto por trítono do V7; IIm7/IV = II relacionado do V7/IV. Cifras: C7M, Cm7, C7, Cm7(b5) (meio-diminuto), Cº7. Intervalos: *7* = 7ª menor, *7M* = 7ª maior, *bb7* = 7ª diminuta (soa igual à 6ª). O símbolo ø aparece só em graus (IIø = IIm7(b5)).]
 ]
 
 #pagebreak()
@@ -181,7 +158,7 @@ Montar um campo harmônico (as tétrades formadas sobre cada grau da escala; em 
   )
 
   #v(0.3em)
-  Por que o VIIø do campo maior (Bø em Dó) normalmente *não* recebe um dominante secundário?
+  Por que o VIIø do campo maior (Bm7(b5) em Dó) normalmente *não* recebe um dominante secundário?
   #linhas-resposta(2)
 ]
 
@@ -219,7 +196,7 @@ Montar um campo harmônico (as tétrades formadas sobre cada grau da escala; em 
       #tabela-preencher(
         columns: (0.9fr, 1fr, 1fr, 1fr),
         altura: 1.05cm,
-        ([Alvo], [II relac.], [V7], [Alvo]),
+        ([Grau], [II relac.], [V7], [Acorde-alvo]),
         (
           ([II], none, none, none),
           ([III], none, none, none),
@@ -235,7 +212,7 @@ Montar um campo harmônico (as tétrades formadas sobre cada grau da escala; em 
       #tabela-preencher(
         columns: (0.9fr, 1fr, 1fr, 1fr),
         altura: 1.05cm,
-        ([Alvo], [II relac.], [V7], [Alvo]),
+        ([Grau], [II relac.], [V7], [Acorde-alvo]),
         (
           ([II], none, none, none),
           ([III], none, none, none),
@@ -291,22 +268,22 @@ Montar um campo harmônico (as tétrades formadas sobre cada grau da escala; em 
 ]
 
 #ex(titulo: "As notas da cadência menor", nivel: "Desafio")[
-  Escreva as notas de cada acorde e responda: que nota da tônica menor é a *b9* do V7(b9)? Ela aparece em qual acorde anterior?
+  Escreva as notas de cada acorde. Na última coluna, indique qual nota é a *b9* do V7(b9) e que intervalo ela forma no IIø (sobre a fundamental do IIø).
 
   #v(0.4em)
   #tabela-preencher(
     columns: (0.6fr, 1.4fr, 1.6fr, 1.4fr, 1.6fr),
     altura: 1.5cm,
-    ([Tom], [IIø], [V7(b9)], [Im(7M)], [b9 = qual nota do IIø?]),
+    ([Tom], [IIø], [V7(b9)], [Im(7M)], [b9 = que nota do IIø?]),
     (
-      ([Gm], [Aø:], [D7(b9):], [Gm(7M):], none),
-      ([Cm], [Dø:], [G7(b9):], [Cm(7M):], none),
-      ([Em], [F\#ø:], [B7(b9):], [Em(7M):], none),
+      ([Gm], [Am7(b5):], [D7(b9):], [Gm(7M):], none),
+      ([Cm], [Dm7(b5):], [G7(b9):], [Cm(7M):], none),
+      ([Em], [F\#m7(b5):], [B7(b9):], [Em(7M):], none),
     ),
   )
 
   #v(0.3em)
-  Toque Aø – D7(b9) – Gm(7M) e descreva o caminho da nota Mib de um acorde para o outro.
+  Toque Am7(b5) – D7(b9) – Gm(7M) e descreva o caminho da nota Mib de um acorde para o outro.
   #linhas-resposta(2)
 ]
 
@@ -333,7 +310,7 @@ Montar um campo harmônico (as tétrades formadas sobre cada grau da escala; em 
       ([Ab7M], none, none, none),
       ([Bb7], none, none, none),
       ([Eb7M], none, none, none),
-      ([Dø], none, none, none),
+      ([Dm7(b5)], none, none, none),
       ([Db7M], none, none, none),
       ([Gm7], none, none, none),
     ),
@@ -469,7 +446,7 @@ Montar um campo harmônico (as tétrades formadas sobre cada grau da escala; em 
 #block(sticky: true)[
   == 5. Notas-Guia e Tríades no Braço
 
-  A *3ª* e a *7ª* definem a qualidade de qualquer tétrade. No II-V-I, elas se movem por grau conjunto (ou ficam paradas): a 7ª de um acorde desce ½ tom ou 1 tom até a 3ª do seguinte.
+  A *3ª* e a *7ª* definem a qualidade de qualquer tétrade. No II-V-I, elas se movem por grau conjunto (ou ficam paradas): a 7ª de cada acorde desce ½ tom e vira a 3ª do acorde seguinte.
 ]
 
 #ex(titulo: "Notas-guia do II-V-I", nivel: "Médio")[
@@ -570,10 +547,10 @@ Montar um campo harmônico (as tétrades formadas sobre cada grau da escala; em 
   #analise(([F7M], [D7], [Gm7], [C7], [Am7], [Abº7], [Gm7], [Gb7], [F7M]))
 
   *b) Tom de Dó maior*
-  #analise(([C7M], [Bø], [E7], [Am7], [Gm7], [C7], [F7M], [Fm7], [Bb7], [C7M]))
+  #analise(([C7M], [Bm7(b5)], [E7], [Am7], [Gm7], [C7], [F7M], [Fm7], [Bb7], [C7M]))
 
   *c) Tom de Lá menor*
-  #analise(([Am7], [Bø], [E7], [Am7], [Dm7], [G7], [C7M], [F7M], [Bø], [E7(b9)], [Am]))
+  #analise(([Am7], [Bm7(b5)], [E7], [Am7], [Dm7], [G7], [C7M], [F7M], [Bm7(b5)], [E7(b9)], [Am]))
 
   *d) Tom de Sol maior*
   #analise(([G7M], [Em7], [Am7], [D7], [Bm7], [E7], [Am7], [Ab7], [G7M]))
@@ -584,8 +561,8 @@ Montar um campo harmônico (as tétrades formadas sobre cada grau da escala; em 
 // ============================================================
 
 #gabarito[
-  #resp(1)[
-    #tabela-gab(
+  #resposta(1)[
+    #tabela(
       ([Tom], [V7/II], [V7/III], [V7/IV], [V7/V], [V7/VI]),
       (
         ([G], [E7], [F\#7], [G7], [A7], [B7]),
@@ -597,16 +574,16 @@ Montar um campo harmônico (as tétrades formadas sobre cada grau da escala; em 
         ([E], [C\#7], [D\#7], [E7], [F\#7], [G\#7]),
       ),
     )
-    Regra: o V7/x tem a fundamental uma 5ª justa acima do grau-alvo. O V7/IV tem a mesma fundamental do I (com b7 acrescentada).
+    Regra: o V7/x tem a fundamental uma 5ª justa acima do grau-alvo. O V7/IV tem a mesma fundamental do I (com a 7ª menor acrescentada).
   ]
 
-  #resp(2)[
+  #resposta(2)[
     Dm7 ← A7 · F\#m7 ← C\#7 · Bb7M ← F7 · Ebm7 ← Bb7 · G\#m7 ← D\#7 · Db7M ← Ab7 · E7M ← B7 · Cm7 ← G7. \
     O VIIø tem 5ª diminuta: é instável e não funciona como centro tonal provisório. Um dominante só "tonaliza" acordes que poderiam ser tônica de um tom (maiores ou menores).
   ]
 
-  #resp(3)[
-    #tabela-gab(
+  #resposta(3)[
+    #tabela(
       ([Dominante], [3ª – 7ª], [SubV], [3ª – 7ª do SubV], [Resolve em]),
       (
         ([D7], [F\# – C], [Ab7], [C – Gb (F\#)], [G]),
@@ -621,32 +598,32 @@ Montar um campo harmônico (as tétrades formadas sobre cada grau da escala; em 
     Critério: aceite grafias enarmônicas (Gb7 = F\#7; B7 = Cb7). A 3ª de um é a 7ª do outro.
   ]
 
-  #resp(4)[
-    *Sol maior:* II: Bø – E7 – Am7 · III: C\#ø – F\#7 – Bm7 · IV: Dm7 – G7 – C7M · V: Em7 – A7 – D7 · VI: F\#ø – B7 – Em7. \
-    *Fá maior:* II: Aø – D7 – Gm7 · III: Bø – E7 – Am7 · IV: Cm7 – F7 – Bb7M · V: Dm7 – G7 – C7 · VI: Eø – A7 – Dm7. \
+  #resposta(4)[
+    *Sol maior:* II: Bm7(b5) – E7 – Am7 · III: C\#m7(b5) – F\#7 – Bm7 · IV: Dm7 – G7 – C7M · V: Em7 – A7 – D7 · VI: F\#m7(b5) – B7 – Em7. \
+    *Fá maior:* II: Am7(b5) – D7 – Gm7 · III: Bm7(b5) – E7 – Am7 · IV: Cm7 – F7 – Bb7M · V: Dm7 – G7 – C7 · VI: Em7(b5) – A7 – Dm7. \
     Critério: para alvos menores, aceite também o II relacionado m7 (Bm7 – E7 – Am7), muito usado na prática; o IIø é a forma "do tom menor".
   ]
 
-  #resp(5)[
-    Dm: Eø – A7 (C\#) · Gm: Aø – D7 (F\#) · Cm: Dø – G7 (B) · Em: F\#ø – B7 (D\#) · Bm: C\#ø – F\#7 (A\#) · F\#m: G\#ø – C\#7 (E\#) · Fm: Gø – C7 (E) · C\#m: D\#ø – G\#7 (B\#).
+  #resposta(5)[
+    Dm: Em7(b5) – A7 (C\#) · Gm: Am7(b5) – D7 (F\#) · Cm: Dm7(b5) – G7 (B) · Em: F\#m7(b5) – B7 (D\#) · Bm: C\#m7(b5) – F\#7 (A\#) · F\#m: G\#m7(b5) – C\#7 (E\#) · Fm: Gm7(b5) – C7 (E) · C\#m: D\#m7(b5) – G\#7 (B\#).
   ]
 
-  #resp(6)[
-    Gm: Aø = A C Eb G · D7(b9) = D F\# A C Eb · Gm(7M) = G Bb D F\# · b9 = Eb (5ª diminuta do Aø). \
-    Cm: Dø = D F Ab C · G7(b9) = G B D F Ab · Cm(7M) = C Eb G B · b9 = Ab (5ª diminuta do Dø). \
-    Em: F\#ø = F\# A C E · B7(b9) = B D\# F\# A C · Em(7M) = E G B D\# · b9 = C (5ª diminuta do F\#ø). \
-    A b9 do V7 é o 6º grau da escala menor (b6) — a mesma nota que já soava como b5 no IIø. Em Sol menor, o Mib fica parado de Aø para D7(b9) e desce ½ tom até o Ré (5ª) de Gm(7M).
+  #resposta(6)[
+    Gm: Am7(b5) = A C Eb G · D7(b9) = D F\# A C Eb · Gm(7M) = G Bb D F\# · b9 = Eb (5ª diminuta do Am7(b5)). \
+    Cm: Dm7(b5) = D F Ab C · G7(b9) = G B D F Ab · Cm(7M) = C Eb G B · b9 = Ab (5ª diminuta do Dm7(b5)). \
+    Em: F\#m7(b5) = F\# A C E · B7(b9) = B D\# F\# A C · Em(7M) = E G B D\# · b9 = C (5ª diminuta do F\#m7(b5)). \
+    A b9 do V7 é o 6º grau da escala menor (b6) — a mesma nota que já soava como b5 no IIø. Em Sol menor, o Mib fica parado de Am7(b5) para D7(b9) e desce ½ tom até o Ré (5ª) de Gm(7M).
   ]
 
-  #resp(7)[
-    #tabela-gab(
+  #resposta(7)[
+    #tabela(
       ([Acorde], [Grau], [Origem (tônica Dó)], [Função]),
       (
-        ([Fm7], [IVm7], [C eólio (também dórico)], [SDm]),
+        ([Fm7], [IVm7], [C eólio (também frígio)], [SDm]),
         ([Ab7M], [bVI7M], [C eólio], [SDm]),
         ([Bb7], [bVII7], [C eólio], [SDm (dominante "back-door")]),
         ([Eb7M], [bIII7M], [C eólio (também dórico)], [T (substituto da tônica)]),
-        ([Dø], [IIø], [C eólio], [SDm]),
+        ([Dm7(b5)], [IIø], [C eólio], [SDm]),
         ([Db7M], [bII7M], [C frígio], [SDm (napolitano)]),
         ([Gm7], [Vm7], [C eólio / mixolídio], [D (sem sensível)]),
       ),
@@ -654,39 +631,39 @@ Montar um campo harmônico (as tétrades formadas sobre cada grau da escala; em 
     Critério: aceite a origem "Dó menor natural" para eólio.
   ]
 
-  #resp(8)[
+  #resposta(8)[
     G: Cm = IVm (G menor) · D: Bb = bVI e C = bVII (D eólio) · C: Fm7 = IVm7 e Bb7 = bVII7 (C eólio — cadência back-door) · F: Db7M = bVI7M (F eólio) · A: F = bVI e G = bVII (A eólio) · E: G = bIII (E eólio) · F: Bbm6 = IVm6 (F menor; Bb Db F G).
   ]
 
-  #resp(9)[
-    a) C – Am – Fm – G – C · b) C – Ab7M – F – G – C · c) C – Am – Fm7 – Bb7 – C · d) C – Ab7M – Fm7 – Bb7 – C. \
+  #resposta(9)[
+    a) C – Am – Fm – G – C · b) C – Ab7M – F – G – C · c) C – Am – F – Fm7 – Bb7 – C · d) C – Ab7M – F – Fm7 – Bb7 – C. \
     Nota comum entre Am (A C E) e Ab7M (Ab C Eb G): *Dó*, que fica parado enquanto Lá e Mi descem ½ tom (Láb e Mib). \
-    Critério: em (d), aceite também C – Ab7M – F – Fm7 – Bb7 – C.
+    Critério: em (c) e (d), aceite também a versão em que o IVm7 ocupa o lugar do IV (C – Am – Fm7 – Bb7 – C; C – Ab7M – Fm7 – Bb7 – C).
   ]
 
-  #resp(10)[
+  #resposta(10)[
     a) Cº7 = C Eb Gb Bbb (Lá) = Ebº7 = F\#º7 (Gbº7) = Aº7 · C\#º7 = C\# E G Bb = Eº7 = Gº7 = Bbº7 (A\#º7) · Dº7 = D F Ab Cb (Si) = Fº7 = Abº7 (G\#º7) = Bº7. \
     b) G\#º7 → Dº7 · Ebº7 → Cº7 · Bbº7 → C\#º7 · Fº7 → Dº7 · F\#º7 → Cº7 · Eº7 → C\#º7 · Abº7 → Dº7 · Aº7 → Cº7.
   ]
 
-  #resp(11)[
+  #resposta(11)[
     Bº7 (B D F Ab): G7(b9) → C · Bb7(b9) → Eb · Db7(b9) → Gb · E7(b9) → A. \
     C\#º7 (C\# E G Bb): A7(b9) → D · C7(b9) → F · Eb7(b9) → Ab · F\#7(b9) → B. \
     F\#º7 (F\# A C Eb): D7(b9) → G · F7(b9) → Bb · Ab7(b9) → Db · B7(b9) → E. \
     Regra: a fundamental de cada dominante fica uma 3ª maior abaixo de cada nota do º7 (e cada nota do º7 é a 3ª de um desses dominantes).
   ]
 
-  #resp(12)[
+  #resposta(12)[
     C\#º7 – passagem ascendente, função dominante (A7(b9) → Dm7) · D\#º7 – passagem ascendente (B7(b9) → Em7) · Ebº7 – passagem descendente (Mi – Mib – Ré no baixo) · Cº7 – auxiliar · G\#º7 – passagem ascendente (E7(b9) → Am7) · Abº7 – passagem descendente (Lá – Láb – Sol) · Gº7 – auxiliar.
   ]
 
-  #resp(13)[
+  #resposta(13)[
     C7M – *C\#º7* – Dm7 – *D\#º7* – Em7 – F7M – *F\#º7* – G7 – C7M (entre Em7 e F7M há só ½ tom; entre G7 e C7M não há grau intermediário). \
     C\#º7 = A7(b9) (V7/II) · D\#º7 = B7(b9) (V7/III) · F\#º7 = D7(b9) (V7/V).
   ]
 
-  #resp(14)[
-    #tabela-gab(
+  #resposta(14)[
+    #tabela(
       ([Tom], [IIm7], [3ª–7ª], [V7], [3ª–7ª], [I7M], [3ª–7ª]),
       (
         ([F], [Gm7], [Bb – F], [C7], [E – Bb], [F7M], [A – E]),
@@ -700,7 +677,7 @@ Montar um campo harmônico (as tétrades formadas sobre cada grau da escala; em 
     Regra: a 7ª do IIm7 desce ½ tom e vira a 3ª do V7 (Dó → Si); a 3ª do IIm7 fica parada e vira a 7ª do V7 (Fá); a 7ª do V7 desce ½ tom para a 3ª do I (Fá → Mi) e a 3ª do V7 fica como 7M do I (Si).
   ]
 
-  #resp(15)[
+  #resposta(15)[
     Resposta-modelo (outras regiões são válidas se mantiverem T-3-7 e o movimento mínimo das notas-guia):
     #v(0.2em)
     #grid(
@@ -716,11 +693,11 @@ Montar um campo harmônico (as tétrades formadas sobre cada grau da escala; em 
     Em Sol: G–C (Am7) → F\#–C (D7) → F\#–B (G7M). Em Dó: F–C (Dm7) → F–B (G7) → E–B (C7M).
   ]
 
-  #resp(16)[
+  #resposta(16)[
     1) C E G — C, fundamental, topo G (5) · 2) E A C — Am, 2ª inversão, topo C (b3) · 3) A C F — F, 1ª inversão, topo F (T) · 4) G B D — G, fundamental, topo D (5) · 5) F A D — Dm, 1ª inversão, topo D (T) · 6) D F\# A — D, fundamental, topo A (5) · 7) D G Bb — Gm, 2ª inversão, topo Bb (b3) · 8) Ab C Eb (G\# C D\#) — Ab, fundamental, topo Eb (5).
   ]
 
-  #resp(17)[
+  #resposta(17)[
     Resposta-modelo:
     #v(0.2em)
     #grid(
@@ -746,10 +723,10 @@ Montar um campo harmônico (as tétrades formadas sobre cada grau da escala; em 
     Critério: no grupo 3-2-1, C = C(3ª corda) E G; C/E = E G C; C/G = G C E. No grupo 4-3-2, Am = A C E; Am/C = C E A; Am/E = E A C. No grupo 5-4-3, G/D = D G B; G = G B D; G/B = B D G. Topo das formas de Dó: G (fund.), C (C/E) e E (C/G). As mesmas formas existem uma oitava abaixo (C/G solto: x,x,x,0,1,0; Am/E: x,x,2,2,1,x).
   ]
 
-  #resp(18)[
+  #resposta(18)[
     a) I7M – V7/II – IIm7 – V7 – IIIm7 – º7 de passagem (descendente) – IIm7 – SubV7 – I7M. \
-    b) I7M – IIø/VI (II relacionado) – V7/VI – VIm7 – IIm7/IV (II relacionado) – V7/IV – IV7M – IVm7 (empréstimo, SDm) – bVII7 (empréstimo, back-door) – I7M. \
-    c) Im7 – IIø – V7 – Im7 – IVm7 – bVII7 – bIII7M – bVI7M – IIø – V7(b9) – Im (Dm7 – G7 – C7M é o II-V-I do relativo maior; F7M – Bø – E7 forma a cadência de volta). \
+    b) I7M – IIø/VI (II relacionado; é também o VIIø diatônico) – V7/VI – VIm7 – IIm7/IV (II relacionado) – V7/IV – IV7M – IVm7 (empréstimo, SDm) – bVII7 (empréstimo, back-door) – I7M. \
+    c) Im7 – IIø – V7 – Im7 – IVm7 – bVII7 – bIII7M – bVI7M – IIø – V7(b9) – Im (Dm7 – G7 – C7M é o II-V-I do relativo maior; F7M – Bm7(b5) – E7 forma a cadência de volta). \
     d) I7M – VIm7 – IIm7 – V7 – IIIm7 (II relacionado de E7) – V7/II – IIm7 – SubV7 – I7M.
   ]
 ]

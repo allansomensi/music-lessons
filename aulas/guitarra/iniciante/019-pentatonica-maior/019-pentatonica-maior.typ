@@ -10,9 +10,6 @@
 // que precisam quebrar, como `exercicio`, já declaram breakable: true).
 #set block(breakable: false)
 
-// Texto de células de tabela sem justificação (evita espaços esticados)
-#show table: set par(justify: false)
-
 // Exercício que não se divide entre páginas (enunciado + área de resposta juntos)
 #let ex(..args) = block(breakable: false, above: 1.5em, below: 0.9em, exercicio(..args))
 
@@ -47,7 +44,7 @@
 
 = Escala Pentatônica Maior
 
-A *pentatônica menor* (T – b3 – 4 – 5 – b7) é a escala mais usada do rock e do blues. Ela tem uma "irmã" de som luminoso e aberto: a *pentatônica maior*, ouvida em solos de country, no pop, no rock clássico e no sertanejo. A melhor notícia é que as duas *compartilham os desenhos*: as cinco posições são exatamente as mesmas da pentatônica menor. O que muda é *onde está a tônica* — e, com ela, o som de tudo o que você toca.
+A *pentatônica menor* (T – b3 – 4 – 5 – 7, em que 7 é a 7ª menor) é a escala mais usada do rock e do blues. Ela tem uma "irmã" de som luminoso e aberto: a *pentatônica maior*, ouvida em solos de country, no pop, no rock clássico e no sertanejo. A melhor notícia é que as duas *compartilham os desenhos*: as cinco posições são exatamente as mesmas da pentatônica menor. O que muda é *onde está a tônica* — e, com ela, o som de tudo o que você toca.
 
 #objetivos((
   [Construir a pentatônica maior pela fórmula T – 2 – 3 – 5 – 6 e compará-la com a escala maior],
@@ -90,18 +87,18 @@ Em semitons a partir da tônica, a fórmula é *0 – 2 – 4 – 7 – 9*. Veja
 
 == 2. Relativas: mesmas notas, outra tônica
 
-Compare a pentatônica de *Dó maior* com a de *Lá menor* (fórmula T – b3 – 4 – 5 – b7):
-
-#v(0.3em)
+#block[
+Compare a pentatônica de *Dó maior* com a de *Lá menor* (fórmula T – b3 – 4 – 5 – 7):
 
 #tabela(
   columns: (1.9fr,) + (1fr,) * 5,
   ([*Escala*], [*1ª nota*], [*2ª*], [*3ª*], [*4ª*], [*5ª*]),
   (
     ([C pentatônica maior], [*C* — T], [D — 2], [E — 3], [G — 5], [A — 6]),
-    ([A pentatônica menor], [*A* — T], [C — b3], [D — 4], [E — 5], [G — b7]),
+    ([A pentatônica menor], [*A* — T], [C — b3], [D — 4], [E — 5], [G — 7]),
   ),
 )
+]
 
 #v(0.4em)
 
@@ -165,7 +162,7 @@ As posições abaixo ocupam as mesmas casas das cinco posições da pentatônica
 #block(width: 100%)[
 === O mapa completo
 
-Ligadas, as cinco posições cobrem o braço inteiro. A partir da casa 12 tudo se repete (a posição 5, nas casas 2 a 5, reaparece nas casas 14 a 17):
+Ligadas, as cinco posições cobrem o braço inteiro; a partir da casa 12, tudo se repete:
 
 #v(0.3em)
 
@@ -177,25 +174,26 @@ Ligadas, as cinco posições cobrem o braço inteiro. A partir da casa 12 tudo s
 
 Sem a 4ª e a 7ª, a pentatônica maior não tem notas de tensão: o som é *alegre, aberto e cantável*. Ela é a base melódica de vários estilos:
 
-#v(0.3em)
-
-#cartoes-info((
-  (titulo: "Country", corpo: [Frases rápidas, bends da 2 para a 3 imitando a pedal steel e muitas cordas soltas.]),
-  (titulo: "Pop", corpo: [Melodias vocais, introduções e solos curtos e "cantáveis" sobre progressões maiores.]),
-  (titulo: "Rock clássico", corpo: [Solos melódicos do rock sulista e do classic rock dos anos 1970, alternando maior e menor.]),
-  (titulo: "Sertanejo", corpo: [Introduções e solos de guitarra e viola, muitas vezes em terças, sobre harmonias maiores.]),
-), columns: (1fr, 1fr))
+#tabela(
+  columns: (1fr, 4fr),
+  alinhamento: (center + horizon, left + horizon),
+  ([*Estilo*], [*Como a pentatônica maior aparece*]),
+  (
+    ([Country], [Frases rápidas, bends da 2 para a 3 imitando a pedal steel, muitas cordas soltas.]),
+    ([Pop], [Melodias vocais, introduções e solos curtos sobre progressões maiores.]),
+    ([Rock clássico], [Solos melódicos do rock sulista e dos anos 1970, alternando maior e menor.]),
+    ([Sertanejo], [Introduções e solos de guitarra e viola, muitas vezes em terças.]),
+  ),
+)
 
 == 5. Um lick para começar
 
 #block(width: 100%)[
-Este lick em Dó maior usa só a *posição 1* (casas 5 a 8). Toque-o sobre um acorde de C (ou uma base em Dó maior) e observe como a frase "pousa" na tônica no fim. A linha de baixo mostra o intervalo de cada nota em relação a C.
-
-#v(0.3em)
+Este lick usa só a *posição 1* (casas 5 a 8). Toque-o sobre um acorde de C e observe como a frase "pousa" na tônica no fim. A linha de baixo mostra o intervalo de cada nota em relação a C.
 
 #tab(
   titulo: "Lick em C pentatônica maior — posição 1",
-  "   1  e  2  e  3  e  4  e    1  e     e  3
+  "   1  e  2  e  3  e  4  e    1  e (2) e  3
 e|-------------5--8--5-----|-------------------------|
 B|-------5--8-----------8--|-5-----------------------|
 G|-5--7--------------------|----7b9---7--5-----------|
@@ -203,10 +201,8 @@ D|-------------------------|-------------------------|
 A|-------------------------|-------------------------|
 E|-------------------------|-------------------------|
    T  2  3  5  6  T  6  5    3  2→3   2  T",
-  legenda: [7b9 = bend de 1 tom na casa 7 da 3ª corda (Ré → Mi: da 2 para a 3). Empurre a corda com o dedo 3, apoiado pelos dedos 1 e 2, até soar a mesma nota da casa 9.],
+  legenda: [7b9 = bend de 1 tom na casa 7 da 3ª corda (Ré → Mi), com o dedo 3 apoiado pelos dedos 1 e 2, até soar a nota da casa 9. "(2)": a nota continua soando.],
 )
-
-#v(0.4em)
 ]
 
 O bend da *2 para a 3* é a assinatura do som maior: em vez de "chorar" como o bend da b3 na pentatônica menor, ele *afirma* a 3ª maior do acorde.
@@ -253,6 +249,7 @@ Sobre um acorde *maior*, as duas pentatônicas com a mesma tônica funcionam —
       ([F], none, none, none, none, none),
     ),
     columns: (1.2fr,) + (1fr,) * 5,
+    altura: 0.75cm,
   )
 ]
 
@@ -291,14 +288,13 @@ Sobre um acorde *maior*, as duas pentatônicas com a mesma tônica funcionam —
 ]
 
 #ex(titulo: "Desenhe a posição 1 de A maior", nivel: "Escrita")[
-  A relativa menor de A é F\#m, cuja caixa fica nas casas 2 a 5. Escreva no braço os intervalos da *A pentatônica maior* nessa região (T, 2, 3, 5, 6), duas notas por corda.
+  A relativa menor de A é F\#m, cuja caixa fica nas casas 2 a 5. Escreva no braço os intervalos da *A pentatônica maior* nessa região (T, 2, 3, 5, 6), duas notas por corda. Depois toque a posição, começando e terminando na tônica Lá.
 
-  #v(0.3em)
   #align(center)[#braco-vazio(casas: 4, fs: 2)]
 ]
 
 #ex(titulo: "Intervalos de um lick", nivel: "Escrita")[
-  O lick abaixo está em *G pentatônica maior*, na região das cordas soltas (relativa: Em). Escreva o intervalo de cada nota em relação a G.
+  O lick abaixo está em *G pentatônica maior*, na região das cordas soltas (relativa: Em). Escreva, na ordem, o intervalo de cada nota em relação a G.
 
   #v(0.3em)
   #tab(
@@ -331,7 +327,9 @@ E|-------------------------|-------------------------|",
 ]
 
 #ex(titulo: "Improvisação guiada", nivel: "Prática")[
-  Grave (ou use uma base) com o acorde de C por 2 minutos. Improvise usando apenas as posições 1 e 2, com três regras: frases curtas, pausas entre elas e *toda frase terminando na tônica Dó*. Depois toque a mesma ideia sobre um acorde de Am, terminando em Lá, e compare os dois sons.
+  Grave (ou use uma base) com o acorde de C por 2 minutos. Improvise usando apenas as posições 1 e 2, com três regras: frases curtas, pausas entre elas e *toda frase terminando na tônica Dó*. Depois toque a mesma ideia sobre um acorde de Am, terminando em Lá, e compare os dois sons. Descreva abaixo, em poucas palavras, a diferença que você ouviu.
+
+  #linhas-resposta(2)
 ]
 
 === Sugestão de prática

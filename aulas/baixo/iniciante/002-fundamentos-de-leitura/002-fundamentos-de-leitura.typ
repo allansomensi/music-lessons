@@ -1,240 +1,256 @@
-#import "../../../../templates/layout.typ": *
+#import "/templates/layout.typ": *
+#import "/templates/components.typ": *
 
 #show: aula.with(
   instrumento: "Baixo",
   nivel: "Iniciante",
 )
 
+// Exercício que não se divide entre páginas (enunciado + área de resposta juntos)
+#let ex(..args) = block(breakable: false, above: 1.5em, below: 0.9em, exercicio(..args))
+
+// ============================================================
+// HELPERS LOCAIS — notas do braço calculadas a partir da afinação
+// ============================================================
+// Afinação padrão do baixo de 4 cordas (E A D G), classes de altura 0 = C.
+// A primeira linha é a 4ª corda (Mi grave), como no componente braco-notas.
+#let nomes-notas = ("C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B")
+#let afinacao-baixo = (4, 9, 2, 7)
+#let mapa-baixo(ini, fim, filtro) = afinacao-baixo.map(a => range(ini, fim + 1).map(c => filtro(calc.rem(a + c, 12))))
+#let todas = pc => nomes-notas.at(pc)
+
 = Fundamentos de Leitura para o Baixo
 
-Assim como na guitarra e no violão, tocar baixo de ouvido ou de cifra exige conhecer a *linguagem visual* do instrumento: os nomes das notas, a afinação das 4 cordas e como ler uma tablatura. Esta é a base para qualquer estudo no baixo.
+Para tirar músicas, ler cifras e tablaturas ou conversar com outros músicos, você precisa da *linguagem escrita* do baixo: o nome das notas, a afinação das quatro cordas, onde cada nota fica no braço e como ler uma tablatura. Este material reúne essa base.
 
-== 1. As Notas e a Cifra
+#objetivos((
+  [Nomear as notas em português e em cifra e usar sustenido e bemol.],
+  [Conhecer a afinação padrão do baixo e encontrar qualquer nota nas casas 0 a 12.],
+  [Saber qual nota o baixo toca a partir de uma cifra de acorde, inclusive com baixo invertido (C/E).],
+  [Ler e escrever tablaturas de baixo.],
+))
 
-A música ocidental usa 7 notas naturais. No Brasil usamos os nomes em português (Dó, Ré, Mi...), mas a cifra usa letras em inglês.
+== 1. As notas e a cifra
 
-#v(0.5em)
+A música ocidental usa *sete notas naturais*. No Brasil falamos os nomes em português (Dó, Ré, Mi…), mas a *cifra* — usada em cifras de músicas, tablaturas e aplicativos — usa letras:
+
+#tabela(
+  ([*Cifra*], [*C*], [*D*], [*E*], [*F*], [*G*], [*A*], [*B*]),
+  (([*Nome*], [Dó], [Ré], [Mi], [Fá], [Sol], [Lá], [Si]),),
+  columns: (1.1fr,) + (1fr,) * 7,
+  zebra: false,
+)
+
+Para memorizar, lembre que a cifra começa no Lá: *A* = Lá, *B* = Si, *C* = Dó, e assim por diante.
+
+== 2. Semitom, tom, sustenido e bemol
+
+No baixo, a régua para medir distâncias é a casa:
+
+- *1 casa = 1 semitom* (ST), a menor distância entre duas notas;
+- *2 casas = 1 tom* (T).
+
+O *sustenido* (\#) *sobe* uma nota um semitom (uma casa para a frente); o *bemol* (b) *desce* uma nota um semitom (uma casa para trás). A casa entre Fá e Sol, por exemplo, pode se chamar *F\#* (Fá sustenido) ou *Gb* (Sol bemol): é o mesmo som com dois nomes.
+
+#caixa(tipo: "atencao", titulo: "As duas exceções")[
+  Entre *Mi–Fá* (E–F) e entre *Si–Dó* (B–C) a distância é de apenas *1 semitom*: não existe nota entre elas. Entre todas as outras notas naturais vizinhas há 1 tom (2 casas).
+]
+
+== 3. A afinação padrão
+
+O baixo de 4 cordas é afinado, da corda mais grave para a mais aguda, em *Mi – Lá – Ré – Sol* (E – A – D – G). São as mesmas notas das quatro cordas mais graves do violão e da guitarra, mas *uma oitava abaixo*.
+
+#tabela(
+  ([*Corda*], [*Nota*], [*Cifra*], [*Altura exata*], [*Frequência*]),
+  (
+    ([4ª (a mais grossa)], [Mi grave], [E], [E1], [41,2 Hz]),
+    ([3ª], [Lá], [A], [A1], [55,0 Hz]),
+    ([2ª], [Ré], [D], [D2], [73,4 Hz]),
+    ([1ª (a mais fina)], [Sol], [G], [G2], [98,0 Hz]),
+  ),
+  columns: (1.5fr, 1fr, 0.7fr, 1fr, 1fr),
+  width: 90%,
+)
+
+O número ao lado da letra (E1, A1…) indica *em qual oitava* a nota está: quanto maior o número, mais aguda. As frequências valem para a afinação de referência Lá = 440 Hz, a mesma usada pelos afinadores.
+
+== 4. As notas no braço
+
+Como cada casa sobe um semitom, basta partir da corda solta e avançar pela sequência das 12 notas:
+
+#align(center, text(weight: "bold")[C – C\# – D – D\# – E – F – F\# – G – G\# – A – A\# – B – (C)])
+
+O diagrama mostra todas as notas das casas 0 (corda solta) a 12. A linha de cima é a *4ª corda (Mi grave)*; a de baixo, a *1ª corda (Sol)*. As notas com \# também podem ser lidas com bemol (C\# = Db, D\# = Eb, F\# = Gb, G\# = Ab, A\# = Bb).
 
 #align(center)[
-  #block(
-    stroke: 0.5pt + color-rule-dark,
-    radius: 6pt,
-    clip: true,
-    [
-      #table(
-        columns: (1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
-        align: center + horizon,
-        stroke: 0.5pt + color-rule-light,
-        inset: (x: 6pt, y: 9pt),
-        [*C*], [*D*], [*E*], [*F*], [*G*], [*A*], [*B*],
-        [Dó], [Ré], [Mi], [Fá], [Sol], [Lá], [Si],
-      )
-    ],
+  #braco-notas(mapa-baixo(0, 12, todas), fs: 0, cordas: ("E", "A", "D", "G"))
+]
+
+Dois atalhos para se localizar:
+
+- *Casa 12 = oitava:* ela repete a nota da corda solta, uma oitava acima. Depois dela, tudo se repete.
+- *Casa 5 = próxima corda solta:* a casa 5 da 4ª corda é Lá (a 3ª corda solta); a casa 5 da 3ª corda é Ré; a casa 5 da 2ª corda é Sol. Esse é também o método mais comum de afinar o baixo de ouvido.
+
+== 5. Lendo cifras como baixista
+
+Numa cifra, cada acorde tem uma letra — a *tônica*, nota que dá nome ao acorde. Na maioria das músicas, o baixo toca justamente essa nota. O que vem depois da letra (m, 7, 7M…) descreve o acorde que o violão ou o teclado vai tocar, mas *não muda a tônica*.
+
+#tabela(
+  ([*Cifra*], [*Leitura*], [*Nota do baixo*]),
+  (
+    ([C], [Dó maior], [C (Dó)]),
+    ([Am], [Lá menor], [A (Lá)]),
+    ([G7], [Sol com sétima], [G (Sol)]),
+    ([F\#m], [Fá sustenido menor], [F\# (Fá\#)]),
+    ([*C/E*], [Dó maior com baixo em Mi], [*E (Mi)*]),
+    ([*D/F\#*], [Ré maior com baixo em Fá\#], [*F\# (Fá\#)*]),
+  ),
+  columns: (0.7fr, 1.6fr, 1fr),
+  width: 80%,
+)
+
+#caixa(tipo: "dica", titulo: "A barra é do baixista")[
+  Quando a cifra tem uma barra (*C/E*), a nota *depois da barra* é a nota que o baixo deve tocar. É o chamado *baixo invertido* (ou inversão): o acorde continua sendo Dó maior, mas a nota mais grave passa a ser Mi.
+]
+
+== 6. Como ler uma tablatura de baixo
+
+A *tablatura* (tab) mostra *onde* tocar cada nota. Ela tem uma linha para cada corda e números indicando as casas:
+
+#grid(
+  columns: (auto, 1fr),
+  column-gutter: 1.5em,
+  align: (center + horizon, left + horizon),
+  tab("G|-----------------|\nD|-----------------|\nA|-------3---------|\nE|-0---3-----------|"),
+  [
+    - A linha de *cima* é a corda mais *aguda* (G); a de *baixo*, a mais *grave* (E) — como se você olhasse o baixo deitado no colo.
+    - Os *números* indicam a *casa*; *0* é corda solta.
+    - Leia *da esquerda para a direita*. No exemplo: Mi solto (E), casa 3 da 4ª corda (G) e casa 3 da 3ª corda (C).
+  ],
+)
+
+Números *alinhados na mesma coluna* são tocados *ao mesmo tempo*. As barras verticais (|) separam os *compassos*. A tab básica não mostra a duração das notas: para o ritmo, ouça a gravação ou observe a partitura, quando houver.
+
+=== Exemplo: tônicas de uma sequência de acordes
+
+A sequência *C – G – Am – F*, uma das mais comuns da música popular, tocada com as tônicas (duas notas por acorde):
+
+#tab(
+  "G|--------|--------|--------|--------|\nD|--------|--------|--------|--------|\nA|-3---3--|--------|-0---0--|--------|\nE|--------|-3---3--|--------|-1---1--|",
+  legenda: [C (3ª corda, casa 3) · G (4ª corda, casa 3) · A (3ª corda solta) · F (4ª corda, casa 1)],
+)
+
+== 7. Exercícios
+
+#ex(titulo: "Qual é a nota?", nivel: "Escrita")[
+  Escreva a nota (em cifra) de cada posição. Para notas com sustenido/bemol, escreva os dois nomes.
+
+  #v(0.3em)
+  #grid(
+    columns: (1fr, 1fr),
+    column-gutter: 1.2em,
+    tabela-preencher(
+      ([*Corda*], [*Casa*], [*Nota*]),
+      (
+        ([a) 4ª (E)], [3], none),
+        ([b) 3ª (A)], [5], none),
+        ([c) 2ª (D)], [7], none),
+        ([d) 1ª (G)], [2], none),
+      ),
+      columns: (1.2fr, 0.8fr, 1.4fr),
+    ),
+    tabela-preencher(
+      ([*Corda*], [*Casa*], [*Nota*]),
+      (
+        ([e) 4ª (E)], [8], none),
+        ([f) 3ª (A)], [1], none),
+        ([g) 2ª (D)], [4], none),
+        ([h) 1ª (G)], [6], none),
+      ),
+      columns: (1.2fr, 0.8fr, 1.4fr),
+    ),
   )
 ]
 
-== 2. Sustenido (\#) e Bemol (b)
+#ex(titulo: "Onde está a nota?", nivel: "Escrita")[
+  Escreva em que casa (de 0 a 11) cada nota aparece na 4ª e na 3ª cordas.
 
-O *sustenido* (\#) sobe a nota em 1 semitom (1 casa), e o *bemol* (b) desce a nota em 1 semitom (1 casa). As únicas notas naturais que não têm uma nota intermediária entre elas são *Mi–Fá* e *Si–Dó*.
-
-#v(0.5em)
-
-#align(center)[
-  #block(
-    fill: color-subtle-bg,
-    stroke: 0.5pt + color-rule-dark,
-    inset: 10pt,
-    radius: 5pt,
-    width: 86%,
-    [
-      #set text(size: 8.5pt)
-      *Tom e Semitom no braço:* no baixo (assim como na guitarra), *1 casa = 1 semitom* e *2 casas = 1 tom*. Essa é a régua que você vai usar para medir qualquer intervalo ou escala no braço do instrumento.
-    ],
+  #v(0.3em)
+  #tabela-preencher(
+    ([*Nota*], [*C*], [*D*], [*F*], [*G*], [*Bb*], [*F\#*]),
+    (
+      ([Casa na 4ª corda (E)], none, none, none, none, none, none),
+      ([Casa na 3ª corda (A)], none, none, none, none, none, none),
+    ),
+    columns: (2fr,) + (1fr,) * 6,
   )
 ]
 
-== 3. Afinação Padrão do Baixo (4 cordas)
+#ex(titulo: "Lendo cifras", nivel: "Escrita")[
+  Escreva a nota que o baixo deve tocar em cada acorde.
 
-O baixo de 4 cordas tem uma afinação padrão chamada *E Standard*, idêntica às 4 cordas mais graves da guitarra, porém uma oitava abaixo. Da mais grave para a mais aguda:
-
-#v(1em)
-
-#align(center)[
-  #let cordas = (
-    ("4ª corda", "E1", "Mi grave", "A corda mais grossa"),
-    ("3ª corda", "A1", "Lá", ""),
-    ("2ª corda", "D2", "Ré", ""),
-    ("1ª corda", "G2", "Sol", "A corda mais fina"),
-  )
-  #block(
-    stroke: 0.5pt + color-rule-dark,
-    radius: 6pt,
-    clip: true,
-    [
-      #table(
-        columns: (1fr, 1.1fr, 1.2fr, 0.5fr, 1.8fr),
-        align: (left + horizon, center + horizon, center + horizon, center + horizon, left + horizon),
-        stroke: 0.5pt + color-rule-dark,
-        fill: (_, row) => if row == 0 { color-subtle-bg } else if calc.odd(row) { white } else { luma(245) },
-        inset: (x: 8pt, y: 7pt),
-        [*Corda*], [*Nota (Cifra)*], [*Nota*], [*Oitava*], [*Referência*],
-        ..cordas
-          .enumerate()
-          .map(((i, c)) => (
-            text(weight: "bold", fill: color-strong)[#c.at(0)],
-            text(weight: "bold", size: 12pt)[#c.at(1).slice(0, -1)],
-            [#c.at(2)],
-            text(size: 8pt, fill: color-muted)[#c.at(1).slice(-1)],
-            text(size: 8.5pt)[#c.at(3)],
-          ))
-          .flatten(),
-      )
-    ],
+  #v(0.3em)
+  #tabela-preencher(
+    ([*Cifra*], [*Em*], [*D7*], [*Bb*], [*G/B*], [*Am/C*], [*C\#m*]),
+    (([Nota do baixo], none, none, none, none, none, none),),
+    columns: (1.6fr,) + (1fr,) * 6,
   )
 ]
 
-#v(1em)
+#ex(titulo: "Lendo uma tablatura", nivel: "Escrita + prática")[
+  Escreva, embaixo da tab, o nome (em cifra) de cada nota, na ordem. Depois, toque a sequência devagar.
 
-#align(center)[
-  #block(
-    fill: color-subtle-bg,
-    stroke: 0.5pt + color-rule-dark,
-    inset: 12pt,
-    radius: 6pt,
-    width: 82%,
-    [
-      #text(weight: "bold")[Frequências de Referência (Lá = 440Hz):]
-      #v(0.6em)
-      #align(center)[
-        #grid(
-          columns: 4,
-          gutter: 0.5em,
-          align: center,
-          ..("E", "A", "D", "G")
-            .enumerate()
-            .map(((i, n)) => block(
-              fill: white,
-              stroke: 0.5pt + color-rule-dark,
-              inset: 8pt,
-              radius: 4pt,
-              [
-                #text(weight: "bold", size: 12pt)[#n]
-                #v(0.2em)
-                #text(size: 7pt, fill: color-muted)[
-                  #("41.2", "55.0", "73.4", "98.0").at(i) Hz
-                ]
-              ],
-            )),
-        )
-      ]
-    ],
-  )
+  #tab("G|-------------1-2-|\nD|-------0-2-4-----|\nA|-0-2-4-----------|\nE|-----------------|")
+  #linhas-resposta(2)
 ]
 
-== 4. As Notas ao Longo do Braço
+#ex(titulo: "Escrevendo uma tablatura", nivel: "Escrita + prática")[
+  Escreva na tab abaixo as tônicas da sequência *G – Em – C – D*, uma nota por compasso, usando apenas a 4ª e a 3ª cordas (casas 0 a 5). Depois, toque contando 4 tempos por nota.
 
-#v(0.5em)
-
-#align(center)[
-  #block(
-    fill: color-subtle-bg,
-    stroke: 0.5pt + color-rule-dark,
-    inset: 12pt,
-    radius: 6pt,
-    width: 100%,
-    [
-      #text(weight: "bold", size: 9.5pt)[As 12 notas cromáticas ao longo do braço]
-      #v(0.8em)
-      #set text(size: 7.8pt)
-      #let nat-fill = white
-      #let acc-fill = color-strong
-      #let seqs = (
-        ("E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"),
-        ("A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A"),
-        ("D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D"),
-        ("G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G"),
-      )
-      #let is-acc(n) = n.ends-with("#") or n.ends-with("b")
-      #let corda-labels = ("4ª (E)", "3ª (A)", "2ª (D)", "1ª (G)")
-      #let col-header = luma(230)
-
-      #table(
-        columns: (50pt,) + (32pt,) * 13,
-        align: center + horizon,
-        stroke: 0.3pt + color-rule-dark,
-        fill: (col, row) => {
-          if col == 0 { col-header } else if row > 0 {
-            let nota = seqs.at(row - 1).at(col - 1)
-            if is-acc(nota) { acc-fill } else { nat-fill }
-          } else { col-header }
-        },
-        inset: (x: 3pt, y: 5pt),
-        [*Corda*],
-        ..range(0, 13).map(i => text(weight: "bold", fill: luma(60))[
-          #if i == 0 [S] else [#i]
-        ]),
-        ..seqs
-          .enumerate()
-          .map(((ci, seq)) => (
-            text(weight: "bold", fill: color-strong)[#corda-labels.at(ci)],
-            ..seq.map(n => text(
-              fill: if is-acc(n) { white } else { color-strong },
-              weight: if is-acc(n) { "bold" } else { "regular" },
-            )[#n]),
-          ))
-          .flatten(),
-      )
-      #v(0.4em)
-      #text(size: 7.5pt, fill: color-muted)[S = Solta · células escuras = notas com acidente (\#)]
-    ],
-  )
+  #tab-vazia(sistemas: 1, compassos: 4, cordas: 4, altura-linha: 11pt)
 ]
 
-== 5. Como Ler uma Tablatura (Tab) de Baixo
+#ex(titulo: "Afinação e oitavas", nivel: "Escrita")[
+  a) Que nota soa na casa 12 da 3ª corda? \
+  b) Que casa da 2ª corda tem a mesma nota da 1ª corda solta? \
+  c) Qual corda do baixo tem a mesma nota da 6ª corda do violão, uma oitava abaixo?
 
-A tablatura é a forma mais prática de escrever música para instrumentos de corda com trastes. Diferente da partitura, ela não representa o tempo das notas — mostra *exatamente onde colocar os dedos*.
-
-#v(0.8em)
-
-#align(center)[
-  #block(
-    fill: color-subtle-bg,
-    stroke: 0.5pt + color-rule-dark,
-    inset: 14pt,
-    radius: 6pt,
-    width: 90%,
-    [
-      #grid(
-        columns: (auto, 1fr),
-        gutter: 2em,
-        align: (center + top, left + top),
-        box(
-          stroke: none,
-          [
-            #set text(font: "Courier New", size: 10pt)
-            #raw(
-              lang: "text",
-              block: true,
-              "G|-----------------|
-D|-----------------|
-A|--------3--------|
-E|--0--2-----------|",
-            )
-          ],
-        ),
-        [
-          #set text(size: 9pt)
-          - Cada linha representa uma *corda* (de cima/aguda para baixo/grave: G, D, A, E).
-          - Os *números* indicam a *casa* a ser pressionada. "0" significa corda solta.
-          - A leitura acontece *da esquerda para a direita*, no tempo da música.
-        ],
-      )
-    ],
-  )
+  #linhas-resposta(3)
 ]
 
-#v(1em)
+=== Sugestão de prática
 
-#caixa-destaque(width: 88%)[
-  *Próximo passo:* Com as notas do braço, a afinação e a leitura de tablatura dominadas, você já tem tudo o que precisa para estudar *Intervalos Musicais* e começar a construir suas próprias linhas de baixo com intenção.
+#block(breakable: false, rotina-estudo((
+  ([Dizer o nome das notas da 4ª corda, casa por casa (0 → 12 → 0)], [3 min], [—]),
+  ([O mesmo na 3ª corda], [3 min], [—]),
+  ([Nota sorteada: achar na 4ª e na 3ª cordas sem contar desde a corda solta], [4 min], [—]),
+  ([Tônicas de C – G – Am – F (tab da seção 6), duas notas por acorde], [5 min], [60–80]),
+)))
+
+#v(0.6em)
+
+#checklist(
+  (
+    [Traduzo nomes de notas para cifra e vice-versa.],
+    [Sei que 1 casa = 1 semitom e que entre E–F e B–C não há nota intermediária.],
+    [Digo a nota de qualquer casa da 4ª e da 3ª cordas em poucos segundos.],
+    [Sei qual nota tocar a partir de uma cifra, inclusive com barra (C/E).],
+    [Leio e escrevo tablaturas de baixo.],
+  ),
+  titulo: "Autoavaliação",
+)
+
+#gabarito[
+  #resposta(1)[a) G · b) D · c) A · d) A · e) C · f) A\# / Bb · g) F\# / Gb · h) C\# / Db.]
+  #resposta(2)[
+    *4ª corda (E):* C = 8 · D = 10 · F = 1 · G = 3 · Bb = 6 · F\# = 2. \
+    *3ª corda (A):* C = 3 · D = 5 · F = 8 · G = 10 · Bb = 1 · F\# = 9.
+  ]
+  #resposta(3)[Em → E · D7 → D · Bb → Bb · G/B → B · Am/C → C · C\#m → C\#.]
+  #resposta(4)[A – B – C\# – D – E – F\# – G\# – A (é a escala de Lá maior).]
+  #resposta(5)[
+    Uma solução: G = 4ª corda, casa 3 · E = 4ª corda solta · C = 3ª corda, casa 3 · D = 3ª corda, casa 5.
+    #tab("G|--------|--------|--------|--------|\nD|--------|--------|--------|--------|\nA|--------|--------|-3------|-5------|\nE|-3------|-0------|--------|--------|")
+  ]
+  #resposta(6)[a) Lá (A), uma oitava acima da corda solta · b) casa 5 (Sol) · c) a 4ª corda (Mi).]
 ]

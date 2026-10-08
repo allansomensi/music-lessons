@@ -19,22 +19,40 @@
 // Exercício que não se divide entre páginas.
 #let ex(..args, body) = block(breakable: false, width: 100%, above: 1.5em, below: 0.9em, exercicio(..args, body))
 
-// Quadro de abertura no mesmo estilo de `objetivos`.
-#let quadro(titulo, body) = block(
-  width: 100%,
-  fill: color-subtle-bg,
-  stroke: (left: 3pt + color-strong, rest: 0.5pt + color-rule-dark),
-  inset: (x: 14pt, y: 11pt),
-  radius: (right: 5pt),
-  below: 1.2em,
-  [
-    #text(size: 9pt, weight: "bold", tracking: 1.2pt, fill: color-secondary)[#upper(titulo)]
-    #v(0.2em)
-    #set text(size: 9.5pt)
-    #set par(justify: false, leading: 0.7em)
-    #body
-  ],
+// Página de abertura: quadro de temas (com níveis e espaço para
+// anotar os acertos de cada bloco) e convenções.
+#let rotulo-abertura(body) = block(
+  above: 2.2em,
+  below: 0.7em,
+  sticky: true,
+  text(size: 9pt, weight: "bold", tracking: 1.2pt, fill: color-secondary, upper(body)),
 )
+
+#let quadro-temas(linhas) = {
+  set text(size: 9.5pt)
+  tabela(
+    columns: (1.55fr, 2.75fr, 0.9fr, 1.2fr, 0.9fr),
+    alinhamento: (left + horizon, left + horizon, center + horizon, center + horizon, center + horizon),
+    ([Bloco], [Temas], [Exercícios], [Níveis], [Acertos]),
+    linhas.map(l => (
+      [*#l.at(0).* #l.at(1)],
+      l.at(2),
+      l.at(3),
+      text(tracking: 0.6pt, l.at(4)),
+      [#box(width: 0.75cm, stroke: (bottom: 0.5pt + color-rule-dark)) / #l.at(5)],
+    )),
+  )
+}
+
+#let convencoes(itens) = caixa(tipo: "neutro", titulo: none, width: 100%)[
+  #set text(size: 9.5pt)
+  #set par(justify: false)
+  #set par(hanging-indent: 6.2em, spacing: 0.9em)
+  #for i in itens [
+    #box(width: 6.2em, text(weight: "bold", fill: color-strong, i.at(0)))#i.at(1)
+
+  ]
+]
 
 #let rotulo(body) = text(size: 9pt, weight: "bold", fill: color-secondary, body)
 #let linha-nome(w: 1.8cm) = box(width: w, height: 1em, stroke: (bottom: 0.7pt + color-strong))
@@ -144,28 +162,24 @@
 
 = Ritmo, Pestana e Blues
 
-Este material junta três habilidades que andam sempre juntas na guitarra: *ler e tocar ritmo* (figuras, contagem e palhetada alternada), *mover acordes pelo braço* com pestana e com o sistema CAGED, e *tocar um blues de 12 compassos* com as técnicas de expressão que dão voz à guitarra. Faça os exercícios na ordem, a lápis, e tenha o instrumento e um metrônomo por perto: toda resposta rítmica deve ser *batida ou tocada* antes de ser considerada certa. Confira tudo no *gabarito* ao final.
+*Como usar este material.* Estes exercícios juntam três habilidades que andam sempre juntas na guitarra: *ler e tocar ritmo*, *mover acordes pelo braço* com pestana e com o sistema CAGED, e *tocar um blues de 12 compassos* com técnicas de expressão. Resolva os blocos na ordem, a lápis, com o instrumento e um metrônomo por perto: toda resposta rítmica deve ser *batida ou tocada* antes de ser considerada certa. Confira tudo no *gabarito*, no final.
 
-#quadro("Conteúdos cobertos")[
-  #grid(
-    columns: (1.25fr, 2.6fr, auto),
-    column-gutter: 1em,
-    row-gutter: 0.85em,
-    align: (left + top, left + top, right + top),
-    text(size: 8.5pt, weight: "bold", fill: color-secondary)[BLOCO],
-    text(size: 8.5pt, weight: "bold", fill: color-secondary)[TEMAS],
-    text(size: 8.5pt, weight: "bold", fill: color-secondary)[EXERCÍCIOS],
-    [*1.* Figuras, compassos e palhetada], [Figuras e pausas · soma de tempos · contagem em voz alta · palhetada alternada], [1–5],
-    [*2.* Pestana e CAGED], [Casa da pestana nos shapes de E e de A · nomear e desenhar acordes · CAGED], [6–9],
-    [*3.* Blues de 12 compassos], [Acordes dominantes I7, IV7 e V7 · forma básica · quick change e turnaround], [10–13],
-    [*4.* Técnicas de expressão e transcrição], [Hammer-on, pull-off, bend, slide e vibrato · leitura e transcrição de tablatura], [14–16],
-  )
-  #v(0.3em)
-  #line(length: 100%, stroke: 0.4pt + color-rule-light)
-  #v(-0.2em)
-  #text(size: 8.5pt, fill: color-secondary)[*Níveis:* _Fácil_ — aplicação direta de uma regra · _Médio_ — raciocínio em etapas · _Desafio_ — combina vários conceitos; vale errar e refazer. \
-  *Convenções:* a semínima vale 1 tempo; contagem em colcheias "1 e 2 e 3 e 4 e"; ↓ = palhetada para baixo, ↑ = para cima. Tablatura: `h` hammer-on, `p` pull-off, `b` bend, `r` release, `/` e `\` slide, `~` vibrato.]
-]
+#rotulo-abertura[Quadro de temas]
+#quadro-temas((
+  ([1], [Figuras, compassos e palhetada], [Figuras e pausas · soma de tempos · contagem em voz alta · palhetada alternada], [1–5], [F F M M M], 5),
+  ([2], [Pestana e CAGED], [Casa da pestana nos shapes de E e de A · nomear e desenhar acordes · sistema CAGED], [6–9], [F M M D], 4),
+  ([3], [Blues de 12 compassos], [Acordes dominantes I7, IV7 e V7 · forma básica · quick change e turnaround], [10–13], [F M M D], 4),
+  ([4], [Técnicas de expressão e transcrição], [Hammer-on, pull-off, bend, slide e vibrato · leitura e transcrição de tablatura], [14–16], [M D D], 3),
+))
+#block(above: 0.7em, text(size: 8.5pt, fill: color-secondary)[*Níveis:* F = fácil (aplicação direta de uma regra) · M = médio (raciocínio em etapas) · D = desafio (combina vários conceitos; vale errar e refazer). *Acertos:* depois de corrigir com o gabarito, anote quantos exercícios de cada bloco você acertou por completo e revise primeiro o bloco com menos acertos.])
+
+#rotulo-abertura[Convenções]
+#convencoes((
+  ([Ritmo], [A semínima vale 1 tempo. Contagem em colcheias: "1 e 2 e 3 e 4 e" (o número cai no tempo; o "e", no contratempo). Tempos só sustentados ou pausados vão entre parênteses.]),
+  ([Palhetada], [↓ = palhetada para baixo · ↑ = palhetada para cima.]),
+  ([Shapes], ["Shape de E" = desenho do acorde aberto de Mi tocado com pestana (idem para A, Em, Am, E7, A7…). A pestana fica na casa da tônica.]),
+  ([Tablatura], [`h` hammer-on · `p` pull-off · `b` bend · `r` release (volta do bend) · `/` e `\` slide · `~` vibrato.]),
+))
 
 #pagebreak()
 
@@ -213,7 +227,7 @@ Este material junta três habilidades que andam sempre juntas na guitarra: *ler 
     columns: (1fr, 1fr),
     column-gutter: 1em,
     tabela-preencher(
-      columns: (0.3fr, 2.5fr, 0.75fr, 1fr),
+      columns: (0.3fr, 2.45fr, 0.7fr, 1.1fr),
       ([], [Figuras], [Soma], [Compasso]),
       (
         ([a)], seq(se, se, mi), none, none),
@@ -226,7 +240,7 @@ Este material junta três habilidades que andam sempre juntas na guitarra: *ler 
       altura: 1.0cm,
     ),
     tabela-preencher(
-      columns: (0.3fr, 2.5fr, 0.75fr, 1fr),
+      columns: (0.3fr, 2.45fr, 0.7fr, 1.1fr),
       ([], [Figuras], [Soma], [Compasso]),
       (
         ([g)], seq(se, se, c2, se, se), none, none),
@@ -477,7 +491,7 @@ Este material junta três habilidades que andam sempre juntas na guitarra: *ler 
 ]
 
 #ex(titulo: "Seu blues com pestana", nivel: "Desafio")[
-  Você vai tocar um blues em *A* sem sair da região das casas 5 a 7. Para cada acorde, escolha um shape com pestana (E7 ou A7), indique a casa e desenhe. Depois toque a forma com quick change usando a batida ↓ ↓↑ ↓ ↓↑ e termine com um lick seu na pentatônica de Lá menor.
+  Você vai tocar um blues em *A* com todas as pestanas entre as casas 5 e 7. Para cada acorde, escolha um shape com pestana (E7 ou A7), indique a casa da pestana e desenhe. Depois toque a forma com quick change usando a batida ↓ ↓↑ ↓ ↓↑ e termine com um lick seu na pentatônica de Lá menor.
 
   #grid(
     columns: (1.2fr, 1fr, 1fr, 1fr),
@@ -586,7 +600,7 @@ Este material junta três habilidades que andam sempre juntas na guitarra: *ler 
         ([D], [4ª], [10], [10–13], [4ª], [0 (12)], [0–3 (12–15)]),
       ),
     )
-    Acima do shape de E vem o *shape de D*, com a tônica na 4ª corda, casa *5*; abaixo dele vem o *shape de G*, com a tônica na 6ª corda casa 3 tocada com o dedo 4 (região das casas 0–3, é o G aberto).
+    Acima do shape de E vem o *shape de D*, com a tônica na 4ª corda, casa *5*; abaixo dele vem o *shape de G* — aqui, o próprio G aberto (casas 0–3), com a tônica na 6ª corda, casa 3.
   ]
 
   #resposta(10)[
@@ -620,6 +634,6 @@ Este material junta três habilidades que andam sempre juntas na guitarra: *ler 
   ]
 
   #resposta(16)[
-    Na região das casas 5 a 7: *A7* shape E7, casa *5* (`5,7,5,6,5,5`) · *D7* shape A7, casa *5* (`x,5,7,5,7,5`) · *E7* shape A7, casa *7* (`x,7,9,7,9,7`). O lick é pessoal — critério de sucesso: usa notas da pentatônica de Lá menor (A C D E G), pelo menos duas técnicas (ex.: bend e vibrato) e termina na tônica Lá, no tempo.
+    Pestanas entre as casas 5 e 7: *A7* shape E7, casa *5* (`5,7,5,6,5,5`) · *D7* shape A7, casa *5* (`x,5,7,5,7,5`) · *E7* shape A7, casa *7* (`x,7,9,7,9,7`). O lick é pessoal — critério de sucesso: usa notas da pentatônica de Lá menor (A C D E G), pelo menos duas técnicas (ex.: bend e vibrato) e termina na tônica Lá, no tempo.
   ]
 ]

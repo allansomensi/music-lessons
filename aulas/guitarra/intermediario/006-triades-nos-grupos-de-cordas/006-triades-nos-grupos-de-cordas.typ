@@ -10,14 +10,8 @@
 #let chord = new-chordgen(number-to-left: true, use-shadow-barre: false, colors: (hold: black, barre: black))
 #show <chord>: set text(fill: color-strong, weight: "bold")
 
-#show heading: set block(sticky: true)
-#show table: set par(justify: false)
-
 // ─── Helpers locais ──────────────────────────────────────────
-// caixas nunca se dividem entre duas páginas
-#let caixa-base = caixa
-#let caixa(..args) = block(breakable: false, width: 100%, caixa-base(..args))
-// exercícios também não se dividem (evita cabeçalho órfão no pé da página)
+// exercícios curtos não se dividem entre páginas (enunciado e área de resposta juntos)
 #let exercicio-base = exercicio
 #let exercicio(..args) = block(breakable: false, width: 100%, exercicio-base(..args))
 
@@ -412,33 +406,30 @@ No funk, a mão da palheta não para: ela sobe e desce em semicolcheias o tempo 
 #exercicio(titulo: "I–IV–V–I em Sol maior no grupo 2-3-4", nivel: "Tablatura")[
   Harmonize *G – C – D – G* usando somente o grupo 2-3-4, entre as casas 2 e 7, com o menor movimento possível entre os acordes. Escreva a cifra com baixo de cada forma (por exemplo, C/G) acima da tablatura.
 
-  #tab-vazia(sistemas: 1, compassos: 4)
+  #tab-vazia(sistemas: 1, compassos: 4, altura-linha: 10pt)
 ]
 
 #exercicio(titulo: "I–VIm–IV–V em Ré maior no grupo 3-4-5", nivel: "Tablatura")[
   Harmonize *D – Bm – G – A* usando somente o grupo 3-4-5, entre as casas 2 e 5. Dica: a nota Ré pode ficar parada no grave durante os três primeiros acordes.
 
-  #tab-vazia(sistemas: 1, compassos: 4)
+  #tab-vazia(sistemas: 1, compassos: 4, altura-linha: 10pt)
 ]
 
 #exercicio(titulo: "Desafio: I–V–VIm–IV em Lá maior", nivel: "Tablatura")[
   Harmonize *A – E – F\#m – D* no grupo 2-3-4, entre as casas 4 e 7. Mantenha paradas as notas comuns: o Mi na troca A → E, e o Lá e o Fá\# na troca F\#m → D. Indique a inversão de cada acorde.
 
-  #tab-vazia(sistemas: 1, compassos: 4)
+  #tab-vazia(sistemas: 1, compassos: 4, altura-linha: 10pt)
 ]
 
-#exercicio(titulo: "Ciclo das inversões", nivel: "Prática")[
-  Com metrônomo a 70 BPM, toque o ciclo do Exemplo 1 (fundamental → 1ª → 2ª → fundamental e volta) em C maior e em C menor, nos quatro grupos de cordas. Cada acorde dura um compasso de quatro semínimas. Repita em G e em A.
-]
-
-#exercicio(titulo: "Ritmo e abafamento", nivel: "Prática")[
-  Toque os Exemplos 2 e 3 a 80 BPM, depois a 100 BPM. Grave-se e ouça: os ataques devem ser curtos, nenhuma corda fora do grupo pode soar e as trocas não podem atrasar o tempo 1.
+#exercicio(titulo: "Ciclo das inversões e abafamento", nivel: "Prática")[
+  *a)* Com metrônomo a 70 BPM, toque o ciclo do Exemplo 1 (fundamental → 1ª → 2ª → fundamental e volta) em C maior e em C menor, nos quatro grupos de cordas. Cada acorde dura um compasso de quatro semínimas. Repita em G e em A. \
+  *b)* Toque os Exemplos 2 e 3 a 80 BPM, depois a 100 BPM. Grave-se e ouça: os ataques devem ser curtos, nenhuma corda fora do grupo pode soar e as trocas não podem atrasar o tempo 1.
 ]
 
 #v(0.6em)
 
 #block(breakable: false)[
-  === Sugestão de prática (35 min)
+  === Sugestão de prática
 
   #rotina-estudo((
     ([Ciclo das inversões de C e Cm — grupos 1-2-3 e 2-3-4], [8 min], [60–80]),
@@ -508,9 +499,6 @@ No funk, a mão da palheta não para: ela sobe e desce em semicolcheias o tempo 
     A (7-6-5, fundamental) → E/G\# (6-4-5, 1ª inversão) → F\#m/A (7-6-7, 1ª inversão) → D/A (7-7-7, 2ª inversão). O Mi fica parado de A para E/G\#; de E/G\# para F\#m/A as três vozes sobem por grau conjunto (G\# → A, B → C\#, E → F\#); de F\#m/A para D/A, Lá e Fá\# ficam e só o Dó\# sobe para Ré.
   ]
   #resposta(8)[
-    Exercício prático — critério de sucesso: completar o ciclo de ida e volta nos quatro grupos sem errar a inversão nem parar o metrônomo, dizendo o nome de cada posição.
-  ]
-  #resposta(9)[
-    Exercício prático — critério de sucesso: na gravação, todos os ataques caem no tempo, soam curtos e só as três cordas do grupo aparecem.
+    Exercício prático — critérios de sucesso: a) completar o ciclo de ida e volta nos quatro grupos sem errar a inversão nem parar o metrônomo, dizendo o nome de cada posição; b) na gravação, todos os ataques caem no tempo, soam curtos e só as três cordas do grupo aparecem.
   ]
 ]

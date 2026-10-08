@@ -14,9 +14,6 @@
 // que precisam quebrar, como `exercicio`, já declaram breakable: true).
 #set block(breakable: false)
 
-// Texto de células de tabela sem justificação (evita espaços esticados)
-#show table: set par(justify: false)
-
 // Exercício que não se divide entre páginas (enunciado + área de resposta juntos)
 #let ex(..args) = block(breakable: false, above: 1.5em, below: 0.9em, exercicio(..args))
 
@@ -91,7 +88,7 @@
 
 // Escala no braço calculada a partir da afinação (0 = C)
 #let afinacao = (4, 9, 2, 7, 11, 4) // 6ª, 5ª, 4ª, 3ª, 2ª, 1ª corda
-#let escala-blues = ("0": "T", "3": "b3", "5": "4", "6": "*b5", "7": "5", "10": "b7")
+#let escala-blues = ("0": "T", "3": "b3", "5": "4", "6": "*b5", "7": "5", "10": "7")
 #let escala-braco(raiz, rotulos, fs, fe) = afinacao.map(a => range(fs, fe + 1).map(f => rotulos.at(
   str(calc.rem(a + f - raiz + 24, 12)),
   default: "",
@@ -113,7 +110,7 @@ O *blues de 12 compassos* é provavelmente a forma musical mais tocada da músic
 
 == 1. A forma: I7 – IV7 – V7 em 12 compassos
 
-O blues usa apenas *três acordes*, todos *dominantes* (tríades maiores — T, 3 e 5 — com a 7ª menor acrescentada: T – 3 – 5 – b7): o *I7*, o *IV7* e o *V7* do tom. Em Lá, são *A7*, *D7* e *E7*. Eles se organizam em três frases de quatro compassos:
+O blues usa apenas *três acordes*, todos *dominantes* (tríades maiores — T, 3 e 5 — com a 7ª menor acrescentada: T – 3 – 5 – 7): o *I7*, o *IV7* e o *V7* do tom. Em Lá, são *A7*, *D7* e *E7*. Eles se organizam em três frases de quatro compassos:
 
 #v(0.4em)
 
@@ -283,7 +280,7 @@ E|-0-0-0-0-0-0-0-0-|-----------------|-----------------|-0-0-0-0-0-0-0-0-|",
 #v(0.4em)
 
 #tab(
-  titulo: "Variação com a b7 (um compasso de cada acorde)",
+  titulo: "Variação com a 7ª menor (um compasso de cada acorde)",
   "   A7                D7                E7
 e|-----------------|-----------------|-----------------|
 B|-----------------|-----------------|-----------------|
@@ -291,7 +288,7 @@ G|-----------------|-2-2-4-4-5-5-4-4-|-----------------|
 D|-2-2-4-4-5-5-4-4-|-0-0-0-0-0-0-0-0-|-----------------|
 A|-0-0-0-0-0-0-0-0-|-----------------|-2-2-4-4-5-5-4-4-|
 E|-----------------|-----------------|-0-0-0-0-0-0-0-0-|",
-  legenda: [Casa 5 = b7 do acorde, alcançada com o dedo mínimo: 5 – 6 – b7 – 6. É a base de incontáveis rocks e blues.],
+  legenda: [Casa 5 = 7ª menor do acorde, alcançada com o dedo mínimo: 5ª – 6ª – 7ª menor – 6ª. É a base de incontáveis rocks e blues.],
 )
 
 #v(0.4em)
@@ -302,7 +299,7 @@ E|-----------------|-----------------|-0-0-0-0-0-0-0-0-|",
 
 == 5. Improvisando: pentatônica menor + blue note
 
-A escala mais usada para solar sobre o blues é a *pentatônica menor* da tônica — em Lá, a "caixa" das casas 5 a 8 (*T – b3 – 4 – 5 – b7*: A – C – D – E – G), com a tônica sob o dedo 1 na 6ª corda. Acrescentando a *b5* (a *blue note*), ela vira a *escala blues*: *T – b3 – 4 – b5 – 5 – b7* (em Lá: A – C – D – Eb – E – G).
+A escala mais usada para solar sobre o blues é a *pentatônica menor* da tônica — em Lá, a "caixa" das casas 5 a 8 (*T – b3 – 4 – 5 – 7*: A – C – D – E – G; aqui, *7* é a 7ª menor), com a tônica sob o dedo 1 na 6ª corda. Acrescentando a *b5* (a *blue note*), ela vira a *escala blues*: *T – b3 – 4 – b5 – 5 – 7* (em Lá: A – C – D – Eb – E – G).
 
 #v(0.3em)
 
@@ -344,7 +341,7 @@ G|-------------------------|---------|
 D|-------------------------|---------|
 A|-------------------------|---------|
 E|-------------------------|---------|
-   5  T  b3 T  b7 5",
+   5  T  b3 T  7  5",
     tamanho: 7.6pt,
   ),
   tab(
@@ -414,11 +411,11 @@ A forma é sempre a mesma; mudam os acordes e a casa da escala. Os tons mais com
 ]
 
 #ex(titulo: "A escala blues", nivel: "Escrita")[
-  Escreva a escala blues (T – b3 – 4 – b5 – 5 – b7) de cada tom.
+  Escreva a escala blues (T – b3 – 4 – b5 – 5 – 7, sendo 7 a 7ª menor) de cada tom.
 
   #v(0.3em)
   #tabela-preencher(
-    ([*Tom*], [*T*], [*b3*], [*4*], [*b5*], [*5*], [*b7*]),
+    ([*Tom*], [*T*], [*b3*], [*4*], [*b5*], [*5*], [*7*]),
     (
       ([E], none, none, none, none, none, none),
       ([G], none, none, none, none, none, none),
@@ -436,18 +433,27 @@ A forma é sempre a mesma; mudam os acordes e a casa da escala. Os tons mais com
 ]
 
 #ex(titulo: "Os 12 compassos completos", nivel: "Prática")[
-  Toque os 12 compassos com o riff de boogie em shuffle, terminando cada volta com o turnaround da seção 1. Comece a *70 BPM* e faça três voltas seguidas sem parar. Depois, troque o riff básico pela variação com a b7.
+  Toque os 12 compassos com o riff de boogie em shuffle, terminando cada volta com o turnaround da seção 1. Comece a *70 BPM* e faça três voltas seguidas sem parar. Depois, troque o riff básico pela variação com a 7ª menor. Anote o maior andamento em que você completa as três voltas sem erro.
+
+  #v(0.3em)
+  #tabela-preencher(
+    ([*Versão*], [*Riff básico*], [*Riff com a 7ª menor*]),
+    (([BPM limpo], none, none),),
+    columns: (1fr, 1.5fr, 1.5fr),
+  )
 ]
 
 #ex(titulo: "Conversa com a base", nivel: "Prática")[
-  Grave a base (riff de boogie, três voltas) ou use uma base de blues em A. Improvise *apenas com pergunta e resposta*: dois compassos de frase, dois compassos de silêncio. Use a blue note pelo menos uma vez em cada resposta.
+  Grave a base (riff de boogie, três voltas) ou use uma base de blues em A. Improvise *apenas com pergunta e resposta*: dois compassos de frase, dois compassos de silêncio. Use a blue note pelo menos uma vez em cada resposta. Anote a tab da resposta de que você mais gostou.
+
+  #tab-vazia(sistemas: 1, compassos: 2, altura-linha: 11pt)
 ]
 
 === Sugestão de prática
 
 #rotina-estudo((
   ([Falar e bater o shuffle com o metrônomo ("um–ta, dois–ta")], [2 min], [70]),
-  ([Riff de boogie nos 12 compassos (básico e com b7)], [6 min], [70 → 90]),
+  ([Riff de boogie nos 12 compassos (básico e com a 7ª menor)], [6 min], [70 → 90]),
   ([Acordes dominantes abertos e com pestana na forma do blues], [4 min], [70]),
   ([Turnaround da seção 1 (compassos 11–12)], [3 min], [70]),
   ([Pergunta e resposta com a escala blues de A], [5 min], [—]),

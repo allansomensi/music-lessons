@@ -20,8 +20,6 @@
 // Ajustes locais
 // ------------------------------------------------------------
 
-#show table: set par(justify: false)
-
 // Resposta do gabarito que não se divide entre páginas.
 #let resp(n, body) = block(breakable: false, width: 100%, resposta(n, body))
 
@@ -93,7 +91,7 @@
 
 = Voicings e Tensões
 
-No nível avançado, saber *quais notas* tem um acorde é só o começo: o que define o som é *como* elas são distribuídas no braço e *quais tensões* entram no lugar das notas básicas. Este material treina a construção de voicings drop 2 e drop 3, as tensões disponíveis e alteradas, as estruturas superiores e os voicings quartais.
+No nível avançado, saber *quais notas* tem um acorde é só o começo: o que define o som é *como* elas são distribuídas no braço e *quais tensões* entram no lugar das notas básicas. Este material treina a construção de voicings drop 2 e drop 3, as tensões disponíveis e alteradas, as estruturas superiores e os voicings quartais. Intervalos: *7* = 7ª menor e *7M* = 7ª maior.
 
 == Como usar este material
 
@@ -101,7 +99,7 @@ No nível avançado, saber *quais notas* tem um acorde é só o começo: o que d
   #set text(size: 10pt)
   #passos((
     [Resolva *na ordem*: cada bloco vai do nível *Médio* (aplicação direta) ao *Desafio* (construção no braço, condução de vozes).],
-    [Escreva as vozes sempre *do grave para o agudo*. Em cada voicing, identifique a nota do baixo (inversão) e a do topo (melodia).],
+    [Escreva as notas sempre *do grave para o agudo*; já as vozes são numeradas do agudo para o grave (voz 1 = topo). Em cada voicing, identifique a nota do baixo (inversão) e a do topo (melodia).],
     [*Toque* cada voicing e cada tensão sobre o baixo correspondente: o objetivo é ouvir a cor, não só acertar o nome.],
     [Confira no *Gabarito*. Onde há várias respostas válidas, ele traz uma resposta-modelo e o critério de correção.],
   ))
@@ -116,19 +114,32 @@ No nível avançado, saber *quais notas* tem um acorde é só o começo: o que d
     alinhamento: (left + horizon, left + horizon, center + horizon),
     ([Bloco], [O que você pratica], [Exerc.]),
     (
-      ([*1. Drop 2 e drop 3*], [Construção a partir da posição fechada, inversão, voz do topo, formas no braço, condução no II-V-I], [1–5]),
-      ([*2. Tensões*], [Tensões disponíveis, tensões dos dominantes secundários, acordes alterados, identificação no braço, II-V-I com tensões], [6–11]),
+      ([*1. Drop 2 e drop 3*], [Construção, inversões, voz do topo, formas no braço, II-V-I], [1–5]),
+      ([*2. Tensões*], [Tensões disponíveis e alteradas, dominantes secundários, II-V-I], [6–11]),
       ([*3. Estruturas superiores*], [Tríade sobre dominante, tensões geradas, aplicação no II-V-I], [12–14]),
       ([*4. Voicings quartais*], [Empilhamento em 4ªs, contexto harmônico, os voicings de "So What"], [15–17]),
     ),
   )
 ]
 
-#v(0.4em)
+== Referência rápida
 
-#caixa(tipo: "resumo", titulo: none, width: 100%)[
+#[
   #set text(size: 9.5pt)
-  #align(left)[*Convenções:* #h(4pt) vozes numeradas *do agudo para o grave* (voz 1 = topo). *Drop 2*: a 2ª voz da posição fechada desce uma oitava; *drop 3*: a 3ª voz desce uma oitava. Intervalos: *b7* = 7ª menor, *7M* = 7ª maior; tensões 9, b9, \#9, 11, \#11, 13, b13. Cifras: C7(b9), C7(\#9), C7(b13), C7alt, C7(9,13), C7M(\#11).]
+  #tabela(
+    columns: (1.25fr, 2.6fr, 1.6fr),
+    alinhamento: (left + horizon, left + horizon, center + horizon),
+    ([Termo], [Significado], [Exemplo (Lá)]),
+    (
+      ([*Posição fechada*], [as quatro notas da tétrade dentro de uma oitava], [A7M: A – C\# – E – G\#]),
+      ([*Drop 2*], [a 2ª voz a partir do topo desce uma oitava], [E – A – C\# – G\#]),
+      ([*Drop 3*], [a 3ª voz a partir do topo desce uma oitava], [C\# – A – E – G\#]),
+      ([*Tensão*], [9, 11 e 13; nos dominantes, também b9, \#9, \#11 e b13], [A7M(9): B · A7(b9): Bb]),
+      ([*Nota evitada*], [nota da escala ½ tom acima de uma nota do acorde], [D (11) sobre A7M]),
+      ([*Estrutura superior*], [tríade tocada sobre o trítono (3ª e 7ª) de um dominante], [B sobre A7 = 9, \#11, 13]),
+      ([*Voicing quartal*], [notas empilhadas em 4ªs em vez de 3ªs], [B – E – A – D]),
+    ),
+  )
 ]
 
 #pagebreak()
@@ -251,7 +262,7 @@ No nível avançado, saber *quais notas* tem um acorde é só o começo: o que d
       ([X7M], [jônico], none, none),
       ([Xm7], [dórico], none, none),
       ([X7], [mixolídio], none, none),
-      ([Xø], [lócrio], none, none),
+      ([Xm7(b5)], [lócrio], none, none),
       ([Xº7], [diminuta (T-ST)], none, none),
     ),
   )
@@ -338,7 +349,7 @@ No nível avançado, saber *quais notas* tem um acorde é só o começo: o que d
 ]
 
 #ex(titulo: "Dominantes com tensões no braço", nivel: "Desafio")[
-  Escreva o intervalo (T, 3, 5, b7 ou a tensão) em cada ponto cinza e dê a cifra completa.
+  Escreva o intervalo (T, 3, 5, 7 ou a tensão) em cada ponto cinza e dê a cifra completa.
 
   #v(0.5em)
   #grid(
@@ -381,7 +392,7 @@ No nível avançado, saber *quais notas* tem um acorde é só o começo: o que d
 #block(sticky: true)[
   == 3. Estruturas Superiores
 
-  Uma *estrutura superior* é uma tríade tocada sobre o trítono (3ª e b7) de um dominante. As três notas da tríade viram tensões: é a forma mais rápida de "ouvir" e tocar um 7(9,\#11,13) ou um 7alt.
+  Uma *estrutura superior* é uma tríade tocada sobre o trítono (3ª e 7ª) de um dominante. As três notas da tríade viram tensões: é a forma mais rápida de "ouvir" e tocar um 7(9,\#11,13) ou um 7alt.
 ]
 
 #ex(titulo: "Tríades sobre C7", nivel: "Médio")[
@@ -485,7 +496,7 @@ No nível avançado, saber *quais notas* tem um acorde é só o começo: o que d
   #v(0.2em)
   #tabela-preencher(
     columns: (0.6fr, 1.6fr, 1.4fr),
-    altura: 1.05cm,
+    altura: 1.5cm,
     ([Baixo], [Intervalos de D – G – C – F], [Cifra]),
     (
       ([D], none, none),
@@ -501,7 +512,7 @@ No nível avançado, saber *quais notas* tem um acorde é só o começo: o que d
   #v(0.2em)
   #tabela-preencher(
     columns: (0.6fr, 1.6fr, 1.4fr),
-    altura: 1.05cm,
+    altura: 1.5cm,
     ([Baixo], [Intervalos de A – D – G – C], [Cifra]),
     (
       ([A], none, none),
@@ -555,26 +566,26 @@ No nível avançado, saber *quais notas* tem um acorde é só o começo: o que d
       ([Fechada], [Drop 2], [Inversão], [Drop 3], [Inversão]),
       (
         ([G B D F], [D G B F], [2ª (5ª no baixo)], [B G D F], [1ª (3ª no baixo)]),
-        ([D F G B], [G D F B], [fundamental], [F D G B], [3ª (b7 no baixo)]),
-        ([Ab C Eb F], [Eb Ab C F], [3ª (b7 no baixo)], [C Ab Eb F], [2ª (5ª no baixo)]),
+        ([D F G B], [G D F B], [fundamental], [F D G B], [3ª (7ª no baixo)]),
+        ([Ab C Eb F], [Eb Ab C F], [3ª (7ª no baixo)], [C Ab Eb F], [2ª (5ª no baixo)]),
         ([Eb F Ab C], [Ab Eb F C], [1ª (b3 no baixo)], [F Eb Ab C], [fundamental]),
         ([A C E G], [E A C G], [2ª (5ª no baixo)], [C A E G], [1ª (b3 no baixo)]),
-        ([C E G A], [G C E A], [3ª (b7 no baixo)], [E C G A], [2ª (5ª no baixo)]),
+        ([C E G A], [G C E A], [3ª (7ª no baixo)], [E C G A], [2ª (5ª no baixo)]),
       ),
     )
   ]
 
   #resp(3)[
-    1) C G B E — C7M drop 2, fundamental, topo E (3) · 2) G D F B — G7 drop 2, fundamental, topo B (3) · 3) G F B D — G7 drop 3, fundamental, topo D (5) · 4) C B E G — C7M drop 3, fundamental, topo G (5) · 5) F C D A — Dm7 drop 2, 1ª inversão, topo A (5) · 6) A D F Bb — Bb7M drop 2, 3ª inversão (7M no baixo), topo Bb (T) · 7) Eb C G Bb — Cm7 drop 3, 1ª inversão, topo Bb (b7) · 8) C F A Eb — F7 drop 2, 2ª inversão, topo Eb (b7).
+    1) C G B E — C7M drop 2, fundamental, topo E (3) · 2) G D F B — G7 drop 2, fundamental, topo B (3) · 3) G F B D — G7 drop 3, fundamental, topo D (5) · 4) C B E G — C7M drop 3, fundamental, topo G (5) · 5) F C D A — Dm7 drop 2, 1ª inversão, topo A (5) · 6) A D F Bb — Bb7M drop 2, 3ª inversão (7M no baixo), topo Bb (T) · 7) Eb C G Bb — Cm7 drop 3, 1ª inversão, topo Bb (7) · 8) C F A Eb — F7 drop 2, 2ª inversão, topo Eb (7).
   ]
 
   #resp(4)[
     #grid(
       columns: (1fr,) * 4,
-      diag-resp("x,x,5,5,5,5", "Am7/G", [b7 · b3 · 5 · T]),
-      diag-resp("x,x,7,9,8,8", "Am7", [T · 5 · b7 · b3]),
-      diag-resp("x,x,10,12,10,12", "Am7/C", [b3 · b7 · T · 5]),
-      diag-resp("x,x,14,14,13,15", "Am7/E", [5 · T · b3 · b7]),
+      diag-resp("x,x,5,5,5,5", "Am7/G", [7 · b3 · 5 · T]),
+      diag-resp("x,x,7,9,8,8", "Am7", [T · 5 · 7 · b3]),
+      diag-resp("x,x,10,12,10,12", "Am7/C", [b3 · 7 · T · 5]),
+      diag-resp("x,x,14,14,13,15", "Am7/E", [5 · T · b3 · 7]),
     )
     Fundamental no topo: Am7/G (3ª inversão). 5ª no topo: Am7/C (1ª inversão).
   ]
@@ -597,7 +608,7 @@ No nível avançado, saber *quais notas* tem um acorde é só o começo: o que d
         ([X7M], [9, 13 (e \#11 se lídio)], [11 (½ tom acima da 3)]),
         ([Xm7], [9, 11, 13], [— (no dórico)]),
         ([X7], [9, 13 (naturais); b9, \#9, \#11, b13 (alteradas, conforme a escala)], [11 (exceto em sus4)]),
-        ([Xø], [11, b13 (e 9 com lócrio 9)], [b9 (no lócrio)]),
+        ([Xm7(b5)], [11, b13 (e 9 com lócrio 9)], [b9 (no lócrio)]),
         ([Xº7], [9, 11, b13, 7M (um tom acima de cada nota do acorde)], [—]),
       ),
     )
@@ -615,7 +626,7 @@ No nível avançado, saber *quais notas* tem um acorde é só o começo: o que d
   ]
 
   #resp(9)[
-    a) E7(b9): T 3 b7 b9 · b) A7(\#9): T 3 b7 \#9 · c) D7(b13): T 3 b7 b13 · d) C7alt = C7(b9,\#9,b13): T 3 b7 b9 \#9 b13 · e) F7M(\#11): T 3 5 7M \#11 · f) G7(13): T 3 b7 13 · g) Bb7(9,13): T 3 b7 9 13 · h) A7(b13): T b7 3 b13.
+    a) E7(b9): T 3 7 b9 · b) A7(\#9): T 3 7 \#9 · c) D7(b13): T 3 7 b13 · d) C7alt = C7(b9,\#9,b13): T 3 7 b9 \#9 b13 · e) F7M(\#11): T 3 5 7M \#11 · f) G7(13): T 3 7 13 · g) Bb7(9,13): T 3 7 9 13 · h) A7(b13): T 7 3 b13.
   ]
 
   #resp(10)[
@@ -641,11 +652,11 @@ No nível avançado, saber *quais notas* tem um acorde é só o começo: o que d
       ([Tríade], [Notas], [Sobre C], [Cifra]),
       (
         ([D], [D F\# A], [9 · \#11 · 13], [C7(9,\#11,13)]),
-        ([Eb], [Eb G Bb], [\#9 · 5 · b7], [C7(\#9)]),
-        ([F\# (= Gb)], [F\# A\# C\#], [\#11 · b7 · b9], [C7(b9,\#11)]),
+        ([Eb], [Eb G Bb], [\#9 · 5 · 7], [C7(\#9)]),
+        ([F\# (= Gb)], [F\# A\# C\#], [\#11 · 7 · b9], [C7(b9,\#11)]),
         ([Ab], [Ab C Eb], [b13 · T · \#9], [C7(\#9,b13) — som alterado]),
         ([A], [A C\# E], [13 · b9 · 3], [C7(b9,13)]),
-        ([Bb], [Bb D F], [b7 · 9 · 11], [C7sus4(9) — pede omitir a 3ª]),
+        ([Bb], [Bb D F], [7 · 9 · 11], [C7sus4(9) — pede omitir a 3ª]),
         ([Db], [Db F Ab], [b9 · 11 · b13], [C7sus4(b9) com b13 — som frígio; a 11 pede omitir a 3ª]),
       ),
     )
@@ -656,7 +667,7 @@ No nível avançado, saber *quais notas* tem um acorde é só o começo: o que d
   ]
 
   #resp(14)[
-    Dm7: tríade *Am* (A C E) → 5 · b7 · 9 → Dm7(9), topo Mi. \
+    Dm7: tríade *Am* (A C E) → 5 · 7 · 9 → Dm7(9), topo Mi. \
     G7: tríade *Eb* na 1ª inversão (G Bb Eb) → T · \#9 · b13 → G7(\#9,b13), topo Mib. \
     C7M: tríade *G* (G B D) → 5 · 7M · 9 → C7M(9), topo Ré. \
     Vozes: Lá → Sol → Sol; Dó → Sib → Si; Mi → Mib → Ré. Critério: aceite outras tríades se gerarem as tensões pedidas e o topo Mi – Mib – Ré.
@@ -667,21 +678,21 @@ No nível avançado, saber *quais notas* tem um acorde é só o começo: o que d
       columns: (0.5fr, 1.3fr, 0.8fr, 1.6fr),
       ([Base], [Notas], [Trítono?], [Sobre D]),
       (
-        ([D], [D G C F], [não], [T · 11 · b7 · b3]),
+        ([D], [D G C F], [não], [T · 11 · 7 · b3]),
         ([E], [E A D G], [não], [9 · 5 · T · 11]),
         ([F], [F B E A], [sim (F–B)], [b3 · 13 · 9 · 5]),
-        ([G], [G C F B], [sim (F–B)], [11 · b7 · b3 · 13]),
-        ([A], [A D G C], [não], [5 · T · 11 · b7]),
+        ([G], [G C F B], [sim (F–B)], [11 · 7 · b3 · 13]),
+        ([A], [A D G C], [não], [5 · T · 11 · 7]),
         ([B], [B E A D], [não], [13 · 9 · 5 · T]),
-        ([C], [C F B E], [sim (F–B)], [b7 · b3 · 13 · 9]),
+        ([C], [C F B E], [sim (F–B)], [7 · b3 · 13 · 9]),
       ),
     )
   ]
 
   #resp(16)[
     a) D G C F · A D G C · G C F A · D G C F A. \
-    b) Baixo D: T · 11 · b7 · b3 → Dm7(11) · baixo Bb: 3 · 13 · 9 · 5 → Bb6(9) · baixo G: 5 · T · 11 · b7 → G7sus4 · baixo Eb: 7M · 3 · 13 · 9 → Eb7M(9,13). \
-    c) Baixo A: T · 11 · b7 · b3 → Am7(11) · baixo F: 3 · 13 · 9 · 5 → F6(9) · baixo Bb: 7M · 3 · 13 · 9 → Bb7M(9,13) · baixo D: 5 · T · 11 · b7 → D7sus4.
+    b) Baixo D: T · 11 · 7 · b3 → Dm7(11) · baixo Bb: 3 · 13 · 9 · 5 → Bb6(9) · baixo G: 5 · T · 11 · 7 → G7sus4 · baixo Eb: 7M · 3 · 13 · 9 → Eb7M(9,13). \
+    c) Baixo A: T · 11 · 7 · b3 → Am7(11) · baixo F: 3 · 13 · 9 · 5 → F6(9) · baixo Bb: 7M · 3 · 13 · 9 → Bb7M(9,13) · baixo D: 5 · T · 11 · 7 → D7sus4.
   ]
 
   #resp(17)[

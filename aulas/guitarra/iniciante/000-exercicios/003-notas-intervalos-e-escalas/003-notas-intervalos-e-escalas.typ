@@ -19,51 +19,65 @@
 // Exercício que não se divide entre páginas (para enunciados curtos).
 #let ex(..args, body) = block(breakable: false, width: 100%, above: 1.5em, below: 0.9em, exercicio(..args, body))
 
-// Quadro de abertura no mesmo estilo de `objetivos`.
-#let quadro(titulo, body) = block(
-  width: 100%,
-  fill: color-subtle-bg,
-  stroke: (left: 3pt + color-strong, rest: 0.5pt + color-rule-dark),
-  inset: (x: 14pt, y: 11pt),
-  radius: (right: 5pt),
-  below: 1.2em,
-  [
-    #text(size: 9pt, weight: "bold", tracking: 1.2pt, fill: color-secondary)[#upper(titulo)]
-    #v(0.2em)
-    #set text(size: 9.5pt)
-    #set par(justify: false, leading: 0.7em)
-    #body
-  ],
+// Página de abertura: quadro de temas (com níveis e espaço para
+// anotar os acertos de cada bloco) e convenções.
+#let rotulo-abertura(body) = block(
+  above: 2.2em,
+  below: 0.7em,
+  sticky: true,
+  text(size: 9pt, weight: "bold", tracking: 1.2pt, fill: color-secondary, upper(body)),
 )
+
+#let quadro-temas(linhas) = {
+  set text(size: 9.5pt)
+  tabela(
+    columns: (1.55fr, 2.75fr, 0.9fr, 1.2fr, 0.9fr),
+    alinhamento: (left + horizon, left + horizon, center + horizon, center + horizon, center + horizon),
+    ([Bloco], [Temas], [Exercícios], [Níveis], [Acertos]),
+    linhas.map(l => (
+      [*#l.at(0).* #l.at(1)],
+      l.at(2),
+      l.at(3),
+      text(tracking: 0.6pt, l.at(4)),
+      [#box(width: 0.75cm, stroke: (bottom: 0.5pt + color-rule-dark)) / #l.at(5)],
+    )),
+  )
+}
+
+#let convencoes(itens) = caixa(tipo: "neutro", titulo: none, width: 100%)[
+  #set text(size: 9.5pt)
+  #set par(justify: false)
+  #set par(hanging-indent: 6.2em, spacing: 0.9em)
+  #for i in itens [
+    #box(width: 6.2em, text(weight: "bold", fill: color-strong, i.at(0)))#i.at(1)
+
+  ]
+]
 
 // Rótulo pequeno usado acima de tabelas e braços.
 #let rotulo(body) = text(size: 9pt, weight: "bold", fill: color-secondary, body)
 
 = Notas, Intervalos e Escalas
 
-Este material reúne exercícios de fixação sobre o "alfabeto" da música e a sua geografia no braço da guitarra: notas naturais e acidentes, tom e semitom, enarmonia, localização de notas, intervalos, escala maior, escala menor natural, relativos e escalas pentatônicas. Resolva os exercícios na ordem — eles vão do mais simples ao mais desafiador — usando lápis, para poder apagar e refazer. Sempre que possível, *toque no instrumento* cada resposta escrita: ouvir o resultado é a melhor forma de conferir. Se travar, releia o enunciado e as convenções do quadro abaixo antes de conferir a resposta no *gabarito* ao final.
+*Como usar este material.* Estes exercícios fixam o "alfabeto" da música e a sua geografia no braço da guitarra. Resolva os blocos na ordem — a dificuldade cresce dentro de cada um —, a lápis, para poder apagar e refazer. Sempre que possível, *toque no instrumento* cada resposta escrita: ouvir o resultado é a melhor forma de conferir. Se travar, releia o enunciado e as convenções abaixo antes de consultar o *gabarito*, no final.
 
-#quadro("Conteúdos cobertos")[
-  #grid(
-    columns: (1.25fr, 2.6fr, auto),
-    column-gutter: 1em,
-    row-gutter: 0.85em,
-    align: (left + top, left + top, right + top),
-    text(size: 8.5pt, weight: "bold", fill: color-secondary)[BLOCO],
-    text(size: 8.5pt, weight: "bold", fill: color-secondary)[TEMAS],
-    text(size: 8.5pt, weight: "bold", fill: color-secondary)[EXERCÍCIOS],
-    [*1.* Notas, acidentes e enarmonia], [Cifras e nomes das notas · tom e semitom · sustenidos, bemóis e notas enarmônicas], [1–3],
-    [*2.* Notas no braço], [Localização das notas nas cordas · marcadores do braço · oitavas], [4–7],
-    [*3.* Intervalos], [Nome, contagem, construção e inversão de intervalos · intervalos no braço], [8–12],
-    [*4.* Escala maior], [Fórmula T – T – ST – T – T – T – ST · ortografia da escala em qualquer tom], [13–14],
-    [*5.* Menores, relativos e pentatônicas], [Escala menor natural · relativos maior/menor · pentatônicas menor e maior], [15–16],
-  )
-  #v(0.3em)
-  #line(length: 100%, stroke: 0.4pt + color-rule-light)
-  #v(-0.2em)
-  #text(size: 8.5pt, fill: color-secondary)[*Níveis:* _Fácil_ — aplicação direta de uma regra · _Médio_ — raciocínio em etapas (contar, conferir, nomear) · _Desafio_ — combina vários conceitos; vale errar e refazer. \
-  *Convenções:* sustenido \# e bemol b; intervalos `T` `b2` `2` `b3` `3` `4` `#4` `b5` `5` `b6` `6` `b7` (sétima menor) `7M` (sétima maior) `8`; cordas da 1ª (Mi agudo) à 6ª (Mi grave); "casa 0" = corda solta.]
-]
+#rotulo-abertura[Quadro de temas]
+#quadro-temas((
+  ([1], [Notas, acidentes e enarmonia], [Cifras e nomes das notas · tom e semitom · sustenidos, bemóis e notas enarmônicas], [1–3], [F F M], 3),
+  ([2], [Notas no braço], [Notas em cada corda e casa · cordas graves · todas as ocorrências de uma nota · oitavas], [4–7], [F M M D], 4),
+  ([3], [Intervalos], [Nome, contagem, construção e inversão de intervalos · intervalos no braço], [8–12], [F M M M D], 5),
+  ([4], [Escala maior], [Fórmula T – T – ST – T – T – T – ST · ortografia da escala em qualquer tom], [13–14], [M D], 2),
+  ([5], [Menores, relativos e pentatônicas], [Escala menor natural · relativos maior e menor · pentatônicas menor e maior], [15–16], [M D], 2),
+))
+#block(above: 0.7em, text(size: 8.5pt, fill: color-secondary)[*Níveis:* F = fácil (aplicação direta de uma regra) · M = médio (raciocínio em etapas) · D = desafio (combina vários conceitos; vale errar e refazer). *Acertos:* depois de corrigir com o gabarito, anote quantos exercícios de cada bloco você acertou por completo e revise primeiro o bloco com menos acertos.])
+
+#rotulo-abertura[Convenções]
+#convencoes((
+  ([Notas], [Dó = C · Ré = D · Mi = E · Fá = F · Sol = G · Lá = A · Si = B; sustenido = \#, bemol = b.]),
+  ([Intervalos], [`T` (tônica) · `b2` · `2` · `b3` · `3` · `4` · `#4` · `b5` · `5` · `b6` · `6` · `7` (7ª menor) · `7M` (7ª maior) · `8` (oitava).]),
+  ([Distâncias], [Em fórmulas de distância (T – T – ST…), *T* = tom e *ST* = semitom; em fórmulas de intervalo (T – 3 – 5), *T* = tônica. Uma casa da guitarra = 1 semitom.]),
+  ([Cordas], [Da 1ª (Mi agudo) à 6ª (Mi grave); "casa 0" = corda solta. Nos diagramas de braço, cada linha é uma corda (a 6ª em cima) e as casas crescem para a direita.]),
+))
 
 #pagebreak()
 
@@ -242,7 +256,7 @@ Este material reúne exercícios de fixação sobre o "alfabeto" da música e a 
     columns: (1fr, 0.8fr, 1fr, 0.8fr, 1fr, 0.8fr),
     ([Pedido], [Nota], [Pedido], [Nota], [Pedido], [Nota]),
     (
-      ([3 de D], none, [b7 de A], none, [2 de Bb], none),
+      ([3 de D], none, [7 de A], none, [2 de Bb], none),
       ([b3 de E], none, [7M de Eb], none, [b2 de E], none),
       ([5 de B], none, [6 de G], none, [\#4 de C], none),
       ([4 de F], none, [b6 de C], none, [b5 de A], none),
@@ -364,11 +378,11 @@ Este material reúne exercícios de fixação sobre o "alfabeto" da música e a 
       ),
     )
 
-  + Escreva as escalas menores naturais (*T – 2 – b3 – 4 – 5 – b6 – b7*). Dica: cada uma tem as mesmas notas do seu relativo maior.
+  + Escreva as escalas menores naturais (*T – 2 – b3 – 4 – 5 – b6 – 7*). Dica: cada uma tem as mesmas notas do seu relativo maior.
 
     #tabela-preencher(
       columns: (0.7fr,) + (1fr,) * 7,
-      ([Tom], [T], [2], [b3], [4], [5], [b6], [b7]),
+      ([Tom], [T], [2], [b3], [4], [5], [b6], [7]),
       (
         ([Am],) + (none,) * 7,
         ([Em],) + (none,) * 7,
@@ -391,14 +405,14 @@ Este material reúne exercícios de fixação sobre o "alfabeto" da música e a 
 ]
 
 #ex(titulo: "Pentatônicas: notas e posições", nivel: "Desafio")[
-  + Escreva as notas das pentatônicas. Fórmulas: *menor* = T – b3 – 4 – 5 – b7; *maior* = T – 2 – 3 – 5 – 6.
+  + Escreva as notas das pentatônicas. Fórmulas: *menor* = T – b3 – 4 – 5 – 7; *maior* = T – 2 – 3 – 5 – 6.
 
     #grid(
       columns: (1fr, 1fr),
       column-gutter: 1.2em,
       tabela-preencher(
         columns: (1.1fr,) + (1fr,) * 5,
-        ([Menor], [T], [b3], [4], [5], [b7]),
+        ([Menor], [T], [b3], [4], [5], [7]),
         (
           ([Am],) + (none,) * 5,
           ([Em],) + (none,) * 5,
@@ -458,7 +472,7 @@ Este material reúne exercícios de fixação sobre o "alfabeto" da música e a 
   #rotina-estudo((
     ([Dizer em voz alta as notas da 6ª e da 5ª corda, casa por casa (0–12)], [5 min], [60]),
     ([Achar uma nota sorteada em todas as cordas, com o desenho de oitava], [5 min], [—]),
-    ([Tocar tônica + intervalo (3, b3, 5, b7, 7M) a partir de notas diferentes], [5 min], [60]),
+    ([Tocar tônica + intervalo (3, b3, 5, 7, 7M) a partir de notas diferentes], [5 min], [60]),
     ([Escala maior em uma corda só, cantando o nome das notas], [5 min], [60–70]),
     ([Pentatônica menor, posição 1, em Am, Cm e Em, subindo e descendo], [5 min], [70–90]),
   ))
@@ -506,7 +520,7 @@ Este material reúne exercícios de fixação sobre o "alfabeto" da música e a 
 
   #resposta(7)[
     6ª/3 (G) → 4ª casa 5 · 6ª/7 (B) → 4ª casa 9 · 5ª/3 (C) → 3ª casa 5 · 5ª/7 (E) → 3ª casa 9 · 4ª/2 (E) → 2ª casa *5* · 4ª/7 (A) → 2ª casa *10* · 3ª/2 (A) → 1ª casa *5* · 3ª/5 (C) → 1ª casa *8*. \
-    Nas quatro últimas linhas (partindo da 4ª ou da 3ª corda) é preciso avançar *três* casas, e não duas: o salto passa pelo par 3ª–2ª corda (Sol–Si), afinado em terça maior (4 semitons) e não em quarta justa (5 semitons) como os demais pares. Falta um semitom, que é compensado com uma casa a mais.
+    Nas quatro partidas da coluna da direita (4ª e 3ª cordas) é preciso avançar *três* casas, e não duas: o salto passa pelo par 3ª–2ª corda (Sol–Si), afinado em terça maior (4 semitons) e não em quarta justa (5 semitons) como os demais pares. Falta um semitom, que é compensado com uma casa a mais.
   ]
 
   #resposta(8)[
@@ -517,7 +531,7 @@ Este material reúne exercícios de fixação sobre o "alfabeto" da música e a 
         ([3], [1,5], [Terça menor], [b3], [11], [5,5], [Sétima maior], [7M]),
         ([7], [3,5], [Quinta justa], [5], [2], [1], [Segunda maior], [2]),
         ([4], [2], [Terça maior], [3], [6], [3], [Quarta aum. / Quinta dim.], [\#4/b5]),
-        ([10], [5], [Sétima menor], [b7], [9], [4,5], [Sexta maior], [6]),
+        ([10], [5], [Sétima menor], [7], [9], [4,5], [Sexta maior], [6]),
         ([5], [2,5], [Quarta justa], [4], [1], [0,5], [Segunda menor], [b2]),
         ([12], [6], [Oitava justa], [8], [8], [4], [Sexta menor], [b6]),
       ),
@@ -525,19 +539,19 @@ Este material reúne exercícios de fixação sobre o "alfabeto" da música e a 
   ]
 
   #resposta(9)[
-    C→E *3* · D→F *b3* · E→B *5* · F→Bb *4* · G→F *b7* · A→F\# *6* · Bb→D *3* · E→C *b6* · D→C\# *7M* · B→F *b5* · C→F\# *\#4* · Eb→Db *b7*. Repare em B→F (b5) e C→F\# (\#4): ambos têm 6 semitons (trítono), mas a ortografia define o nome.
+    C→E *3* · D→F *b3* · E→B *5* · F→Bb *4* · G→F *7* · A→F\# *6* · Bb→D *3* · E→C *b6* · D→C\# *7M* · B→F *b5* · C→F\# *\#4* · Eb→Db *7*. Repare em B→F (b5) e C→F\# (\#4): ambos têm 6 semitons (trítono), mas a ortografia define o nome.
   ]
 
   #resposta(10)[
-    3 de D = *F\#* · b3 de E = *G* · 5 de B = *F\#* · 4 de F = *Bb* · b7 de A = *G* · 7M de Eb = *D* · 6 de G = *E* · b6 de C = *Ab* · 2 de Bb = *C* · b2 de E = *F* · \#4 de C = *F\#* · b5 de A = *Eb*.
+    3 de D = *F\#* · b3 de E = *G* · 5 de B = *F\#* · 4 de F = *Bb* · 7 de A = *G* · 7M de Eb = *D* · 6 de G = *E* · b6 de C = *Ab* · 2 de Bb = *C* · b2 de E = *F* · \#4 de C = *F\#* · b5 de A = *Eb*.
   ]
 
   #resposta(11)[
-    a) 5ª/5 = Ré, *5* · b) 5ª/3 = Dó, *4* · c) 5ª/2 = Si, *3* · d) 4ª/5 = Sol, *8* (oitava) · e) 5ª/1 = Sib, *b3* · f) 6ª/5 = Lá, *2* · g) 4ª/4 = Fá\#, *7M* · h) 4ª/3 = Fá, *b7*.
+    a) 5ª/5 = Ré, *5* · b) 5ª/3 = Dó, *4* · c) 5ª/2 = Si, *3* · d) 4ª/5 = Sol, *8* (oitava) · e) 5ª/1 = Sib, *b3* · f) 6ª/5 = Lá, *2* · g) 4ª/4 = Fá\#, *7M* · h) 4ª/3 = Fá, *7*.
   ]
 
   #resposta(12)[
-    a) 3 (4 ST) → *b6* (8 ST) · b3 (3) → *6* (9) · 4 (5) → *5* (7) · 2 (2) → *b7* (10) · b2 (1) → *7M* (11) · 6 (9) → *b3* (3) · 7M (11) → *b2* (1) · \#4 (6) → *b5* (6). \
+    a) 3 (4 ST) → *b6* (8 ST) · b3 (3) → *6* (9) · 4 (5) → *5* (7) · 2 (2) → *7* (10) · b2 (1) → *7M* (11) · 6 (9) → *b3* (3) · 7M (11) → *b2* (1) · \#4 (6) → *b5* (6). \
     b) Fá\# → Lá é uma *terça menor* (b3); Dó → Ré é uma *segunda maior* (2).
   ]
 

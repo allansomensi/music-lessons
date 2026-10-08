@@ -10,30 +10,6 @@
 // Ajustes locais
 // ------------------------------------------------------------
 
-// Tabelas sem justificação (evita espaçamentos estranhos nas células).
-#show table: set par(justify: false)
-#show heading: set block(sticky: true)
-
-// Resposta do gabarito que não se divide entre páginas.
-#let resp(n, body) = block(breakable: false, width: 100%, resposta(n, body))
-
-// Tabela compacta para o gabarito.
-#let tabela-gab(headers, rows, columns: none) = align(center, block(
-  stroke: 0.5pt + color-rule-dark,
-  radius: 4pt,
-  clip: true,
-  width: 100%,
-  table(
-    columns: if columns == none { (1fr,) * headers.len() } else { columns },
-    align: center + horizon,
-    stroke: 0.5pt + color-rule-light,
-    inset: (x: 5pt, y: 4.5pt),
-    fill: (c, r) => if r == 0 { color-subtle-bg-alt } else if calc.even(r) { color-subtle-bg } else { white },
-    ..headers.map(h => text(weight: "bold", h)),
-    ..rows.flatten(),
-  ),
-))
-
 // Exercício que não se divide entre páginas.
 #let ex(titulo: none, nivel: none, body) = block(
   breakable: false,
@@ -77,7 +53,7 @@ Este material reúne exercícios progressivos para fixar o vocabulário melódic
 
 #caixa(tipo: "resumo", titulo: none, width: 100%)[
   #set text(size: 9.5pt)
-  #align(left)[*Convenções:* #h(4pt) Intervalos: T (tônica), b2, 2, b3, 3, 4, \#4, b5, 5, \#5, b6, 6, *b7* (7ª menor) e *7M* (7ª maior). Cifras: C7M, Cm7, C7, Cø = Cm7(b5), Cº7, Cm(7M) (menor com 7ª maior) e C7M(\#5) (maior com 7ª maior e 5ª aumentada). Níveis: *Médio* — aplicação direta; *Desafio* — raciocínio combinado.]
+  #align(left)[*Convenções:* #h(4pt) Intervalos: T (tônica), b2, 2, b3, 3, 4, \#4, b5, 5, \#5, b6, 6, *7* (7ª menor), *7M* (7ª maior) e *bb7* (7ª diminuta, soa igual à 6ª). Cifras: C7M, Cm7, C7, Cm7(b5) (meio-diminuto), Cº7, Cm(7M) (menor com 7ª maior) e C7M(\#5) (maior com 7ª maior e 5ª aumentada). O símbolo ø aparece só em graus (IIø = IIm7(b5)). Níveis: *Médio* — aplicação direta; *Desafio* — raciocínio combinado.]
 ]
 
 #pagebreak()
@@ -194,7 +170,7 @@ Este material reúne exercícios progressivos para fixar o vocabulário melódic
 ]
 
 #ex(titulo: "A dórico no braço", nivel: "Desafio")[
-  No braço abaixo (casas 4 a 9), marque *todas* as notas de *Lá dórico* que existem nessa região. Escreva dentro de cada círculo o intervalo (T, 2, b3, 4, 5, 6, b7) e destaque a nota característica (6 = Fá\#) com um círculo mais forte. Depois toque a escala ascendente e descendente sobre um acorde Am7.
+  No braço abaixo (casas 4 a 9), marque *todas* as notas de *Lá dórico* que existem nessa região. Escreva dentro de cada círculo o intervalo (T, 2, b3, 4, 5, 6, 7) e destaque a nota característica (6 = Fá\#) com um círculo mais forte. Depois toque a escala ascendente e descendente sobre um acorde Am7.
 
   #v(0.5em)
   #align(center, braco-vazio(casas: 6, fs: 4, casa-largura: 30pt))
@@ -272,12 +248,12 @@ Este material reúne exercícios progressivos para fixar o vocabulário melódic
 ]
 
 #ex(titulo: "Campo harmônico menor harmônico", nivel: "Médio")[
-  Monte as tétrades do campo menor harmônico nos três tons. Use as cifras Xm(7M), Xø, X7M(\#5), Xm7, X7, X7M e Xº7.
+  Monte as tétrades do campo menor harmônico nos três tons. Use as cifras Xm(7M), Xm7(b5), X7M(\#5), Xm7, X7, X7M e Xº7.
 
   #v(0.4em)
   #tabela-preencher(
     columns: (0.6fr,) + (1fr,) * 7,
-    altura: 1.2cm,
+    altura: 1cm,
     ([Tom], [I], [II], [bIII], [IV], [V], [bVI], [VII]),
     (
       ([Em],) + (none,) * 7,
@@ -297,7 +273,7 @@ Este material reúne exercícios progressivos para fixar o vocabulário melódic
   #v(0.4em)
   #tabela-preencher(
     columns: (0.6fr,) + (1fr,) * 7,
-    altura: 1.2cm,
+    altura: 1cm,
     ([Tom], [I], [II], [bIII], [IV], [V], [VI], [VII]),
     (
       ([Cm],) + (none,) * 7,
@@ -316,8 +292,8 @@ Este material reúne exercícios progressivos para fixar o vocabulário melódic
 
   #v(0.4em)
   #tabela-preencher(
-    columns: (1.7fr, 2fr, 2fr),
-    altura: 1.2cm,
+    columns: (2.3fr, 1.8fr, 1.8fr),
+    altura: 1.1cm,
     ([Graus], [Ré menor], [Si menor]),
     (
       ([a) Im – IVm7 – V7 – Im], none, none),
@@ -333,7 +309,7 @@ Este material reúne exercícios progressivos para fixar o vocabulário melódic
 ]
 
 #ex(titulo: "O modo frígio dominante", nivel: "Desafio")[
-  O 5º modo da menor harmônica é o *frígio dominante* (Mixolídio b9 b13): fórmula T – b2 – 3 – 4 – 5 – b6 – b7. Escreva o frígio dominante de cada nota, a menor harmônica de onde ele vem e o acorde de resolução.
+  O 5º modo da menor harmônica é o *frígio dominante* (Mixolídio b9 b13): fórmula #box[T – b2 – 3 – 4 – 5 – b6 – 7]. Escreva o frígio dominante de cada nota, a menor harmônica de onde ele vem e o acorde de resolução.
 
   #v(0.4em)
   #tabela-preencher(
@@ -361,7 +337,7 @@ Este material reúne exercícios progressivos para fixar o vocabulário melódic
 ]
 
 #ex(titulo: "Notas dos arpejos", nivel: "Médio")[
-  Escreva a tônica, a 3ª, a 5ª e a 7ª de cada tétrade. Atenção à grafia: em F\#ø a 5ª é *Dó* (e não Si\#); em G\#º7 a 7ª é *Fá* (7ª diminuta).
+  Escreva a tônica, a 3ª, a 5ª e a 7ª de cada tétrade. Atenção à grafia: em F\#m7(b5) a 5ª é *Dó* (e não Si\#); em G\#º7 a 7ª é *Fá* (7ª diminuta).
 
   #v(0.4em)
   #grid(
@@ -375,7 +351,7 @@ Este material reúne exercícios progressivos para fixar o vocabulário melódic
         ([Cm7],) + (none,) * 4,
         ([F7M],) + (none,) * 4,
         ([Bb7],) + (none,) * 4,
-        ([F\#ø],) + (none,) * 4,
+        ([F\#m7(b5)],) + (none,) * 4,
         ([G\#º7],) + (none,) * 4,
         ([Am(7M)],) + (none,) * 4,
       ),
@@ -405,18 +381,18 @@ Este material reúne exercícios progressivos para fixar o vocabulário melódic
     altura: 1.1cm,
     ([Notas], [Cifra], [Notas], [Cifra]),
     (
-      ([a) D – F\# – A – C], none, [e) C\# – E – G – Bb], none),
-      ([b) G – Bb – Db – F], none, [f) F – A – C\# – E], none),
-      ([c) Bb – D – F – A], none, [g) A – C – E – G\#], none),
-      ([d) E – G – B – D], none, [h) Ab – C – Eb – G], none),
-      ([i) B – D\# – F\# – A\#], none, [k) F\# – A – C – Eb], none),
-      ([j) Eb – Gb – Bb – Db], none, [l) C – Eb – G – B], none),
+      ([a) D – F\# – A – C], none, [g) C\# – E – G – Bb], none),
+      ([b) G – Bb – Db – F], none, [h) F – A – C\# – E], none),
+      ([c) Bb – D – F – A], none, [i) A – C – E – G\#], none),
+      ([d) E – G – B – D], none, [j) Ab – C – Eb – G], none),
+      ([e) B – D\# – F\# – A\#], none, [k) F\# – A – C – Eb], none),
+      ([f) Eb – Gb – Bb – Db], none, [l) C – Eb – G – B], none),
     ),
   )
 ]
 
 #ex(titulo: "Arpejos no braço", nivel: "Médio")[
-  Marque nos braços todas as notas do arpejo pedido dentro da região indicada e escreva o intervalo em cada círculo (T, 3/b3, 5, 7M/b7). Pinte as tônicas.
+  Marque nos braços todas as notas do arpejo pedido dentro da região indicada e escreva o intervalo em cada círculo (T, 3/b3, 5, 7M/7). Pinte as tônicas.
 
   #v(0.5em)
   #grid(
@@ -455,9 +431,10 @@ Este material reúne exercícios progressivos para fixar o vocabulário melódic
     (
       ([Em7 sobre C7M], none, none, none),
       ([Am7 sobre F7M], none, none, none),
-      ([Bø sobre G7], none, none, none),
+      ([Bm7(b5) sobre G7], none, none, none),
       ([Dm7 sobre Bb7M], none, none, none),
-      ([F\#ø sobre D7], none, none, none),
+      ([F\#m7(b5) sobre D7], none, none, none),
+      ([Eb7M sobre Cm7], none, none, none),
     ),
   )
 
@@ -478,7 +455,7 @@ Este material reúne exercícios progressivos para fixar o vocabulário melódic
     [Encontro as notas de qualquer modo pensando no relativo maior *e* na alteração em relação à maior/menor paralela.],
     [Escrevo as três escalas menores em qualquer tom, com a grafia correta (uma letra por nota).],
     [Monto o campo menor harmônico e o menor melódico e reconheço o V7 com sensível.],
-    [Toco os arpejos de X7M, Xm7, X7, Xø e Xº7 em pelo menos duas regiões do braço.],
+    [Toco os arpejos de X7M, Xm7, X7, Xm7(b5) e Xº7 em pelo menos duas regiões do braço.],
     [Uso o arpejo a partir da 3ª para tocar a 9ª sobre acordes maiores, menores e dominantes.],
   ))
 ]
@@ -488,33 +465,33 @@ Este material reúne exercícios progressivos para fixar o vocabulário melódic
 // ============================================================
 
 #gabarito[
-  #resp(1)[
-    #tabela-gab(
+  #resposta(1)[
+    #tabela(
       columns: (1fr, 2.6fr, 0.9fr, 1.6fr),
       ([Modo], [Fórmula], [Tétrade], [Nota característica]),
       (
         ([Jônico], [T – 2 – 3 – 4 – 5 – 6 – 7M], [X7M], [— (referência)]),
-        ([Dórico], [T – 2 – b3 – 4 – 5 – 6 – b7], [Xm7], [6 (6ª maior)]),
-        ([Frígio], [T – b2 – b3 – 4 – 5 – b6 – b7], [Xm7], [b2]),
+        ([Dórico], [T – 2 – b3 – 4 – 5 – 6 – 7], [Xm7], [6 (6ª maior)]),
+        ([Frígio], [T – b2 – b3 – 4 – 5 – b6 – 7], [Xm7], [b2]),
         ([Lídio], [T – 2 – 3 – \#4 – 5 – 6 – 7M], [X7M], [\#4]),
-        ([Mixolídio], [T – 2 – 3 – 4 – 5 – 6 – b7], [X7], [b7]),
-        ([Eólio], [T – 2 – b3 – 4 – 5 – b6 – b7], [Xm7], [— (referência menor)]),
-        ([Lócrio], [T – b2 – b3 – 4 – b5 – b6 – b7], [Xø], [b5]),
+        ([Mixolídio], [T – 2 – 3 – 4 – 5 – 6 – 7], [X7], [7 (7ª menor)]),
+        ([Eólio], [T – 2 – b3 – 4 – 5 – b6 – 7], [Xm7], [— (referência menor)]),
+        ([Lócrio], [T – b2 – b3 – 4 – b5 – b6 – 7], [Xm7(b5)], [b5]),
       ),
     )
     Critério: no eólio, aceite também "b6" — é a nota que o distingue do dórico.
   ]
 
-  #resp(2)[
-    a) E dórico · D maior · C\# (6) — b) F lídio · C maior · B (\#4) — c) Ab mixolídio · Db maior · Gb (b7) — d) C\# lócrio · D maior · G (b5) — e) B frígio · G maior · C (b2) — f) D lídio · A maior · G\# (\#4).
+  #resposta(2)[
+    a) E dórico · D maior · C\# (6) — b) F lídio · C maior · B (\#4) — c) Ab mixolídio · Db maior · Gb (7ª menor) — d) C\# lócrio · D maior · G (b5) — e) B frígio · G maior · C (b2) — f) D lídio · A maior · G\# (\#4).
   ]
 
-  #resp(3)[
+  #resposta(3)[
     D dórico: D E F G A B C (C maior) · E frígio: E F G A B C D (C maior) · Bb lídio: Bb C D E F G A (F maior) · A mixolídio: A B C\# D E F\# G (D maior) · F\# eólio: F\# G\# A B C\# D E (A maior) · C\# lócrio: C\# D E F\# G A B (D maior) · Eb dórico: Eb F Gb Ab Bb C Db (Db maior) · G frígio: G Ab Bb C D Eb F (Eb maior).
   ]
 
-  #resp(4)[
-    #tabela-gab(
+  #resposta(4)[
+    #tabela(
       columns: (0.5fr, 0.9fr, 1fr, 2.6fr),
       ([Grau], [Tétrade], [Modo], [Notas]),
       (
@@ -524,19 +501,19 @@ Este material reúne exercícios progressivos para fixar o vocabulário melódic
         ([IV], [Eb7M], [Lídio], [Eb F G A Bb C D]),
         ([V], [F7], [Mixolídio], [F G A Bb C D Eb]),
         ([VI], [Gm7], [Eólio], [G A Bb C D Eb F]),
-        ([VII], [Aø], [Lócrio], [A Bb C D Eb F G]),
+        ([VII], [Am7(b5)], [Lócrio], [A Bb C D Eb F G]),
       ),
     )
   ]
 
-  #resp(5)[
-    #tabela-gab(
+  #resposta(5)[
+    #tabela(
       columns: (1fr, 2.4fr, 1.2fr, 1fr),
       ([Modo], [Notas], [Mudou], [Origem]),
       (
         ([G lídio], [G A B C\# D E F\#], [—], [D maior]),
         ([G jônico], [G A B C D E F\#], [C\# → C (4)], [G maior]),
-        ([G mixolídio], [G A B C D E F], [F\# → F (b7)], [C maior]),
+        ([G mixolídio], [G A B C D E F], [F\# → F (7ª menor)], [C maior]),
         ([G dórico], [G A Bb C D E F], [B → Bb (b3)], [F maior]),
         ([G eólio], [G A Bb C D Eb F], [E → Eb (b6)], [Bb maior]),
         ([G frígio], [G Ab Bb C D Eb F], [A → Ab (b2)], [Eb maior]),
@@ -545,7 +522,7 @@ Este material reúne exercícios progressivos para fixar o vocabulário melódic
     )
   ]
 
-  #resp(6)[
+  #resposta(6)[
     Lá dórico (A B C D E F\# G) nas casas 4 a 9 — em cinza, a 6ª (Fá\#):
     #v(0.3em)
     #align(center, braco-notas(
@@ -554,21 +531,21 @@ Este material reúne exercícios progressivos para fixar o vocabulário melódic
       (
         ("", "T", "", "2", "b3", ""),
         ("", "4", "", "5", "", "*6"),
-        ("*6", "b7", "", "T", "", "2"),
+        ("*6", "7", "", "T", "", "2"),
         ("2", "b3", "", "4", "", "5"),
-        ("", "5", "", "*6", "b7", ""),
+        ("", "5", "", "*6", "7", ""),
         ("", "T", "", "2", "b3", ""),
       ),
     ))
     Critério: 20 notas; nenhuma nota de fora da escala (Fá natural, Sol\# etc.).
   ]
 
-  #resp(7)[
-    a) Relativos (mesmas notas, tônicas diferentes). Soam diferentes porque o centro tonal muda: os intervalos são medidos a partir de Ré, e o acorde de base passa a ser Dm7. — b) Si (dórico) × Sib (eólio): a 6ª maior × 6ª menor. — c) Lá dórico: o Fá\# é a 3ª de D7 e, sobre Lá, é a 6ª maior — nota característica do dórico (notas de G maior). — d) E frígio = notas de C maior; E lídio = notas de B maior. — e) A 7ª: Sib (b7) no mixolídio × Si (7M) no jônico. Soa sobre acordes dominantes (C7). — f) Resposta pessoal; critério: o aluno deve apontar a 6ª (Fá\# no dórico × Fá no eólio) como responsável pelo som mais "aberto" do dórico.
+  #resposta(7)[
+    a) Relativos (mesmas notas, tônicas diferentes). Soam diferentes porque o centro tonal muda: os intervalos são medidos a partir de Ré, e o acorde de base passa a ser Dm7. — b) Si (dórico) × Sib (eólio): a 6ª maior × 6ª menor. — c) Lá dórico: o Fá\# é a 3ª de D7 e, sobre Lá, é a 6ª maior — nota característica do dórico (notas de G maior). — d) E frígio = notas de C maior; E lídio = notas de B maior. — e) A 7ª: Sib (7ª menor) no mixolídio × Si (7M) no jônico. Soa sobre acordes dominantes (C7). — f) Resposta pessoal; critério: o aluno deve apontar a 6ª (Fá\# no dórico × Fá no eólio) como responsável pelo som mais "aberto" do dórico.
   ]
 
-  #resp(8)[
-    #tabela-gab(
+  #resposta(8)[
+    #tabela(
       columns: (0.5fr, 1.7fr, 1.7fr, 1.7fr),
       ([Tom], [Natural], [Harmônica], [Melódica]),
       (
@@ -581,54 +558,54 @@ Este material reúne exercícios progressivos para fixar o vocabulário melódic
     )
   ]
 
-  #resp(9)[
+  #resposta(9)[
     a) G menor melódica — b) C menor harmônica — c) F\# menor natural — d) B menor harmônica — e) D menor melódica — f) Bb menor harmônica — g) E menor melódica.
   ]
 
-  #resp(10)[
-    #tabela-gab(
+  #resposta(10)[
+    #tabela(
       columns: (0.5fr,) + (1fr,) * 7,
       ([Tom], [I], [II], [bIII], [IV], [V], [bVI], [VII]),
       (
-        ([Em], [Em(7M)], [F\#ø], [G7M(\#5)], [Am7], [*B7*], [C7M], [D\#º7]),
-        ([Dm], [Dm(7M)], [Eø], [F7M(\#5)], [Gm7], [*A7*], [Bb7M], [C\#º7]),
-        ([Gm], [Gm(7M)], [Aø], [Bb7M(\#5)], [Cm7], [*D7*], [Eb7M], [F\#º7]),
+        ([Em], [Em(7M)], [F\#m7(b5)], [G7M(\#5)], [Am7], [*B7*], [C7M], [D\#º7]),
+        ([Dm], [Dm(7M)], [Em7(b5)], [F7M(\#5)], [Gm7], [*A7*], [Bb7M], [C\#º7]),
+        ([Gm], [Gm(7M)], [Am7(b5)], [Bb7M(\#5)], [Cm7], [*D7*], [Eb7M], [F\#º7]),
       ),
     )
     O V7 (dominante com sensível). Sensíveis: D\# (Em), C\# (Dm), F\# (Gm). O VIIº7 também tem função dominante.
   ]
 
-  #resp(11)[
-    #tabela-gab(
+  #resposta(11)[
+    #tabela(
       columns: (0.5fr,) + (1fr,) * 7,
       ([Tom], [I], [II], [bIII], [IV], [V], [VI], [VII]),
       (
-        ([Cm], [Cm(7M)], [Dm7], [Eb7M(\#5)], [F7], [G7], [Aø], [Bø]),
-        ([Em], [Em(7M)], [F\#m7], [G7M(\#5)], [A7], [B7], [C\#ø], [D\#ø]),
-        ([Gm], [Gm(7M)], [Am7], [Bb7M(\#5)], [C7], [D7], [Eø], [F\#ø]),
+        ([Cm], [Cm(7M)], [Dm7], [Eb7M(\#5)], [F7], [G7], [Am7(b5)], [Bm7(b5)]),
+        ([Em], [Em(7M)], [F\#m7], [G7M(\#5)], [A7], [B7], [C\#m7(b5)], [D\#m7(b5)]),
+        ([Gm], [Gm(7M)], [Am7], [Bb7M(\#5)], [C7], [D7], [Em7(b5)], [F\#m7(b5)]),
       ),
     )
-    Mudam: II (ø → m7), IV (m7 → 7), VI (7M → ø, e a fundamental sobe ½ tom) e VII (º7 → ø). O IV7 (F7, A7, C7) gera o dominante com \#11 — o modo lídio dominante.
+    Mudam: II (m7(b5) → m7), IV (m7 → 7), VI (7M → m7(b5), e a fundamental sobe ½ tom) e VII (º7 → m7(b5)). O IV7 (F7, A7, C7) gera o dominante com \#11 — o modo lídio dominante.
   ]
 
-  #resp(12)[
-    a) Dm – Gm7 – A7 – Dm | Bm – Em7 – F\#7 – Bm. — b) Bb7M – Eø – A7 – Dm(7M) | G7M – C\#ø – F\#7 – Bm(7M). — c) Dm – C\#º7 – Dm – A7 | Bm – A\#º7 – Bm – F\#7. — d) Dm – F7M(\#5) – Gm7 – A7 | Bm – D7M(\#5) – Em7 – F\#7. \
+  #resposta(12)[
+    a) Dm – Gm7 – A7 – Dm | Bm – Em7 – F\#7 – Bm. — b) Bb7M – Em7(b5) – A7 – Dm(7M) | G7M – C\#m7(b5) – F\#7 – Bm(7M). — c) Dm – C\#º7 – Dm – A7 | Bm – A\#º7 – Bm – F\#7. — d) Dm – F7M(\#5) – Gm7 – A7 | Bm – D7M(\#5) – Em7 – F\#7. \
     O VIIº7 substitui o V7 (é um V7(b9) sem fundamental: C\#º7 = C\# E G Bb ⊂ A7(b9)); contém o trítono e a sensível.
   ]
 
-  #resp(13)[
+  #resposta(13)[
     E: E F G\# A B C D · Lá menor harmônica · Am — A: A Bb C\# D E F G · Ré menor harmônica · Dm — B: B C D\# E F\# G A · Mi menor harmônica · Em — D: D Eb F\# G A Bb C · Sol menor harmônica · Gm.
   ]
 
-  #resp(14)[
-    Cm7: C Eb G Bb · F7M: F A C E · Bb7: Bb D F Ab · F\#ø: F\# A C E · G\#º7: G\# B D F · Am(7M): A C E G\# · Db7M: Db F Ab C · E7: E G\# B D · Bm7: B D F\# A · Ab7: Ab C Eb Gb · C\#m7: C\# E G\# B · Eb7M(\#5): Eb G B D.
+  #resposta(14)[
+    Cm7: C Eb G Bb · F7M: F A C E · Bb7: Bb D F Ab · F\#m7(b5): F\# A C E · G\#º7: G\# B D F · Am(7M): A C E G\# · Db7M: Db F Ab C · E7: E G\# B D · Bm7: B D F\# A · Ab7: Ab C Eb Gb · C\#m7: C\# E G\# B · Eb7M(\#5): Eb G B D.
   ]
 
-  #resp(15)[
-    a) D7 — b) Gø (Gm7(b5)) — c) Bb7M — d) Em7 — e) C\#º7 — f) F7M(\#5) — g) Am(7M) — h) Ab7M — i) B7M — j) Ebm7 — k) F\#º7 — l) Cm(7M).
+  #resposta(15)[
+    a) D7 — b) Gm7(b5) — c) Bb7M — d) Em7 — e) B7M — f) Ebm7 — g) C\#º7 — h) F7M(\#5) — i) Am(7M) — j) Ab7M — k) F\#º7 — l) Cm(7M).
   ]
 
-  #resp(16)[
+  #resposta(16)[
     #grid(
       columns: (1fr, 1fr),
       gutter: 1em,
@@ -650,16 +627,16 @@ Este material reúne exercícios progressivos para fixar o vocabulário melódic
         #braco-notas(fs: 5, casa-largura: 26pt, (
           ("T", "", "", "b3"),
           ("", "", "5", ""),
-          ("b7", "", "T", ""),
+          ("7", "", "T", ""),
           ("b3", "", "", ""),
-          ("5", "", "", "b7"),
+          ("5", "", "", "7"),
           ("T", "", "", "b3"),
         ))
       ],
     )
   ]
 
-  #resp(17)[
+  #resposta(17)[
     Resposta-modelo (outras digitações são válidas se respeitarem a região 7–10 e a ordem T-3-5-7):
     #v(0.2em)
     #tab(
@@ -668,8 +645,8 @@ Este material reúne exercícios progressivos para fixar o vocabulário melódic
     Critério: Dm7 = D F A C · G7 = G B D F · C7M = C E G B; nenhuma nota fora das casas 7–10. Notas a ½ tom: o Dó (7ª de Dm7) e o Si (3ª de G7) — 4ª corda, casas 10 e 9; o Fá (7ª de G7) e o Mi (3ª de C7M) — 3ª corda, casas 10 e 9. São as notas-guia da cadência.
   ]
 
-  #resp(18)[
-    Em7/C7M: E G B D → 3 5 7M 9 → C7M(9) · Am7/F7M: A C E G → 3 5 7M 9 → F7M(9) · Bø/G7: B D F A → 3 5 b7 9 → G7(9) · Dm7/Bb7M: D F A C → 3 5 7M 9 → Bb7M(9) · F\#ø/D7: F\# A C E → 3 5 b7 9 → D7(9). \
-    Regra: o arpejo da 3ª gera "acorde sem fundamental + 9ª" (3-5-7-9). A fundamental nunca aparece — por isso o som fica moderno e leve.
+  #resposta(18)[
+    Em7/C7M: E G B D → 3 5 7M 9 → C7M(9) · Am7/F7M: A C E G → 3 5 7M 9 → F7M(9) · Bm7(b5)/G7: B D F A → 3 5 7 9 → G7(9) · Dm7/Bb7M: D F A C → 3 5 7M 9 → Bb7M(9) · F\#m7(b5)/D7: F\# A C E → 3 5 7 9 → D7(9) · Eb7M/Cm7: Eb G Bb D → b3 5 7 9 → Cm7(9). \
+    Regra: o arpejo da 3ª gera "acorde sem fundamental + 9ª" (3-5-7-9, com a 3ª e a 7ª do acorde de base). A fundamental nunca aparece — por isso o som fica moderno e leve.
   ]
 ]

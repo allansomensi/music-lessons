@@ -73,7 +73,7 @@
 #let INTERVALOS = (
   "T": (0, 0), "b2": (1, 1), "2": (1, 2), "#2": (1, 3), "b3": (2, 3), "3": (2, 4),
   "4": (3, 5), "#4": (3, 6), "b5": (4, 6), "5": (4, 7), "#5": (4, 8), "b6": (5, 8),
-  "6": (5, 9), "bb7": (6, 9), "b7": (6, 10), "7M": (6, 11),
+  "6": (5, 9), "bb7": (6, 9), "7": (6, 10), "7M": (6, 11),
   "b9": (1, 1), "9": (1, 2), "#9": (1, 3), "11": (3, 5), "#11": (3, 6), "b13": (5, 8), "13": (5, 9),
 )
 #let transp(n, iv) = {
@@ -91,11 +91,11 @@
 // DOMINANTES E SUBSTITUIÇÕES
 // ============================================================
 
-#let DOM7 = ("T", "3", "5", "b7")
-#let MEIO-DIM = ("T", "b3", "b5", "b7")
-#let MENOR7 = ("T", "b3", "5", "b7")
+#let DOM7 = ("T", "3", "5", "7")
+#let MEIO-DIM = ("T", "b3", "b5", "7")
+#let MENOR7 = ("T", "b3", "5", "7")
 #let DIM7 = ("T", "b3", "b5", "bb7")
-#let DOM7B9 = ("T", "3", "5", "b7", "b9")
+#let DOM7B9 = ("T", "3", "5", "7", "b9")
 
 #let tr(n, iv) = transp(n, iv)
 #let sust(n) = (l: n.l, a: n.a + 1)
@@ -134,12 +134,12 @@
   }
 })
 
-#let tab-alvos(cabecalho, f) = tabela-resumo(
+#let tab-alvos(cabecalho, f, tamanho: 10pt) = tabela-resumo(
   cabecalho,
   TONS.map(t => ([#t],) + ALVOS.map(a => f(tr(nt(t), a.at(1)), a.at(2)))),
   columns: (0.6fr,) + (1fr,) * 6,
-  inset: (x: 0.3em, y: 0.42em),
-  tamanho: 10pt,
+  inset: (x: 0.25em, y: 0.42em),
+  tamanho: tamanho,
 )
 
 // ============================================================
@@ -155,7 +155,7 @@ Este resumo organiza, em todos os tons, os dominantes que criam movimento harmô
   (
     ([Dominante secundário], [X7 que funciona como V7 de um grau do campo que não é a tônica], [A7 (V/II) → Dm7]),
     ([SubV (subst. de trítono)], [dominante a um trítono do original: mesmo trítono, resolve um semitom abaixo], [Db7 → C (no lugar de G7)]),
-    ([II-V relacionado], [o II do acorde-alvo tocado antes do dominante secundário], [Eø – A7 → Dm7]),
+    ([II-V relacionado], [o II do acorde-alvo tocado antes do dominante secundário], [Em7(b5) – A7 → Dm7]),
     ([Diminuto de passagem], [º7 cromático entre dois acordes; é um V7(b9) sem tônica do acorde seguinte], [C – C\#º7 – Dm7]),
   ),
   columns: (1.15fr, 2.3fr, 1.25fr),
@@ -182,15 +182,15 @@ Este resumo organiza, em todos os tons, os dominantes que criam movimento harmô
 
 == 3. II-V relacionado de cada dominante
 
-#intro[O II relacionado é o II grau do acorde-alvo: *m7* quando o alvo é maior e *ø* (m7(b5)) quando o alvo é menor. A cadeia completa fica II – V → alvo.]
+#intro[O II relacionado é o II grau do acorde-alvo: *m7* quando o alvo é maior e *m7(b5)* quando o alvo é menor. A cadeia completa fica II – V → alvo.]
 
 #tab-alvos(cab-alvos(""), (alvo, menor) => [
-  #cel-acorde(tr(alvo, "2"), if menor { "ø" } else { "m7" }, if menor { MEIO-DIM } else { MENOR7 })
+  #cel-acorde(tr(alvo, "2"), if menor { "m7(b5)" } else { "m7" }, if menor { MEIO-DIM } else { MENOR7 })
   #h(0.1em)–#h(0.1em)
   #cel-acorde(tr(alvo, "5"), "7", DOM7)
-])
+], tamanho: 8.5pt)
 
-#nota-rodape[Exemplo em C: Eø – A7 → Dm7 · F\#ø – B7 → Em7 · Gm7 – C7 → F7M · Am7 – D7 → G7 · Bø – E7 → Am7.]
+#nota-rodape[Exemplo em C: Em7(b5) – A7 → Dm7 · F\#m7(b5) – B7 → Em7 · Gm7 – C7 → F7M · Am7 – D7 → G7 · Bm7(b5) – E7 → Am7.]
 
 #pagebreak()
 
@@ -208,11 +208,11 @@ Este resumo organiza, em todos os tons, os dominantes que criam movimento harmô
     let ns = DOM7B9.map(i => nome(transp(v, i)))
     (
       [#(t + "m")],
-      cel-acorde(ii, "ø", MEIO-DIM),
+      cel-acorde(ii, "m7(b5)", MEIO-DIM),
       cel-acorde(v, "7", DOM7),
       [#chk(nome(v), DOM7B9, ns)#text(size: 9pt, ns.join(" - "))],
       cel-acorde(tr(r, "b2"), "7", DOM7),
-      text(size: 9pt)[#(nomep(ii) + "ø") – #(nomep(v) + "7") – #(t + "m")],
+      text(size: 9pt)[#(nomep(ii) + "m7(b5)") – #(nomep(v) + "7") – #(t + "m")],
     )
   }),
   columns: (0.6fr, 0.8fr, 0.8fr, 1.6fr, 1.05fr, 1.55fr),
@@ -220,11 +220,11 @@ Este resumo organiza, em todos os tons, os dominantes que criam movimento harmô
   tamanho: 10pt,
 )
 
-#nota-rodape[Variações comuns: IIø – V7(b9) – Im6, IIø – V7(b13) – Im7M e IIø – SubV7 – Im (ex.: Dø – Db7 – Cm). Em Sol\# e Dó\# menor, a sensível é Fá\#\# e Si\# (notas do V7).]
+#nota-rodape[Variações comuns: IIø – V7(b9) – Im6, IIø – V7(b13) – Im(7M) e IIø – SubV7 – Im (ex.: Dm7(b5) – Db7 – Cm). Em Sol\# e Dó\# menor, a sensível é Fá\#\# e Si\# (notas do V7).]
 
 == 5. Diminutos de passagem
 
-#intro[O diminuto de passagem liga dois acordes por cromatismo no baixo. Ele é o VIIº7 do acorde seguinte (ex.: C\#º7 = A7(b9) sem tônica → Dm7). Como o º7 é simétrico, a grafia funcional pode gerar dobrados sustenidos; nesses casos aparece o nome usual.]
+#intro[O diminuto de passagem liga dois acordes por cromatismo no baixo. Na forma ascendente, ele é o VIIº7 do acorde seguinte (ex.: C\#º7 = A7(b9) sem tônica → Dm7). Como o º7 é simétrico, a grafia funcional pode gerar dobrados sustenidos; nesses casos aparece o nome usual.]
 
 #let PASSAGENS = (
   ("I – #Iº7 – IIm7", n => sust(n)),
@@ -248,11 +248,11 @@ Este resumo organiza, em todos os tons, os dominantes que criam movimento harmô
 
 == 6. Trítono de cada dominante e seu SubV
 
-#intro[O trítono entre a *3ª* e a *b7* é o que dá ao dominante sua tensão. O SubV usa as mesmas duas notas, com as funções trocadas (a 3ª de um é a b7 do outro, enarmonicamente). Por isso os dois resolvem no mesmo acorde.]
+#intro[O trítono entre a *3ª* e a *7ª* é o que dá ao dominante sua tensão. O SubV usa as mesmas duas notas, com as funções trocadas (a 3ª de um é a 7ª do outro, enarmonicamente). Por isso os dois resolvem no mesmo acorde.]
 
 #let DOMINANTES = ("C", "Db", "D", "Eb", "E", "F", "F#", "G", "Ab", "A", "Bb", "B")
 #tabela-resumo(
-  ([Dominante], [Notas], [Trítono (3ª – b7)], [Resolve em], [SubV], [Trítono do SubV]),
+  ([Dominante], [Notas], [Trítono (3ª – 7ª)], [Resolve em], [SubV], [Trítono do SubV]),
   DOMINANTES.map(d => {
     let r = nt(d)
     let ns = DOM7.map(i => nome(transp(r, i)))
@@ -292,4 +292,4 @@ Este resumo organiza, em todos os tons, os dominantes que criam movimento harmô
 )
 
 #v(0.6em)
-#aviso("dica")[Para achar o diminuto que substitui um dominante, suba meio tom a partir da tônica do dominante: G7(b9) → *Abº7*, enarmônico de *Bº7* (B - D - F - Ab), que são exatamente a 3ª, a 5ª, a b7 e a b9 de G7(b9). Toque G7(b9) e Bº7 seguidos e compare: soam quase iguais.]
+#aviso("dica")[Para achar o diminuto que substitui um dominante, suba meio tom a partir da tônica do dominante: G7(b9) → *Abº7*, enarmônico de *Bº7* (B - D - F - Ab), que são exatamente a 3ª, a 5ª, a 7ª e a b9 de G7(b9). Toque G7(b9) e Bº7 seguidos e compare: soam quase iguais.]

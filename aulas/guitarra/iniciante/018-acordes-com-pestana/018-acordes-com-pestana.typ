@@ -14,9 +14,6 @@
 // que precisam quebrar, como `exercicio`, já declaram breakable: true).
 #set block(breakable: false)
 
-// Texto de células de tabela sem justificação (evita espaços esticados)
-#show table: set par(justify: false)
-
 // Exercício que não se divide entre páginas (enunciado + área de resposta juntos)
 #let ex(..args) = block(breakable: false, above: 1.5em, below: 0.9em, exercicio(..args))
 
@@ -34,7 +31,7 @@
 // de `braco-notas` com o intervalo de cada nota calculado.
 
 #let afinacao = (4, 9, 2, 7, 11, 4) // 6ª, 5ª, 4ª, 3ª, 2ª, 1ª corda
-#let nomes-int = ("0": "T", "3": "b3", "4": "3", "7": "5", "10": "b7", "11": "7M")
+#let nomes-int = ("0": "T", "3": "b3", "4": "3", "7": "5", "10": "7", "11": "7M")
 #let intervalos-acorde(tabs, raiz, fs, fe) = {
   let casas = tabs.split(",")
   range(6).map(i => range(fs, fe + 1).map(f => {
@@ -75,8 +72,6 @@ Como o desenho inteiro pode deslizar pelo braço, cada casa produz um acorde dif
   [*Teste corda por corda.* Monte o acorde e toque cada corda separadamente, da 6ª à 1ª. Corrija a que estiver abafada ou trastejando antes de tocar o acorde inteiro.],
 ))
 
-#v(0.5em)
-
 #comparativo(
   titulo-esquerda: "Correto",
   titulo-direita: "Errado",
@@ -110,17 +105,11 @@ Como o desenho inteiro pode deslizar pelo braço, cada casa produz um acorde dif
   ),
 )
 
-#v(0.4em)
-
-#caixa(tipo: "atencao")[
-  Dor muscular leve é normal no início; *dor aguda ou formigamento não*. Treine pestana em blocos de poucos minutos, com pausas, ao longo do dia. A força certa se desenvolve aos poucos, com repetição, não numa tarde.
-]
-
 == 3. Shape E — tônica na 6ª corda
 
 O shape E é o acorde aberto de *E (Mi maior)* tocado com os dedos 2, 3 e 4, com o indicador fazendo a pestana. A *tônica está na 6ª corda* (e se repete na 4ª e na 1ª): a casa da pestana é a casa da tônica na 6ª corda. Na casa 1, a tônica é Fá — por isso o primeiro exemplo é *F*.
 
-Os tipos de acorde usados aqui são: *maior* (T – 3 – 5), *menor* ou *m* (T – b3 – 5), *7* (maior com a sétima menor, b7), *m7* (menor com b7) e *7M* (maior com a sétima maior, 7M). Nos diagramas, *T* é a tônica e os números indicam o intervalo de cada nota em relação a ela.
+Os tipos de acorde usados aqui são: *maior* (T – 3 – 5), *menor* ou *m* (T – b3 – 5), *7* (maior com a 7ª menor: T – 3 – 5 – 7), *m7* (menor com a 7ª menor: T – b3 – 5 – 7) e *7M* (maior com a 7ª maior: T – 3 – 5 – 7M). Nos diagramas, *T* é a tônica e os números indicam o intervalo de cada nota em relação a ela; *7* é sempre a 7ª menor e *7M*, a 7ª maior.
 
 #v(0.3em)
 
@@ -147,8 +136,8 @@ Os tipos de acorde usados aqui são: *maior* (T – 3 – 5), *menor* ou *m* (T 
   (
     (tabs: "1,3,3,2,1,1", nome: " ", titulo: "F", detalhe: "T 5 T 3 5 T"),
     (tabs: "1,3,3,1,1,1", nome: " ", titulo: "Fm", detalhe: "T 5 T b3 5 T"),
-    (tabs: "1,3,1,2,1,1", nome: " ", titulo: "F7", detalhe: "T 5 b7 3 5 T"),
-    (tabs: "1,3,1,1,1,1", nome: " ", titulo: "Fm7", detalhe: "T 5 b7 b3 5 T"),
+    (tabs: "1,3,1,2,1,1", nome: " ", titulo: "F7", detalhe: "T 5 7 3 5 T"),
+    (tabs: "1,3,1,1,1,1", nome: " ", titulo: "Fm7", detalhe: "T 5 7 b3 5 T"),
     (tabs: "1,x,2,2,1,x,*", nome: " ", titulo: "F7M", detalhe: "T · 7M 3 5 ·"),
   ),
 )
@@ -184,8 +173,8 @@ O shape A vem do acorde aberto de *A (Lá maior)*. A *tônica está na 5ª corda
   (
     (tabs: "x,1,3,3,3,1", nome: " ", titulo: "Bb", detalhe: "· T 5 T 3 5"),
     (tabs: "x,1,3,3,2,1", nome: " ", titulo: "Bbm", detalhe: "· T 5 T b3 5"),
-    (tabs: "x,1,3,1,3,1", nome: " ", titulo: "Bb7", detalhe: "· T 5 b7 3 5"),
-    (tabs: "x,1,3,1,2,1", nome: " ", titulo: "Bbm7", detalhe: "· T 5 b7 b3 5"),
+    (tabs: "x,1,3,1,3,1", nome: " ", titulo: "Bb7", detalhe: "· T 5 7 3 5"),
+    (tabs: "x,1,3,1,2,1", nome: " ", titulo: "Bbm7", detalhe: "· T 5 7 b3 5"),
     (tabs: "x,1,3,2,3,1", nome: " ", titulo: "Bb7M", detalhe: "· T 5 7M 3 5"),
   ),
 )
@@ -203,9 +192,9 @@ Compare os desenhos: cada tipo de acorde é o shape maior com *uma ou duas notas
   ([*Tipo*], [*Alteração*], [*Shape E (tônica na 6ª)*], [*Shape A (tônica na 5ª)*]),
   (
     ([m], [3 desce para b3], [3ª corda: 1 casa para trás], [2ª corda: 1 casa para trás]),
-    ([7], [T (oitava) desce para b7], [4ª corda: 2 casas para trás], [3ª corda: 2 casas para trás]),
+    ([7], [T (oitava) desce para 7 (7ª menor)], [4ª corda: 2 casas para trás], [3ª corda: 2 casas para trás]),
     ([m7], [as duas alterações], [3ª e 4ª cordas na pestana], [3ª corda na pestana, 2ª 1 casa atrás]),
-    ([7M], [T (oitava) desce para 7M], [4ª corda: 1 casa para trás \ (5ª e 1ª abafadas)], [3ª corda: 1 casa para trás]),
+    ([7M], [T (oitava) desce para 7M (7ª maior)], [4ª corda: 1 casa para trás \ (5ª e 1ª abafadas)], [3ª corda: 1 casa para trás]),
   ),
 )
 
@@ -290,13 +279,10 @@ Toque cada progressão com *quatro batidas para baixo por acorde* (semínimas), 
   Na troca, *alivie a pressão sem tirar a mão do braço*, deslize até a nova casa e pressione de novo. O indicador funciona como um trilho: ele não precisa "voar" de um acorde para outro.
 ]
 
-#pagebreak()
-
 == 9. Estratégia de treino: do F simplificado ao F completo
 
+#block[
 Ninguém faz um F completo limpo de primeira — e não precisa. Construa a pestana em etapas, avançando só quando a etapa atual soar limpa:
-
-#v(0.3em)
 
 #grid-acordes(
   chord: chord,
@@ -308,6 +294,7 @@ Ninguém faz um F completo limpo de primeira — e não precisa. Construa a pest
     (tabs: "1,3,3,2,1,1", nome: " ", titulo: "Etapa 4 — F", detalhe: "pestana completa na casa 1"),
   ),
 )
+]
 
 #v(0.4em)
 
@@ -320,6 +307,10 @@ Ninguém faz um F completo limpo de primeira — e não precisa. Construa a pest
 
 #v(0.4em)
 
+#caixa(tipo: "atencao")[
+  Dor muscular leve é normal no início; *dor aguda ou formigamento não*. Treine pestana em blocos de poucos minutos, com pausas, ao longo do dia. A força certa se desenvolve aos poucos, com repetição, não numa tarde.
+]
+
 #caixa(tipo: "resumo")[
   *Exercício-chave:* monte a pestana, toque corda por corda, solte a pressão (sem tirar a mão), pressione de novo e repita 10 vezes. Esse "liga e desliga" treina a pressão certa e evita a tensão constante.
 ]
@@ -329,7 +320,6 @@ Ninguém faz um F completo limpo de primeira — e não precisa. Construa a pest
 #ex(titulo: "Descubra a casa da pestana", nivel: "Escrita")[
   Escreva a casa da pestana de cada acorde no shape E e no shape A (casas de 1 a 11).
 
-  #v(0.3em)
   #tabela-preencher(
     ([*Acorde*], [*Gm*], [*Ab7*], [*Cm7*], [*D7M*], [*Eb*], [*F\#m*]),
     (
@@ -343,7 +333,6 @@ Ninguém faz um F completo limpo de primeira — e não precisa. Construa a pest
 #ex(titulo: "Nomeie o acorde", nivel: "Escrita")[
   Escreva a cifra do acorde formado por cada shape, tipo e casa.
 
-  #v(0.3em)
   #grid(
     columns: (1fr, 1fr),
     column-gutter: 1.2em,
@@ -356,6 +345,7 @@ Ninguém faz um F completo limpo de primeira — e não precisa. Construa a pest
         ([d) A — m7], [2], none),
       ),
       columns: (1.6fr, 0.7fr, 1fr),
+      altura: 0.75cm,
     ),
     tabela-preencher(
       ([*Shape e tipo*], [*Casa*], [*Cifra*]),
@@ -366,6 +356,7 @@ Ninguém faz um F completo limpo de primeira — e não precisa. Construa a pest
         ([h) E — 7M], [8], none),
       ),
       columns: (1.6fr, 0.7fr, 1fr),
+      altura: 0.75cm,
     ),
   )
 ]
@@ -373,7 +364,6 @@ Ninguém faz um F completo limpo de primeira — e não precisa. Construa a pest
 #ex(titulo: "Escreva a tab do acorde", nivel: "Escrita")[
   Escreva as casas de cada acorde da 6ª para a 1ª corda (use "x" para corda abafada), como nos diagramas desta aula.
 
-  #v(0.3em)
   #tabela-preencher(
     ([*Acorde*], [*Shape*], [*Casas (6ª → 1ª)*]),
     (
@@ -384,13 +374,13 @@ Ninguém faz um F completo limpo de primeira — e não precisa. Construa a pest
       ([e) Eb7M], [A], none),
     ),
     columns: (1fr, 1fr, 3fr),
+    altura: 0.75cm,
   )
 ]
 
 #ex(titulo: "A pestana mais próxima", nivel: "Escrita")[
   Na progressão *C – Am – F – G*, o C será tocado no shape A, casa 3. Escolha o shape e a casa dos outros acordes de modo que *todas as pestanas fiquem entre as casas 1 e 5*.
 
-  #v(0.3em)
   #tabela-preencher(
     ([*Acorde*], [*C*], [*Am*], [*F*], [*G*]),
     (
@@ -398,13 +388,13 @@ Ninguém faz um F completo limpo de primeira — e não precisa. Construa a pest
       ([Casa], [3], none, none, none),
     ),
     columns: (1.5fr,) + (1fr,) * 4,
+    altura: 0.75cm,
   )
 ]
 
 #ex(titulo: "Transpondo com shapes", nivel: "Escrita")[
   Desloque a Progressão 1 (F – Dm – Bb – C) *duas casas para cima*, mantendo os mesmos shapes. Escreva a cifra e a casa de cada novo acorde. Em que tom ficou a progressão?
 
-  #v(0.3em)
   #tabela-preencher(
     ([*Original*], [*F (E, 1)*], [*Dm (A, 5)*], [*Bb (A, 1)*], [*C (A, 3)*]),
     (([Nova cifra e casa], none, none, none, none),),
@@ -417,7 +407,6 @@ Ninguém faz um F completo limpo de primeira — e não precisa. Construa a pest
 #ex(titulo: "Diagnóstico corda por corda", nivel: "Prática")[
   Monte o F completo (casa 1) e o A no shape E (casa 5). Toque corda por corda e marque ✓ para as cordas que soam limpas. Repita o teste de tempos em tempos e acompanhe a evolução.
 
-  #v(0.3em)
   #tabela-preencher(
     ([*Acorde*], [*6ª*], [*5ª*], [*4ª*], [*3ª*], [*2ª*], [*1ª*]),
     (
@@ -429,7 +418,13 @@ Ninguém faz um F completo limpo de primeira — e não precisa. Construa a pest
 ]
 
 #ex(titulo: "Progressões com metrônomo", nivel: "Prática")[
-  Toque as três progressões da seção 8 com quatro batidas por acorde, começando a 60 BPM. Suba 5 BPM sempre que conseguir três voltas seguidas com todas as trocas limpas. Meta: *80 BPM*.
+  Toque as três progressões da seção 8 com quatro batidas por acorde, começando a 60 BPM. Suba 5 BPM sempre que conseguir três voltas seguidas com todas as trocas limpas. Meta: *80 BPM*. Anote o maior andamento limpo de cada progressão.
+
+  #tabela-preencher(
+    ([*Progressão*], [*1 — F Dm Bb C*], [*2 — Bm G D A*], [*3 — C7M Am7 Dm7 G7*]),
+    (([BPM limpo], none, none, none),),
+    columns: (1.2fr, 1.3fr, 1.3fr, 1.6fr),
+  )
 ]
 
 === Sugestão de prática

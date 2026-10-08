@@ -73,7 +73,7 @@
 #let INTERVALOS = (
   "T": (0, 0), "b2": (1, 1), "2": (1, 2), "#2": (1, 3), "b3": (2, 3), "3": (2, 4),
   "4": (3, 5), "#4": (3, 6), "b5": (4, 6), "5": (4, 7), "#5": (4, 8), "b6": (5, 8),
-  "6": (5, 9), "bb7": (6, 9), "b7": (6, 10), "7M": (6, 11),
+  "6": (5, 9), "bb7": (6, 9), "7": (6, 10), "7M": (6, 11),
   "b9": (1, 1), "9": (1, 2), "#9": (1, 3), "11": (3, 5), "#11": (3, 6), "b13": (5, 8), "13": (5, 9),
 )
 #let transp(n, iv) = {
@@ -113,46 +113,46 @@
 
 #let TETRADES = (
   ("Maior com 7ª maior", ("T", "3", "5", "7M"), "7M", "Cmaj7, CΔ, CΔ7, C7+"),
-  ("Dominante (7ª menor)", ("T", "3", "5", "b7"), "7", "Cdom7"),
-  ("Menor com 7ª menor", ("T", "b3", "5", "b7"), "m7", "Cmin7, Cmi7, C–7"),
-  ("Meio-diminuto", ("T", "b3", "b5", "b7"), "m7(b5)", "Cø, Cø7, Cm7b5, C–7(b5)"),
+  ("Dominante (7ª menor)", ("T", "3", "5", "7"), "7", "Cdom7"),
+  ("Menor com 7ª menor", ("T", "b3", "5", "7"), "m7", "Cmin7, Cmi7, C–7"),
+  ("Meio-diminuto", ("T", "b3", "b5", "7"), "m7(b5)", "Cø, Cø7, Cm7b5, C–7(b5)"),
   ("Diminuto", ("T", "b3", "b5", "bb7"), "º7", "Cdim7, Cº (uso popular)"),
-  ("Menor com 7ª maior", ("T", "b3", "5", "7M"), "m7M", "Cm(7M), Cm(maj7), CmΔ"),
+  ("Menor com 7ª maior", ("T", "b3", "5", "7M"), "m(7M)", "Cm7M, Cm(maj7), CmΔ"),
   ("Aumentado com 7M", ("T", "3", "#5", "7M"), "7M(#5)", "Cmaj7(#5), C+7M, CΔ(#5)"),
-  ("Dominante suspenso (sus4)", ("T", "4", "5", "b7"), "7sus4", "C7(sus4), C7sus, C7(4)"),
+  ("Dominante suspenso (sus4)", ("T", "4", "5", "7"), "7sus4", "C7(sus4), C7sus, C7(4)"),
 )
 
 #let EXTENSOES = (
   ("T", "3", "5", "7M", "9"), "7M(9)", "Cmaj9, CΔ9",
   ("T", "3", "5", "7M", "#11"), "7M(#11)", "Cmaj7(#11), CΔ(#11)",
-  ("T", "3", "5", "7M", "9", "#11"), "7M(9/#11)", "Cmaj9(#11)",
+  ("T", "3", "5", "7M", "9", "#11"), "7M(9,#11)", "Cmaj9(#11)",
   ("T", "3", "5", "7M", "13"), "7M(13)", "Cmaj7(13), C7M(6)",
-  ("T", "3", "5", "b7", "9"), "7(9)", "C9",
-  ("T", "3", "5", "b7", "13"), "7(13)", "C7(6), C13*",
-  ("T", "3", "5", "b7", "9", "13"), "7(9/13)", "C13",
-  ("T", "3", "5", "b7", "#11"), "7(#11)", "C7#11",
-  ("T", "3", "5", "b7", "9", "#11"), "7(9/#11)", "C9(#11)",
-  ("T", "4", "5", "b7", "9"), "7sus4(9)", "C9sus4, C9sus, Bb/C",
-  ("T", "b3", "5", "b7", "9"), "m7(9)", "Cm9, Cmi9, C–9",
-  ("T", "b3", "5", "b7", "11"), "m7(11)", "Cm7(4), Cm11*",
-  ("T", "b3", "5", "b7", "9", "11"), "m7(9/11)", "Cm11",
-  ("T", "b3", "5", "7M", "9"), "m7M(9)", "Cm(maj9), CmΔ9",
-  ("T", "b3", "b5", "b7", "9"), "m7(b5/9)", "Cø(9)",
-  ("T", "b3", "b5", "b7", "11"), "m7(b5/11)", "Cø(11)",
+  ("T", "3", "5", "7", "9"), "7(9)", "C9",
+  ("T", "3", "5", "7", "13"), "7(13)", "C7(6), C13*",
+  ("T", "3", "5", "7", "9", "13"), "7(9,13)", "C13",
+  ("T", "3", "5", "7", "#11"), "7(#11)", "C7#11",
+  ("T", "3", "5", "7", "9", "#11"), "7(9,#11)", "C9(#11)",
+  ("T", "4", "5", "7", "9"), "7sus4(9)", "C9sus4, C9sus, Bb/C",
+  ("T", "b3", "5", "7", "9"), "m7(9)", "Cm9, Cmi9, C–9",
+  ("T", "b3", "5", "7", "11"), "m7(11)", "Cm7(4), Cm11*",
+  ("T", "b3", "5", "7", "9", "11"), "m7(9,11)", "Cm11",
+  ("T", "b3", "5", "7M", "9"), "m(7M,9)", "Cm7M(9), Cm(maj9), CmΔ9",
+  ("T", "b3", "b5", "7", "9"), "m7(b5,9)", "Cø(9)",
+  ("T", "b3", "b5", "7", "11"), "m7(b5,11)", "Cø(11)",
   ("T", "b3", "b5", "bb7", "9"), "º7(9)", "Cdim7(9)",
 ).chunks(3)
 
 #let ALTERADOS = (
-  ("T", "3", "b5", "b7"), "7(b5)", "C7-5",
-  ("T", "3", "#5", "b7"), "7(#5)", "C+7, Caug7, C7+5",
-  ("T", "3", "5", "b7", "b9"), "7(b9)", "C7-9",
-  ("T", "3", "5", "b7", "#9"), "7(#9)", "C7+9 (“acorde Hendrix”)",
-  ("T", "3", "5", "b7", "b13"), "7(b13)", "C7-13 (em geral sem a 5ª)",
-  ("T", "3", "5", "b7", "b9", "13"), "7(b9/13)", "C13(b9)",
-  ("T", "3", "5", "b7", "b9", "b13"), "7(b9/b13)", "C7(b9b13)",
-  ("T", "3", "5", "b7", "#9", "b13"), "7(#9/b13)", "C7(#9b13)",
-  ("T", "3", "5", "b7", "b9", "#11"), "7(b9/#11)", "C7(b9#11)",
-  ("T", "3", "b7", "b9", "#9", "#11", "b13"), "7(alt)", "C7alt, Calt",
+  ("T", "3", "b5", "7"), "7(b5)", "C7-5",
+  ("T", "3", "#5", "7"), "7(#5)", "C+7, Caug7, C7+5",
+  ("T", "3", "5", "7", "b9"), "7(b9)", "C7-9",
+  ("T", "3", "5", "7", "#9"), "7(#9)", "C7+9 (“acorde Hendrix”)",
+  ("T", "3", "5", "7", "b13"), "7(b13)", "C7-13 (em geral sem a 5ª)",
+  ("T", "3", "5", "7", "b9", "13"), "7(b9,13)", "C13(b9)",
+  ("T", "3", "5", "7", "b9", "b13"), "7(b9,b13)", "C7(b9b13)",
+  ("T", "3", "5", "7", "#9", "b13"), "7(#9,b13)", "C7(#9b13)",
+  ("T", "3", "5", "7", "b9", "#11"), "7(b9,#11)", "C7(b9#11)",
+  ("T", "3", "7", "b9", "#9", "#11", "b13"), "7alt", "C7(alt), Calt",
 ).chunks(3)
 
 // Linha de tabela de fórmulas: (nome?, fórmula, cifra, alternativas, notas em C)
@@ -173,7 +173,7 @@
 
 = Fórmulas de Acordes
 
-Este resumo reúne, em um só lugar, a fórmula intervalar de cada tipo de acorde, a cifra adotada aqui, as cifras alternativas que você vai encontrar em songbooks e partituras, e as notas do acorde com tônica em Dó. *Como usar:* encontre o tipo de acorde, leia a fórmula e aplique-a a qualquer tônica. Todas as notas seguem a grafia correta (a 3ª de um acorde é sempre uma letra de terça acima da tônica, a 5ª outra terça acima, e assim por diante). Convenção de intervalos: *b7* = 7ª menor e *7M* = 7ª maior.
+Este resumo reúne, em um só lugar, a fórmula intervalar de cada tipo de acorde, a cifra adotada aqui, as cifras alternativas que você vai encontrar em songbooks e partituras, e as notas do acorde com tônica em Dó. *Como usar:* encontre o tipo de acorde, leia a fórmula e aplique-a a qualquer tônica. Todas as notas seguem a grafia correta (a 3ª de um acorde é sempre uma letra de terça acima da tônica, a 5ª outra terça acima, e assim por diante). Convenção de intervalos: *7* = 7ª menor, *7M* = 7ª maior e *bb7* = 7ª diminuta (soa igual à 6ª).
 
 == 1. Tríades e acordes de três sons
 
@@ -213,7 +213,7 @@ Este resumo reúne, em um só lugar, a fórmula intervalar de cada tipo de acord
 
 == 4. Extensões: 9ª, 11ª e 13ª
 
-#intro[As extensões (tensões) são notas acima da oitava empilhadas sobre a tétrade: *9 = 2*, *11 = 4* e *13 = 6* uma oitava acima. Combinações são escritas dentro dos parênteses, separadas por barra: C7(9/13).]
+#intro[As extensões (tensões) são notas acima da oitava empilhadas sobre a tétrade: *9 = 2*, *11 = 4* e *13 = 6* uma oitava acima. Combinações são escritas dentro dos mesmos parênteses, separadas por vírgula: C7(9,13).]
 
 #tabela-resumo(
   ([Fórmula], [Cifra], [Cifras alternativas], [Notas em C]),
@@ -240,7 +240,7 @@ Este resumo reúne, em um só lugar, a fórmula intervalar de cada tipo de acord
   negrito-1a: false,
 )
 
-#nota-rodape[*C7(alt)* indica a escala alterada: mantêm-se tônica, 3ª e b7, e as tensões podem ser qualquer combinação de b9, \#9, \#11 (b5) e b13 (\#5). Como b9 e \#9 usam a mesma letra (Db e D\#), a grafia do acorde completo foge excepcionalmente do empilhamento de terças.]
+#nota-rodape[*C7alt* indica a escala alterada: mantêm-se tônica, 3ª e 7ª menor, e as tensões podem ser qualquer combinação de b9, \#9, \#11 (b5) e b13 (\#5). Como b9 e \#9 usam a mesma letra (Db e D\#), a grafia do acorde completo foge excepcionalmente do empilhamento de terças.]
 
 == 6. Leitura de símbolos e equivalências
 
@@ -275,7 +275,7 @@ Este resumo reúne, em um só lugar, a fórmula intervalar de cada tipo de acord
       ([Cº7], [Ebº7 = F\#º7 = Aº7 (enarmônicos)]),
       ([C+], [E+ = G\#+ (enarmônicos)]),
       ([C7M(9) sem tônica], [Em7]),
-      ([C7(9) sem tônica], [Eø (E - G - Bb - D)]),
+      ([C7(9) sem tônica], [Em7(b5) (E - G - Bb - D)]),
       ([C7sus4(9)], [Bb/C (sem a 5ª)]),
       ([C7(b9) sem tônica], [Eº7]),
     ),
@@ -320,14 +320,14 @@ Este resumo reúne, em um só lugar, a fórmula intervalar de cada tipo de acord
 )
 #let TIPOS-TET = (
   ("7M", ("T", "3", "5", "7M")),
-  ("7", ("T", "3", "5", "b7")),
-  ("m7", ("T", "b3", "5", "b7")),
-  ("ø", ("T", "b3", "b5", "b7")),
+  ("7", ("T", "3", "5", "7")),
+  ("m7", ("T", "b3", "5", "7")),
+  ("m7(b5)", ("T", "b3", "b5", "7")),
   ("º7", ("T", "b3", "b5", "bb7")),
 )
 
 #tabela-resumo(
-  ([Tom], [7M \ #text(size: 8pt, weight: "regular")[T - 3 - 5 - 7M]], [7 \ #text(size: 8pt, weight: "regular")[T - 3 - 5 - b7]], [m7 \ #text(size: 8pt, weight: "regular")[T - b3 - 5 - b7]], [m7(b5) / ø \ #text(size: 8pt, weight: "regular")[T - b3 - b5 - b7]], [º7 \ #text(size: 8pt, weight: "regular")[T - b3 - b5 - bb7]]),
+  ([Tom], [7M \ #text(size: 8pt, weight: "regular")[T - 3 - 5 - 7M]], [7 \ #text(size: 8pt, weight: "regular")[T - 3 - 5 - 7]], [m7 \ #text(size: 8pt, weight: "regular")[T - b3 - 5 - 7]], [m7(b5) \ #text(size: 8pt, weight: "regular")[T - b3 - b5 - 7]], [º7 \ #text(size: 8pt, weight: "regular")[T - b3 - b5 - bb7]]),
   TONS-TET.map(t => {
     let (rotulo, raizes) = t
     (rotulo,) + TIPOS-TET.enumerate().map(p => {
@@ -354,8 +354,8 @@ Este resumo reúne, em um só lugar, a fórmula intervalar de cada tipo de acord
 #tabela-resumo(
   ([Acorde (contexto)], [Escala de referência], [Tensões disponíveis], [Evitar]),
   (
-    ([7M como I (tônica)], [Jônio], [9, 13], [11]),
-    ([7M como IV, bVI, bIII], [Lídio], [9, \#11, 13], [—]),
+    ([7M como I (tônica)], [Jônico], [9, 13], [11]),
+    ([7M como IV ou bVI], [Lídio], [9, \#11, 13], [—]),
     ([m7 como IIm7 (ou Im7 dórico)], [Dórico], [9, 11 (13 com cautela)], [—]),
     ([m7 como IIIm7], [Frígio], [11], [b9, b13]),
     ([m7 como VIm7 ou Im7 eólio], [Eólio], [9, 11], [b13]),
@@ -363,14 +363,14 @@ Este resumo reúne, em um só lugar, a fórmula intervalar de cada tipo de acord
     ([m7(b5) como IIø (tom menor)], [Lócrio 9 (menor melódica)], [9, 11, b13], [—]),
     ([º7 (diminuto)], [Diminuta (tom-semitom)], [9, 11, b13, 7M], [—]),
     ([7 como V7 de tom maior], [Mixolídio], [9, 13], [11]),
-    ([7 como bVII7 ou SubV], [Lídio b7], [9, \#11, 13], [—]),
+    ([7 como bVII7 ou SubV], [Lídio dominante], [9, \#11, 13], [—]),
     ([7 resolvendo em acorde menor], [Mixolídio b9 b13], [b9, b13], [11]),
     ([7 alterado (V7alt)], [Alterada (superlócrio)], [b9, \#9, \#11, b13], [—]),
-    ([7(b9/13)], [Dominante-diminuta], [b9, \#9, \#11, 13], [—]),
+    ([7(b9,13)], [Dominante-diminuta], [b9, \#9, \#11, 13], [—]),
     ([7sus4], [Mixolídio], [9, 13 (b9 no sus4 frígio)], [3 (trocada pela 4)]),
-    ([m7M, m6 (Im de tom menor)], [Menor melódica], [9, 11, 13 (6)], [—]),
+    ([m(7M), m6 (Im de tom menor)], [Menor melódica], [9, 11, 13 (6)], [—]),
     ([7M(\#5)], [Lídio aumentado], [9, \#11, 13], [—]),
-    ([6 (maior com 6ª)], [Jônio], [9], [11]),
+    ([6 (maior com 6ª)], [Jônico], [9], [11]),
   ),
   columns: (1.9fr, 1.4fr, 1.3fr, 0.9fr),
   alinhar: (c, r) => if c == 0 { left + horizon } else { center + horizon },
@@ -378,13 +378,12 @@ Este resumo reúne, em um só lugar, a fórmula intervalar de cada tipo de acord
 )
 
 #v(0.6em)
-#v(0.6em)
 #aviso("dica")[Em acordes dominantes, as tensões *naturais* (9, \#11, 13) soam abertas e funcionam bem em contexto maior; as *alteradas* (b9, \#9, b13) aumentam a tensão e preparam a resolução em acorde menor ou um retorno mais dramático à tônica.]
 
 #v(0.4em)
 #set par(justify: false)
 #cartoes-info((
-  (titulo: "Dm7 (IIm7 em C)", corpo: [Escala: Ré Dórico (D E F G A B C). \ Tensões: 9 = E, 11 = G, 13 = B. \ Acordes: Dm7(9), Dm7(11), Dm7(9/11).]),
-  (titulo: "G7 (V7 de Dó menor)", corpo: [Escala: Sol Mixolídio b9 b13 (G Ab B C D Eb F). \ Tensões: b9 = Ab, b13 = Eb. \ Acordes: G7(b9), G7(b13) e G7(b9/b13).]),
-  (titulo: "Bø (VIIø em C)", corpo: [Escala: Si Lócrio (B C D E F G A). \ Tensões: 11 = E, b13 = G. \ Evitar: b9 = C (um semitom acima da tônica).]),
+  (titulo: "Dm7 (IIm7 em C)", corpo: [Escala: Ré Dórico (D E F G A B C). \ Tensões: 9 = E, 11 = G, 13 = B. \ Acordes: Dm7(9), Dm7(11), Dm7(9,11).]),
+  (titulo: "G7 (V7 de Dó menor)", corpo: [Escala: Sol Mixolídio b9 b13 (G Ab B C D Eb F). \ Tensões: b9 = Ab, b13 = Eb. \ Acordes: G7(b9), G7(b13) e G7(b9,b13).]),
+  (titulo: "Bm7(b5) (VIIø em C)", corpo: [Escala: Si Lócrio (B C D E F G A). \ Tensões: 11 = E, b13 = G. \ Evitar: b9 = C (um semitom acima da tônica).]),
 ))

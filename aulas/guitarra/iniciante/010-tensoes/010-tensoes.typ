@@ -1,4 +1,5 @@
-#import "../../../../templates/layout.typ": *
+#import "/templates/layout.typ": *
+#import "/templates/components.typ": *
 #import "@preview/conchord:0.4.0": new-chordgen
 
 #show: aula.with(
@@ -8,138 +9,191 @@
 
 #let chord = new-chordgen(number-to-left: true, use-shadow-barre: false, colors: (hold: black, barre: black))
 
+// Exercício curto que não se divide entre páginas.
+#let ex(..args, body) = block(breakable: false, width: 100%, exercicio(..args, body))
+
 = Tensões Harmônicas
 
-Além das 4 notas da tétrade (T, 3, 5, 7), é possível adicionar mais notas ao acorde para enriquecer sua cor harmônica. Essas notas adicionais são chamadas de *tensões* e são os intervalos *acima da oitava*: a *9ª, 11ª* e *13ª* — que nada mais são do que a 2ª, 4ª e 6ª oitavadas.
+Uma tétrade tem quatro notas: tônica, 3ª, 5ª e 7ª (T, 3, 5, 7). Acima delas ainda cabem outras notas que *enriquecem a cor* do acorde sem mudar a sua função. Essas notas se chamam *tensões*: são a *9ª*, a *11ª* e a *13ª* — as mesmas notas da 2ª, da 4ª e da 6ª, só que contadas uma oitava acima.
 
-== A Relação entre Intervalos e Tensões
+#objetivos((
+  [Relacionar cada tensão (9, 11, 13) com o intervalo simples correspondente (2, 4, 6)],
+  [Encontrar as tensões de um acorde em qualquer tom],
+  [Saber quais tensões soam bem em cada acorde do campo harmônico maior],
+  [Montar e reconhecer acordes com 9ª, 11ª e 13ª no braço],
+))
 
-#align(center)[
-  #table(
-    columns: (1fr, 0.6fr, 0.6fr, 2.5fr),
-    align: center + horizon,
-    stroke: 0.5pt + color-rule-dark,
-    fill: (col, row) => if row == 0 { color-subtle-bg } else if calc.odd(row) { white } else { color-subtle-bg },
-    [*Intervalo dentro da 8va*], [*Escrita*], [*Tensão*], [*Exemplo a partir de Dó*],
-    [2ª menor], [b2], [b9], [Dó → Réb (= 9ª menor)],
-    [2ª maior], [2], [9], [Dó → Ré (= 9ª maior)],
-    [2ª aum.], [\#2], [\#9], [Dó → Ré\# (= 9ª aum.)],
-    [4ª justa], [4], [11], [Dó → Fá (= 11ª justa)],
-    [4ª aum.], [\#4], [\#11], [Dó → Fá\# (= 11ª aum.)],
-    [6ª menor], [b6], [b13], [Dó → Láb (= 13ª menor)],
-    [6ª maior], [6], [13], [Dó → Lá (= 13ª maior)],
+== 1. De intervalos a tensões
+
+Conte as notas da escala a partir da tônica e continue depois da oitava: a 2ª vira 9ª (2 + 7), a 4ª vira 11ª (4 + 7) e a 6ª vira 13ª (6 + 7). A nota é a mesma; muda só o nome, que indica que ela está *acima* da tétrade.
+
+#tabela(
+  columns: (1.4fr, 0.8fr, 0.8fr, 2fr),
+  ([Intervalo simples], [Grau], [Tensão], [Exemplo a partir de Dó]),
+  (
+    ([2ª menor], [b2], [b9], [Réb (9ª menor)]),
+    ([2ª maior], [2], [9], [Ré (9ª maior)]),
+    ([2ª aumentada], [\#2], [\#9], [Ré\# (9ª aumentada)]),
+    ([4ª justa], [4], [11], [Fá (11ª justa)]),
+    ([4ª aumentada], [\#4], [\#11], [Fá\# (11ª aumentada)]),
+    ([6ª menor], [b6], [b13], [Láb (13ª menor)]),
+    ([6ª maior], [6], [13], [Lá (13ª maior)]),
+  ),
+)
+
+#caixa(tipo: "resumo", titulo: "Regra")[
+  Tensão = intervalo simples + 7. Assim: 2ª → 9ª, 4ª → 11ª, 6ª → 13ª.
+]
+
+Na cifra, a tensão aparece entre parênteses depois do tipo do acorde: *C7M(9)*, *Dm7(11)*, *G7(13)*. Já o *C(add9)* é uma tríade com 9ª acrescentada, *sem* a 7ª.
+
+== 2. Tensões disponíveis no campo de Dó maior
+
+Usando apenas as notas da escala de Dó maior, cada acorde do campo recebe a sua 9ª, 11ª e 13ª "naturais". Nem todas soam bem: quando uma tensão fica *um semitom acima de uma nota do acorde* (por exemplo, Fá sobre o Mi do C7M), ela cria um choque forte e é chamada de *nota evitada*. As demais são as *tensões disponíveis*.
+
+#tabela(
+  columns: (1.75fr, 1fr, 1.15fr, 1.15fr, 1.1fr),
+  ([Acorde], [9ª], [11ª], [13ª], [Disponíveis]),
+  (
+    ([C7M (I)], [9 (Ré)], [11 (Fá) evitar], [13 (Lá)], [*9, 13*]),
+    ([Dm7 (IIm7)], [9 (Mi)], [11 (Sol)], [13 (Si)], [*9, 11, 13*]),
+    ([Em7 (IIIm7)], [b9 (Fá) evitar], [11 (Lá)], [b13 (Dó) evitar], [*11*]),
+    ([F7M (IV7M)], [9 (Sol)], [\#11 (Si)], [13 (Ré)], [*9, \#11, 13*]),
+    ([G7 (V7)], [9 (Lá)], [11 (Dó) evitar], [13 (Mi)], [*9, 13*]),
+    ([Am7 (VIm7)], [9 (Si)], [11 (Ré)], [b13 (Fá) evitar], [*9, 11*]),
+    ([Bm7(b5) (VIIm7(b5))], [b9 (Dó) evitar], [11 (Mi)], [b13 (Sol)], [*11, b13*]),
+  ),
+)
+
+#caixa(tipo: "atencao", titulo: "Repare")[
+  O 11 do *G7* é o Dó, que fica um semitom acima do Si (a 3ª do acorde) e "apaga" o caráter dominante. Por isso o G7 quase nunca leva 11ª justa. Fora do campo, porém, é comum usar *\#11* (Dó\#), *b9* (Láb) ou *\#9* (Lá\#) no dominante — tensões *alteradas*, que aumentam a vontade de resolver.
+]
+
+== 3. Acordes com tensões no braço
+
+Os desenhos abaixo mostram acordes do campo de Dó com tensões. Abaixo de cada um estão as notas, da corda mais grave para a mais aguda.
+
+Repare que vários desses desenhos *não têm a 5ª*. Quando um acorde recebe tensões, a 5ª é a primeira nota a ser retirada: ela pouco contribui para a cor e deixa o acorde "cheio" demais. A tônica, a 3ª e a 7ª, que definem o tipo do acorde, são mantidas.
+
+#let linha-acordes(items) = block(breakable: false, width: 100%, below: 1.4em, grid-acordes(chord: chord, columns: 3, gutter: 2.2em, items))
+
+#linha-acordes((
+  (tabs: "x,3,2,4,3,x", nome: " ", titulo: "C7M(9)", detalhe: "Dó · Mi · Si · Ré (9)"),
+  (tabs: "x,5,3,5,5,x", nome: " ", titulo: "Dm7(9)", detalhe: "Ré · Fá · Dó · Mi (9)"),
+  (tabs: "x,5,5,5,6,5", nome: " ", titulo: "Dm7(11)", detalhe: "Ré · Sol (11) · Dó · Fá · Lá"),
+))
+#linha-acordes((
+  (tabs: "x,8,7,9,8,x", nome: " ", titulo: "F7M(9)", detalhe: "Fá · Lá · Mi · Sol (9)"),
+  (tabs: "x,10,9,10,10,x", nome: " ", titulo: "G7(9)", detalhe: "Sol · Si · Fá · Lá (9)"),
+  (tabs: "3,x,3,4,5,x,*", nome: " ", titulo: "G7(13)", detalhe: "Sol · Fá · Si · Mi (13)"),
+))
+
+== 4. Como cada tensão soa
+
+Na prática, as tensões são mais *ouvidas* do que calculadas. Toque um *G7* e acrescente, uma de cada vez, as notas da tabela: cada uma muda a cor do acorde.
+
+#tabela(
+  columns: (0.7fr, 1fr, 3fr),
+  ([Tensão], [Nota (em G7)], [Sonoridade]),
+  (
+    ([9], [Lá], [aberta, "macia", muito usada no pop e na bossa nova]),
+    ([13], [Mi], [doce, típica do jazz e do soul]),
+    ([b9], [Láb], [tensa, dramática; pede resolução]),
+    ([\#9], [Lá\# (Sib)], [áspera, típica do blues e do rock]),
+    ([\#11], [Dó\#], [flutuante, "suspensa"]),
+  ),
+)
+
+Com o tempo, você passa a ouvir qual tensão a música "pede" em cada momento.
+
+== 5. Exercícios
+
+#ex(titulo: "Intervalo ou tensão?")[
+  Complete a tabela convertendo o intervalo simples na tensão correspondente (e vice-versa).
+
+  #tabela-preencher(
+    columns: (1.2fr,) + (1fr,) * 7,
+    ([], [a)], [b)], [c)], [d)], [e)], [f)], [g)]),
+    (
+      ([*Intervalo*], [2], [b2], [4], none, [6], none, [\#2]),
+      ([*Tensão*], none, none, none, [\#11], none, [b13], none),
+    ),
   )
 ]
 
-#align(center)[
-  #block(
-    fill: color-subtle-bg,
-    stroke: 0.5pt + color-rule-dark,
-    inset: 10pt,
-    radius: 5pt,
-    width: 80%,
-    [
-      *Regra:* Tensão = intervalo correspondente + 7 (exemplo: 2ª → 9ª, 4ª → 11ª, 6ª → 13ª)
-    ],
+#ex(titulo: "Encontre as tensões")[
+  Escreva a nota de cada tensão, contando a partir da tônica (deixe em branco as casas com "—").
+
+  #tabela-preencher(
+    columns: (1.5fr, 1fr, 1fr, 1fr),
+    ([Acorde (tensões)], [9], [11 ou \#11], [13]),
+    (
+      ([D7 (9, 13)], none, [—], none),
+      ([Am7 (9, 11)], none, none, [—]),
+      ([F7M (9, \#11, 13)], none, none, none),
+    ),
   )
 ]
 
-== Tensões Disponíveis por Acorde (Campo de C)
+#ex(titulo: "Dê o nome")[
+  Cada linha mostra as notas de um acorde, da mais grave para a mais aguda. Escreva a cifra completa.
 
-Nem toda tensão funciona sobre todo acorde. As tensões "disponíveis" são as que pertencem à escala do campo harmônico e soam bem com o acorde. A tabela abaixo mostra as tensões naturais de cada grau em Dó Maior:
+  #grid(
+    columns: (1fr, 1fr),
+    row-gutter: 1.1em,
+    column-gutter: 1.5em,
+    [a) Dó – Mi – Si – Ré #h(0.4em) #box(width: 3cm, height: 0.9em, stroke: (bottom: 0.6pt + color-rule-dark))],
+    [b) Sol – Fá – Si – Mi #h(0.4em) #box(width: 3cm, height: 0.9em, stroke: (bottom: 0.6pt + color-rule-dark))],
 
-#align(center)[
-  #table(
-    columns: (0.7fr, 1fr, 0.7fr, 0.7fr, 0.7fr, 0.7fr),
-    align: center + horizon,
-    stroke: 0.5pt + color-rule-dark,
-    fill: (col, row) => {
-      if row == 0 { color-subtle-bg } else if col == 0 { color-subtle-bg } else { white }
-    },
-    [*Acorde*], [*Tipo*], [*7ª*], [*9 (2ª)*], [*11 (4ª)*], [*13 (6ª)*],
-    [C7M  (I)], [Maior 7M], [7M], [9], [\#11], [13],
-    [Dm7  (II)], [Menor 7], [7], [9], [11], [13],
-    [Em7  (III)], [Menor 7], [7], [b9], [11], [b13],
-    [F7M  (IV)], [Maior 7M], [7M], [9], [\#11], [13],
-    [G7   (V)], [Dominante 7], [7], [9], [—], [13],
-    [Am7  (VI)], [Menor 7], [7], [9], [11], [b13],
-    [Bø   (VII)], [Meio-Dim.], [7], [b9], [11], [b13],
+    [c) Lá – Ré – Sol – Dó – Mi #h(0.4em) #box(width: 2.4cm, height: 0.9em, stroke: (bottom: 0.6pt + color-rule-dark))],
+    [d) Dó – Mi – Sol – Ré #h(0.4em) #box(width: 3cm, height: 0.9em, stroke: (bottom: 0.6pt + color-rule-dark))],
   )
 ]
 
-#align(center)[
-  #text(size: 8.5pt, fill: color-muted)[
-    *Observação:* O acorde G7 (V) evita a 11ª justa pois ela conflita com a 3ª (Si). Em seu lugar, usa-se a *\#11* (Dó\#) para criar o modo Lídio-Dominante.
+#ex(titulo: "Nota evitada")[
+  Em Dó maior, qual tensão natural você deve evitar sobre o *C7M*? E sobre o *G7*? Explique em uma frase por que ela soa mal.
+
+  #linhas-resposta(3)
+]
+
+#ex(titulo: "Ouvindo as cores")[
+  Toque *Dm7 – G7 – C7M* (II–V–I em Dó) com os acordes simples. Depois toque *Dm7(9) – G7(13) – C7M(9)* usando os desenhos da seção 3. Descreva a diferença de sonoridade.
+
+  #linhas-resposta(3)
+]
+
+=== Sugestão de prática
+
+#rotina-estudo((
+  ([Montar os seis acordes da seção 3, dizendo o nome de cada nota], [5 min], [—]),
+  ([G7 + uma tensão de cada vez (9, 13, b9, \#9), ouvindo a diferença], [5 min], [—]),
+  ([II–V–I com tensões: Dm7(9) – G7(13) – C7M(9)], [5 min], [60–70]),
+  ([Encontrar 9 e 13 de acordes dominantes em outros tons], [5 min], [—]),
+))
+
+=== Autoavaliação
+
+#checklist((
+  [Sei converter 2, 4 e 6 em 9, 11 e 13],
+  [Encontro a 9ª e a 13ª de qualquer acorde],
+  [Sei o que é uma nota evitada e dou um exemplo],
+  [Toco pelo menos três acordes com tensão sem consultar o desenho],
+))
+
+#gabarito[
+  #resposta(1)[
+    2 → 9 · b2 → b9 · 4 → 11 · \#4 → \#11 · 6 → 13 · b6 → b13 · \#2 → \#9.
+  ]
+  #resposta(2)[
+    D7: 9 = Mi, 13 = Si · Am7: 9 = Si, 11 = Ré · F7M: 9 = Sol, \#11 = Si, 13 = Ré.
+  ]
+  #resposta(3)[
+    a) C7M(9) · b) G7(13) · c) Am7(11) · d) C(add9) — não há 7ª, por isso não é "C9".
+  ]
+  #resposta(4)[
+    No C7M, o 11 (Fá); no G7, o 11 (Dó). Nos dois casos a tensão fica um semitom acima da 3ª do acorde (Mi e Si), cria um choque forte e enfraquece o caráter maior/dominante do acorde.
+  ]
+  #resposta(5)[
+    Resposta pessoal. Em geral, a versão com tensões soa mais suave, "jazzística" e sofisticada, com a mesma direção harmônica (tensão no G7, repouso no C7M).
   ]
 ]
-
-== Exemplos Sonoros: Acordes com Tensões
-
-Os exemplos abaixo mostram como as tensões enriquecem acordes do campo de Dó. As notas extras não mudam a função do acorde — apenas adicionam cor:
-
-#align(center)[
-  #grid(
-    columns: 5,
-    gutter: 1.2em,
-    align: center,
-    block[
-      #box(chord("x,3,2,0,3,0", name: "C7M9"))
-      #v(0.3em)
-      #text(size: 8.5pt, weight: "bold")[C7M com 9] \
-      #text(size: 7.5pt, fill: color-muted)[do · mi · sol · si · ré]
-    ],
-    block[
-      #box(chord("x,x,0,2,1,1", name: "Dm7"))
-      #v(0.3em)
-      #text(size: 8.5pt, weight: "bold")[Dm7 com 11] \
-      #text(size: 7.5pt, fill: color-muted)[ré · fá · lá · do]
-    ],
-    block[
-      #box(chord("3,x,3,4,5,x", name: "G7(13)"))
-      #v(0.3em)
-      #text(size: 8.5pt, weight: "bold")[G7 com 13] \
-      #text(size: 7.5pt, fill: color-muted)[sol · fá · si · lá]
-    ],
-    block[
-      #box(chord("x,0,2,0,1,0", name: "Am7"))
-      #v(0.3em)
-      #text(size: 8.5pt, weight: "bold")[Am7 com 11] \
-      #text(size: 7.5pt, fill: color-muted)[lá · mi · sol · do]
-    ],
-    block[
-      #box(chord("x,3,4,4,3,3", name: "Fmaj7"))
-      #v(0.3em)
-      #text(size: 8.5pt, weight: "bold")[F7M com 9] \
-      #text(size: 7.5pt, fill: color-muted)[fá · lá · do · mi]
-    ],
-  )
-]
-
-#v(2em)
-
-== Como Pensar nas Tensões na Prática
-
-#v(0.8em)
-
-#explainer-component(
-  align(center)[
-    #set text(size: 9.5pt)
-    #table(
-      columns: (0.6fr, 1fr),
-      stroke: 0.5pt + color-rule-dark,
-      fill: (col, row) => if row == 0 { color-subtle-bg } else { white },
-      align: right + horizon,
-      [*Tensão*], [*Sonoridade*],
-      [9 (Ré em C)], [cor aberta, ensolarada],
-      [\#11 (Fá\# em C)], [cor lídio, flutuante],
-      [13 (Lá em G7)], [doce, jazz clássico],
-      [b9 (Réb em G7)], [tenso, dramático],
-      [\#9 (Ré\# em G7)], [blues, Hendrix],
-    )
-  ],
-  [
-    Na prática, as tensões são mais sentidas do que calculadas. Toque um *G7* e experimente adicionar uma nota: Lá (13), Réb (b9) ou Ré\# (\#9), cada uma tem uma cor diferente.
-
-    Com o tempo, você começa a *ouvir* qual tensão o acorde está "pedindo" no contexto da música.
-  ],
-)

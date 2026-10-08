@@ -6,28 +6,12 @@
   nivel: "Intermediário",
 )
 
-// Tabelas sem justificação (evita espaços largos em células estreitas)
-#show table: set par(justify: false)
+// Texto das tabelas em 10pt
 #show table: set text(size: 10pt)
 
-// Caixa com texto alinhado à esquerda (a última linha não fica centralizada)
-#let caixa-e(body, tipo: "neutro", titulo: auto) = {
-  let cores = (neutro: color-rule-dark, dica: color-secondary, atencao: color-strong, resumo: color-brand-soft)
-  let rotulos = (neutro: none, dica: "Dica", atencao: "Atenção", resumo: "Resumo Rápido")
-  let rotulo = if titulo == auto { rotulos.at(tipo) } else { titulo }
-  let cor = cores.at(tipo)
-  block(breakable: false, width: 100%, caixa(tipo: tipo, titulo: none, align(left)[
-    #if rotulo != none [#text(weight: "bold", fill: cor)[#rotulo:] #h(4pt)]
-    #body
-  ]))
-}
-
-// Blocos que não podem ser quebrados entre páginas
-#let inteiro(body) = block(breakable: false, width: 100%, body)
-#let tabela-i(..args) = inteiro(tabela(..args))
-#let cartoes-i(..args) = inteiro(cartoes-info(..args))
-#let exercicio-i(..args) = inteiro(exercicio(..args))
-#let resp(n, body) = { resposta(n, body); v(0.45em) }
+// Tabelas e exercícios não se dividem entre páginas
+#show table: it => block(breakable: false, it)
+#let ex(..args) = block(breakable: false, width: 100%, exercicio(..args))
 
 // Legenda padrão das tablaturas desta aula
 #let leg-palhetada = [D = palhetada para baixo (↓) · U = palhetada para cima (↑)]
@@ -46,7 +30,7 @@ Velocidade, clareza e timbre na guitarra dependem muito mais da mão da palheta 
 
 == 1. Revisão: palhetada alternada
 
-Na palhetada alternada a palheta *sempre alterna* entre para baixo (D, ↓) e para cima (U, ↑), independentemente da corda. Em colcheias e semicolcheias, isso faz o movimento da mão coincidir com a subdivisão: o D cai nos tempos e contratempos fortes, o U nas subdivisões intermediárias. É o sistema mais previsível e o ponto de partida para todos os outros.
+Na palhetada alternada a palheta *sempre alterna* entre para baixo (D, ↓) e para cima (U, ↑), independentemente da corda. Assim o movimento da mão acompanha a subdivisão: em colcheias, o D cai no tempo e o U no contratempo ("e"); em semicolcheias, o D cai no tempo e no contratempo, e o U nas semicolcheias entre eles. É o sistema mais previsível e o ponto de partida para todos os outros.
 
 #tab(
   titulo: "Exemplo 1 — Cromático 1-2-3-4 (dedo por casa, casas 5 a 8)",
@@ -54,15 +38,13 @@ Na palhetada alternada a palheta *sempre alterna* entre para baixo (D, ↓) e pa
   "e|--------------|--------------|--------------|--------------|\nB|--------------|--------------|--------------|--------------|\nG|--------------|--------------|--------------|--5--6--7--8--|\nD|--------------|--------------|--5--6--7--8--|--------------|\nA|--------------|--5--6--7--8--|--------------|--------------|\nE|--5--6--7--8--|--------------|--------------|--------------|\n    D  U  D  U     D  U  D  U     D  U  D  U     D  U  D  U",
 )
 
-#v(0.4em)
 
-#cartoes-i((
+#cartoes-info((
   (titulo: "Pegada", corpo: [Entre o polegar e a lateral do indicador, com 2–3 mm de ponta para fora. Firme, mas sem apertar.]),
   (titulo: "Movimento", corpo: [Do *pulso* (e um pouco do antebraço), não do cotovelo. Curto: a palheta mal sai da corda.]),
   (titulo: "Apoio", corpo: [A lateral da mão encosta de leve nas cordas graves para abafar. Não "ancore" o mindinho com força.]),
 ))
 
-#v(0.4em)
 
 #tab(
   titulo: "Exemplo 2 — Pentatônica de Lá menor, posição 1 (duas notas por corda)",
@@ -70,20 +52,18 @@ Na palhetada alternada a palheta *sempre alterna* entre para baixo (D, ↓) e pa
   "e|--------------|--------------|--------5--8--|\nB|--------------|--------------|--5--8--------|\nG|--------------|--------5--7--|--------------|\nD|--------------|--5--7--------|--------------|\nA|--------5--7--|--------------|--------------|\nE|--5--8--------|--------------|--------------|\n    D  U  D  U     D  U  D  U     D  U  D  U",
 )
 
-#v(0.3em)
 
-Repare que no exemplo 2 toda troca de corda acontece depois de um U: a palheta sobe na corda de cima e desce na corda de baixo. Esse tipo de troca tem nome — e é o assunto da próxima seção.
+Repare que no exemplo 2 toda troca de corda acontece depois de um U: a palheta sobe na corda de cima e desce na corda de baixo. Esse tipo de troca se chama _inside_ — e é o assunto da próxima seção.
 
 == 2. Trocas de corda: _outside_ × _inside_
 
 Quando você alterna duas cordas vizinhas, a palheta pode atacá-las de *fora* do par ou de *dentro* do espaço entre elas. Em toda esta seção, "corda de cima" é a mais grave (mais perto do seu rosto) e "corda de baixo" é a mais aguda.
 
-#cartoes-i((
+#cartoes-info((
   (titulo: "Outside picking", corpo: [*D na corda de cima e U na corda de baixo.* Os dois ataques vêm de fora do par: a palheta "contorna" as duas cordas. Para a maioria das pessoas é a troca mais confortável.]),
   (titulo: "Inside picking", corpo: [*U na corda de cima e D na corda de baixo.* Os dois ataques partem do espaço entre as cordas: a palheta fica "presa" entre elas. Exige um movimento mais preciso e costuma ser o ponto fraco.]),
 ))
 
-#v(0.6em)
 
 #tab(
   titulo: "Exemplo 3 — As duas trocas nas cordas Sol e Si (toque cada linha de palhetada separadamente)",
@@ -91,9 +71,8 @@ Quando você alterna duas cordas vizinhas, a palheta pode atacá-las de *fora* d
   "e|--------------|--------------|\nB|-----5-----5--|-----5-----5--|\nG|--5-----5-----|--5-----5-----|\nD|--------------|--------------|\nA|--------------|--------------|\nE|--------------|--------------|\nOut D  U  D  U     D  U  D  U\nIn  U  D  U  D     U  D  U  D",
 )
 
-#v(0.4em)
 
-#caixa-e(tipo: "dica")[
+#caixa(tipo: "dica")[
   Descubra qual das duas é a sua troca "fraca": toque o exemplo 3 nas duas versões a 80 BPM em semicolcheias. A versão que soa mais irregular (ou que faz a palheta enroscar) é a que precisa de mais horas. Um bom guitarrista domina as duas, porque a música não escolhe a troca por você.
 ]
 
@@ -101,11 +80,10 @@ Quando você alterna duas cordas vizinhas, a palheta pode atacá-las de *fora* d
 
 A palhetada econômica mistura a alternada com pequenos "arrastes" na troca de corda. A regra é uma só:
 
-#caixa-e(tipo: "resumo", titulo: "Regra da econômica")[
+#caixa(tipo: "resumo", titulo: "Regra da econômica")[
   *Ao trocar de corda, se a palheta já está se movendo na direção da nova corda, continue na mesma direção.* Subindo para uma corda mais aguda depois de um D, a próxima nota também é D. Descendo para uma corda mais grave depois de um U, a próxima nota também é U. Dentro de uma mesma corda, alterne normalmente.
 ]
 
-#v(0.4em)
 
 Com escalas de *três notas por corda*, a diferença fica evidente. Compare a alternada (Alt) com a econômica (Eco) na escala de Sol maior:
 
@@ -115,7 +93,6 @@ Com escalas de *três notas por corda*, a diferença fica evidente. Compare a al
   "e|-----------|-----------|-----------|\nB|-----------|-----------|-----------|\nG|-----------|-----------|-----------|\nD|-----------|-----------|--4--5--7--|\nA|-----------|--3--5--7--|-----------|\nE|--3--5--7--|-----------|-----------|\nAlt D  U  D     U  D  U     D  U  D\nEco D  U  D     D  U  D     D  U  D",
 )
 
-#v(0.4em)
 
 #tab(
   titulo: "Exemplo 5 — A mesma escala na descida (econômica)",
@@ -123,12 +100,11 @@ Com escalas de *três notas por corda*, a diferença fica evidente. Compare a al
   "e|-----------|-----------|-----------|\nB|-----------|-----------|-----------|\nG|-----------|-----------|-----------|\nD|--7--5--4--|-----------|-----------|\nA|-----------|--7--5--3--|-----------|\nE|-----------|-----------|--7--5--3--|\nEco U  D  U     U  D  U     U  D  U",
 )
 
-#v(0.3em)
 
 Na alternada, metade das trocas de corda é _inside_; na econômica, a palheta atravessa duas cordas num único gesto, como se fosse uma única nota mais longa. O resultado é menos movimento e mais velocidade em linhas que percorrem várias cordas.
 
-#caixa-e(tipo: "atencao")[
-  O "arraste" da econômica *não* é um strum: são duas notas separadas, cada uma no seu lugar rítmico. O erro mais comum é apressar a segunda nota da troca. Toque sempre com metrônomo e escute se as semicolcheias continuam iguais. Com número *par* de notas por corda, a econômica não traz vantagem — use a alternada.
+#caixa(tipo: "atencao")[
+  O "arraste" da econômica *não* é um strum: são duas notas separadas, cada uma no seu lugar rítmico. O erro mais comum é apressar a segunda nota da troca. Toque sempre com metrônomo e escute se as semicolcheias continuam iguais. Com número *par* de notas por corda (começando em D), a econômica coincide com a alternada na subida; nesse caso, simplesmente alterne.
 ]
 
 == 4. Palhetada híbrida
@@ -141,7 +117,6 @@ Na palhetada híbrida a palheta continua entre polegar e indicador, enquanto os 
   [*Comece lento*: o desafio é o ataque da palheta e dos dedos soar com o mesmo volume.],
 ))
 
-#v(0.6em)
 
 #tab(
   titulo: "Exemplo 6 — Arpejos com salto de corda: Am – C – G – Em",
@@ -149,7 +124,6 @@ Na palhetada híbrida a palheta continua entre polegar e indicador, enquanto os 
   "e|--------------|--------------|--------------|--------------|\nB|--------1-----|--------1-----|--------0-----|--------0-----|\nG|-----2-----2--|-----0-----0--|-----0-----0--|-----0-----0--|\nD|--------------|--------------|--------------|--------------|\nA|--0-----------|--3-----------|--------------|--------------|\nE|--------------|--------------|--3-----------|--0-----------|\n    D  m  a  m     D  m  a  m     D  m  a  m     D  m  a  m",
 )
 
-#v(0.4em)
 
 #tab(
   titulo: "Exemplo 7 — Country “boom-chick” (C e G): baixo alternado com a palheta, acorde com os dedos",
@@ -157,7 +131,6 @@ Na palhetada híbrida a palheta continua entre polegar e indicador, enquanto os 
   "e|------------------|------------------|------------------|------------------|\nB|------1-------1---|------0-------0---|------1-------1---|------0-------0---|\nG|------0-------0---|------0-------0---|------0-------0---|------0-------0---|\nD|----------2-------|----------0-------|----------2-------|----------0-------|\nA|--3---------------|------------------|--3---------------|------------------|\nE|------------------|--3---------------|------------------|--3---------------|\n    D   ma  D   ma     D   ma  D   ma     D   ma  D   ma     D   ma  D   ma",
 )
 
-#v(0.4em)
 
 #tab(
   titulo: "Exemplo 8 — Funk em Em7: palheta nos graves e notas mortas, dedos “estalando” a díade",
@@ -165,7 +138,6 @@ Na palhetada híbrida a palheta continua entre polegar e indicador, enquanto os 
   "e|----------------------------------|----------------------------------|\nB|----------8---------------8-------|----------8---------------8-------|\nG|----------7---------------7-------|----------7---------------7-------|\nD|----------------------------------|----------------------------------|\nA|--7---x-------x---7---x-------x---|--7---x-------x---7---x-------x---|\nE|----------------------------------|----------------------------------|\n    D   U   ma  U   D   U   ma  U      D   U   ma  U   D   U   ma  U",
 )
 
-#v(0.3em)
 
 No country, a híbrida é a base do _chicken picking_: os dedos puxam a corda com força e soltam, produzindo um estalo percussivo. No funk e no soul, a mesma ideia permite tocar a díade aguda com um "pop" curto enquanto a palheta mantém as semicolcheias da mão direita nas cordas graves.
 
@@ -173,13 +145,12 @@ No country, a híbrida é a base do _chicken picking_: os dedos puxam a corda co
 
 No _sweep_ (varredura), um arpejo com *uma nota por corda* é tocado com um único movimento contínuo da palheta: todas as notas da subida em D, todas as da descida em U. É a aplicação extrema da regra da econômica.
 
-#cartoes-i((
+#cartoes-info((
   (titulo: "Uma nota por vez", corpo: [Não é um rasgueado. A mão esquerda deixa soar *só* a nota atual: levante cada dedo logo depois de tocar a sua nota.]),
   (titulo: "Abafamento", corpo: [A palma da mão direita encosta nas cordas que já foram tocadas (na subida); a mão esquerda abafa as que não estão em uso.]),
   (titulo: "Ritmo primeiro", corpo: [Cada nota precisa cair no seu lugar. Estude em tercinas ou semicolcheias, sempre com metrônomo, antes de pensar em velocidade.]),
 ))
 
-#v(0.6em)
 
 #tab(
   titulo: "Exemplo 9 — Lá menor (A C E) em 3 cordas",
@@ -187,7 +158,6 @@ No _sweep_ (varredura), um arpejo com *uma nota por corda* é tocado com um úni
   "e|----------12--h17-p12---------|----------12--h17-p12---------|\nB|------13--------------13------|------13--------------13------|\nG|--14----------------------14--|--14----------------------14--|\nD|------------------------------|------------------------------|\nA|------------------------------|------------------------------|\nE|------------------------------|------------------------------|\n    D   D   D           U   U      D   D   D           U   U",
 )
 
-#v(0.4em)
 
 #tab(
   titulo: "Exemplo 10 — Lá menor em 5 cordas (formato de Am com tônica na 5ª corda)",
@@ -195,9 +165,8 @@ No _sweep_ (varredura), um arpejo com *uma nota por corda* é tocado com um úni
   "e|------------------12--h17-p12-----------------|\nB|--------------13--------------13--------------|\nG|----------14----------------------14----------|\nD|------14------------------------------14------|\nA|--12--------------------------------------12--|\nE|----------------------------------------------|\n    D   D   D   D   D           U   U   U   U",
 )
 
-#v(0.3em)
 
-#caixa-e(tipo: "dica")[
+#caixa(tipo: "dica")[
   Primeiro faça o movimento devagar, *sem som na mão esquerda* (só abafando todas as cordas): você deve ouvir os "cliques" da palheta igualmente espaçados. Depois junte a mão esquerda. Se duas notas soarem juntas como num acorde, o problema é o abafamento, não a palheta.
 ]
 
@@ -205,28 +174,26 @@ No _sweep_ (varredura), um arpejo com *uma nota por corda* é tocado com um úni
 
 Velocidade é consequência de *precisão repetida*. O método abaixo funciona para todos os exemplos desta aula.
 
-#tabela-i(
-  columns: (0.9fr, 1.6fr, 2.6fr),
+#tabela(
+  columns: (0.8fr, 2.2fr, 2.2fr),
   alinhamento: (center + horizon, left + horizon, left + horizon),
   ([*Etapa*], [*O que fazer*], [*Critério para avançar*]),
   (
-    ([1. Lento], [Encontre o BPM em que você toca *sem nenhum erro*, relaxado], [3 repetições perfeitas seguidas]),
-    ([2. Subir], [Aumente de 4 em 4 BPM (ou 5 em 5)], [3 repetições limpas no novo BPM; caso contrário, fique nele]),
-    ([3. Teste], [Uma vez por sessão, tente +10 a +15 BPM acima], [Só para sentir o movimento; não conta como recorde]),
-    ([4. Volta], [Termine 8–10 BPM abaixo do seu limite do dia], [O cérebro fixa o movimento limpo e relaxado]),
+    ([1\. Lento], [Encontre o BPM em que você toca *sem nenhum erro*, relaxado], [3 repetições perfeitas seguidas]),
+    ([2\. Subir], [Aumente de 4 em 4 BPM (ou 5 em 5)], [3 repetições limpas no novo BPM; caso contrário, fique nele]),
+    ([3\. Teste], [Uma vez por sessão, tente +10 a +15 BPM acima], [Só para sentir o movimento; não conta como recorde]),
+    ([4\. Volta], [Termine 8–10 BPM abaixo do seu limite do dia], [O cérebro fixa o movimento limpo e relaxado]),
   ),
 )
 
-#v(0.4em)
 
-#cartoes-i((
+#cartoes-info((
   (titulo: "Gravação para autoavaliação", corpo: [Grave 30 segundos de cada exercício no celular, com o metrônomo audível. Ao ouvir, verifique: as notas caem *em cima* do clique? O volume do D e do U é igual? Há cordas soltas soando onde não deveriam? Guarde as gravações e compare as mais recentes com as mais antigas.]),
   (titulo: "Prevenção de tensão e lesões", corpo: [Aqueça 3–5 minutos antes de acelerar. Faça uma pausa de 5 minutos a cada 25 de estudo. Ombros baixos, pulso reto, respiração solta. *Dor, formigamento ou queimação não são "parte do treino"*: pare e descanse; se persistir, procure um profissional de saúde.]),
 ))
 
-#v(0.4em)
 
-#tabela-i(
+#tabela(
   columns: (1.3fr, 1fr, 1fr, 1fr),
   ([*Subdivisão*], [*Notas por tempo*], [*Ex.: a 80 BPM*], [*Notas por segundo*]),
   (
@@ -240,18 +207,17 @@ Velocidade é consequência de *precisão repetida*. O método abaixo funciona p
 
 == 7. Exercícios
 
-#exercicio-i(titulo: "Escreva a palhetada econômica", nivel: "Médio")[
-  Escreva D ou U sob cada nota usando a regra da palhetada econômica (comece com D). Em seguida, escreva também a versão em alternada estrita na linha de baixo.
+#ex(titulo: "Escreva a palhetada econômica", nivel: "Médio")[
+  Escreva D ou U sob cada nota usando a regra da palhetada econômica (comece com D). Em seguida, escreva a versão em alternada estrita na linha abaixo da tablatura.
 
   #tab(
     "e|----------------------|--------------|\nB|----------------------|--5---6---8---|\nG|--------------5---7---|--------------|\nD|--5---7---9-----------|--------------|\nA|----------------------|--------------|\nE|----------------------|--------------|\n    __  __  __  __  __     __  __  __",
   )
-  #v(0.2em)
   Alternada estrita:
   #linhas-resposta(1)
 ]
 
-#exercicio-i(titulo: "Outside ou inside?", nivel: "Fácil")[
+#ex(titulo: "Outside ou inside?", nivel: "Fácil")[
   Classifique cada troca de corda (duas notas, a primeira na corda indicada).
 
   #tabela-preencher(
@@ -268,7 +234,7 @@ Velocidade é consequência de *precisão repetida*. O método abaixo funciona p
   )
 ]
 
-#exercicio-i(titulo: "Alternada com metrônomo", nivel: "Prática")[
+#ex(titulo: "Alternada com metrônomo", nivel: "Prática")[
   Toque os exemplos 1, 2 e 3 em semicolcheias seguindo o método da seção 6. Anote o BPM em que começou, o BPM limpo que já alcançou e a próxima meta.
 
   #tabela-preencher(
@@ -284,21 +250,23 @@ Velocidade é consequência de *precisão repetida*. O método abaixo funciona p
   )
 ]
 
-#exercicio-i(titulo: "Econômica × alternada", nivel: "Prática")[
+#ex(titulo: "Econômica × alternada", nivel: "Prática")[
   Toque o exemplo 4 subindo e o exemplo 5 descendo, sem parar (18 notas), primeiro com palhetada alternada e depois com a econômica, em tercinas a 60 BPM. Suba 4 BPM por vez até 90 BPM. Grave as duas versões no mesmo BPM e responda: qual soa mais regular? Em qual a mão direita se cansa menos?
 
   #linhas-resposta(2)
 ]
 
-#exercicio-i(titulo: "Híbrida", nivel: "Prática")[
-  Toque os exemplos 6, 7 e 8, quatro vezes cada, a 70 BPM (colcheias nos exemplos 6 e 7, semicolcheias no 8). Objetivo: o ataque dos dedos m e a com o mesmo volume da palheta. Depois aplique o padrão do exemplo 7 a uma progressão que você já toca (por exemplo, G – C – D – G).
+#ex(titulo: "Híbrida", nivel: "Prática")[
+  Toque os exemplos 6, 7 e 8, quatro vezes cada, a 70 BPM (colcheias nos exemplos 6 e 7, semicolcheias no 8). Objetivo: o ataque dos dedos m e a com o mesmo volume da palheta. Depois aplique o padrão do exemplo 7 a uma progressão que você já toca (por exemplo, G – C – D – G) e anote qual foi:
+  #linhas-resposta(1)
 ]
 
-#exercicio-i(titulo: "Primeiro sweep", nivel: "Prática")[
-  Estude o exemplo 9 e depois o 10 em tercinas, começando em 50 BPM. Antes de subir o BPM, grave e confira se nenhuma nota soa junto com a anterior. Meta: exemplo 9 a 80 BPM e exemplo 10 a 60 BPM, limpos.
+#ex(titulo: "Primeiro sweep", nivel: "Prática")[
+  Estude o exemplo 9 e depois o 10 em tercinas, começando em 50 BPM. Antes de subir o BPM, grave e confira se nenhuma nota soa junto com a anterior. Meta: exemplo 9 a 80 BPM e exemplo 10 a 60 BPM, limpos. Anote o BPM limpo que você já alcançou em cada um:
+  #linhas-resposta(1)
 ]
 
-#exercicio-i(titulo: "Registro de gravação", nivel: "Autoavaliação")[
+#ex(titulo: "Registro de gravação", nivel: "Autoavaliação")[
   A cada sessão de estudo, grave um exercício e preencha uma linha do registro. Seja específico nos problemas (ex.: "U mais fraco na 2ª corda", "6ª corda soando no sweep").
 
   #tabela-preencher(
@@ -315,8 +283,7 @@ Velocidade é consequência de *precisão repetida*. O método abaixo funciona p
   )
 ]
 
-#inteiro[
-=== Sugestão de prática (40 minutos)
+=== Sugestão de prática
 
 #rotina-estudo((
   ([Aquecimento: cromático 1-2-3-4 (exemplo 1), relaxado, mãos soltas], [4 min], [60–70]),
@@ -328,9 +295,7 @@ Velocidade é consequência de *precisão repetida*. O método abaixo funciona p
   ([Pausa (alongamento leve de mãos e antebraços)], [3 min], [—]),
   ([Gravação de um exercício + registro (Exercício 7)], [5 min], [—]),
 ))
-]
 
-#v(0.4em)
 
 #checklist(titulo: "Autoavaliação", (
   [Toco a pentatônica em alternada estrita, em semicolcheias, sem acelerar nem atrasar.],
@@ -342,29 +307,29 @@ Velocidade é consequência de *precisão repetida*. O método abaixo funciona p
 ))
 
 #gabarito[
-  #resp(1)[
+  #resposta(1)[
     #set text(size: 9pt)
     Econômica: D U D | D U | D U D. A troca 4ª → 3ª corda começa com D (a palheta já descia); a troca 3ª → 2ª corda começa com D normalmente, pois a última nota da 3ª corda foi U (não há "arraste" possível). \
     Alternada estrita: D U D U D U D U.
     #tab("e|----------------------|--------------|\nB|----------------------|--5---6---8---|\nG|--------------5---7---|--------------|\nD|--5---7---9-----------|--------------|\nA|----------------------|--------------|\nE|----------------------|--------------|\n    D   U   D   D   U      D   U   D")
   ]
-  #resp(2)[
+  #resposta(2)[
     Regra: a "corda de cima" do par é a mais grave. D nela (e U na de baixo) = outside; U nela (e D na de baixo) = inside. \
     a) Outside. b) Inside. c) Inside (a 3ª, corda de cima, recebe U). d) Outside (a 5ª, corda de cima, recebe D). e) Outside (a 2ª, corda de cima, recebe D; a 1ª recebe U).
   ]
-  #resp(3)[
+  #resposta(3)[
     Exercício prático — critério de sucesso: os quatro exercícios sobem de BPM ao longo das sessões com três repetições limpas por etapa, e a diferença entre outside e inside diminui.
   ]
-  #resp(4)[
+  #resposta(4)[
     Resposta pessoal. Em geral a econômica soa mais ligada e cansa menos a mão direita em escalas de três notas por corda; a alternada tende a soar mais "articulada". O importante é que, nas duas, as tercinas fiquem regulares na gravação.
   ]
-  #resp(5)[
+  #resposta(5)[
     Exercício prático — critério de sucesso: as notas dos dedos e da palheta têm o mesmo volume, os baixos não param de alternar e as notas abafadas (x) do exemplo 8 soam percussivas, sem altura definida.
   ]
-  #resp(6)[
+  #resposta(6)[
     Exercício prático — critério de sucesso: exemplo 9 a 80 BPM e exemplo 10 a 60 BPM em tercinas, com cada nota soando separada e nenhuma corda solta vibrando.
   ]
-  #resp(7)[
+  #resposta(7)[
     Resposta pessoal. Um bom registro mostra o BPM limpo subindo aos poucos e problemas descritos de forma concreta, cada um ligado a uma correção (abafar com a palma, relaxar o polegar, voltar 8 BPM etc.).
   ]
 ]

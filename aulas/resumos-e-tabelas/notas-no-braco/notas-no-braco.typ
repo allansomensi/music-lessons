@@ -73,7 +73,7 @@
 #let INTERVALOS = (
   "T": (0, 0), "b2": (1, 1), "2": (1, 2), "#2": (1, 3), "b3": (2, 3), "3": (2, 4),
   "4": (3, 5), "#4": (3, 6), "b5": (4, 6), "5": (4, 7), "#5": (4, 8), "b6": (5, 8),
-  "6": (5, 9), "bb7": (6, 9), "b7": (6, 10), "7M": (6, 11),
+  "6": (5, 9), "bb7": (6, 9), "7": (6, 10), "7M": (6, 11),
   "b9": (1, 1), "9": (1, 2), "#9": (1, 3), "11": (3, 5), "#11": (3, 6), "b13": (5, 8), "13": (5, 9),
 )
 #let transp(n, iv) = {
@@ -162,7 +162,7 @@ Saber o nome de cada nota em qualquer casa permite montar acordes, escalas e arp
 
 == 2. Notas naturais (para memorizar)
 
-#intro[Entre duas naturais há sempre uma casa vazia, exceto em *Mi–Fá* e *Si–Dó* (casas vizinhas). Dó em cinza, para você enxergar o desenho das oitavas. A 6ª corda (Mi grave) fica no topo; à esquerda, as cordas soltas (casa 0).]
+#intro[Entre duas naturais há sempre uma casa vazia, exceto em *Mi–Fá* e *Si–Dó* (casas vizinhas). Dó em cinza, para você enxergar o desenho das oitavas. A 6ª corda (Mi grave) fica no topo; à esquerda está o nome de cada corda solta.]
 
 #align(center, braco-notas(
   naturais(GUITARRA.map(c => c.at(1)), 1, 12),
@@ -191,7 +191,7 @@ Saber o nome de cada nota em qualquer casa permite montar acordes, escalas e arp
 #page(flipped: true)[
   == 4. Mapa cromático completo — guitarra e violão (casas 0 a 24)
 
-  #intro[Cada casa sobe um semitom. As notas naturais estão em negrito; as demais aparecem com os dois nomes (sustenido/bemol). A linha grossa após a casa 0 representa a pestana (nut).]
+  #intro[Cada casa sobe um semitom. As notas naturais estão em negrito; as demais aparecem com os dois nomes (sustenido/bemol). A linha grossa após a casa 0 representa o início do braço (a peça onde as cordas se apoiam antes da 1ª casa).]
 
   #mapa-braco(GUITARRA, 0, 12)
 
@@ -229,7 +229,7 @@ Saber o nome de cada nota em qualquer casa permite montar acordes, escalas e arp
       inset: (x: 0.5em, y: 0.45em),
       tamanho: 9.5pt,
     )
-    #nota-rodape[Regra geral: a nota da casa *n* aparece na corda vizinha mais aguda na casa *n − 5*; da 3ª para a 2ª, na casa *n − 4*. É assim que se afina “pela 5ª casa”.]
+    #nota-rodape[Regra geral: a nota da casa *n* aparece na corda vizinha mais aguda na casa *n − 5*; da 3ª para a 2ª, na casa *n − 4*. É assim que se afina “pela 5ª casa”. Na tabela ao lado, “c8” = casa 8.]
   ],
   [
     #tabela-resumo(

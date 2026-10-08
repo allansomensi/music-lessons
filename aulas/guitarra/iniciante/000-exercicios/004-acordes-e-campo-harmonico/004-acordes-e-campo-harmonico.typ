@@ -20,22 +20,40 @@
 // Exercício que não se divide entre páginas.
 #let ex(..args, body) = block(breakable: false, width: 100%, above: 1.5em, below: 0.9em, exercicio(..args, body))
 
-// Quadro de abertura no mesmo estilo de `objetivos`.
-#let quadro(titulo, body) = block(
-  width: 100%,
-  fill: color-subtle-bg,
-  stroke: (left: 3pt + color-strong, rest: 0.5pt + color-rule-dark),
-  inset: (x: 14pt, y: 11pt),
-  radius: (right: 5pt),
-  below: 1.2em,
-  [
-    #text(size: 9pt, weight: "bold", tracking: 1.2pt, fill: color-secondary)[#upper(titulo)]
-    #v(0.2em)
-    #set text(size: 9.5pt)
-    #set par(justify: false, leading: 0.7em)
-    #body
-  ],
+// Página de abertura: quadro de temas (com níveis e espaço para
+// anotar os acertos de cada bloco) e convenções.
+#let rotulo-abertura(body) = block(
+  above: 2.2em,
+  below: 0.7em,
+  sticky: true,
+  text(size: 9pt, weight: "bold", tracking: 1.2pt, fill: color-secondary, upper(body)),
 )
+
+#let quadro-temas(linhas) = {
+  set text(size: 9.5pt)
+  tabela(
+    columns: (1.55fr, 2.75fr, 0.9fr, 1.2fr, 0.9fr),
+    alinhamento: (left + horizon, left + horizon, center + horizon, center + horizon, center + horizon),
+    ([Bloco], [Temas], [Exercícios], [Níveis], [Acertos]),
+    linhas.map(l => (
+      [*#l.at(0).* #l.at(1)],
+      l.at(2),
+      l.at(3),
+      text(tracking: 0.6pt, l.at(4)),
+      [#box(width: 0.75cm, stroke: (bottom: 0.5pt + color-rule-dark)) / #l.at(5)],
+    )),
+  )
+}
+
+#let convencoes(itens) = caixa(tipo: "neutro", titulo: none, width: 100%)[
+  #set text(size: 9.5pt)
+  #set par(justify: false)
+  #set par(hanging-indent: 6.2em, spacing: 0.9em)
+  #for i in itens [
+    #box(width: 6.2em, text(weight: "bold", fill: color-strong, i.at(0)))#i.at(1)
+
+  ]
+]
 
 #let rotulo(body) = text(size: 9pt, weight: "bold", fill: color-secondary, body)
 
@@ -77,28 +95,24 @@
 
 = Acordes e Campo Harmônico
 
-Este material trabalha a construção e a lógica dos acordes: tríades e tétrades, inversões, campo harmônico maior e menor, graus, funções, cadências, relativos, transposição, análise de progressões e tensões. Os exercícios vão do acorde isolado à harmonia de uma música inteira, e a dificuldade aumenta dentro de cada bloco. Resolva com lápis e, sempre que montar um acorde no papel, *toque-o na guitarra* — o ouvido confirma ou denuncia o erro na hora. Os exercícios de diagrama pedem que você escreva a nota de cada ponto: conte as casas a partir da nota da corda solta (da 6ª à 1ª: E – A – D – G – B – E), lembrando que cada casa vale um semitom. Confira tudo no *gabarito* ao final.
+*Como usar este material.* Estes exercícios trabalham a construção e a lógica dos acordes, do acorde isolado à harmonia de uma música inteira; a dificuldade cresce dentro de cada bloco. Resolva a lápis e, sempre que montar um acorde no papel, *toque-o na guitarra* — o ouvido confirma ou denuncia o erro na hora. Confira tudo no *gabarito*, no final.
 
-#quadro("Conteúdos cobertos")[
-  #grid(
-    columns: (1.25fr, 2.6fr, auto),
-    column-gutter: 1em,
-    row-gutter: 0.85em,
-    align: (left + top, left + top, right + top),
-    text(size: 8.5pt, weight: "bold", fill: color-secondary)[BLOCO],
-    text(size: 8.5pt, weight: "bold", fill: color-secondary)[TEMAS],
-    text(size: 8.5pt, weight: "bold", fill: color-secondary)[EXERCÍCIOS],
-    [*1.* Tríades, tétrades e inversões], [Tríades maiores, menores, diminutas e aumentadas · tétrades · notas em diagramas · inversões], [1–6],
-    [*2.* Campo harmônico maior], [Campo harmônico maior em tríades e tétrades · graus romanos · funções e cadências], [7–10],
-    [*3.* Relativos e tons menores], [Acordes relativos · campo harmônico menor natural], [11–12],
-    [*4.* Transposição, análise e tensões], [Transposição · análise de progressões (incluindo o II-V-I) · tensões · composição], [13–16],
-  )
-  #v(0.3em)
-  #line(length: 100%, stroke: 0.4pt + color-rule-light)
-  #v(-0.2em)
-  #text(size: 8.5pt, fill: color-secondary)[*Níveis:* _Fácil_ — aplicação direta de uma regra · _Médio_ — raciocínio em etapas · _Desafio_ — combina vários conceitos; vale errar e refazer. \
-  *Cifragem:* `C` maior · `Cm` menor · `Cº` diminuta (= `Cm(b5)`) · `C+` aumentada · `C7M` · `C7` · `Cm7` · `Cm7(b5)` (= `Cø`). Graus em algarismos romanos: `I`, `IIm7`, `V7`, `VIIm7(b5)`; em tom menor, `bIII`, `bVI`, `bVII`.]
-]
+#rotulo-abertura[Quadro de temas]
+#quadro-temas((
+  ([1], [Tríades, tétrades e inversões], [Tríades maiores, menores, diminutas e aumentadas · tétrades · notas em diagramas · inversões], [1–6], [F M M M M D], 6),
+  ([2], [Campo harmônico maior], [Campo harmônico em tríades e em tétrades · graus em algarismos romanos · funções e cadências], [7–10], [F M M M], 4),
+  ([3], [Relativos e tons menores], [Acordes relativos · campo harmônico menor natural], [11–12], [F M], 2),
+  ([4], [Transposição, análise e tensões], [Transposição · análise de progressões (incluindo o IIm7 – V7 – I7M) · tensões · composição], [13–16], [M D D D], 4),
+))
+#block(above: 0.7em, text(size: 8.5pt, fill: color-secondary)[*Níveis:* F = fácil (aplicação direta de uma regra) · M = médio (raciocínio em etapas) · D = desafio (combina vários conceitos; vale errar e refazer). *Acertos:* depois de corrigir com o gabarito, anote quantos exercícios de cada bloco você acertou por completo e revise primeiro o bloco com menos acertos.])
+
+#rotulo-abertura[Convenções]
+#convencoes((
+  ([Cifras], [`C` maior · `Cm` menor · `Cº` diminuta · `C+` aumentada · `C7M` · `C7` · `Cm7` · `Cm7(b5)` · `C/E` = Dó maior com Mi no baixo (inversão).]),
+  ([Intervalos], [`T` (tônica) · `b3` · `3` · `b5` · `5` · `#5` · `7` (7ª menor) · `7M` (7ª maior); tensões `9`, `11` e `13`, com as alterações `b9`, `#9`, `#11` e `b13`.]),
+  ([Graus], [Algarismos romanos com o tipo do acorde: `I7M`, `IIm7`, `V7`, `VIIm7(b5)` (ou `VIIø`); em tom menor, `Im7`, `bIII7M`, `bVI7M`, `bVII7`…]),
+  ([Diagramas], [Da 6ª corda (à esquerda) à 1ª; `x` = corda não tocada, `○` = corda solta. Afinação padrão, da 6ª à 1ª: E – A – D – G – B – E; cada casa vale 1 semitom.]),
+))
 
 #pagebreak()
 
@@ -141,7 +155,7 @@ Este material trabalha a construção e a lógica dos acordes: tríades e tétra
 ]
 
 #ex(titulo: "Monte as tétrades", nivel: "Médio")[
-  Acrescente a sétima a cada tríade. Fórmulas: *7M* = T – 3 – 5 – 7M · *7* (dominante) = T – 3 – 5 – b7 · *m7* = T – b3 – 5 – b7 · *m7(b5)* = T – b3 – b5 – b7.
+  Acrescente a sétima a cada tríade. Fórmulas (7 = 7ª menor; 7M = 7ª maior): *7M* = T – 3 – 5 – 7M · *7* (dominante) = T – 3 – 5 – 7 · *m7* = T – b3 – 5 – 7 · *m7(b5)* = T – b3 – b5 – 7.
 
   #tabela-preencher(
     columns: (1.4fr, 0.75fr, 0.75fr, 0.75fr, 0.75fr, 1.4fr, 0.75fr, 0.75fr, 0.75fr, 0.75fr),
@@ -514,7 +528,7 @@ Este material trabalha a construção e a lógica dos acordes: tríades e tétra
   ]
 
   #resposta(4)[
-    G B D F: T 3 5 b7 → *G7* · A C E G: T b3 5 b7 → *Am7* · F A C E: T 3 5 7M → *F7M* · B D F A: T b3 b5 b7 → *Bm7(b5)* · D F\# A C: T 3 5 b7 → *D7* · E G\# B D\#: T 3 5 7M → *E7M* · C Eb G Bb: T b3 5 b7 → *Cm7* · C\# E G B: T b3 b5 b7 → *C\#m7(b5)* · Bb D F A: T 3 5 7M → *Bb7M* · F\# A C\# E: T b3 5 b7 → *F\#m7*.
+    G B D F: T 3 5 7 → *G7* · A C E G: T b3 5 7 → *Am7* · F A C E: T 3 5 7M → *F7M* · B D F A: T b3 b5 7 → *Bm7(b5)* · D F\# A C: T 3 5 7 → *D7* · E G\# B D\#: T 3 5 7M → *E7M* · C Eb G Bb: T b3 5 7 → *Cm7* · C\# E G B: T b3 b5 7 → *C\#m7(b5)* · Bb D F A: T 3 5 7M → *Bb7M* · F\# A C\# E: T b3 5 7 → *F\#m7*.
   ]
 
   #resposta(5)[
@@ -547,7 +561,7 @@ Este material trabalha a construção e a lógica dos acordes: tríades e tétra
   ]
 
   #resposta(9)[
-    a) Em/G = *VIm* · D7/G = *V7* · C7M/G = *IV7M* · F\#m7(b5)/G = *VIIm7(b5)* · Gm7/F = *IIm7* · Dm/F = *VIm* · Em7(b5)/F = *VIIm7(b5)* · C7/F = *V7* · A7/D = *V7* · G7M/D = *IV7M* · Bm7/D = *VIm7* · F\#m/D = *IIIm*. \
+    a) Em em G = *VIm* · D7 em G = *V7* · C7M em G = *IV7M* · F\#m7(b5) em G = *VIIm7(b5)* · Gm7 em F = *IIm7* · Dm em F = *VIm* · Em7(b5) em F = *VIIm7(b5)* · C7 em F = *V7* · A7 em D = *V7* · G7M em D = *IV7M* · Bm7 em D = *VIm7* · F\#m em D = *IIIm*. \
     b) V7 de A = *E7* · IIm7 de Eb = *Fm7* · VIm de E = *C\#m* · IV7M de Bb = *Eb7M* · IIIm7 de D = *F\#m7* · VIIm7(b5) de C = *Bm7(b5)*.
   ]
 
@@ -605,7 +619,7 @@ Este material trabalha a construção e a lógica dos acordes: tríades e tétra
 
   #resposta(16)[
     Resposta pessoal. Um exemplo que cumpre todos os critérios: \
-    *D7M* (I) | *Bm7* (VIm) | *Em7* (IIm7) | *A7* (V7) | *Bm7* (VIm7 — cadência interrompida A7 → Bm7) | *G7M* (IV7M) | *Em7 – A7* (IIm7 – V7) | *D7M* (I7M). \
+    *D7M* (I7M) | *Bm7* (VIm7) | *Em7* (IIm7) | *A7* (V7) | *Bm7* (VIm7 — cadência interrompida A7 → Bm7) | *G7M* (IV7M) | *Em7 – A7* (IIm7 – V7) | *D7M* (I7M). \
     Critério de sucesso: começa e termina em D7M; tem IIm7 – V7 – I7M (Em7 – A7 – D7M); usa T (D7M, Bm7), S (Em7, G7M) e D (A7); tem cadência interrompida (A7 → Bm7). Diagramas: D7M `x,x,0,2,2,2` · Bm7 `x,2,4,2,3,2` · Em7 `0,2,2,0,3,0` · A7 `x,0,2,0,2,0` · G7M `3,x,4,4,3,x`.
   ]
 ]

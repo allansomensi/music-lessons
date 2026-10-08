@@ -16,10 +16,10 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -33,7 +33,7 @@ jobs:
           typst --version
 
       - name: Cache Typst packages (conchord, fletcher, etc.)
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.cache/typst/packages
           key: typst-packages-${{ hashFiles('**/*.typ') }}
@@ -42,7 +42,7 @@ jobs:
 
       - name: Detect changed .typ files
         id: changed
-        uses: tj-actions/changed-files@v45
+        uses: tj-actions/changed-files@v47
         with:
           files: |
             **/*.typ
@@ -97,7 +97,7 @@ jobs:
           done
 
       - name: Upload PDFs as workflow artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: aula-pdfs
           path: "**/*.pdf"
@@ -105,7 +105,7 @@ jobs:
 
       - name: Commit PDFs gerados
         if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "chore: update lesson PDFs"
           file_pattern: "**/*.pdf"

@@ -1,4 +1,5 @@
-#import "../../../../templates/layout.typ": *
+#import "/templates/layout.typ": *
+#import "/templates/components.typ": *
 #import "@preview/conchord:0.4.0": new-chordgen
 
 #show: aula.with(
@@ -7,209 +8,266 @@
 )
 
 #let chord = new-chordgen(number-to-left: true, use-shadow-barre: false, colors: (hold: black, barre: black))
+#show <chord>: set text(fill: color-strong, weight: "bold")
+
+// Exercício que não se divide entre páginas (enunciado + área de resposta juntos)
+#let ex(..args) = block(breakable: false, above: 1.5em, below: 0.9em, exercicio(..args))
+
+// ============================================================
+// HELPERS LOCAIS — notas do braço calculadas a partir da afinação
+// ============================================================
+#let nomes-notas = ("C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B")
+#let afinacao = (4, 9, 2, 7, 11, 4) // 6ª … 1ª corda
+#let mapa(cordas-idx, ini, fim) = cordas-idx.map(k => range(ini, fim + 1).map(c => nomes-notas.at(calc.rem(afinacao.at(k) + c, 12))))
 
 = Fundamentos de Leitura Musical
 
-Antes de avançar para tópicos como intervalos e escalas, você precisa dominar a *linguagem visual* do violão: os nomes das notas, o significado de \# e b nas cifras, a afinação do instrumento e como ler um diagrama de acorde.
+Para tirar músicas, seguir uma cifra ou estudar com um professor, você precisa entender a *linguagem escrita* do violão: o nome das notas, o significado de \# e b, a afinação das cordas e como ler diagramas de acorde, cifras e tablaturas. Este material reúne essa base.
 
-== 1. As Notas Musicais e a Cifra
+#objetivos((
+  [Nomear as notas em português e em cifra e usar sustenido e bemol.],
+  [Medir tons e semitons no braço e conhecer a afinação padrão.],
+  [Ler diagramas de acorde, inclusive com pestana e com número de casa.],
+  [Interpretar os símbolos de uma cifra e ler tablaturas de violão.],
+))
 
-A música ocidental usa 7 notas naturais. No Brasil usamos os nomes em português (Dó, Ré, Mi...), mas a cifragem popular e a teoria internacional usam letras em inglês.
+== 1. As notas e a cifra
+
+A música ocidental usa *sete notas naturais*. No Brasil falamos os nomes em português (Dó, Ré, Mi…), mas a *cifra* — usada em cifras de músicas, tablaturas e aplicativos — usa letras:
+
+#tabela(
+  ([*Cifra*], [*C*], [*D*], [*E*], [*F*], [*G*], [*A*], [*B*]),
+  (([*Nome*], [Dó], [Ré], [Mi], [Fá], [Sol], [Lá], [Si]),),
+  columns: (1.1fr,) + (1fr,) * 7,
+  zebra: false,
+)
+
+Para memorizar, lembre que a cifra começa no Lá: *A* = Lá, *B* = Si, *C* = Dó, e assim por diante. A cifra mostra *quais acordes* tocar e quando trocar; a *partitura* é mais completa, pois também registra a melodia, o ritmo exato e a intensidade.
+
+== 2. Sustenido, bemol, tom e semitom
+
+No braço do violão, *cada casa equivale a um semitom* (ST), a menor distância entre duas notas. *Duas casas* formam *um tom* (T).
+
+#cartoes-info((
+  (titulo: [Sustenido (\#)], corpo: [*Sobe* a nota um semitom: uma casa em direção ao corpo do violão. \ Ex.: F\# (Fá sustenido) = uma casa acima do Fá.]),
+  (titulo: [Bemol (b)], corpo: [*Desce* a nota um semitom: uma casa em direção à mão do violão. \ Ex.: Bb (Si bemol) = uma casa abaixo do Si.]),
+))
+
+Entre quase todas as notas naturais vizinhas há *um tom* — e, portanto, uma nota intermediária, que pode ter dois nomes (F\# = Gb). As exceções são *Mi–Fá* e *Si–Dó*, separadas por *um semitom* só.
+
+#block(breakable: false)[
+Veja na 6ª corda (Mi grave), casa a casa:
 
 #align(center)[
-  #block(
-    stroke: 0.5pt + color-rule-dark,
-    radius: 6pt,
-    clip: true,
-    [
-      #table(
-        columns: (1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
-        align: center + horizon,
-        stroke: 0.5pt + color-rule-light,
-        inset: (x: 6pt, y: 9pt),
-        [*C*], [*D*], [*E*], [*F*], [*G*], [*A*], [*B*],
-        [Dó], [Ré], [Mi], [Fá], [Sol], [Lá], [Si],
-      )
-    ],
+  #braco-notas(mapa((0,), 0, 12), fs: 0, cordas: ("6",))
+]
+]
+
+Repare: da corda solta (E) para a casa 1 (F) há só uma casa, porque entre Mi e Fá não existe nota intermediária. O mesmo acontece entre B (casa 7) e C (casa 8). Na casa 12 a nota Mi volta, uma *oitava* acima.
+
+== 3. A afinação padrão
+
+O violão, de nylon ou de aço, usa a mesma afinação padrão da guitarra. Da corda mais grave para a mais aguda:
+
+#tabela(
+  ([*Corda*], [*6ª*], [*5ª*], [*4ª*], [*3ª*], [*2ª*], [*1ª*]),
+  (
+    ([Nota], [Mi grave], [Lá], [Ré], [Sol], [Si], [Mi agudo]),
+    ([Cifra], [E], [A], [D], [G], [B], [E]),
+    ([Altura exata], [E2], [A2], [D3], [G3], [B3], [E4]),
+  ),
+  columns: (1.2fr,) + (1fr,) * 6,
+)
+
+O número ao lado da letra (E2, A2…) indica *em qual oitava* a nota está: quanto maior o número, mais aguda. A 6ª e a 1ª cordas são ambas Mi, mas a 1ª soa duas oitavas acima. A 6ª corda é a mais grossa; a 1ª, a mais fina.
+
+== 4. Como ler um diagrama de acorde
+
+O diagrama mostra o braço *de frente, na vertical*: as linhas verticais são as cordas (6ª à esquerda, 1ª à direita) e as horizontais, os trastes.
+
+#grid(
+  columns: (auto, 1fr),
+  column-gutter: 2em,
+  align: (center + horizon, left + horizon),
+  box(chord("x,0,2,2,1,0", name: "Am")),
+  [
+    #set text(size: 10pt)
+    - *Bolinha preta:* pressione a corda nessa casa.
+    - *○ acima da corda:* corda solta — toque sem pressionar.
+    - *× acima da corda:* corda que não deve soar.
+    - *Linha grossa no topo:* a pestana do violão (o início do braço). Se ela não aparece, o desenho está mais acima no braço.
+  ],
+)
+
+=== Pestana e número de casa
+
+Quando um dedo pressiona várias cordas ao mesmo tempo, o diagrama mostra uma *barra* atravessando as cordas: é a *pestana* (técnica). Quando o acorde fica longe do início do braço, um *número* ao lado indica a casa em que o desenho começa.
+
+#grid-acordes(
+  chord: chord,
+  columns: 2,
+  gutter: 4em,
+  (
+    (tabs: "1,3,3,2,1,1", nome: " ", titulo: "F — Fá maior", detalhe: [pestana com o dedo 1 na casa 1]),
+    (tabs: "x,5,7,7,7,5", nome: " ", titulo: "D — Ré maior (casa 5)", detalhe: [o número 5 indica a casa da pestana]),
+  ),
+)
+
+== 5. Como ler uma cifra
+
+A cifra coloca o nome dos acordes *acima da letra da música*, exatamente sobre a sílaba em que a troca acontece. A *letra* inicial é a *tônica* (a nota que dá nome ao acorde); o que vem depois indica o tipo de acorde:
+
+#tabela(
+  ([*Símbolo*], [*Significado*], [*Exemplo*]),
+  (
+    ([só a letra], [Acorde maior], [C = Dó maior]),
+    ([m], [Acorde menor], [Am = Lá menor]),
+    ([\# ou b], [Sustenido ou bemol na tônica], [F\# = Fá sustenido maior · Bb = Si bemol maior]),
+    ([7], [Com sétima menor], [G7 = Sol com sétima]),
+    ([7M], [Com sétima maior], [C7M = Dó com sétima maior]),
+    ([m7], [Menor com sétima menor], [Am7 = Lá menor com sétima]),
+    ([sus4 / sus2], [A terça é trocada pela 4ª ou pela 2ª], [Dsus4 = Ré com quarta suspensa]),
+    ([\/ (barra)], [Inversão: a nota após a barra é o baixo], [G/B = Sol com baixo em Si]),
+  ),
+  columns: (0.9fr, 1.8fr, 2.3fr),
+  alinhamento: (center + horizon, left + horizon, left + horizon),
+)
+
+#tab("C            G/B        Am\nCan-to a can-ção do meu lu-gar", titulo: "Exemplo de cifra (letra fictícia)", legenda: [Troque para G/B na sílaba "ção" e para Am na sílaba "lu".])
+
+== 6. Como ler uma tablatura
+
+A *tablatura* (tab) mostra *onde* tocar cada nota. Ela tem seis linhas, uma por corda, e os números indicam as casas:
+
+- A linha de *cima* é a *1ª corda (Mi agudo)*; a de *baixo*, a *6ª corda (Mi grave)* — o contrário do diagrama de acorde.
+- O número é a *casa*; *0* é corda solta.
+- Leia *da esquerda para a direita*. Números na *mesma coluna* soam *juntos*.
+
+#align(center, grid(
+  columns: (auto, auto),
+  column-gutter: 2.5em,
+  align: center + horizon,
+  tab("e|-------------------------|\nB|-------------------0--1--|\nG|-------------0--2--------|\nD|----0--2--3--------------|\nA|-3-----------------------|\nE|-------------------------|", titulo: "Escala de Dó maior (notas separadas)", legenda: [C – D – E – F – G – A – B – C]),
+  tab("e|-0-|\nB|-1-|\nG|-0-|\nD|-2-|\nA|-3-|\nE|---|", titulo: "Acorde C", legenda: [notas juntas]),
+))
+
+A tab básica não mostra a duração das notas. Para o ritmo, ouça a gravação ou use a partitura, quando houver.
+
+== 7. Exercícios
+
+#ex(titulo: "Nome e cifra", nivel: "Escrita")[
+  Complete a tabela: escreva o nome das cifras e a cifra dos nomes.
+
+  #v(0.3em)
+  #tabela-preencher(
+    ([*Cifra*], [*G*], [*E*], [*B*], [*F\#*], [*Bb*], [*D\#*]),
+    (([Nome], none, none, none, none, none, none),),
+    columns: (1.2fr,) + (1fr,) * 6,
+  )
+  #v(0.4em)
+  #tabela-preencher(
+    ([*Nome*], [*Lá*], [*Ré*], [*Fá*], [*Dó\#*], [*Mib*], [*Láb*]),
+    (([Cifra], none, none, none, none, none, none),),
+    columns: (1.2fr,) + (1fr,) * 6,
   )
 ]
 
-#align(center)[
-  #block(
-    fill: color-subtle-bg,
-    stroke: 0.5pt + color-rule-dark,
-    inset: 10pt,
-    radius: 5pt,
-    width: 86%,
-    [
-      #set text(size: 8.5pt)
-      *Observação:* a cifra funciona como um guia simples de *localização harmônica*. Já a *partitura* é completa, pois detalha a melodia exata, o tempo e a dinâmica.
-    ],
-  )
-]
+#ex(titulo: "Qual é a nota?", nivel: "Escrita")[
+  Escreva a nota de cada posição. Para notas com sustenido/bemol, escreva os dois nomes (ex.: C\# / Db).
 
-== 2. Sustenido (\#) e Bemol (b)
-
-Entre a maioria das notas naturais há *notas intermediárias*, acessadas pelos acidentes: o *sustenido* (\#) sobe a nota meio tom, e o *bemol* (b) desce meio tom.
-
-#align(center)[
+  #v(0.3em)
   #grid(
     columns: (1fr, 1fr),
-    gutter: 1em,
-    block(
-      width: 100%,
-      fill: color-subtle-bg,
-      stroke: 0.5pt + color-rule-dark,
-      inset: 10pt,
-      radius: 5pt,
-      [
-        #align(center)[#text(weight: "bold", size: 10pt)[♯ Sustenido]]
-        #v(0.4em)
-        #set text(size: 9pt)
-        Sobe a nota em *1 semitom* (1 casa no braço). \
-        Ex.: F\# = Fá Sustenido.
-      ],
+    column-gutter: 1.2em,
+    tabela-preencher(
+      ([*Corda*], [*Casa*], [*Nota*]),
+      (
+        ([a) 6ª (E)], [3], none),
+        ([b) 6ª (E)], [5], none),
+        ([c) 6ª (E)], [8], none),
+        ([d) 6ª (E)], [6], none),
+      ),
+      columns: (1.2fr, 0.8fr, 1.4fr),
     ),
-    block(
-      width: 100%,
-      fill: color-subtle-bg,
-      stroke: 0.5pt + color-rule-dark,
-      inset: 10pt,
-      radius: 5pt,
-      [
-        #align(center)[#text(weight: "bold", size: 10pt)[♭ Bemol]]
-        #v(0.4em)
-        #set text(size: 9pt)
-        Desce a nota em *1 semitom* (1 casa no braço). \
-        Ex.: Bb = Si Bemol.
-      ],
+    tabela-preencher(
+      ([*Corda*], [*Casa*], [*Nota*]),
+      (
+        ([e) 5ª (A)], [2], none),
+        ([f) 5ª (A)], [3], none),
+        ([g) 5ª (A)], [7], none),
+        ([h) 5ª (A)], [4], none),
+      ),
+      columns: (1.2fr, 0.8fr, 1.4fr),
     ),
   )
 ]
 
-== 3. Tom e Semitom no Braço do Violão
+#ex(titulo: "Lendo cifras", nivel: "Escrita")[
+  Escreva o nome completo de cada acorde, como no exemplo: *Am7* = Lá menor com sétima.
 
-O braço do violão é a régua perfeita para visualizar tons e semitons: *cada casa equivale a 1 semitom*.
-
-#caixa-destaque(width: 85%)[
-  *1 Semitom* = andar *1 casa*. \
-  *1 Tom* = andar *2 casas*. \
   #v(0.3em)
-  #text(
-    size: 9pt,
-    fill: color-muted,
-  )[Essa é a matemática espacial que você vai usar para mapear escalas, intervalos e acordes pelo braço.]
-]
-
-== 4. Afinação Padrão do Violão
-
-O violão de 6 cordas (nylon ou aço) usa a mesma afinação padrão da guitarra, chamada *Standard Tuning* ou *E Standard*. Da mais grave para a mais aguda:
-
-#align(center)[
-  #let cordas = (
-    ("6ª corda", "E2", "Mi grave", "A corda mais grossa"),
-    ("5ª corda", "A2", "Lá", ""),
-    ("4ª corda", "D3", "Ré", ""),
-    ("3ª corda", "G3", "Sol", ""),
-    ("2ª corda", "B3", "Si", ""),
-    ("1ª corda", "E4", "Mi agudo", "A corda mais fina"),
-  )
-  #block(
-    stroke: 0.5pt + color-rule-dark,
-    radius: 6pt,
-    clip: true,
-    [
-      #table(
-        columns: (1fr, 1.1fr, 1.2fr, 0.5fr, 1.8fr),
-        align: (left + horizon, center + horizon, center + horizon, center + horizon, left + horizon),
-        stroke: 0.5pt + color-rule-dark,
-        fill: (_, row) => if row == 0 { color-subtle-bg } else if calc.odd(row) { white } else { luma(245) },
-        inset: (x: 8pt, y: 6pt),
-        [*Corda*], [*Nota (Cifra)*], [*Nota*], [*Oitava*], [*Referência*],
-        ..cordas
-          .enumerate()
-          .map(((i, c)) => (
-            text(weight: "bold", fill: color-strong)[#c.at(0)],
-            text(weight: "bold", size: 12pt)[#c.at(1).slice(0, -1)],
-            [#c.at(2)],
-            text(size: 8pt, fill: color-muted)[#c.at(1).slice(-1)],
-            text(size: 8.5pt)[#c.at(3)],
-          ))
-          .flatten(),
-      )
-    ],
+  #tabela-preencher(
+    ([*Cifra*], [*Nome do acorde*]),
+    (
+      ([a) Em], none),
+      ([b) D7], none),
+      ([c) F\#m], none),
+      ([d) Bb7M], none),
+      ([e) Asus4], none),
+      ([f) C/E], none),
+    ),
+    columns: (1fr, 4fr),
+    alinhamento: (center + horizon, left + horizon),
   )
 ]
 
-== 5. Como Ler um Diagrama de Acordes
+#ex(titulo: "Lendo uma tablatura", nivel: "Escrita + prática")[
+  Escreva, na ordem, o nome (em cifra) de cada nota da tab. Depois, toque a melodia.
 
-O diagrama de acorde representa o braço do violão visto de frente. Decodificá-lo é fundamental para montar qualquer acorde sem depender de vídeos.
-
-#align(center)[
-  #block(
-    fill: color-subtle-bg,
-    stroke: 0.5pt + color-rule-dark,
-    inset: 14pt,
-    radius: 6pt,
-    width: 92%,
-    [
-      #grid(
-        columns: (auto, 1fr),
-        gutter: 2em,
-        align: (center + top, left + top),
-        box(stroke: none, [#box(chord("x,0,2,2,1,0", name: "Am"))]),
-        [
-          #set text(size: 9pt)
-          #v(0.5em)
-          #table(
-            columns: (auto, 1fr),
-            stroke: none,
-            inset: (x: 4pt, y: 4pt),
-            align: (center + horizon, left + horizon),
-            [#block(width: 14pt, height: 14pt, fill: black, radius: 7pt)],
-            [*Ponto preto* — pressione esta corda nesta casa],
-
-            [#align(center)[#text(weight: "bold", size: 11pt)[○]]], [*Círculo aberto* — corda solta],
-
-            [#align(center)[#text(weight: "bold", size: 11pt)[✕]]], [*X* — corda mutada],
-
-            [#align(center)[
-              #block(height: 10pt, width: 24pt, fill: black, radius: 2pt)
-            ]],
-            [*Barra no topo* — traste-zero (pestana) ou número da casa],
-          )
-        ],
-      )
-    ],
-  )
+  #tab("e|-------0--1--0--------|\nB|-1--3-----------3--1--|\nG|----------------------|\nD|----------------------|\nA|----------------------|\nE|----------------------|")
+  #linhas-resposta(1)
 ]
 
-== 6. Como Ler uma Cifra
+#ex(titulo: "Diagrama, cifra e tab", nivel: "Escrita")[
+  a) No diagrama de acorde, qual corda fica à esquerda? E na tablatura, qual corda fica na linha de cima? \
+  b) O que significa um × acima de uma corda no diagrama? \
+  c) Na cifra *G/B*, qual nota o baixo (a corda mais grave) deve tocar? \
+  d) Quantas casas há entre Mi e Fá? E entre Fá e Sol?
 
-A cifra indica os *acordes* usando letras e símbolos acima da letra da música.
+  #linhas-resposta(3)
+]
 
-#align(center)[
-  #block(
-    stroke: 0.5pt + color-rule-dark,
-    radius: 6pt,
-    clip: true,
-    [
-      #table(
-        columns: (0.9fr, 2fr, 2fr),
-        align: (center + horizon, left + horizon, left + horizon),
-        stroke: 0.5pt + color-rule-light,
-        fill: (_, row) => if row == 0 { color-subtle-bg } else if calc.odd(row) { white } else { luma(245) },
-        inset: (x: 8pt, y: 7pt),
-        [*Símbolo*], [*Significado*], [*Exemplo*],
-        [A–G], [Nota raiz do acorde], [C = Dó Maior],
-        [m ou -], [Menor], [Am = Lá menor],
-        [\#], [Sustenido], [F\# = Fá Sustenido Maior],
-        [b], [Bemol], [Bb = Si Bemol Maior],
-        [7], [Sétima menor], [G7],
-        [7M ou maj7], [Sétima maior], [C7M],
-        [sus2 / sus4], [Suspensão], [Dsus4],
-        [/], [Inversão — nota após a barra = baixo], [G/B],
-      )
-    ],
-  )
+=== Sugestão de prática
+
+#block(breakable: false, rotina-estudo((
+  ([Dizer as notas da 6ª e da 5ª cordas, casa por casa (0 → 12 → 0)], [4 min], [—]),
+  ([Traduzir cifras sorteadas para o nome completo do acorde], [3 min], [—]),
+  ([Tocar a escala de Dó maior da tab da seção 6, subindo e descendo], [4 min], [60]),
+  ([Montar acordes a partir de diagramas, conferindo ○ e ×], [4 min], [—]),
+)))
+
+#v(0.6em)
+
+#checklist(
+  (
+    [Traduzo nomes de notas para cifra e vice-versa.],
+    [Sei que 1 casa = 1 semitom e que entre Mi–Fá e Si–Dó não há nota intermediária.],
+    [Sei a afinação padrão: Mi, Lá, Ré, Sol, Si, Mi (6ª à 1ª).],
+    [Leio diagramas de acorde (inclusive com pestana) e tablaturas.],
+    [Entendo os símbolos m, 7, 7M, sus4 e a barra (/) de uma cifra.],
+  ),
+  titulo: "Autoavaliação",
+)
+
+#gabarito[
+  #resposta(1)[G = Sol · E = Mi · B = Si · F\# = Fá sustenido · Bb = Si bemol · D\# = Ré sustenido. \ Lá = A · Ré = D · Fá = F · Dó\# = C\# · Mib = Eb · Láb = Ab.]
+  #resposta(2)[a) G · b) A · c) C · d) A\# / Bb · e) B · f) C · g) E · h) C\# / Db.]
+  #resposta(3)[a) Mi menor · b) Ré com sétima · c) Fá sustenido menor · d) Si bemol com sétima maior · e) Lá com quarta suspensa · f) Dó maior com baixo em Mi.]
+  #resposta(4)[C – D – E – F – E – D – C.]
+  #resposta(5)[
+    a) No diagrama, a 6ª corda (Mi grave) fica à esquerda; na tab, a linha de cima é a 1ª corda (Mi agudo). \
+    b) Que a corda não deve ser tocada. \
+    c) Si (B). \
+    d) Entre Mi e Fá, uma casa (1 semitom); entre Fá e Sol, duas casas (1 tom).
+  ]
 ]

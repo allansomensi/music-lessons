@@ -1,4 +1,5 @@
-#import "../../../../templates/layout.typ": *
+#import "/templates/layout.typ": *
+#import "/templates/components.typ": *
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, edge, node
 
 #show: aula.with(
@@ -6,135 +7,108 @@
   nivel: "Iniciante",
 )
 
+// Exercício curto que não se divide entre páginas.
+#let ex(..args, body) = block(breakable: false, width: 100%, exercicio(..args, body))
+
+// Rótulo pequeno abaixo do nome de um bloco nos diagramas.
+#let sub(t) = text(size: 7.5pt, fill: color-muted, t)
+
+// Cadeia de efeitos em blocos numerados, com setas (cabe na largura da página).
+#let elo(n, nome, desc) = block(
+  width: 100%,
+  fill: if n == none { color-subtle-bg-alt } else { white },
+  stroke: 0.5pt + color-rule-dark,
+  radius: 4pt,
+  height: 1.75cm,
+  inset: (x: 4pt, y: 6pt),
+  align(center + horizon)[
+    #if n != none [#text(size: 7.5pt, weight: "bold", fill: color-secondary)[#n] \ ]
+    #text(size: 9pt, weight: "bold", nome) \
+    #sub(desc)
+  ],
+)
+#let seta = align(center + horizon, text(size: 12pt, fill: color-strong)[→])
+
 = Efeitos e Construção do Timbre
 
-O timbre da guitarra elétrica raramente vem do instrumento sozinho. Ele é o resultado de uma *cadeia de decisões sonoras*, desde a guitarra até o alto-falante. Entender como esse caminho funciona é fundamental para criar sons intencionais e evitar erros que destroem o sinal.
+O timbre da guitarra elétrica raramente vem só do instrumento. Ele é o resultado de uma *cadeia de decisões*: a guitarra, os pedais, o amplificador e o alto-falante, cada um moldando o som que chega ao ouvido. Entender esse caminho é o que permite criar sons de propósito e evitar erros comuns que deixam o som confuso ou sem definição.
 
-#v(10em)
+#objetivos((
+  [Descrever o caminho do sinal da guitarra até o alto-falante],
+  [Diferenciar pré-amplificador e amplificador de potência (power amp)],
+  [Conhecer os principais grupos de efeitos e o que cada um faz],
+  [Montar uma cadeia de pedais numa ordem lógica],
+  [Saber quando usar a entrada normal e o loop de efeitos (FX loop) do amplificador],
+))
 
-#align(center)[
-  #image("attachments/amp-e-pedais.svg")]
+#align(center, image("attachments/amp-e-pedais.svg", width: 72%))
 
-#pagebreak()
+== 1. O caminho do sinal
 
-= O Caminho do Sinal
+A guitarra gera um sinal elétrico *fraco*. Ele passa pelos pedais, é preparado e "colorido" no pré-amplificador, ganha força no amplificador de potência e só então movimenta o alto-falante.
 
-Antes de qualquer efeito, é preciso entender o percurso que o sinal elétrico faz desde a guitarra até o ouvido. Cada elo da cadeia *adiciona cor e molda* o som de forma irreversível.
-
-#v(1em)
-
+#v(0.4em)
 #align(center)[
   #diagram(
-    spacing: (10mm, 10mm),
+    spacing: (9mm, 10mm),
     node-stroke: 0.5pt + color-rule-dark,
     node-fill: white,
     node-shape: rect,
-
-    node((0, 0), [*Guitarra* \ #text(size: 7.5pt, fill: color-muted)[sinal passivo]], name: <G>),
-    node((1, 0), [*Pedais* \ #text(size: 7.5pt, fill: color-muted)[pré-sinal]], name: <P>),
-    node((2, 0), [*Pré-Amp* \ #text(size: 7.5pt, fill: color-muted)[ganho + EQ]], name: <PRE>, fill: color-subtle-bg),
-    node((3, 0), [*Power Amp* \ #text(size: 7.5pt, fill: color-muted)[amplificação]], name: <PWR>),
-    node((4, 0), [*Caixa* \ #text(size: 7.5pt, fill: color-muted)[alto-falante]], name: <CAB>),
+    node((0, 0), [*Guitarra* \ #sub[sinal fraco]], name: <G>),
+    node((1, 0), [*Pedais* \ #sub[efeitos]], name: <P>),
+    node((2, 0), [*Pré-amp* \ #sub[ganho + EQ]], name: <PRE>, fill: color-subtle-bg),
+    node((3, 0), [*Power amp* \ #sub[potência]], name: <PWR>),
+    node((4, 0), [*Caixa* \ #sub[alto-falante]], name: <CAB>),
     node((5, 0), [*Ouvido*], name: <EAR>),
-
     edge(<G>, <P>, "->"),
     edge(<P>, <PRE>, "->"),
     edge(<PRE>, <PWR>, "->"),
     edge(<PWR>, <CAB>, "->"),
     edge(<CAB>, <EAR>, "->"),
-
-    node(
-      (2, 0.8),
-      text(size: 8pt)[Aqui nascem \ o *ganho* e o *timbre*],
-      stroke: 0.5pt + color-rule-dark,
-      fill: white,
-      shape: fletcher.shapes.rect,
-      name: <LA>,
-    ),
+    node((2, 0.85), text(size: 8pt)[Aqui nascem o *ganho* \ e o *caráter* do som], name: <LA>),
     edge(<LA>, <PRE>, "-->", stroke: 0.5pt + color-rule-dark),
   )
 ]
 
-== Pré-Amp vs. Power Amp
+=== Pré-amp × power amp
 
-Esses dois estágios têm *funções completamente distintas*. Confundi-los é o erro mais comum ao montar um setup.
+Todo amplificador de guitarra tem esses dois estágios, com funções bem diferentes:
 
-#align(center)[
-  #grid(
-    columns: (1fr, 1fr),
-    gutter: 1.2em,
-    block(
-      width: 100%,
-      fill: color-subtle-bg,
-      stroke: 0.5pt + color-rule-dark,
-      inset: 11pt,
-      radius: 5pt,
-      [
-        #align(center)[#text(weight: "bold", size: 10.5pt)[🎚 Pré-Amplificador]]
-        #v(0.5em)
-        #set text(size: 9pt)
-        Recebe o sinal *fraco* da guitarra e o amplifica para um nível de linha utilizável. É aqui que vivem o *ganho*, o *EQ de 3 bandas* e a *coloração tonal* do amplificador. O caráter sonoro — brilhante, quente, agressivo — nasce quase que inteiramente no pré-amp.
-
-        #v(0.4em)
-        #text(fill: color-secondary)[_Exemplos: o canal de ganho de um Marshall JCM800, o drive de uma pedaleira._]
-      ],
+#block(breakable: false, cartoes-info(
+  columns: (1fr, 1fr),
+  (
+    (
+      titulo: "Pré-amplificador (pré-amp)",
+      corpo: [Recebe o sinal fraco da guitarra e o eleva a um nível de trabalho. É aqui que ficam o *ganho* (a quantidade de saturação), a *equalização* (graves, médios e agudos) e a maior parte do *caráter* do amplificador: brilhante, quente, agressivo. \ #v(0.2em) #sub[Exemplos: o canal de distorção de um amplificador, a simulação de amp de uma pedaleira.]],
     ),
-    block(
-      width: 100%,
-      fill: color-subtle-bg,
-      stroke: 0.5pt + color-rule-dark,
-      inset: 11pt,
-      radius: 5pt,
-      [
-        #align(center)[#text(weight: "bold", size: 10.5pt)[🔊 Power Amplificador]]
-        #v(0.5em)
-        #set text(size: 9pt)
-        Recebe o sinal *já processado* do pré-amp e o amplifica em termos de *potência elétrica* (watts) para movimentar o cone do alto-falante. Ele não tem como objetivo colorir o som; ele apenas o torna *forte o suficiente* para mover o ar.
-
-        #v(0.4em)
-        #text(fill: color-secondary)[_Exemplos: a seção de power do próprio amplificador, um power amp de rack._]
-      ],
+    (
+      titulo: "Amplificador de potência (power amp)",
+      corpo: [Recebe o sinal já pronto do pré-amp e lhe dá *potência elétrica* (watts) suficiente para movimentar o cone do alto-falante. A sua função principal não é colorir o som, e sim torná-lo *alto*. \ #v(0.2em) #sub[Exemplos: a seção de potência de um amplificador, um power amp de rack.]],
     ),
-  )
-]
+  ),
+))
 
-#v(0.5em)
+=== O erro do "pré em cima de pré"
 
+Muitas pedaleiras multiefeitos *simulam um amplificador completo* (pré-amp e caixa). Quando ela já faz esse papel e é ligada na entrada normal de um amplificador, o sinal passa por *dois* pré-amps em sequência:
+
+#v(0.4em)
 #align(center)[
   #diagram(
-    spacing: (12mm, 9mm),
+    spacing: (11mm, 9mm),
     node-stroke: 0.5pt + color-rule-dark,
     node-shape: rect,
-
-    node(
-      (0, 0),
-      [Pedaleira \ #text(size: 7pt)[*simulando pré-amp*]],
-      fill: white,
-      name: <PED>,
-    ),
-    node(
-      (1, 0),
-      [Entrada do Amp \ #text(size: 7pt)[*pré-amp interno*]],
-      fill: white,
-      name: <AMP>,
-    ),
-    node((2, 0), [Power Amp], fill: color-subtle-bg, name: <PWR>),
+    node((0, 0), [Pedaleira \ #sub[simulando pré-amp]], fill: white, name: <PED>),
+    node((1, 0), [Entrada do amp \ #sub[pré-amp do amp]], fill: white, name: <AMP>),
+    node((2, 0), [Power amp], fill: color-subtle-bg, name: <PWR>),
     node((3, 0), [Caixa], fill: color-subtle-bg, name: <CAB>),
-
     edge(<PED>, <AMP>, "->"),
     edge(<AMP>, <PWR>, "->"),
     edge(<PWR>, <CAB>, "->"),
-
     node(
-      (0.5, 0.8),
-      text(
-        size: 8pt,
-        weight: "bold",
-        fill: color-strong,
-      )[⚠ Pré-amp em cima de pré-amp \ sinal distorcido e sem controle],
+      (0.5, 0.85),
+      text(size: 8pt, weight: "bold")[Dois pré-amps em sequência: \ som embolado e sem controle],
       fill: color-subtle-bg,
-      stroke: 0.5pt + color-rule-dark,
-      shape: fletcher.shapes.rect,
       name: <WARN>,
     ),
     edge(<WARN>, <PED>, "-->", stroke: 0.5pt + color-rule-dark),
@@ -142,333 +116,134 @@ Esses dois estágios têm *funções completamente distintas*. Confundi-los é o
   )
 ]
 
-Pré-amp em cima de pré-amp é um dos erros mais frequentes. Quando uma pedaleira está simulando um amplificador completo, ela já entregou o sinal com o caráter tonal final. Ligar esse sinal na entrada normal de um amplificador real significa passar por mais um estágio de ganho e EQ desnecessários.
+O resultado costuma ser um som sem definição e com excesso de médios. A solução é *pular o pré-amp do amplificador*: ligar a pedaleira no *FX Return* (veja a seção 4) ou numa entrada *Power Amp In*, quando o amplificador tiver.
 
-O resultado é um som sem definição e excessivamente agressivo nos médios. Para contornar isso existem duas soluções: entrar pelo *FX Return* do amplificador (pulando o pré-amp dele) ou usar uma saída dedicada de *Power Amp In*.
+== 2. A ordem dos pedais
 
-#pagebreak()
+A ordem importa: um chorus antes de uma distorção soa bem diferente de uma distorção antes de um chorus. A cadeia abaixo é a ordem mais usada como ponto de partida:
 
-= A Cadeia de Efeitos (Signal Chain)
+#v(0.4em)
+#block(breakable: false, grid(
+  columns: (1fr, 16pt, 1fr, 16pt, 1fr, 16pt, 1fr, 16pt, 1fr),
+  row-gutter: 0.8em,
+  align: horizon,
+  elo(none, "Guitarra", "início"), seta,
+  elo(1, "Afinador", "sinal limpo"), seta,
+  elo(2, "Filtro", "wah"), seta,
+  elo(3, "Dinâmica", "compressor"), seta,
+  elo(4, "Ganho", "drive, distorção, fuzz"),
 
-A ordem dos pedais importa. Um chorus antes de uma distorção soa completamente diferente de uma distorção antes de um chorus. A cadeia abaixo é o padrão da indústria para uma pedalboard convencional.
+  align(right + horizon, text(size: 8.5pt, style: "italic", fill: color-muted)[(continua)]), seta,
+  elo(5, "Modulação", "chorus, flanger, phaser"), seta,
+  elo(6, "Delay", "eco"), seta,
+  elo(7, "Reverb", "ambiência"), seta,
+  elo(none, "Amplificador", "fim"),
+))
 
-#v(1.5em)
+=== Por que essa ordem?
 
+O *afinador* precisa do sinal mais puro possível. *Wah, compressor e pedais de ganho* reagem à dinâmica da palhetada, por isso vêm no começo. *Modulação, delay e reverb* devem receber o som já distorcido e equalizado: assim as repetições e a ambiência soam limpas, em vez de serem distorcidas junto com a nota. A posição do *boost* varia: antes dos pedais de ganho ele aumenta a saturação; depois deles, aumenta só o volume.
+
+== 3. Os principais grupos de efeitos
+
+=== Dinâmica: compressor e boost
+
+#tabela(
+  columns: (1fr, 3fr),
+  alinhamento: (left + horizon),
+  ([Pedal], [O que faz]),
+  (
+    ([*Compressor*], [Reduz a diferença entre as notas mais fortes e as mais fracas. O som fica mais *uniforme e sustentado*; muito usado em guitarras limpas de funk e country.]),
+    ([*Boost*], [Aumenta o nível do sinal *sem acrescentar distorção*. Serve para "empurrar" o pré-amp do amplificador ou destacar um solo.]),
+  ),
+)
+
+=== Ganho: overdrive, distorção e fuzz
+
+Os três *saturam* o sinal (cortam o topo da onda sonora), mas de formas diferentes:
+
+#tabela(
+  columns: (1fr, 2.4fr, 1.5fr),
+  ([Tipo], [Característica], [Uso típico]),
+  (
+    ([*Overdrive*], [Saturação suave, que imita um amplificador valvulado no limite. Responde à palhetada: tocar mais forte gera mais saturação.], [Blues, rock clássico, country]),
+    ([*Distorção*], [Saturação mais forte, comprimida e constante; responde menos à dinâmica e mantém a definição em riffs pesados.], [Hard rock, metal]),
+    ([*Fuzz*], [Saturação extrema, que deixa a onda quase "quadrada": som áspero, cheio de harmônicos, com muito sustain.], [Rock dos anos 60, psicodélico, stoner]),
+  ),
+)
+
+=== Filtro: wah
+
+O *wah* é um filtro que realça uma faixa estreita de frequências; com o pé, você move essa faixa dos graves para os agudos. O efeito lembra a voz dizendo "uá".
+
+#block(breakable: false, cartoes-info(
+  columns: (1fr, 1fr),
+  (
+    (titulo: "Calcanhar para baixo", corpo: [Realça os *graves*: som escuro e abafado.]),
+    (titulo: "Ponta do pé para baixo", corpo: [Realça os *agudos*: som brilhante, nasal e cortante.]),
+  ),
+))
+
+#v(0.5em)
+
+O *auto-wah* (ou *envelope filter*) faz esse movimento sozinho, de acordo com a força da palhetada, sem precisar do pedal de expressão.
+
+=== Modulação
+
+Os efeitos de modulação variam continuamente algum aspecto do som (afinação, fase ou volume), em geral misturando uma cópia alterada do sinal com o original.
+
+#tabela(
+  columns: (1fr, 2.6fr, 1.4fr),
+  ([Efeito], [O que faz], [Som típico]),
+  (
+    ([*Chorus*], [Mistura uma cópia levemente desafinada e oscilante: som mais "largo", como vários instrumentos juntos.], [Pop dos anos 80, guitarras limpas]),
+    ([*Flanger*], [Cópia com atraso curtíssimo e variável: efeito de "avião a jato".], [Intros de rock]),
+    ([*Phaser*], [Desloca a fase de algumas frequências: um "rodopio" mais suave.], [Funk, rock psicodélico]),
+    ([*Tremolo*], [Variação rítmica do *volume* (a afinação não muda).], [Surf, blues, rockabilly]),
+    ([*Vibrato*], [Variação rítmica da *afinação*, como uma alavanca automática.], [Psicodélico, indie]),
+  ),
+)
+
+=== Tempo e ambiência: delay e reverb
+
+Estes dois criam a *sensação de espaço* e ficam no fim da cadeia, porque devem processar o som já finalizado.
+
+#block(breakable: false, cartoes-info(
+  columns: (1fr, 1fr),
+  (
+    (
+      titulo: "Delay (eco)",
+      corpo: [Repete o sinal depois de um tempo definido. Controles: *Time* (intervalo entre as repetições), *Feedback* (quantas repetições) e *Mix* (volume do eco em relação ao som original). Delays *digitais* têm eco limpo e preciso; os *analógicos* e de *fita* (tape), um eco mais quente, que vai perdendo brilho.],
+    ),
+    (
+      titulo: "Reverb (ambiência)",
+      corpo: [Simula as reflexões do som num ambiente. O *Decay* controla quanto tempo o reverb dura. Tipos: *room* e *hall* (sala e salão, sons naturais), *spring* e *plate* (mola e placa, sons metálicos e "vintage"). Reverb em excesso tira a definição, principalmente com distorção.],
+    ),
+  ),
+))
+
+#caixa(tipo: "dica", titulo: "Delay no tempo da música")[
+  Para o eco cair no tempo, use: *tempo do delay (ms) = 60.000 ÷ BPM* para repetições em semínimas. Em 120 BPM: 60.000 ÷ 120 = *500 ms*. Para colcheias, divida o resultado por 2 (250 ms).
+]
+
+== 4. O loop de efeitos (FX loop)
+
+Muitos amplificadores têm duas conexões extras no painel traseiro: *Send* (envio) e *Return* (retorno). Elas ficam *entre o pré-amp e o power amp*: o sinal sai do pré-amp pelo Send, passa pelos pedais e volta pelo Return direto para o power amp.
+
+#v(0.4em)
 #align(center)[
   #diagram(
     spacing: (4mm, 12mm),
     node-stroke: 0.5pt + color-rule-dark,
     node-shape: rect,
     node-fill: white,
-
-    // Row 1: before amp
     node((0, 0), [*Guitarra*], name: <G>, fill: color-subtle-bg),
-    node((1, 0), [*Afinador* \ #text(size: 7pt, fill: color-muted)[sempre primeiro]], name: <TUN>),
-    node((2, 0), [*Dinâmicos* \ #text(size: 7pt, fill: color-muted)[comp, boost]], name: <DYN>),
-    node((3, 0), [*Ganho* \ #text(size: 7pt, fill: color-muted)[od, dist, fuzz]], name: <GAI>),
-    node(
-      (4, 0),
-      [*Modulação* \ #text(size: 7pt, fill: color-muted)[chorus, flanger]],
-      name: <MOD>,
-    ),
-    node((5, 0), [*Delay* \ #text(size: 7pt, fill: color-muted)[eco, tape]], name: <DEL>),
-    node((6, 0), [*Reverb* \ #text(size: 7pt, fill: color-muted)[ambiente]], name: <REV>),
-    node((7, 0), [*Amp*], name: <AMP>, fill: color-subtle-bg),
-
-    edge(<G>, <TUN>, "->"),
-    edge(<TUN>, <DYN>, "->"),
-    edge(<DYN>, <GAI>, "->"),
-    edge(<GAI>, <MOD>, "->"),
-    edge(<MOD>, <DEL>, "->"),
-    edge(<DEL>, <REV>, "->"),
-    edge(<REV>, <AMP>, "->"),
-  )
-]
-
-#v(1.5em)
-
-#caixa-destaque(width: 88%)[
-  #text(weight: "bold")[Por que essa ordem?] Os pedais de *ganho* operam melhor com um sinal limpo e dinâmico chegando neles. Os pedais de *modulação e tempo* (delay, reverb) precisam receber o sinal *já distorcido e equalizado* para que os efeitos se repitam e decaiam de forma musical, sem criar caos sonoro.
-]
-
-#pagebreak()
-
-= Os Principais Grupos de Efeitos
-
-== 1. Dinâmicos e Boost
-
-#explainer-component(
-  align(center)[
-    #block(
-      fill: color-subtle-bg,
-      stroke: 0.5pt + color-rule-dark,
-      inset: 12pt,
-      radius: 5pt,
-      width: 100%,
-      [
-        #set text(size: 9pt)
-        #grid(
-          columns: (1fr, 1fr),
-          gutter: 1em,
-          block[
-            #text(weight: "bold")[Compressor] \
-            Reduz a diferença entre as notas mais fortes e mais fracas. Deixa o sinal mais *uniforme e sustentado*. Muito usado no Clean de Funk e Country.
-          ],
-          block[
-            #text(weight: "bold")[Boost / Clean Boost] \
-            Aumenta o nível do sinal sem adicionar distorção. Usado para *empurrar o pré-amp do amplificador* ou destacar um solo.
-          ],
-        )
-      ],
-    )
-  ],
-  [
-    Esses pedais não adicionam notas novas, apenas gerenciam a energia do sinal. O compressor é especialmente útil para guitarristas que alternam entre frases suaves e agressivas na mesma música.
-  ],
-)
-
-#v(1.5em)
-
-== 2. Ganho (Drive, Distortion, Fuzz)
-
-#v(0.5em)
-
-#align(center)[
-  #table(
-    columns: (1fr, 1.8fr, 1.5fr),
-    align: center + horizon,
-    stroke: 0.5pt + color-rule-dark,
-    fill: (col, row) => if row == 0 { color-subtle-bg } else if calc.odd(row) { white } else { color-subtle-bg },
-    [*Tipo*], [*Característica*], [*Uso Típico*],
-    [*Overdrive*], [Saturação suave, dinâmica. Responde à força da palheta.], [Blues, Rock Clássico, Country],
-    [*Distortion*], [Clipping agressivo e consistente. Independe da dinâmica.], [Hard Rock, Metal],
-    [*Fuzz*], [Saturação extrema e caótica, com harmônicos ricos e imprevisíveis.], [Psicodélico, Stoner, Alternativo],
-  )
-]
-
-#v(1em)
-
-#align(center)[
-  #grid(
-    columns: (1fr, 1fr, 1fr),
-    gutter: 1em,
-    block(
-      fill: color-subtle-bg,
-      stroke: 0.5pt + color-rule-dark,
-      inset: 9pt,
-      radius: 5pt,
-      [
-        #align(center)[#text(weight: "bold", size: 9.5pt)[Overdrive]]
-        #v(0.3em)
-        #set text(size: 8.5pt)
-        Imita um amp valvulado sendo empurrado além do seu limite. O sinal começa a *"dobrar"* de forma suave e musical. A guitarra responde à dinâmica: toque mais forte → mais saturação.
-      ],
-    ),
-    block(
-      fill: color-subtle-bg,
-      stroke: 0.5pt + color-rule-dark,
-      inset: 9pt,
-      radius: 5pt,
-      [
-        #align(center)[#text(weight: "bold", size: 9.5pt)[Distortion]]
-        #v(0.3em)
-        #set text(size: 8.5pt)
-        Corta o topo da onda sonora de forma *agressiva e simétrica*. O resultado é um som mais comprimido e consistente, ideal para riffs pesados que precisam de definição.
-      ],
-    ),
-    block(
-      fill: color-subtle-bg,
-      stroke: 0.5pt + color-rule-dark,
-      inset: 9pt,
-      radius: 5pt,
-      [
-        #align(center)[#text(weight: "bold", size: 9.5pt)[Fuzz]]
-        #v(0.3em)
-        #set text(size: 8.5pt)
-        Corta a onda de forma *assimétrica e caótica*, gerando harmônicos ímpares muito ricos. O som é veludo, estranho e viciante. Soa como um alto-falante rasgado.
-      ],
-    ),
-  )
-]
-
-#pagebreak()
-
-== 3. Filtros e Wah
-
-#explainer-component(
-  align(center)[
-    #block(
-      fill: color-subtle-bg,
-      stroke: 0.5pt + color-rule-dark,
-      inset: 12pt,
-      radius: 5pt,
-      width: 100%,
-      [
-        #set text(size: 9pt)
-        #align(center)[#text(weight: "bold")[Como o Wah funciona]]
-        #v(0.6em)
-        O pedal Wah é essencialmente um *filtro passa-banda* cuja frequência central você controla com o pé. Ao mover o pedal para a frente, você eleva as frequências médias-altas — criando o som de vogal *"uaaa"* característico.
-
-        #v(0.5em)
-
-        #grid(
-          columns: (1fr, 1fr),
-          gutter: 0.8em,
-          block(
-            fill: white,
-            stroke: 0.5pt + color-rule-dark,
-            inset: 8pt,
-            radius: 4pt,
-            [
-              *Calcanhar para baixo* \
-              Frequências graves \
-              Som aberto e encorpado
-            ],
-          ),
-          block(
-            fill: white,
-            stroke: 0.5pt + color-rule-dark,
-            inset: 8pt,
-            radius: 4pt,
-            [
-              *Ponta do pé para baixo* \
-              Frequências médias-altas \
-              Som nasal e cortante
-            ],
-          ),
-        )
-      ],
-    )
-  ],
-  [
-    O Wah é um dos poucos efeitos que dialoga diretamente com a expressividade do guitarrista em tempo real. Hendrix, Clapton e Slash o usaram para criar frases que imitam a voz humana.
-
-    Uma variação moderna é o *Auto-Wah* (envelope filter), que aciona o efeito automaticamente em resposta à dinâmica da palheta, sem necessidade do pedal de expressão.
-  ],
-)
-
-== 4. Modulação
-
-Os efeitos de modulação trabalham com *cópias do sinal original* que são levemente alteradas em afinação, fase ou tempo e misturadas de volta. A interação entre o sinal original e a cópia cria os efeitos característicos.
-
-#v(0.8em)
-
-#align(center)[
-  #table(
-    columns: (1fr, 2fr, 1.5fr),
-    align: center + horizon,
-    stroke: 0.5pt + color-rule-dark,
-    fill: (col, row) => if row == 0 { color-subtle-bg } else if calc.odd(row) { white } else { color-subtle-bg },
-    [*Efeito*], [*O que faz*], [*Som típico*],
-    [*Chorus*],
-    [Cópia levemente desafinada e com LFO. Som mais largo e "molhado".],
-    [Pop dos anos 80, Clean do Nirvana],
-
-    [*Flanger*], [Cópia com delay curtíssimo e feedback. Cria o efeito de "avião".], [Eddie Van Halen, intros de rock],
-    [*Phaser*], [Desloca a fase de certas frequências. Som mais sutil e orgânico.], [Funk, Psicodélico, Pink Floyd],
-    [*Tremolo*], [Variação rítmica do volume. Não altera a frequência.], [Surf Rock, Blues, Radiohead],
-    [*Vibrato*], [Variação rítmica da afinação. Parece um braço trêmulo automático.], [Post-rock, Psicodélico],
-  )
-]
-
-#pagebreak()
-
-== 5. Efeitos de Tempo: Delay e Reverb
-
-Esses dois efeitos criam a *sensação de espaço* do som. São os últimos da cadeia porque precisam processar o sinal *já finalizado* para que as repetições e o ambiente soem naturais.
-
-#v(1em)
-
-#align(center)[
-  #grid(
-    columns: (1fr, 1fr),
-    gutter: 1.5em,
-    block(
-      fill: color-subtle-bg,
-      stroke: 0.5pt + color-rule-dark,
-      inset: 11pt,
-      radius: 5pt,
-      [
-        #align(center)[#text(weight: "bold", size: 10.5pt)[Delay (Eco)]]
-        #v(0.5em)
-        #set text(size: 9pt)
-        Grava o sinal e o reproduz após um tempo definido (*Time*). Você controla quantas vezes ele se repete (*Feedback*) e o quão alto está o eco em relação ao original (*Mix*).
-
-        #v(0.5em)
-
-        #table(
-          columns: (1fr, 1fr),
-          align: center + horizon,
-          stroke: 0.4pt + color-rule-dark,
-          fill: white,
-          inset: 6pt,
-          [*Digital*], [*Tape/Analog*],
-          [Eco limpo e preciso], [Eco quente e que degenera],
-        )
-
-        #v(0.4em)
-
-        *Dica:* Sincronize o delay com o BPM da música. Um delay de *♩ = 500ms* em 120 BPM cria repetições que caem no tempo, tornando o efeito musical.
-      ],
-    ),
-    block(
-      fill: color-subtle-bg,
-      stroke: 0.5pt + color-rule-dark,
-      inset: 11pt,
-      radius: 5pt,
-      [
-        #align(center)[#text(weight: "bold", size: 10.5pt)[Reverb (Ambiência)]]
-        #v(0.5em)
-        #set text(size: 9pt)
-        Simula o comportamento do som em um *ambiente físico*, onde as reflexões se acumulam e decaem. O Decay controla por quanto tempo o reverb sustenta.
-
-        #v(0.5em)
-
-        #table(
-          columns: (1fr, 1fr),
-          align: center + horizon,
-          stroke: 0.4pt + color-rule-dark,
-          fill: white,
-          inset: 6pt,
-          [*Room / Hall*], [*Spring / Plate*],
-          [Ambiente natural], [Metálico, vintage],
-        )
-
-        #v(0.4em)
-
-        *Cuidado:* Reverb excessivo *destrói a definição* do som, especialmente com distorção. Use com parcimônia e sempre *após* o delay.
-      ],
-    ),
-  )
-]
-
-#pagebreak()
-
-= O Loop FX Send/Return
-
-A maioria dos amplificadores possui uma entrada chamada *FX Loop* (ou Effects Loop), composta por um *Send* e um *Return*. Entender esse recurso muda completamente as possibilidades do seu setup.
-
-#v(1.5em)
-
-#align(center)[
-  #diagram(
-    spacing: (3mm, 12mm),
-    node-stroke: 0.5pt + color-rule-dark,
-    node-shape: rect,
-    node-fill: white,
-
-    node((0, 0), [*Guitarra*], name: <G>, fill: color-subtle-bg),
-    node((1, 0), [*OD / Dist*\ #text(size: 7pt)[ganho]], name: <DRV>),
-    node((2, 0), [*Pré-Amp* \ #text(size: 7pt)[amp input]], name: <PRE>),
-    node((3, 0), [→ *Send* →], name: <SND>, fill: color-subtle-bg),
-    node(
-      (4, 0),
-      [*Chorus* \ *Delay* \ *Reverb* \ #text(size: 7pt)[modulação/tempo]],
-      name: <LOOP>,
-    ),
-    node((5, 0), [→ *Return* →], name: <RET>, fill: color-subtle-bg),
-    node((6, 0), [*Power Amp* \ + *Caixa*], name: <PWR>),
-
+    node((1, 0), [*Drive* \ #sub[ganho]], name: <DRV>),
+    node((2, 0), [*Pré-amp* \ #sub[entrada do amp]], name: <PRE>),
+    node((3, 0), [*Send*], name: <SND>, fill: color-subtle-bg),
+    node((4, 0), [*Chorus · Delay \ Reverb* \ #sub[modulação e tempo]], name: <LOOP>),
+    node((5, 0), [*Return*], name: <RET>, fill: color-subtle-bg),
+    node((6, 0), [*Power amp* \ #sub[e caixa]], name: <PWR>),
     edge(<G>, <DRV>, "->"),
     edge(<DRV>, <PRE>, "->"),
     edge(<PRE>, <SND>, "->"),
@@ -478,131 +253,153 @@ A maioria dos amplificadores possui uma entrada chamada *FX Loop* (ou Effects Lo
   )
 ]
 
-#v(1.5em)
+#v(0.4em)
 
-#explainer-component(
-  align(center)[
-    #block(
-      fill: color-subtle-bg,
-      stroke: 0.5pt + color-rule-dark,
-      inset: 10pt,
-      radius: 5pt,
-      width: 90%,
-      [
-        #set text(size: 9pt)
-        #grid(
-          columns: (1fr, 1fr),
-          gutter: 0.8em,
-          block(
-            fill: white,
-            stroke: 0.5pt + color-rule-dark,
-            inset: 8pt,
-            radius: 4pt,
-            [
-              *Antes do FX Loop* \
-              (entrada do amp) \
-              OD, Distortion, Fuzz, Wah, Compressor, Boost
-            ],
-          ),
-          block(
-            fill: white,
-            stroke: 0.5pt + color-rule-dark,
-            inset: 8pt,
-            radius: 4pt,
-            [
-              *Dentro do FX Loop* \
-              (send → return) \
-              Chorus, Flanger, Phaser, Delay, Reverb, Tremolo
-            ],
-          ),
-        )
-      ],
-    )
+Assim, se a distorção vem do próprio amplificador, o delay e o reverb processam o som *depois* dela e soam muito mais limpos do que se estivessem ligados na entrada. E o *Return* sozinho funciona como entrada direta do power amp: é ali que se liga uma pedaleira que já simula o amplificador.
+
+#tabela(
+  columns: (1.3fr, 2fr, 2fr),
+  ([Onde ligar], [O que vai ali], [Por quê]),
+  (
+    ([Entrada (input) do amp], [Afinador, wah, compressor, overdrive, distorção, fuzz, boost], [Precisam do sinal direto da guitarra, com toda a dinâmica]),
+    ([FX loop (Send → Return)], [Chorus, flanger, phaser, tremolo, delay, reverb], [Processam o som já "pronto" do pré-amp]),
+    ([Só o FX Return], [Pedaleira com simulação de amplificador], [Pula o pré-amp do amp e evita o "pré em cima de pré"]),
+  ),
+)
+
+== 5. Resumo: boas práticas
+
+#comparativo(
+  titulo-esquerda: "Boas práticas",
+  titulo-direita: "Erros comuns",
+  [
+    - Montar a cadeia testando um pedal de cada vez
+    - Ajustar o tempo do delay ao BPM da música
+    - Usar delay e reverb com moderação junto com distorção
+    - Pedaleira com simulação de amp → FX Return
+    - Afinador no início da cadeia
   ],
   [
-    O FX Loop permite que os pedais de *tempo e modulação* sejam inseridos *entre o pré-amp e o power amp*, ou seja, esses efeitos processam o som já colorido e equalizado do amplificador. O delay e o reverb soam de forma muito mais limpa e controlada quando colocados aqui do que na entrada do amplificador.
-
-    O *FX Return* sozinho (sem usar o Send) também serve como *entrada de power amp*, ideal para quem usa uma pedaleira multi-efeitos com simulação de pré-amp e não quer passar pelo pré-amp do amplificador real.
+    - Pedaleira com simulação de amp na entrada do amp
+    - Reverb antes do delay
+    - Wah depois da distorção (perde expressividade)
+    - Delay fora do tempo da música
+    - Ganho no máximo "para compensar" um som sem definição
   ],
 )
 
-#pagebreak()
+#v(0.6em)
 
-= Resumo: Construindo o Seu Timbre
+#caixa(tipo: "resumo", titulo: "Regra de ouro")[
+  Nenhuma cadeia de efeitos compensa um som ruim na origem. Comece pela guitarra, pelas cordas, pela palhetada e pelo amplificador. Os efeitos são *temperos*, não a refeição.
+]
 
-#v(1em)
+== 6. Exercícios
 
-#align(center)[
-  #block(
-    fill: color-subtle-bg,
-    stroke: 0.5pt + color-rule-dark,
-    inset: 14pt,
-    radius: 5pt,
-    width: 92%,
-    [
-      #table(
-        columns: (0.3fr, 1.2fr, 2fr, 1fr),
-        align: center + horizon,
-        stroke: 0.5pt + color-rule-dark,
-        fill: (col, row) => if row == 0 { luma(225) } else if calc.odd(row) { white } else { color-subtle-bg },
-        [*\#*], [*Posição*], [*O que vai aqui*], [*Por quê*],
-        [1], [Entrada do amp], [Afinador, Compressor, Wah, OD/Dist], [Precisam do sinal puro e dinâmico],
-        [2], [FX Loop Send→Return], [Chorus, Flanger, Delay, Reverb], [Processam o som já "pronto" do pré-amp],
-        [3], [FX Return (apenas)], [Pedaleira com simulação de amp], [Pula o pré-amp, evita empilhamento],
-      )
-    ],
+#ex(titulo: "Monte a cadeia")[
+  Coloque os pedais na ordem da seção 2, numerando de 1 (mais perto da guitarra) a 6 (mais perto do amplificador).
+
+  #tabela-preencher(
+    columns: (1fr,) + (1fr,) * 6,
+    ([Pedal], [Reverb], [Overdrive], [Afinador], [Delay], [Compressor], [Chorus]),
+    (([Posição],) + (none,) * 6,),
   )
 ]
 
-#v(1.5em)
+#ex(titulo: "Que grupo é este?")[
+  Escreva o grupo de cada efeito: *dinâmica*, *ganho*, *filtro*, *modulação* ou *tempo/ambiência*.
 
-#align(center)[
+  #tabela-preencher(
+    columns: (1fr,) + (1.1fr,) * 5,
+    ([Efeito], [Fuzz], [Phaser], [Delay], [Wah], [Tremolo]),
+    (([Grupo],) + (none,) * 5,),
+  )
+  #v(0.3em)
+  #tabela-preencher(
+    columns: (1fr,) + (1.1fr,) * 5,
+    ([Efeito], [Compressor], [Reverb], [Flanger], [Distorção], [Chorus]),
+    (([Grupo],) + (none,) * 5,),
+  )
+]
+
+#ex(titulo: "Delay no tempo")[
+  Calcule o tempo do delay, em milissegundos, para repetições em semínimas (60.000 ÷ BPM). Na última coluna, calcule para colcheias.
+
+  #tabela-preencher(
+    columns: (1.4fr,) + (1fr,) * 5,
+    ([Andamento], [60 BPM], [80 BPM], [100 BPM], [120 BPM], [120 BPM (colcheia)]),
+    (([Delay (ms)],) + (none,) * 5,),
+  )
+]
+
+#ex(titulo: "Onde ligar?")[
+  Para cada situação, escreva onde o equipamento deve ser ligado: *entrada do amp*, *FX loop* ou *FX Return*.
+
   #grid(
-    columns: (1fr, 1fr),
-    gutter: 1.2em,
-    block(
-      width: 100%,
-      fill: color-subtle-bg,
-      stroke: 0.5pt + color-rule-dark,
-      inset: 10pt,
-      radius: 5pt,
-      [
-        #align(center)[#text(weight: "bold", size: 10pt)[✓ Boas práticas]]
-        #v(0.4em)
-        #align(left)[
-          #set text(size: 9pt)
-          - Sempre teste pedal por pedal ao montar a cadeia
-          - Sync do delay com o BPM da música
-          - Reverb e delay com parcimônia na distorção
-          - Pedaleiras com sim de amp → entrar pelo FX Return
-          - Afinador sempre primeiro e em bypass verdadeiro (true bypass)
-        ]
-      ],
-    ),
-    block(
-      width: 100%,
-      fill: color-subtle-bg,
-      stroke: 0.5pt + color-rule-dark,
-      inset: 10pt,
-      radius: 5pt,
-      [
-        #align(center)[#text(weight: "bold", size: 10pt)[✗ Erros comuns]]
-        #v(0.4em)
-        #align(left)[
-          #set text(size: 9pt)
-          - Pedaleira com sim de amp na entrada do amp (pré em cima de pré)
-          - Reverb antes do delay na cadeia
-          - Compressor depois da distorção
-          - Wah depois da distorção (perde a expressividade)
-          - Delay desincronizado com o BPM
-        ]
-      ],
+    columns: (1fr, 4cm),
+    row-gutter: 1em,
+    column-gutter: 1em,
+    [a) Uma pedaleira que simula amplificador, num amp com loop de efeitos:], box(width: 100%, height: 0.9em, stroke: (bottom: 0.6pt + color-rule-dark)),
+    [b) Um delay, num amp cuja distorção vem do próprio canal:], box(width: 100%, height: 0.9em, stroke: (bottom: 0.6pt + color-rule-dark)),
+    [c) Um pedal de overdrive:], box(width: 100%, height: 0.9em, stroke: (bottom: 0.6pt + color-rule-dark)),
+    [d) Um pedal wah:], box(width: 100%, height: 0.9em, stroke: (bottom: 0.6pt + color-rule-dark)),
+  )
+]
+
+#ex(titulo: "Pré-amp ou power amp?")[
+  Explique com suas palavras a diferença entre o pré-amp e o power amp, e por que ligar uma pedaleira com simulação de amp na entrada normal costuma soar mal.
+
+  #linhas-resposta(3)
+]
+
+#ex(titulo: "Ficha de timbre")[
+  No seu equipamento, monte um timbre *limpo* e um *distorcido* de que você goste e anote as regulagens. Guarde esta ficha para reproduzir os sons depois.
+
+  #tabela-preencher(
+    columns: (1.3fr, 1fr, 1fr, 1fr, 1fr, 2.2fr),
+    ([Timbre], [Ganho], [Graves], [Médios], [Agudos], [Pedais usados]),
+    (
+      ([Limpo], none, none, none, none, none),
+      ([Distorcido], none, none, none, none, none),
     ),
   )
 ]
 
-#v(1.5em)
+=== Sugestão de prática
 
-#caixa-destaque(width: 88%)[
-  *Regra de ouro do timbre:* A melhor cadeia de efeitos do mundo não compensa um som ruim na fonte. Comece sempre pela guitarra, pelas cordas e pelo amplificador. Efeitos são *temperos*, não a refeição.
+#rotina-estudo((
+  ([Ligar e testar cada pedal sozinho, ouvindo o que ele muda], [10 min], [—]),
+  ([Trocar a ordem de dois pedais (ex.: chorus e distorção) e comparar], [5 min], [—]),
+  ([Ajustar o delay ao BPM de uma música e tocar junto], [5 min], [conforme a música]),
+))
+
+=== Autoavaliação
+
+#checklist((
+  [Sei explicar o caminho do sinal até o alto-falante],
+  [Sei a diferença entre pré-amp e power amp],
+  [Classifico os efeitos nos seus grupos],
+  [Monto uma cadeia de pedais numa ordem lógica],
+  [Sei quando usar a entrada, o FX loop e o FX Return],
+))
+
+#gabarito[
+  #resposta(1)[
+    Afinador (1) → Compressor (2) → Overdrive (3) → Chorus (4) → Delay (5) → Reverb (6).
+  ]
+  #resposta(2)[
+    Fuzz: ganho · Phaser: modulação · Delay: tempo/ambiência · Wah: filtro · Tremolo: modulação · Compressor: dinâmica · Reverb: tempo/ambiência · Flanger: modulação · Distorção: ganho · Chorus: modulação.
+  ]
+  #resposta(3)[
+    60 BPM = 1.000 ms · 80 BPM = 750 ms · 100 BPM = 600 ms · 120 BPM = 500 ms · 120 BPM em colcheias = 250 ms.
+  ]
+  #resposta(4)[
+    a) FX Return · b) FX loop (Send → Return) · c) entrada do amp · d) entrada do amp.
+  ]
+  #resposta(5)[
+    O pré-amp eleva o sinal fraco da guitarra e define ganho, equalização e caráter do som; o power amp apenas dá potência ao sinal pronto para mover o alto-falante. Uma pedaleira com simulação de amp já faz o papel do pré-amp; na entrada normal, o sinal passa por um segundo pré-amp, que acrescenta ganho e equalização desnecessários e deixa o som embolado.
+  ]
+  #resposta(6)[
+    Resposta pessoal. Dica: anote os valores como as posições de um relógio (ex.: "ganho às 2 horas") ou de 0 a 10.
+  ]
 ]

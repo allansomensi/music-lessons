@@ -10,9 +10,6 @@
 // que precisam quebrar, como `exercicio`, já declaram breakable: true).
 #set block(breakable: false)
 
-// Texto de células de tabela sem justificação (evita espaços esticados)
-#show table: set par(justify: false)
-
 // Exercício que não se divide entre páginas (enunciado + área de resposta juntos)
 #let ex(..args) = block(breakable: false, above: 1.5em, below: 0.9em, exercicio(..args))
 
@@ -178,15 +175,11 @@ Os pulsos se agrupam em ciclos que se repetem, chamados *compassos*. A *fórmula
   ),
 ))
 
-#v(0.4em)
-
 Na partitura e na tablatura, os compassos são separados por *barras verticais*. Ao contar, você recomeça do "1" a cada barra. O tempo 1 é o mais forte: é nele que costumam cair as trocas de acorde.
 
 == 3. Figuras rítmicas e pausas
 
 As *figuras* indicam quanto tempo cada nota dura; as *pausas* indicam quanto tempo de silêncio. Cada figura vale *metade* da anterior. Os valores abaixo valem para compassos em que a semínima é o tempo (4/4, 3/4):
-
-#v(0.3em)
 
 #let fg(x) = box(height: 26pt, align(center + horizon, x))
 #tabela(
@@ -201,13 +194,9 @@ As *figuras* indicam quanto tempo cada nota dura; as *pausas* indicam quanto tem
   ),
 )
 
-#v(0.4em)
-
 Colcheias e semicolcheias vizinhas costumam ser *ligadas por barras* em vez de bandeirolas, agrupadas tempo a tempo: uma barra para colcheias (#box(baseline: 30%, grupo-notas(2, escala: 0.6))), duas barras para semicolcheias (#box(baseline: 30%, grupo-notas(4, barras: 2, escala: 0.6))).
 
-#caixa(tipo: "resumo", titulo: "Ponto de aumento")[
-  Um ponto ao lado da figura *aumenta metade do seu valor*. A *mínima pontuada* (#box(baseline: 20%, nota("minima", ponto: true, escala: 0.7))) vale 2 + 1 = *3 tempos* e preenche um compasso inteiro de 3/4. A semínima pontuada vale 1 + ½ = 1½ tempo.
-]
+*Ponto de aumento.* O ponto ao lado de uma figura *aumenta metade do seu valor*: a *mínima pontuada* (#box(baseline: 20%, nota("minima", ponto: true, escala: 0.7))) vale 2 + 1 = *3 tempos* (um compasso de 3/4 inteiro); a semínima pontuada, 1 + ½ = 1½ tempo.
 
 === A pirâmide rítmica
 
@@ -233,12 +222,12 @@ Um compasso de 4/4 pode ser preenchido por uma semibreve, duas mínimas, quatro 
 
 == 4. Contando em voz alta
 
-Contar em voz alta é a ferramenta mais poderosa para tocar no tempo: a voz organiza a mão. Nesta apostila usamos a seguinte convenção:
+Contar em voz alta é a ferramenta mais poderosa para tocar no tempo: a voz organiza a mão. Neste material usamos a seguinte convenção:
 
 #v(0.3em)
 
 #tabela(
-  columns: (1.1fr, 1.2fr, 1.6fr, 1.8fr),
+  columns: (1fr, 1.1fr, 1.4fr, 2.2fr),
   ([*Subdivisão*], [*Notas/tempo*], [*Contagem*], [*Como falar*]),
   (
     ([Semínimas], [1], [*1 2 3 4*], ["um, dois, três, quatro"]),
@@ -254,7 +243,7 @@ Contar em voz alta é a ferramenta mais poderosa para tocar no tempo: a voz orga
 #v(0.3em)
 
 #caixa(tipo: "atencao")[
-  Notas longas e pausas também são contadas — só que *em silêncio* (nesta apostila, entre parênteses). Quem para de contar durante a pausa quase sempre entra adiantado.
+  Notas longas e pausas também são contadas — só que *em silêncio* (aqui, entre parênteses). Quem para de contar durante a pausa quase sempre entra adiantado.
 ]
 
 == 5. O metrônomo

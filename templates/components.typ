@@ -136,6 +136,7 @@
       inset: 12pt,
       radius: 5pt,
       width: width,
+      breakable: false,
       [
         #set align(left)
         #if rotulo != none [
@@ -469,6 +470,7 @@
       #block(
         width: 100%,
         below: 0.7em,
+        sticky: true,
         stroke: (bottom: 0.6pt + color-rule-dark),
         inset: (bottom: 4pt),
         grid(
@@ -826,8 +828,8 @@
   block(
     width: 100%,
     breakable: true,
-    above: 0.8em,
-    below: 0.8em,
+    above: 1.15em,
+    below: 1.15em,
     grid(
       columns: (auto, 1fr),
       column-gutter: 9pt,
