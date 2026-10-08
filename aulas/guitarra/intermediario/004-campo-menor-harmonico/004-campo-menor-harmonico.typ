@@ -13,7 +13,7 @@
 
 = Campo Harmônico Menor Harmônico — Aplicações
 
-Você já viu a construção da Menor Harmônica. Nesta aula vamos explorar *como usar o campo* na prática: os acordes mais importantes, as progressões características e os modos gerados pela escala.
+A *escala menor harmônica* é a menor natural com o 7º grau elevado (em Lá: A – B – C – D – E – F – G\#). Nesta aula vamos explorar *como usar o campo* na prática: os acordes mais importantes, as progressões características e os modos gerados pela escala.
 
 == Revisão: O Campo em Am Harmônico
 

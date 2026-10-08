@@ -69,7 +69,7 @@ Nem toda tensão funciona sobre todo acorde. As tensões "disponíveis" são as 
 
 #align(center)[
   #text(size: 8.5pt, fill: color-muted)[
-    *Observação:* O acorde G7 (V) evita a 11ª justa pois ela conflita com a 3ª (Si). Em seu lugar, usa-se a *\#11* (Fá\#) para criar o modo Lídio-Dominante.
+    *Observação:* O acorde G7 (V) evita a 11ª justa pois ela conflita com a 3ª (Si). Em seu lugar, usa-se a *\#11* (Dó\#) para criar o modo Lídio-Dominante.
   ]
 ]
 

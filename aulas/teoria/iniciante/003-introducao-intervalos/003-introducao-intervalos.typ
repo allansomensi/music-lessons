@@ -106,7 +106,7 @@ Cada distância possível dentro de uma oitava tem um nome próprio, medido em s
 #v(0.8em)
 
 #caixa-destaque(width: 85%)[
-  Repare que essa tabela é exatamente a régua de *tons e semitons* que você já conhece, só que agora com um nome específico para cada distância. Saber o nome de um intervalo é o primeiro passo, reconhecê-lo *de ouvido* é o segundo.
+  Repare que essa tabela é exatamente a régua de *tons e semitons*, só que agora com um nome específico para cada distância. Saber o nome de um intervalo é o primeiro passo, reconhecê-lo *de ouvido* é o segundo.
 ]
 
 == 3. Por Que Associar Intervalos a Músicas?

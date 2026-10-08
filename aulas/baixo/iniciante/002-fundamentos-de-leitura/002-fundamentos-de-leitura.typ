@@ -7,7 +7,7 @@
 
 = Fundamentos de Leitura para o Baixo
 
-Assim como na guitarra e no violão, tocar baixo de ouvido ou de cifra exige conhecer a *linguagem visual* do instrumento: os nomes das notas, a afinação das 4 cordas e como ler uma tablatura. Esta aula constrói a base necessária para os próximos estudos, incluindo *Intervalos Musicais*.
+Assim como na guitarra e no violão, tocar baixo de ouvido ou de cifra exige conhecer a *linguagem visual* do instrumento: os nomes das notas, a afinação das 4 cordas e como ler uma tablatura. Esta é a base para qualquer estudo no baixo.
 
 == 1. As Notas e a Cifra
 

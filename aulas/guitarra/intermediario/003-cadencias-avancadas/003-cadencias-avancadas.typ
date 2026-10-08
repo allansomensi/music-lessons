@@ -49,7 +49,7 @@
 
 = Cadências Avançadas
 
-Uma *cadência* é qualquer movimento harmônico que cria sensação de repouso ou resolução. Você já conhece o II-V-I básico. Aqui vamos expandir o vocabulário de cadências para tom maior, menor, e as técnicas de *substituição e dominante secundário*.
+Uma *cadência* é qualquer movimento harmônico que cria sensação de repouso ou resolução. Partindo do II-V-I básico (IIm7 – V7 – I), aqui vamos expandir o vocabulário de cadências para tom maior, menor, e as técnicas de *substituição e dominante secundário*.
 
 == Revisão: As Cadências Fundamentais
 

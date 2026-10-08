@@ -122,12 +122,12 @@ Cada posição cobre uma região do braço. Juntas, elas formam um mapa completo
 #align(center)[
   #neck(
     (
-      (" ", "N", " ", " ", "R"),
-      (" ", "N", " ", "N", " "),
-      (" ", "R", " ", "N", " "),
-      (" ", "N", " ", "N", " "),
-      (" ", "N", " ", " ", "R"),
-      (" ", "N", " ", " ", "R"),
+      (" ", "N", " ", "N"),
+      ("N", " ", " ", "N"),
+      ("R", " ", " ", "N"),
+      ("N", " ", "N", " "),
+      (" ", "N", " ", "R"),
+      (" ", "N", " ", "N"),
     ),
     fs: 7,
   )
@@ -140,12 +140,12 @@ Cada posição cobre uma região do braço. Juntas, elas formam um mapa completo
 #align(center)[
   #neck(
     (
-      ("N", " ", "R", " "),
-      ("N", " ", "N", " "),
-      ("N", " ", "N", " "),
-      ("N", " ", "N", " "),
-      ("N", " ", "R", " "),
-      ("N", " ", "R", " "),
+      (" ", "N", " ", "N", " "),
+      (" ", "N", " ", "R", " "),
+      (" ", "N", " ", "N", " "),
+      ("N", " ", " ", "N", " "),
+      (" ", "R", " ", " ", "N"),
+      (" ", "N", " ", "N", " "),
     ),
     fs: 9,
   )
@@ -158,12 +158,12 @@ Cada posição cobre uma região do braço. Juntas, elas formam um mapa completo
 #align(center)[
   #neck(
     (
-      ("R", " ", "N", " "),
-      ("N", " ", " ", "R"),
-      ("N", " ", " ", "R"),
-      ("N", " ", " ", "R"),
-      ("R", " ", "N", " "),
-      ("R", " ", "N", " "),
+      ("N", " ", " ", "N"),
+      ("R", " ", " ", "N"),
+      ("N", " ", "N", " "),
+      ("N", " ", "R", " "),
+      (" ", "N", " ", "N"),
+      ("N", " ", " ", "N"),
     ),
     fs: 12,
   )
@@ -176,12 +176,12 @@ Cada posição cobre uma região do braço. Juntas, elas formam um mapa completo
 #align(center)[
   #neck(
     (
-      ("N", " ", "N", " "),
-      (" ", "R", " ", "N"),
-      (" ", "R", " ", "N"),
-      (" ", "R", " ", "N"),
-      ("N", " ", "N", " "),
-      ("N", " ", "N", " "),
+      (" ", "N", " ", "R"),
+      (" ", "N", " ", "N"),
+      ("N", " ", " ", "N"),
+      ("R", " ", " ", "N"),
+      (" ", "N", " ", "N"),
+      (" ", "N", " ", "R"),
     ),
     fs: 2,
   )
@@ -202,11 +202,11 @@ As 5 posições da pentatônica se sobrepõem exatamente com os 5 shapes do CAGE
     stroke: 0.5pt + color-rule-dark,
     fill: (col, row) => if row == 0 { color-subtle-bg } else if calc.odd(row) { white } else { color-subtle-bg },
     [*Posição Penta*], [*Shape CAGED*], [*Tônica (Am)*], [*Casas aprox.*],
-    [Posição 1], [Shape E], [5ª e 6ª corda], [5–8],
-    [Posição 2], [Shape D], [1ª e 2ª corda], [7–10],
-    [Posição 3], [Shape C], [2ª e 3ª corda], [9–12],
-    [Posição 4], [Shape A], [1ª e 2ª corda], [12–15],
-    [Posição 5], [Shape G], [5ª e 6ª corda], [2–5],
+    [Posição 1], [Shape E], [6ª, 4ª e 1ª corda], [5–8],
+    [Posição 2], [Shape D], [4ª e 2ª corda], [7–10],
+    [Posição 3], [Shape C], [5ª e 2ª corda], [9–13],
+    [Posição 4], [Shape A], [5ª e 3ª corda], [12–15],
+    [Posição 5], [Shape G], [6ª, 3ª e 1ª corda], [2–5 (ou 14–17)],
   )
 ]
 

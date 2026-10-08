@@ -76,7 +76,7 @@
         ),
         text(weight: "bold", size: 11pt, fill: color-secondary)[
           #if not is-cover [
-            #counter(page).display("01")
+            #counter(page).display(n => if n < 10 { "0" + str(n) } else { str(n) })
           ]
         ],
       )
